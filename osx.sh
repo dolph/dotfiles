@@ -23,7 +23,6 @@ defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
 # Menu bar: limit what is shown
 defaults write com.apple.systemuiserver menuExtras -array \
-  "/System/Library/CoreServices/Menu Extras/Airport.menu" \
   "/System/Library/CoreServices/Menu Extras/Battery.menu" \
   "/System/Library/CoreServices/Menu Extras/Clock.menu" \
   "/System/Library/CoreServices/Menu Extras/Volume.menu"
