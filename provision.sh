@@ -9,3 +9,6 @@ pip install virtualenv virtualenvwrapper flake8
 # install dotfiles
 git clone https://github.com/dolph/dotfiles.git ~/dotfiles
 sh ~/dotfiles/symlink.sh
+
+# set os x preferences
+sh ~/dotfiles/osx.sh
