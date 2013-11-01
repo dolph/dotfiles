@@ -1,0 +1,9 @@
+[color]
+	ui = true
+[user]
+	email = dolph.mathews@gmail.com
+	name = Dolph Mathews
+[push]
+	default = simple
+[core]
+	excludesfile = /Users/dolph/.gitignore_global

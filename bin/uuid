@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+
+import uuid
+
+
+ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz'
+BASE = len(ALPHABET)
+
+
+def encode(number):
+    """Converts an integer to a string."""
+
+    if isinstance(number, (float)) and int(number) == number:
+        number = int(number)
+
+    if not isinstance(number, (int, long)):
+        raise TypeError('number must be an integer')
+
+    if number >= 0 and number <= 9:
+        return ALPHABET[number]
+
+    s = ''
+    sign = ''
+
+    if number < 0:
+        sign = '-'
+        number = -number
+
+    while number != 0:
+        number, i = divmod(number, len(ALPHABET))
+        s = ALPHABET[i] + s
+
+    return sign + s
+
+
+def decode(number):
+    """Converts a string to an integer."""
+    return int(number, BASE)
+
+
+print encode(uuid.uuid4().int)

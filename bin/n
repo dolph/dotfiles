@@ -1,0 +1,3 @@
+#!/bin/bash
+time $@
+terminal-notifier -title "$@" -message "Return code: $?"
