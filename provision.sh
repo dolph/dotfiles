@@ -12,3 +12,6 @@ sh ~/dotfiles/symlink.sh
 
 # set os x preferences
 sh ~/dotfiles/osx.sh
+
+# install fonts
+cp -f ~/dotfiles/fonts/* ~/Library/Fonts/
