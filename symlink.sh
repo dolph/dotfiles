@@ -3,7 +3,7 @@
 # create symlinks from the home directory to dotfiles in ~/dotfiles
 
 dir=~/dotfiles
-dotfiles="profile inputrc vim vimrc gvimrc gitconfig gitignore_global"
+dotfiles="profile custom inputrc vim vimrc gvimrc gitconfig gitignore_global"
 rawfiles="bin"
 
 # symlink dotfiles to the the home dir, each prefixed by a dot (.)
