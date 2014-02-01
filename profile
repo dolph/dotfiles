@@ -30,5 +30,3 @@ which virtualenv > /dev/null && source /usr/local/bin/virtualenvwrapper.sh
 
 # speed up pip installs
 export PIP_DOWNLOAD_CACHE=~/.pip/cache
-
-source ~/.custom
