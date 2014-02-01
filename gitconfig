@@ -7,3 +7,5 @@
 	default = simple
 [core]
 	excludesfile = /Users/dolph/.gitignore_global
+[alias]
+	shame = blame
