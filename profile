@@ -26,7 +26,7 @@ export OS_SERVICE_TOKEN=ADMIN
 export OS_SERVICE_ENDPOINT=http://localhost:35357/v2.0/
 
 export WORKON_HOME=~/Environments
-source /usr/local/bin/virtualenvwrapper.sh
+which virtualenv > /dev/null && source /usr/local/bin/virtualenvwrapper.sh
 
 # speed up pip installs
 export PIP_DOWNLOAD_CACHE=~/.pip/cache
