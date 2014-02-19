@@ -22,8 +22,9 @@ PS1='\W \$ '
 # export PYTHONSTARTUP='/Users/dolph/.pystart'
 
 # keystone dev defaults
-export OS_SERVICE_TOKEN=ADMIN
-export OS_SERVICE_ENDPOINT=http://localhost:35357/v2.0/
+export OS_IDENTITY_API_VERSION=3
+export OS_TOKEN=ADMIN
+export OS_URL=http://localhost:35357/v3
 
 export WORKON_HOME=~/Environments
 which virtualenv > /dev/null && source /usr/local/bin/virtualenvwrapper.sh
