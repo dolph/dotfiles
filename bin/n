@@ -1,3 +1,5 @@
 #!/bin/bash
 time $@
-terminal-notifier -title "$@" -message "Return code: $?"
+rval=$?
+terminal-notifier -title "$@" -message "Return code: $rval"
+exit $rval
