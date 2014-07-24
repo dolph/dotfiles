@@ -26,8 +26,8 @@ export OS_IDENTITY_API_VERSION=3
 export OS_TOKEN=ADMIN
 export OS_URL=http://localhost:35357/v3
 
+# setup virtualenvwrapper
 export WORKON_HOME=~/Environments
-which virtualenv > /dev/null && source /usr/local/bin/virtualenvwrapper.sh
 
 # speed up pip installs
 export PIP_DOWNLOAD_CACHE=~/.pip/cache
