@@ -1,4 +1,4 @@
-export PATH=/Users/dolph/bin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH
 export GREP_OPTIONS='--color=auto'
 export EDITOR=vim
 export CLICOLOR=1
