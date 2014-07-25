@@ -7,9 +7,6 @@ alias e=vim
 # switch bash to vi mode
 set -o vi
 
-# increase maximum number of open files
-# ulimit -n 1024
-
 # this doesn't need to be enabled every time, but why not
 git config --global color.ui true
 git config --global user.email "dolph.mathews@gmail.com"
