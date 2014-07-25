@@ -16,7 +16,7 @@ git config --global core.excludesfile ~/.gitignore_global
 # default: PS1='\h:\W \u\$'
 PS1='\W \$ '
 
-# export PYTHONSTARTUP='/Users/dolph/.pystart'
+# export PYTHONSTARTUP=$HOME/.pystart
 
 # keystone dev defaults
 export OS_IDENTITY_API_VERSION=3
@@ -24,7 +24,7 @@ export OS_TOKEN=ADMIN
 export OS_URL=http://localhost:35357/v3
 
 # setup virtualenvwrapper
-export WORKON_HOME=~/Environments
+export WORKON_HOME=$HOME/Environments
 
 # speed up pip installs
-export PIP_DOWNLOAD_CACHE=~/.pip/cache
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
