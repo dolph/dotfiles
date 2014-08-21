@@ -1,4 +1,4 @@
-export PATH=/Users/dolph/bin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH
 export GREP_OPTIONS='--color=auto'
 export EDITOR=vim
 export CLICOLOR=1
@@ -6,9 +6,6 @@ alias e=vim
 
 # switch bash to vi mode
 set -o vi
-
-# increase maximum number of open files
-# ulimit -n 1024
 
 # this doesn't need to be enabled every time, but why not
 git config --global color.ui true
@@ -19,15 +16,15 @@ git config --global core.excludesfile ~/.gitignore_global
 # default: PS1='\h:\W \u\$'
 PS1='\W \$ '
 
-# export PYTHONSTARTUP='/Users/dolph/.pystart'
+# export PYTHONSTARTUP=$HOME/.pystart
 
 # keystone dev defaults
 export OS_IDENTITY_API_VERSION=3
 export OS_TOKEN=ADMIN
 export OS_URL=http://localhost:35357/v3
 
-export WORKON_HOME=~/Environments
-which virtualenv > /dev/null && source /usr/local/bin/virtualenvwrapper.sh
+# setup virtualenvwrapper
+export WORKON_HOME=$HOME/Environments
 
 # speed up pip installs
-export PIP_DOWNLOAD_CACHE=~/.pip/cache
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache

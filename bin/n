@@ -1,5 +1,14 @@
 #!/bin/bash
 time $@
 rval=$?
-terminal-notifier -title "$@" -message "Return code: $rval"
+
+if hash terminal-notifier 2>/dev/null; then
+    terminal-notifier -title "$@" -message "Return code: $rval"
+elif hash say 2>/dev/null; then
+    say $@ returned $?
+else
+    # as a last resort, try to make a beep noise
+    echo 
+fi
+
 exit $rval
