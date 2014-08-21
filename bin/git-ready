@@ -9,7 +9,7 @@ BRANCH=${1:-master}
 git checkout $BRANCH
 git pull
 
-# cehckout the top commit in the master branch, effectively going untracked
+# checkout the top commit in the specified branch, effectively going untracked
 git checkout $BRANCH~0
 
 # (optional) clean up the repository of python cruft
