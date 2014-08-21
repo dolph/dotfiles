@@ -4,7 +4,10 @@ set -e
 # assume master branch unless specified otherwise
 BRANCH=${1:-master}
 
-# switch to the master branch and update it
+# ensure the remote branch is tracked
+git branch --list | grep $BRANCH || git checkout --track origin/$BRANCH
+
+# switch to the specified branch and update it
 # pulling is always safe here, because we never (ever) commit to this branch
 git checkout $BRANCH
 git pull
