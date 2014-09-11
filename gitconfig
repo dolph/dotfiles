@@ -6,6 +6,6 @@
 [push]
 	default = simple
 [core]
-	excludesfile = /Users/dolph/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [alias]
 	shame = blame
