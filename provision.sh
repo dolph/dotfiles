@@ -1,6 +1,6 @@
 #!/bin/bash
 # install homebrew and some python development tools
-ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew install git python ack macvim tree ssh-copy-id ansible
 pip install --upgrade setuptools
 pip install --upgrade pip
