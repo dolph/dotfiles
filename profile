@@ -14,9 +14,8 @@ git config --global user.name "Dolph Mathews"
 git config --global core.excludesfile ~/.gitignore_global
 
 # default: PS1='\h:\W \u\$'
-# user@hostname cwd $
-# (this uses two different commands for color)
-PS1='\e[0;32m\h\e[m \e[0;34m\W\e[m \[$(tput setaf 10)\]\$\[$(tput sgr0)\] '
+# hostname cwd $
+PS1="\[$(tput setaf 2)\]\h \[$(tput setaf 4)\]\W \[$(tput setaf 10)\]\\$ \[$(tput sgr0)\]"
 
 # export PYTHONSTARTUP=$HOME/.pystart
 
