@@ -27,8 +27,8 @@ git merge origin/master --message "$COMMIT_MESSAGE"
 # amend the merge commit to automatically add a Change-ID to the commit message
 GIT_EDITOR=true git commit --amend
 
-# push the merge commit to gerrit
-git review -R $BRANCH
+# push the merge commit to gerrit without a scary confirmation
+git review --yes --no-rebase $BRANCH
 
 # switch off the branch so we can delete it
 git checkout master
