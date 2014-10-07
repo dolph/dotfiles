@@ -25,7 +25,7 @@ git checkout -b merge-branch
 git merge origin/master --message "$COMMIT_MESSAGE"
 
 # amend the merge commit to automatically add a Change-ID to the commit message
-GIT_EDITOR=/usr/bin/true git commit --amend
+GIT_EDITOR=true git commit --amend
 
 # push the merge commit to gerrit
 git review -R $BRANCH
