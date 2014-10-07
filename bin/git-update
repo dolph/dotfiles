@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# enable tracing in case you need to explain what went wrong to jeblair
+set -x
+
 # assume a non-existent branch unless specified otherwise
 BRANCH=${1:-feature/noexist}
 
