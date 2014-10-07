@@ -12,7 +12,9 @@ COMMIT_MESSAGE="Update the $BRANCH branch"
 git branch --list | grep $BRANCH || git checkout --track origin/$BRANCH
 
 # make sure master is up to date
-git ready
+# (you don't ever make local commits directly to master, do you?)
+git checkout master
+git pull origin master
 
 # make sure the feature branch is up to date
 git checkout $BRANCH
@@ -31,10 +33,7 @@ GIT_EDITOR=true git commit --amend
 git review --yes --no-rebase $BRANCH
 
 # switch off the branch so we can delete it
-git checkout master
+git checkout master~0
 
 # delete the temporary branch
 git branch -D merge-branch
-
-# restore happiness
-git ready
