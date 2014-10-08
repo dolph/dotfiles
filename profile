@@ -26,7 +26,7 @@ export OS_URL=http://localhost:35357/v3
 
 # setup virtualenvwrapper
 export WORKON_HOME=$HOME/Environments
-which virtualenv > /dev/null && source virtualenvwrapper.sh
+which virtualenvwrapper.sh > /dev/null && source virtualenvwrapper.sh
 
 # speed up pip installs
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
