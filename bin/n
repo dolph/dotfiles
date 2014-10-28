@@ -1,5 +1,5 @@
 #!/bin/bash
-time $@
+time "$@"
 rval=$?
 
 if hash terminal-notifier 2>/dev/null; then
