@@ -126,3 +126,6 @@ set spell spelllang=en_us
 
 " disable double spacing between sentences
 set nojoinspaces
+
+" thank skrillex
+set paste
