@@ -4,7 +4,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew install git python ack macvim tree ssh-copy-id ansible
 pip install --upgrade setuptools
 pip install --upgrade pip
-pip install virtualenv virtualenvwrapper flake8
+pip install virtualenv virtualenvwrapper hacking
 
 # install dotfiles
 git clone https://github.com/dolph/dotfiles.git ~/dotfiles
