@@ -12,6 +12,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # General UI/UX                                                               #
 ###############################################################################
 
+# Enable global dark UI mode
+defaults write -g AppleInterfaceStyle Dark
+
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
