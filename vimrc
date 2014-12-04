@@ -93,15 +93,23 @@ set incsearch
 " remove trailing whitespace on <leader>S
 noremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 
-" Load pathogen with docs for all plugins
-filetype off
-call pathogen#runtime_append_all_bundles()
-filetype on
-
 " set color theme
-colorscheme solarized
+" colorscheme solarized
 
-" enable pyflakes?
+" load Vundle for plugin management
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage itself
+Plugin 'gmarik/Vundle.vim'
+
+" plugins
+Plugin 'ervandew/supertab'
+
+" end loading plugins
+call vundle#end()
 filetype plugin indent on
 
 " set shortcut key and open NerdTree at start
