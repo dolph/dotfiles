@@ -30,3 +30,6 @@ which virtualenvwrapper.sh > /dev/null && source virtualenvwrapper.sh
 
 # speed up pip installs
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+
+# make it trivial to jump into a development server
+alias dev="ssh dev.dolphm.com"
