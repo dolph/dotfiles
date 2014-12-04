@@ -15,3 +15,6 @@ sh ~/dotfiles/osx.sh
 
 # install fonts
 cp -f ~/dotfiles/fonts/* ~/Library/Fonts/
+
+# install vim plugins
+vim +PluginInstall +qall

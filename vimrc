@@ -103,6 +103,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " plugins
+" after adding a new plugin, run "vim +PluginInstall +qall" to install it
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'ervandew/supertab'
