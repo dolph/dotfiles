@@ -93,9 +93,6 @@ set incsearch
 " remove trailing whitespace on <leader>S
 noremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 
-" set color theme
-" colorscheme solarized
-
 " load Vundle for plugin management
 set nocompatible
 filetype off
@@ -106,11 +103,20 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " plugins
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'fholgado/minibufexpl.vim'
 Plugin 'ervandew/supertab'
+Plugin 'mileszs/ack.vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'scrooloose/nerdtree'
 
 " end loading plugins
 call vundle#end()
 filetype plugin indent on
+
+" set color theme
+colorscheme solarized
 
 " set shortcut key and open NerdTree at start
 map <leader>n :NERDTreeToggle<CR>

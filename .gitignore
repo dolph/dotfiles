@@ -1,1 +1,6 @@
+# ignore all vim plugins except Vundle, the plugin manager
+!vim/bundle/
+vim/bundle/*
+!vim/bundle/Vundle.vim/
+
 vim/.netrwhist
