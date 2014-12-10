@@ -1,5 +1,5 @@
 " editor font
-set guifont=Bitstream\ Vera\ Sans\ Mono:h15
+set guifont=Bitstream\ Vera\ Sans\ Mono:h17
 
 " line height
 set linespace=3
