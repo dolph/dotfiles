@@ -106,8 +106,10 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'ervandew/supertab'
 Plugin 'mileszs/ack.vim'
 Plugin 'nvie/vim-flake8'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdtree'
+
+Plugin 'godlygeek/tabular' " must appear before plasticboy/vim-markdown
+Plugin 'plasticboy/vim-markdown'
 
 " end loading plugins
 call vundle#end()
