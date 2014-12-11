@@ -57,11 +57,8 @@ set shiftround
 " show matching <> (html mainly) as well
 set matchpairs+=<:>
 
-" allow us to fold on indents
-set foldmethod=indent
-
-" don't fold by default
-set foldlevel=99
+" disable folding
+set nofoldenable
 
 " don't bell or blink
 set noerrorbells
