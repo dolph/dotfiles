@@ -140,3 +140,6 @@ set spell spelllang=en_us
 
 " disable double spacing between sentences
 set nojoinspaces
+
+" integrate yanking & pasting with the OS X clipboard
+set clipboard=unnamed
