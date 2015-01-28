@@ -63,3 +63,14 @@ builtin
 localhost
 backends
 LDAP
+Redis
+DevStack
+keystonemiddleware
+HMAC
+Eventlet
+TCT
+SLT
+Starbucks
+WiFi
+Ansible
+mentees
