@@ -1,8 +1,11 @@
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:$PATH
 export GREP_OPTIONS='--color=auto'
 export EDITOR=vim
-export CLICOLOR=1
 alias e=vim
+
+# use color by default
+export CLICOLOR=1
+alias ls='ls --color'
 
 # switch bash to vi mode
 set -o vi
