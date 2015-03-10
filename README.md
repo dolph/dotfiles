@@ -10,5 +10,6 @@ Or if you already have `git`, etc, installed, you can just clone this repo to
 
     git clone --recursive https://github.com/dolph/dotfiles.git ~/dotfiles
     sh ~/dotfiles/symlink.sh
+    vim +PluginInstall +qall
 
 The ``--recursive`` is necessary to pull in submodules.
