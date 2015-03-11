@@ -11,9 +11,10 @@ brew install ansible
 
 # install cask so we can install GUI apps
 brew install caskroom/cask/brew-cask
-brew install google-chrome
-brew install virtualbox
-brew install vagrant
+brew cask install google-chrome
+brew cask install vagrant
+brew cask install virtualbox
+brew cask install vlc
 
 pip install --upgrade setuptools
 pip install --upgrade pip
