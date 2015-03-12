@@ -125,10 +125,6 @@ let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '\.db$']
 " run flake8 on save
 autocmd BufWritePost *.py call Flake8()
 
-" ignore pep8 violations
-" E711: bool(Object() == None): N/A if Object overrides __eq__()
-let g:flake8_ignore='E711'
-
 " cut, copy & paste
 nmap <C-V> "+gP
 imap <C-V> <ESC>"+gpi
