@@ -1,22 +1,25 @@
 #!/bin/bash
 
-# time the command ourselves
-let start_time=`date +%s`
-$@
-rval=$?
-let end_time=`date +%s`
-let duration=`expr $end_time - $start_time`
+# time the command
+let start_time=`date +%s`;
+time $@;
+rval=$?;
+let end_time=`date +%s`;
+let duration=`expr $end_time - $start_time`;
 
 # emit a notification if the command took longer than 2 seconds
 if [ $duration -ge 2 ] ; then
-    if hash terminal-notifier 2>/dev/null; then
-        terminal-notifier -title "$@" -message "Return code: $rval"
-    elif hash say 2>/dev/null; then
-        say $@ returned $?
-    else
-        # as a last resort, try to make a beep noise
-        echo 
+    # try to emit a growl-style notification
+    if hash osascript 2>/dev/null; then
+        osascript \
+            -e "on run(argv)" \
+            -e "return display notification item 1 of argv with title item 2 of argv" \
+            -e "end" \
+            -- "$rval" "$@"
     fi
+
+    # and try to make a beep noise
+    echo ;
 fi
 
-exit $rval
+exit $rval;
