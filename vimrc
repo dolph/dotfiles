@@ -116,7 +116,7 @@ call vundle#end()
 filetype plugin indent on
 
 " set color theme
-colorscheme solarized
+silent! colorscheme solarized
 
 " set shortcut key and open NerdTree at start
 map <leader>n :NERDTreeToggle<CR>
