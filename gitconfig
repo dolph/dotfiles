@@ -4,7 +4,7 @@
 	email = dolph.mathews@gmail.com
 	name = Dolph Mathews
 [push]
-	default = simple
+	default = current
 [core]
 	excludesfile = ~/.gitignore_global
 [alias]
