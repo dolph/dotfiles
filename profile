@@ -26,9 +26,5 @@ export OS_IDENTITY_API_VERSION=3
 export OS_TOKEN=ADMIN
 export OS_URL=http://localhost:35357/v3
 
-# setup virtualenvwrapper
-export WORKON_HOME=$HOME/Environments
-which virtualenvwrapper.sh > /dev/null && source virtualenvwrapper.sh
-
 # make it trivial to jump into a development server
 alias dev="ssh dev.dolphm.com"
