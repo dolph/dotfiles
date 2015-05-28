@@ -135,6 +135,9 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
+# Increase the delay before allowing applications to be dragged into new spaces
+defaults write com.apple.dock workspaces-edge-delay -float 5.0
+
 ###############################################################################
 # Twitter.app                                                                 #
 ###############################################################################
