@@ -27,4 +27,4 @@ export OS_TOKEN=ADMIN
 export OS_URL=http://localhost:35357/v3
 
 # make it trivial to jump into a development server
-alias dev="ssh dev.dolphm.com"
+alias dev="ssh -p 443 23.253.149.141"
