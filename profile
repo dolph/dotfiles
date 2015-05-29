@@ -14,7 +14,7 @@ set -o vi
 git config --global color.ui true
 git config --global user.email "dolph.mathews@gmail.com"
 git config --global user.name "Dolph Mathews"
-git config --global core.excludesfile ~/.gitignore_global
+git config --global core.excludesfile $HOME/.gitignore_global
 
 # default: PS1='\h:\W \u\$'
 # hostname cwd $
