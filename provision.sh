@@ -19,7 +19,6 @@ brew cask install vlc
 pip install --upgrade setuptools
 pip install --upgrade pip
 pip install virtualenv
-pip install virtualenvwrapper
 pip install hacking
 
 # install dotfiles
