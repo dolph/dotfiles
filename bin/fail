@@ -2,5 +2,5 @@
 # repeat a command until it succeeds, then exit
 until ! "$@"
 do
-    sleep 1
+    sleep 0.1
 done
