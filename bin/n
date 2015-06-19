@@ -2,7 +2,7 @@
 
 # time the command
 let start_time=`date +%s`;
-time $@;
+time "$@";
 rval=$?;
 let end_time=`date +%s`;
 let duration=`expr $end_time - $start_time`;
