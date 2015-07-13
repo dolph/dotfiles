@@ -28,7 +28,7 @@ export OS_TOKEN=ADMIN
 export OS_URL=http://localhost:35357/v3
 
 # make it trivial to jump into a development server
-alias dev="ssh -p 443 23.253.149.141"
+alias dev="ssh -p 443 dev.dolphm.com"
 
 # virtualenv shortcuts
 export VIRTUALENV_DIR=${VIRTUALENV_DIR:-$HOME/venv}
