@@ -11,7 +11,12 @@ brew install tree
 
 # install cask so we can install GUI apps
 brew install caskroom/cask/brew-cask
+brew cask install audacity
 brew cask install google-chrome
+brew cask install hermes
+brew cask install kindle
+brew cask install mosh
+brew cask install mumble
 brew cask install vagrant
 brew cask install virtualbox
 brew cask install vlc
