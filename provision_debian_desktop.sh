@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# symlink dotfiles
-sh ~/dotfiles/symlink.sh
-
 # install custom fonts
 sudo cp ~/dotfiles/fonts/* /usr/local/share/fonts
 sudo chmod -R 777 /usr/local/share/fonts
