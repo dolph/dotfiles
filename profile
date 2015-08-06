@@ -1,6 +1,5 @@
 export GOPATH=$HOME/go
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:$GOPATH/bin:$PATH
-export GREP_OPTIONS='--color=auto'
 export EDITOR=vim
 alias e=vim
 

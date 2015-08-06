@@ -1,0 +1,15 @@
+# always use color
+--color
+
+# ignore case if input is lowercase
+--smart-case
+
+# show context for each hit
+--context
+
+# send results to less
+--pager=less -ix4SRFX
+
+# directories to ignore everywhere
+--ignore-dir=.tox
+--ignore-dir=*.egg-info
