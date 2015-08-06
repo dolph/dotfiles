@@ -32,8 +32,7 @@ brew cask install vagrant
 brew cask install virtualbox
 brew cask install vlc
 
-pip install --upgrade setuptools
-pip install --upgrade pip
+curl https://bootstrap.pypa.io/get-pip.py | python
 pip install virtualenv
 pip install hacking
 
