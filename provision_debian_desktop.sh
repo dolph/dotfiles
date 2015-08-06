@@ -18,6 +18,7 @@ sudo apt-get upgrade -V -y
 # install custom packages (git should already be installed)
 sudo apt-get install -V -y \
     ack-grep \
+    curl \
     google-chrome-stable \
     tree \
     vim \

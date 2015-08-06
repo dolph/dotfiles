@@ -21,3 +21,10 @@ cd ~/dotfiles
 git submodule init
 git submodule update
 vim +PluginInstall! +qall
+
+# install python basics
+curl https://bootstrap.pypa.io/get-pip.py | sudo python
+
+# you didn't see a sudo pip here
+sudo pip install virtualenv
+sudo pip install hacking
