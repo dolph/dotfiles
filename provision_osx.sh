@@ -36,5 +36,5 @@ sh ~/dotfiles/osx.sh
 # install fonts
 cp -f ~/dotfiles/fonts/* ~/Library/Fonts/
 
-# run updates
-./update.sh
+# run common provisioning tasks
+./provision_common.sh
