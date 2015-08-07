@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# this is just an alias to diffdiff
+git diffdiff $1 $2
