@@ -1,7 +1,14 @@
 #!/bin/bash
+
+# Diff two gerrit patches against each other using git-review.
+#
+# Example usage:
+#
+#     $ git diffdiff <change-number-of-master-patch> \
+#                    <change-number-of-stable-backport>;
+
 set -e
 
-# assume master branch unless specified otherwise
 ORIGINAL_REVIEW=$1
 BACKPORT_REVIEW=$2
 
@@ -9,26 +16,26 @@ ORIGINAL_DIFF=/tmp/original_diff
 BACKPORT_DIFF=/tmp/backport_diff
 TEMP_DIFF=/tmp/temp_diff
 
-# checkout the review and produce a diff
+# Checkout the review and produce a diff.
 git review -d $1
 git diff HEAD~1 > $ORIGINAL_DIFF
 
-# checkout the review and produce a diff
+# Checkout the review and produce a diff.
 git review -d $2
 git diff HEAD~1 > $BACKPORT_DIFF
 
 for diff_file in $ORIGINAL_DIFF $BACKPORT_DIFF; do
-    # remove index lines like: "index b4b3a3f..f934a45 100644"
+    # Remove index lines like: "index b4b3a3f..f934a45 100644"
     sed '/^index [0-9a-f]*..[0-9a-f]* [0-9]*/d' < $diff_file > $TEMP_DIFF
     mv $TEMP_DIFF $diff_file
 
-    # remove context from each split (before the second @@): "@@ -642,11 +642,14 @@ class Car(object):"
+    # Remove context from each split (before the second @@): "@@ -642,11 +642,14 @@ class Car(object):"
     sed -E 's/^\@\@ \-[0-9]+,[0-9]+ \+[0-9]+,[0-9]+ //g' < $diff_file > $TEMP_DIFF
     mv $TEMP_DIFF $diff_file
 done
 
-# diff the two diffs
+# Diff the two diffs.
 git diff $ORIGINAL_DIFF $BACKPORT_DIFF
 
-# clean up
+# Clean up temporary files.
 rm $ORIGINAL_DIFF $BACKPORT_DIFF
