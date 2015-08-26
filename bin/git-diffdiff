@@ -6,6 +6,10 @@
 #
 #     $ git diffdiff <change-number-of-master-patch> \
 #                    <change-number-of-stable-backport>;
+#
+# Example output (using `git dd` as a shortcut):
+#
+#     http://cdn.pasteraw.com/iirxuom1gzg3q9ro6yyxicqjtjfuvfr
 
 set -e
 
