@@ -1,5 +1,5 @@
 #!/bin/bash
-# repeat a command until it succeeds, then exit
+# repeat a command until it fails, then exit
 until ! "$@"
 do
     sleep 0.1
