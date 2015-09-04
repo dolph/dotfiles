@@ -5,19 +5,15 @@ set -e
 BRANCH=${1:-master}
 
 # ensure the remote branch is tracked
-git branch --list | grep $BRANCH || git checkout --track origin/$BRANCH
+git branch --list | grep $BRANCH || git checkout --quiet --track origin/$BRANCH
 
 # switch to the specified branch and update it
 # pulling is always safe here, because we never (ever) commit to this branch
-git checkout $BRANCH
-git pull
+git checkout --quiet $BRANCH
+git pull --quiet
 
 # checkout the top commit in the specified branch, effectively going untracked
-git checkout $BRANCH~0
+git checkout --quiet $BRANCH~0
 
 # (optional) clean up the repository of python cruft
 rm_pyc
-
-# give some feedback about the current state of the repo
-git log -n 1
-git status
