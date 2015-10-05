@@ -24,12 +24,18 @@ BACKPORT_DIFF=/tmp/backport_diff
 TEMP_DIFF=/tmp/temp_diff
 
 # Checkout the review and produce a diff.
-git review -d $1
+git review -d $ORIGINAL_REVIEW
 git diff HEAD~1 > $ORIGINAL_DIFF
+ORIGINAL_BRANCH=`git rev-parse --abbrev-ref HEAD`
+git checkout --quiet master
+git branch -D $ORIGINAL_BRANCH
 
 # Checkout the review and produce a diff.
-git review -d $2
+git review -d $BACKPORT_REVIEW
 git diff HEAD~1 > $BACKPORT_DIFF
+BACKPORT_BRANCH=`git rev-parse --abbrev-ref HEAD`
+git checkout --quiet master
+git branch -D $BACKPORT_BRANCH
 
 for diff_file in $ORIGINAL_DIFF $BACKPORT_DIFF; do
     # Remove index lines like: "index b4b3a3f..f934a45 100644"
