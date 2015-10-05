@@ -13,6 +13,9 @@
 
 set -e
 
+# Remember the initial state.
+STARTING_BRANCH=`git rev-parse --abbrev-ref HEAD`
+
 ORIGINAL_REVIEW=$1
 BACKPORT_REVIEW=$2
 
@@ -43,3 +46,11 @@ git diff $ORIGINAL_DIFF $BACKPORT_DIFF
 
 # Clean up temporary files.
 rm $ORIGINAL_DIFF $BACKPORT_DIFF
+
+# Restore original state
+if [ "$STARTING_BRANCH" != "HEAD" ]
+then
+    git checkout --quiet $STARTING_BRANCH
+else
+    git ready
+fi
