@@ -9,6 +9,9 @@ query = is:open is:watched age:6months (label:Verified<=-1 OR label:Code-Review<
 [section "New Contributors"]
 query = is:open (owner:"Ron De Rose <ronald.de.rose@intel.com>" OR owner:"Ankur <ankur.gupta@intel.com>") -label:Code-Review<=+2,self label:Workflow>=0
 
+[section "Starred (Needs attention)"]
+query = is:open is:starred -owner:self -label:Code-Review<=2,self -label:Verified+1,jenkins label:Workflow+0
+
 [section "New"]
 query = is:open (is:watched OR is:starred) -owner:self -label:Code-Review<=2 label:Verified+1,jenkins label:Workflow+0
 
