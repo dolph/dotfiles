@@ -7,7 +7,7 @@ foreach =
 query = is:open owner:self -Workflow-1 -label:Verified<=-1 -label:Code-Review-1
 
 [section "Needs attention"]
-query = is:open owner:self (Workflow-1 OR label:Verified<=-1 OR label:Code-Review<=-1)
+query = is:open owner:self (Workflow-1 OR label:Verified<=-1 OR label:Code-Review<=-1) -label:Workflow+1
 
 [section "Gating"]
 query = is:open owner:self -label:Verified<=-1,jenkins -label:Verified>=+1,jenkins label:Workflow+1
