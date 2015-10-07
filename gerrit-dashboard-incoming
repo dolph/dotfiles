@@ -1,5 +1,5 @@
 [dashboard]
-title = Dashboard
+title = Incoming reviews
 description = Review Inbox
 foreach =
 
