@@ -7,7 +7,7 @@ foreach =
 query = is:open owner:self (label:Code-Review<=-1 OR label:Verified<=-1 OR label:Workflow-1) -label:Workflow+1
 
 [section "In progress"]
-query = is:open owner:self -label:Code-Review-1 -label:Verified<=-1 -label:Workflow-1 -label:Workflow+1
+query = is:open owner:self -label:Code-Review<=-1 -label:Verified<=-1 -label:Workflow-1 -label:Workflow+1
 
 [section "Pending Gating"]
 query = is:open owner:self label:Verified=+1,jenkins label:Workflow+1
