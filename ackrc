@@ -10,3 +10,6 @@
 # directories to ignore everywhere
 --ignore-dir=.tox
 --ignore-dir=*.egg-info
+
+# sadly, I almost never use ack with regex anyway
+--literal
