@@ -1,8 +1,7 @@
 [dashboard]
 title = OSIC
 description =
-foreach = -owner:self AND (owner:ankur.gupta@intel.com OR owner:shashirekha.j.gundur@intel.com OR owner:nandini.tata@intel.com OR owner:ronald.de.rose@intel.com OR owner:siva.radhakrishnan@intel.com OR owner:sumant.murke@intel.com OR owner:pushkar.umaranikar@intel.com OR owner:dolpher.du@intel.com OR owner:xiaoyan.li@intel.com OR owner:lei.a.zhang@intel.com OR owner:yingxin.cheng@intel.com OR owner:lubosz.kosnik@intel.com OR owner:dariusz.smigiel@intel.com OR owner:manjeet.s.bhatia@intel.com OR owner:nathaniel.potter@intel.com OR owner:ganesh.mahalingam@intel.com OR owner:stephen.finucane@intel.com OR owner:kent.wang@intel.com OR owner:qiaowei.ren@intel.com OR owner:paul.dardeau@intel.com)
-# owner:Sujitha.neti@intel.com
+foreach = -owner:self AND (owner:ankur.gupta@intel.com OR owner:shashirekha.j.gundur@intel.com OR owner:nandini.tata@intel.com OR owner:ronald.de.rose@intel.com OR owner:siva.radhakrishnan@intel.com OR owner:sumant.murke@intel.com OR owner:pushkar.umaranikar@intel.com OR owner:dolpher.du@intel.com OR owner:xiaoyan.li@intel.com OR owner:lei.a.zhang@intel.com OR owner:yingxin.cheng@intel.com OR owner:lubosz.kosnik@intel.com OR owner:dariusz.smigiel@intel.com OR owner:manjeet.s.bhatia@intel.com OR owner:nathaniel.potter@intel.com OR owner:ganesh.mahalingam@intel.com OR owner:stephen.finucane@intel.com OR owner:kent.wang@intel.com OR owner:qiaowei.ren@intel.com OR owner:paul.dardeau@intel.com OR sujitha.neti@intel.com)
 # owner:navid.pustchi@intel.com
 
 [section "Needs attention"]
