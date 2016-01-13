@@ -1,7 +1,7 @@
 [dashboard]
 title = OSIC+Keystone
 description =
-foreach = (owner:ronald.de.rose OR owner:kent.wang OR owner:navid OR owner:nonameentername OR owner:jorge.munoz OR owner:wei.d.chen)
+foreach = (owner:ronald.de.rose OR owner:navid OR owner:nonameentername OR owner:jorge.munoz OR owner:wei.d.chen)
 
 [section "Needs attention"]
 query = is:open -label:Code-Review<=2,self (label:Code-Review<=-1 OR -label:Verified+1,jenkins) label:Workflow+0
