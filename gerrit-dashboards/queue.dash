@@ -1,5 +1,5 @@
 [dashboard]
-title = Incoming reviews
+title = Queue
 description = Review Inbox
 foreach =
 
