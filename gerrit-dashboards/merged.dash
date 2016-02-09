@@ -1,0 +1,13 @@
+[dashboard]
+title = Merged in last 72 hours
+description =
+foreach = is:merged -age:3days
+
+[section "My reviews"]
+query = owner:self
+
+[section "Starred reviews"]
+query = is:starred NOT owner:self
+
+[section "Watched reviews"]
+query = is:watched NOT is:starred NOT owner:self
