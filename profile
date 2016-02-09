@@ -27,7 +27,7 @@ export OS_TOKEN=ADMIN
 export OS_URL=http://localhost:35357/v3
 
 # make it trivial to jump into a development server and rejoin tmux
-alias dev="ssh -p 443 dev.dolphm.com -t 'tmux att || tmux new'"
+alias dev="ssh -p 443 dev.dolphm.com -t 'tmux att -d || tmux new'"
 
 # virtualenv shortcuts
 export WORKON_HOME=$HOME/venv
