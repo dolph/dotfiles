@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Priorities.
 export EDITOR=vim
 
@@ -17,18 +19,17 @@ set -o vi
 # Use color by default
 export CLICOLOR=1
 
-# Detect platform ($OSTYPE is not populated in FreeBSD 11)
-platform=`uname`
+# This doesn't need to be enabled every time, but why not.
+git config --global color.ui true
+git config --global user.email "dolph.mathews@gmail.com"
+git config --global user.name "Dolph Mathews"
+git config --global core.excludesfile $HOME/.gitignore_global
 
-if [[ "$platform" == 'Linux' || "$platform" == 'Darwin' ]]; then
+# Detect platform ($OSTYPE is not populated in FreeBSD 11)
+case "$(uname -s)" in
+Linux|Darwin)
     export GOPATH=$HOME/go
     export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:$GOPATH/bin:$PATH
-
-    # This doesn't need to be enabled every time, but why not.
-    git config --global color.ui true
-    git config --global user.email "dolph.mathews@gmail.com"
-    git config --global user.name "Dolph Mathews"
-    git config --global core.excludesfile $HOME/.gitignore_global
 
     # default: PS1='\h:\W \u\$'
     # hostname cwd $
@@ -42,7 +43,7 @@ if [[ "$platform" == 'Linux' || "$platform" == 'Darwin' ]]; then
     # virtualenv shortcuts
     export WORKON_HOME=$HOME/venv
     source ~/dotfiles/virtualenvwrapperlite/virtualenvwrapperlite.sh
-elif [[ "$platform" == 'FreeBSD' ]]; then
-    # Do nothing
-    echo 'FreeBSD'
-fi
+    ;;
+FreeBSD)
+    ;;
+esac
