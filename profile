@@ -13,7 +13,7 @@ alias e=vim
 # When you detach from tmux, ssh quits as well.
 alias dev="ssh -p 443 dev.dolphm.com -t 'tmux att -d || tmux new'"
 
-# Switch bash to vi mode, because the bash default is unholy.
+# Switch sh to vi mode, because the sh default is unholy.
 set -o vi
 
 # Use color by default.
