@@ -16,16 +16,16 @@ alias dev="ssh -p 443 dev.dolphm.com -t 'tmux att -d || tmux new'"
 # Switch bash to vi mode, because the bash default is unholy.
 set -o vi
 
-# Use color by default
+# Use color by default.
 export CLICOLOR=1
 
-# This doesn't need to be enabled every time, but why not.
+# This doesn't need to be enabled every time, but why not?
 git config --global color.ui true
 git config --global user.email "dolph.mathews@gmail.com"
 git config --global user.name "Dolph Mathews"
 git config --global core.excludesfile $HOME/.gitignore_global
 
-# Detect platform ($OSTYPE is not populated in FreeBSD 11)
+# Detect platform ($OSTYPE is not populated in FreeBSD 11).
 case "$(uname -s)" in
 Linux|Darwin)
     export GOPATH=$HOME/go
@@ -35,12 +35,12 @@ Linux|Darwin)
     # hostname cwd $
     PS1="\[$(tput setaf 2)\]\h \[$(tput setaf 4)\]\W \[$(tput setaf 10)\]$ \[$(tput sgr0)\]"
 
-    # keystone dev defaults
+    # Development defaults for OpenStack Keystone.
     export OS_IDENTITY_API_VERSION=3
     export OS_TOKEN=ADMIN
     export OS_URL=http://localhost:35357/v3
 
-    # virtualenv shortcuts
+    # Set virtualenv shortcuts.
     export WORKON_HOME=$HOME/venv
     source ~/dotfiles/virtualenvwrapperlite/virtualenvwrapperlite.sh
     ;;
