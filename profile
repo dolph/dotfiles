@@ -31,9 +31,14 @@ Linux|Darwin)
     export GOPATH=$HOME/go
     export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:$GOPATH/bin:$PATH
 
-    # default: PS1='\h:\W \u\$'
-    # hostname cwd $
-    PS1="\[$(tput setaf 2)\]\h \[$(tput setaf 4)\]\W \[$(tput setaf 10)\]$ \[$(tput sgr0)\]"
+    # If this is an interactive shell, then configure the prompt (else, it's an
+    # x11 session)
+    # http://unix.stackexchange.com/questions/26676/how-to-check-if-a-shell-is-login-interactive-batch
+    if [[ $- == *i* ]]; then
+        # default: PS1='\h:\W \u\$'
+        # hostname cwd $
+        PS1="\[$(tput setaf 2)\]\h \[$(tput setaf 4)\]\W \[$(tput setaf 10)\]$ \[$(tput sgr0)\]"
+    fi
 
     # Development defaults for OpenStack Keystone.
     export OS_IDENTITY_API_VERSION=3
