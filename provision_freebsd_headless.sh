@@ -1,16 +1,20 @@
 #!/bin/sh
 
-# update packages
+# Update packages.
 sudo pkg update
 sudo pkg upgrade -y
 
-# install custom packages (git should already be installed)
+# Install custom packages (git should already be installed).
 sudo pkg install -y \
+    bash \
     curl \
     htop \
     tree \
     vim-lite \
     ;
 
-# run updates
+# Change the shell to bash.
+sudo chsh -s /usr/local/bin/bash
+
+# Run updates.
 sh provision_common.sh

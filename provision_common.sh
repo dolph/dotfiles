@@ -1,6 +1,6 @@
 # create symlinks from the home directory to dotfiles in ~/dotfiles
 dir=~/dotfiles
-dotfiles="ackrc profile inputrc screenrc vim vimrc gvimrc gitignore_global tmux.conf"
+dotfiles="ackrc bash_profile bashrc profile inputrc screenrc vim vimrc gvimrc gitignore_global tmux.conf"
 rawfiles="bin"
 
 # symlink dotfiles to the the home dir, each prefixed by a dot (.)
