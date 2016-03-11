@@ -9,7 +9,7 @@ sudo pkg install -y \
     curl \
     htop \
     tree \
-    vim \
+    vim-lite \
     ;
 
 # run updates
