@@ -8,6 +8,7 @@ sudo apt-get upgrade -V -y
 sudo apt-get install -V -y \
     ack-grep \
     curl \
+    htop \
     tree \
     vim \
     ;

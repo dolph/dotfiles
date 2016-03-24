@@ -15,7 +15,6 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew install ack
 brew install ansible
 brew install git
-brew install macvim
 brew install python
 brew install ssh-copy-id
 brew install tree
