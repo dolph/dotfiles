@@ -16,6 +16,7 @@ sudo apt-get install -V -y \
     gconf-cli \
     google-chrome-stable \
     xchat \
+    pithos \
     ;
 
 # Set terminal to Solarized Black color scheme.
