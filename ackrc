@@ -12,6 +12,7 @@
 --ignore-dir=*.egg-info
 --ignore-dir=.eggs
 --ignore-dir=.testrepository
+--ignore-dir=vendor
 
 # sadly, I almost never use ack with regex anyway
 --literal
