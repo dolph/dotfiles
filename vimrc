@@ -122,8 +122,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'rust-lang/rust.vim'
 
 " Markdown support
-Plugin 'godlygeek/tabular' " must appear before plasticboy/vim-markdown
-Plugin 'plasticboy/vim-markdown'
+" Plugin 'godlygeek/tabular' " must appear before plasticboy/vim-markdown
+" Plugin 'plasticboy/vim-markdown'
+Bundle 'gabrielelana/vim-markdown'
 
 " end loading plugins
 call vundle#end()
