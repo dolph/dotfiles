@@ -97,7 +97,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage itself
-" (after adding a new plugin, run "vim +PluginInstall +qall" to install it)
+" After modifying the set of plugins, run "vim +PluginInstall! +PluginClean
+" +qall" to install new plugins, update all plugins, and remove extra plugins.
 Plugin 'gmarik/Vundle.vim'
 
 " Custom color scheme
