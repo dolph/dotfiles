@@ -97,18 +97,31 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage itself
+" (after adding a new plugin, run "vim +PluginInstall +qall" to install it)
 Plugin 'gmarik/Vundle.vim'
 
-" plugins
-" after adding a new plugin, run "vim +PluginInstall +qall" to install it
+" Custom color scheme
 Plugin 'dolph/vim-colors-solarized-black'
+
+" Quickly switch between open buffers
 Plugin 'fholgado/minibufexpl.vim'
+
+" Tab completion
 Plugin 'ervandew/supertab'
+
+" ack-grep
 Plugin 'mileszs/ack.vim'
+
+" Run flake8 on save
 Plugin 'nvie/vim-flake8'
+
+" File browser
 Plugin 'scrooloose/nerdtree'
+
+" Rust support
 Plugin 'rust-lang/rust.vim'
 
+" Markdown support
 Plugin 'godlygeek/tabular' " must appear before plasticboy/vim-markdown
 Plugin 'plasticboy/vim-markdown'
 
