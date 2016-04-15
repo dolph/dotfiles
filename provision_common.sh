@@ -20,7 +20,7 @@ done
 cd ~/dotfiles
 git submodule init
 git submodule update
-vim +PluginInstall! +qall
+vim +PluginInstall! +PluginClean! +qall
 
 # install python basics
 curl https://bootstrap.pypa.io/get-pip.py | sudo -H python
