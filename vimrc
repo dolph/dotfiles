@@ -96,9 +96,10 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" let Vundle manage itself
-" After modifying the set of plugins, run "vim +PluginInstall! +PluginClean
-" +qall" to install new plugins, update all plugins, and remove extra plugins.
+" Let Vundle manage itself. To install new plugins, update all plugins, and
+" remove extra plugins without any confirmations (such as after modifying the
+" set of plugins), run:
+"   vim +PluginInstall! +PluginClean! +qall
 Plugin 'gmarik/Vundle.vim'
 
 " Custom color scheme
