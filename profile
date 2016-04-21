@@ -15,10 +15,6 @@ then
     git config --global core.excludesfile $HOME/.gitignore_global
 fi
 
-# Set virtualenv shortcuts.
-export WORKON_HOME=$HOME/venv
-. ~/dotfiles/virtualenvwrapperlite/virtualenvwrapperlite.sh
-
 # Detect platform ($OSTYPE is not populated in FreeBSD 11).
 case "$(uname -s)" in
 Linux|Darwin)

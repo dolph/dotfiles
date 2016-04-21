@@ -16,3 +16,7 @@ alias dev="ssh -p 443 dev.dolphm.com -t 'tmux att -d || tmux new'"
 # default: PS1='\h:\W \u\$'
 # hostname cwd $
 PS1="\[\033[32m\]\h \[\033[34m\]\W \[\033[40m\]$ \[\033[39m\]"
+
+# Set virtualenv shortcuts.
+export WORKON_HOME=$HOME/venv
+. ~/dotfiles/virtualenvwrapperlite/virtualenvwrapperlite.sh
