@@ -19,7 +19,8 @@ fi
 case "$(uname -s)" in
 Linux|Darwin)
     export GOPATH=$HOME/go
-    export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:$GOPATH/bin:$PATH
+    export RUSTPATH=$HOME/.cargo/bin
+    export PATH=$HOME/bin:$RUSTPATH:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:$GOPATH/bin:$PATH
 
     # If this is an interactive shell, then configure the prompt (else, it's an
     # x11 session)

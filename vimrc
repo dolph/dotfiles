@@ -142,6 +142,10 @@ let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '\.db$']
 " run flake8 on save
 autocmd BufWritePost *.py call Flake8()
 
+" run rust auto-formatting on save
+" requires `cargo install rustfmt`
+let g:rustfmt_autosave = 1
+
 " cut, copy & paste
 nmap <C-V> "+gP
 imap <C-V> <ESC>"+gpi
