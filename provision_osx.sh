@@ -17,6 +17,7 @@ brew install ansible
 brew install git
 brew install python
 brew install ssh-copy-id
+brew install tmux
 brew install tree
 
 # install cask so we can install GUI apps
