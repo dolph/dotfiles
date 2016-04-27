@@ -18,6 +18,7 @@ brew install git
 brew install htop
 brew install python
 brew install ssh-copy-id
+brew install stoken
 brew install tmux
 brew install tree
 
