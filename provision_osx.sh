@@ -36,6 +36,10 @@ brew cask install vlc
 # install fonts
 cp -f ~/dotfiles/fonts/* ~/Library/Fonts/
 
+# Install Textual 5 theme
+# Note: This is commented out because it requires Textual 5 to be installed from the Apple App Store.
+# git clone https://github.com/dolph/textual-solarized-black.git ~/Library/Mobile\ Documents/iCloud~com~codeux~irc~textual5/Documents/Styles/Solarized\ Black
+
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
