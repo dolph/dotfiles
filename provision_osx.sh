@@ -15,8 +15,11 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew install ack
 brew install ansible
 brew install git
+brew install htop
 brew install python
 brew install ssh-copy-id
+brew install stoken
+brew install tmux
 brew install tree
 
 # install cask so we can install GUI apps
@@ -25,15 +28,17 @@ brew cask install audacity
 brew cask install google-chrome
 brew cask install hermes
 brew cask install kindle
-brew cask install mosh
 brew cask install mumble
+brew cask install slack
 brew cask install smoothmouse
-brew cask install vagrant
-brew cask install virtualbox
 brew cask install vlc
 
 # install fonts
 cp -f ~/dotfiles/fonts/* ~/Library/Fonts/
+
+# Install Textual 5 theme
+# Note: This is commented out because it requires Textual 5 to be installed from the Apple App Store.
+# git clone https://github.com/dolph/textual-solarized-black.git ~/Library/Mobile\ Documents/iCloud~com~codeux~irc~textual5/Documents/Styles/Solarized\ Black
 
 ###############################################################################
 # General UI/UX                                                               #
