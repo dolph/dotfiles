@@ -10,6 +10,7 @@ sudo apt-get install -V -y \
     ack-grep \
     curl \
     htop \
+    python \
     tree \
     vim \
     ;
