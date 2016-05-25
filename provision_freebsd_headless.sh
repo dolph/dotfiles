@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 # Update packages.
 sudo pkg update
