@@ -23,6 +23,7 @@ build/
 *.sql
 *.sqlite
 *.db
+*.coverage.*
 
 # vagrant
 .vagrant/
