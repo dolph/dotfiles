@@ -8,6 +8,7 @@ sudo apt-get upgrade -V -y
 # install custom packages (git should already be installed)
 sudo apt-get install -V -y \
     ack-grep \
+    build-essential \
     curl \
     htop \
     python \
