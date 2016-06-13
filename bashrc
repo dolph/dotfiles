@@ -20,3 +20,12 @@ PS1="\[\033[32m\]\h \[\033[34m\]\W \[\033[40m\]$ \[\033[39m\]"
 # Set virtualenv shortcuts.
 export WORKON_HOME=$HOME/venv
 . ~/dotfiles/virtualenvwrapperlite/virtualenvwrapperlite.sh
+
+# If ack-grep is installed...
+if hash ack-grep 2>/dev/null; then
+    # But ack is not a thing...
+    if ! hash ack 2>/dev/null; then
+        # Then set an alias for ack.
+        alias ack=ack-grep
+    fi
+fi

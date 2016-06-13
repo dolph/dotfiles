@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Install custom fonts.
 sudo cp ~/dotfiles/fonts/* /usr/local/share/fonts
