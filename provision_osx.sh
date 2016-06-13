@@ -29,6 +29,7 @@ brew cask install google-chrome
 brew cask install hermes
 brew cask install kindle
 brew cask install mumble
+brew cask install scroll-reverser
 brew cask install slack
 brew cask install smoothmouse
 brew cask install vlc
