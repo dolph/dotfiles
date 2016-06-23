@@ -30,6 +30,7 @@ brew cask install google-chrome
 brew cask install hermes
 brew cask install kindle
 brew cask install mumble
+brew cask install scroll-reverser
 brew cask install slack
 brew cask install smoothmouse
 brew cask install vlc
@@ -53,9 +54,6 @@ sudo nvram SystemAudioVolume=" "
 
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
-
-# Menu bar: show remaining battery time (on pre-10.8); hide percentage
-defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
 # Menu bar: limit what is shown
 defaults write com.apple.systemuiserver menuExtras -array \
@@ -97,6 +95,9 @@ defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# Mouse: disable scrolling inertia on the mouse wheel
+defaults write .GlobalPreferences com.apple.scrollwheel.scaling -1
 
 # Increase sound quality for Bluetooth headphones/headsets
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
