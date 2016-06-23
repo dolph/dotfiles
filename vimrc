@@ -139,7 +139,8 @@ silent! colorscheme solarized
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '\.db$']
 
-" run flake8 on save
+" run flake8 on open & save
+autocmd BufReadPost *.py call Flake8()
 autocmd BufWritePost *.py call Flake8()
 
 " run rust auto-formatting on save
