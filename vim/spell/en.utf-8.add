@@ -128,3 +128,6 @@ signup
 PCI
 Offline
 prepopulated
+templated
+kvs
+sql
