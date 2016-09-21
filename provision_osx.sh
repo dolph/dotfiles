@@ -19,9 +19,12 @@ brew install git
 brew install htop
 brew install python
 brew install ssh-copy-id
-brew install stoken
 brew install tmux
 brew install tree
+
+# Order matters.
+brew install stoken
+brew install openconnect --with-stoken
 
 # install cask so we can install GUI apps
 brew install caskroom/cask/brew-cask
