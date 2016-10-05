@@ -159,5 +159,6 @@ set spell spelllang=en_us
 " disable double spacing between sentences
 set nojoinspaces
 
-" integrate yanking & pasting with the OS X clipboard
-set clipboard=unnamed
+" allow CTRL+C and CTRL+X to use the OS X clipboard
+vmap <C-x> :!pbcopy<CR>
+vmap <C-c> :w !pbcopy<CR><CR>
