@@ -46,5 +46,12 @@ gconftool-2 -s -t string /apps/gnome-terminal/profiles/Default/foreground_color 
 gconftool-2 -s -t bool /apps/gnome-terminal/profiles/Default/use_theme_colors false
 gconftool-2 -s -t bool /apps/gnome-terminal/profiles/Default/bold_color_same_as_fg false
 
+# XFCE4
+if [ -d "~/.config/xfce4/" ]; then
+    mkdir -p ~/.config/xfce4/terminal/
+    chmod 0700 ~/.config/xfce4/terminal/
+    cp terminalrc ~/.config/xfce4/terminal/terminalrc
+fi
+
 # Run updates.
 sh provision_common.sh
