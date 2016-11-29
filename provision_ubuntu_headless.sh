@@ -9,6 +9,7 @@ sudo apt upgrade -V -y
 # google-chrome-stable \
 sudo apt install -V -y \
     build-essential \
+    python-minimal \
     curl \
     htop \
     tmux \
