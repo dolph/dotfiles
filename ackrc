@@ -13,6 +13,7 @@
 --ignore-dir=.eggs
 --ignore-dir=.testrepository
 --ignore-dir=vendor
+--ignore-dir=build
 
 # sadly, I almost never use ack with regex anyway
 --literal

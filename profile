@@ -15,6 +15,11 @@ then
     git config --global core.excludesfile $HOME/.gitignore_global
 fi
 
+# Launch keychain to manage SSH passphrases.
+if command -v keychain >/dev/null 2>&1 ; then
+    eval `keychain --quiet --eval id_rsa`
+fi
+
 # Detect platform ($OSTYPE is not populated in FreeBSD 11).
 case "$(uname -s)" in
 Linux|Darwin)
