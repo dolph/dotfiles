@@ -17,9 +17,10 @@ sudo apt install -V -y \
     vim \
     ;
 
-sudo apt autoremove -y
-sudo apt clean
-sudo apt autoclean
+# The alternative approaches provide support for Ubuntu 14.04
+sudo apt autoremove -y || sudo apt-get autoremove -y
+sudo apt clean || sudo apt-get clean
+sudo apt autoclean || sudo apt-get autoclean
 
 # Run updates.
 sh provision_common.sh
