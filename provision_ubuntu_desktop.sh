@@ -39,7 +39,7 @@ sudo apt clean
 sudo apt autoclean
 
 # Setup HexChat colors
-wget https://dl.hexchat.net/themes/Solarized%20Dark.hct /tmp/hexchat-solarized-dark.hct
+wget https://dl.hexchat.net/themes/Solarized%20Dark.hct -O /tmp/hexchat-solarized-dark.hct
 unzip -o /tmp/hexchat-solarized-dark.hct -d ~/.config/hexchat/
 rm /tmp/hexchat-solarized-dark.hct
 
