@@ -1,10 +1,8 @@
 #!/bin/bash
 set -e
 
-sudo ls || apt install sudo -V -y
-
 # Update packages.
-sudo apt update
+sudo apt update || apt update && apt install sudo -V -y
 sudo apt upgrade -V -y
 
 # Install custom packages (git should already be installed).
