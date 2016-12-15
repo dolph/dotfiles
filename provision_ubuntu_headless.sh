@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+sed -e s/deb http:/deb https:/ /etc/apt/sources.list > /etc/apt/sources/sources.list.tmp && mv /etc/apt/sources.list.tmp /etc/apt/sources.list
+
 # Update packages.
 sudo apt update || apt update && apt install sudo -V -y
 sudo apt upgrade -V -y
