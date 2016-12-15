@@ -21,4 +21,4 @@ jobs:
       inputs:
       - name: repo
       run:
-        path: ./provision_ubuntu_headless.sh
+        path: repo/provision_ubuntu_headless.sh
