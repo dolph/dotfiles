@@ -1,0 +1,15 @@
+---
+resources:
+- name: repo
+  type: git
+  source:
+    uri: https://github.com/dolph/dotfiles.git
+    branch: master
+
+jobs:
+- name: job-provision-ubuntu-headless
+  plan:
+  - get: repo
+    trigger: true
+  - task: task-provision-ubuntu-headless
+    file: repo/ci-task.yml
