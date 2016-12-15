@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+sudo ls || apt install sudo -V -y
+
 # Update packages.
 sudo apt update
 sudo apt upgrade -V -y
