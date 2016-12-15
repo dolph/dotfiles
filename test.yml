@@ -7,10 +7,10 @@ resources:
     branch: master
 
 jobs:
-- name: provision-ubuntu-headless
+- name: job-provision-ubuntu-headless
   plan:
   - get: repo
-  - task: provision-ubuntu-headless
+  - task: task-provision-ubuntu-headless
     config:
       platform: linux
       image_resource:
