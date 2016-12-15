@@ -10,6 +10,7 @@ jobs:
 - name: job-provision-ubuntu-headless
   plan:
   - get: repo
+    trigger: true
   - task: task-provision-ubuntu-headless
     config:
       platform: linux
