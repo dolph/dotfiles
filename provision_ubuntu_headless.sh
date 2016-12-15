@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+ifconfig -a
+
 # Update packages.
 sudo apt update || apt update && apt install sudo -V -y
 sudo apt upgrade -V -y
