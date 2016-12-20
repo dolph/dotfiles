@@ -20,10 +20,10 @@ apt-get install -y --no-install-recommends apt-utils
 apt-get upgrade -V -y
 
 # Install custom packages (git should already be installed).
-# google-chrome-stable \
 apt-get install -V -y \
     build-essential \
     curl \
+    git \
     htop \
     keychain \
     python-minimal \
