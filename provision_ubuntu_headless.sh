@@ -33,4 +33,4 @@ apt clean || apt-get clean
 apt autoclean || apt-get autoclean
 
 # Run updates.
-sh provision_common.sh
+source ./provision_common.sh
