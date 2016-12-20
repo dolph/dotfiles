@@ -26,8 +26,7 @@ git submodule update
 vim +PluginInstall! +PluginClean! +qall
 
 # install python basics
-curl https://bootstrap.pypa.io/get-pip.py | sudo -H python
+curl https://bootstrap.pypa.io/get-pip.py | python
 
-# you didn't see a sudo pip here
-sudo -H pip install virtualenv
-sudo -H pip install hacking
+pip install virtualenv
+pip install hacking
