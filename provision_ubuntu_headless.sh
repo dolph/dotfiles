@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [[ $UID != 0]]; then
+if [[ $UID != 0 ]]; then
     echo "root or sudo required."
     exit 1
 fi
