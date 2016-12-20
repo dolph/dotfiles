@@ -10,13 +10,13 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 
 # Update packages.
-apt update
-apt install -y --no-install-recommends apt-utils
-apt upgrade -V -y
+apt-get update
+apt-get install -y --no-install-recommends apt-utils
+apt-get upgrade -V -y
 
 # Install custom packages (git should already be installed).
 # google-chrome-stable \
-apt install -V -y \
+apt-get install -V -y \
     build-essential \
     curl \
     htop \
@@ -28,9 +28,9 @@ apt install -V -y \
     ;
 
 # The alternative approaches provide support for Ubuntu 14.04
-apt autoremove -y || apt-get autoremove -y
-apt clean || apt-get clean
-apt autoclean || apt-get autoclean
+apt-get autoremove -y
+apt-get clean
+apt-get autoclean
 
 # Run updates.
 source ./provision_common.sh
