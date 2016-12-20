@@ -1,0 +1,25 @@
+---
+resources:
+- name: repo
+  type: git
+  source:
+    uri: https://github.com/dolph/dotfiles.git
+    branch: master
+
+jobs:
+- name: job-provision-ubuntu-headless
+  plan:
+  - get: repo
+    trigger: true
+  - task: task-provision-ubuntu-headless
+    config:
+        platform: linux
+        image_resource:
+            type: docker-image
+            source:
+                repository: ubuntu
+                tag: "16.04"
+        inputs:
+        - name: repo
+        run:
+            path: repo/provision_ubuntu_headless.sh
