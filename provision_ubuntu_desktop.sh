@@ -2,19 +2,19 @@
 set -e
 
 # Install custom fonts.
-sudo cp ~/dotfiles/fonts/* /usr/local/share/fonts
-sudo chmod -R 777 /usr/local/share/fonts
+cp ~/dotfiles/fonts/* /usr/local/share/fonts
+chmod -R 777 /usr/local/share/fonts
 
 # Reload font cache.
 fc-cache -fv
 
 # Update packages.
-sudo apt update
-sudo apt upgrade -V -y
+apt update
+apt upgrade -V -y
 
 # Install custom packages (git should already be installed).
 # google-chrome-stable \
-sudo apt install -V -y \
+apt install -V -y \
     ack-grep \
     build-essential \
     curl \
@@ -26,7 +26,7 @@ sudo apt install -V -y \
     vim \
     ;
 
-sudo apt remove -y --purge \
+apt remove -y --purge \
     libreoffice* \
     audacity \
     firefox \
@@ -34,9 +34,9 @@ sudo apt remove -y --purge \
     empathy \
     rhythmbox \
     ;
-sudo apt autoremove -y
-sudo apt clean
-sudo apt autoclean
+apt autoremove -y
+apt clean
+apt autoclean
 
 # Setup HexChat colors
 wget https://dl.hexchat.net/themes/Solarized%20Dark.hct -O /tmp/hexchat-solarized-dark.hct

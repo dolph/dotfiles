@@ -2,11 +2,11 @@
 set -e
 
 # update packages
-sudo apt-get update
-sudo apt-get upgrade -V -y
+apt-get update
+apt-get upgrade -V -y
 
 # install custom packages (git should already be installed)
-sudo apt-get install -V -y \
+apt-get install -V -y \
     ack-grep \
     build-essential \
     curl \

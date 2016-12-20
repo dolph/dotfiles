@@ -2,22 +2,22 @@
 set -e
 
 # install custom fonts
-sudo cp ~/dotfiles/fonts/* /usr/local/share/fonts
-sudo chmod -R 777 /usr/local/share/fonts
+cp ~/dotfiles/fonts/* /usr/local/share/fonts
+chmod -R 777 /usr/local/share/fonts
 
 # reload font cache
 fc-cache -fv
 
 # setup apt sources
-sudo cp ~/dotfiles/debian/desktop/etc/apt/sources.list /etc/apt/sources.list
-sudo chmod 0644 /etc/apt/sources.list
+cp ~/dotfiles/debian/desktop/etc/apt/sources.list /etc/apt/sources.list
+chmod 0644 /etc/apt/sources.list
 
 # update packages
-sudo apt-get update
-sudo apt-get upgrade -V -y
+apt-get update
+apt-get upgrade -V -y
 
 # install custom packages (git should already be installed)
-sudo apt-get install -V -y \
+apt-get install -V -y \
     google-chrome-stable \
     xchat \
     ;
