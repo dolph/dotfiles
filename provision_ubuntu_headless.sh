@@ -6,6 +6,9 @@ if [[ $UID != 0 ]]; then
     exit 1
 fi
 
+# Skip installation questions.
+export DEBIAN_FRONTEND=noninteractive
+
 # Update packages.
 apt update
 apt install -y --no-install-recommends apt-utils
