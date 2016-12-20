@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+# Absolute path to this script, e.g. /home/user/bin/foo.sh
+SCRIPT=$(readlink -f "$0")
+# Absolute path this script is in, thus /home/user/bin
+SCRIPTPATH=$(dirname "$SCRIPT")
+
 if [[ $UID != 0 ]]; then
     echo "root or sudo required."
     exit 1
@@ -33,5 +38,4 @@ apt-get clean
 apt-get autoclean
 
 # Run updates.
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source $DIR/provision_common.sh
+source $SCRIPTPATH/provision_common.sh
