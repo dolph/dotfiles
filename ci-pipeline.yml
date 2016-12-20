@@ -7,7 +7,7 @@ resources:
     branch: master
 
 jobs:
-- name: job-provision-ubuntu
+- name: provision-ubuntu-latest
   plan:
   - get: dotfiles-repo
     trigger: true
@@ -23,6 +23,10 @@ jobs:
         - name: dotfiles-repo
         run:
             path: dotfiles-repo/provision_ubuntu_headless.sh
+- name: provision-ubuntu-devel
+  plan:
+  - get: dotfiles-repo
+    trigger: true
   - task: task-provision-ubuntu-devel-headless
     config:
         platform: linux
@@ -35,7 +39,7 @@ jobs:
         - name: dotfiles-repo
         run:
             path: dotfiles-repo/provision_ubuntu_headless.sh
-- name: job-provision-debian
+- name: provision-debian-stable
   plan:
   - get: dotfiles-repo
     trigger: true
@@ -51,6 +55,10 @@ jobs:
         - name: dotfiles-repo
         run:
             path: dotfiles-repo/provision_ubuntu_headless.sh
+- name: provision-debian-testing
+  plan:
+  - get: dotfiles-repo
+    trigger: true
   - task: task-provision-debian-testing-headless
     config:
         platform: linux
@@ -63,6 +71,10 @@ jobs:
         - name: dotfiles-repo
         run:
             path: dotfiles-repo/provision_ubuntu_headless.sh
+- name: provision-debian-unstable
+  plan:
+  - get: dotfiles-repo
+    trigger: true
   - task: task-provision-debian-unstable-headless
     config:
         platform: linux
