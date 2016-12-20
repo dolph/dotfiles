@@ -1,7 +1,10 @@
 #!/bin/bash
 set -e
 
-ifconfig -a
+if [[ $UID != 0]]; then
+    echo "root or sudo required."
+    exit 1
+fi
 
 # Update packages.
 sudo apt update || apt update && apt install sudo -V -y
