@@ -33,4 +33,5 @@ apt-get clean
 apt-get autoclean
 
 # Run updates.
-source ./provision_common.sh
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $DIR/provision_common.sh
