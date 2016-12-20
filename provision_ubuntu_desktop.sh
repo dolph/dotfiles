@@ -9,12 +9,12 @@ chmod -R 777 /usr/local/share/fonts
 fc-cache -fv
 
 # Update packages.
-apt update
-apt upgrade -V -y
+apt-get update
+apt-get upgrade -V -y
 
 # Install custom packages (git should already be installed).
 # google-chrome-stable \
-apt install -V -y \
+apt-get install -V -y \
     ack-grep \
     build-essential \
     curl \
@@ -26,7 +26,7 @@ apt install -V -y \
     vim \
     ;
 
-apt remove -y --purge \
+apt-get remove -y --purge \
     libreoffice* \
     audacity \
     firefox \
@@ -34,9 +34,9 @@ apt remove -y --purge \
     empathy \
     rhythmbox \
     ;
-apt autoremove -y
-apt clean
-apt autoclean
+apt-get autoremove -y
+apt-get clean
+apt-get autoclean
 
 # Setup HexChat colors
 wget https://dl.hexchat.net/themes/Solarized%20Dark.hct -O /tmp/hexchat-solarized-dark.hct
