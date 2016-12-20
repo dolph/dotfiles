@@ -8,6 +8,7 @@ fi
 
 # Update packages.
 apt update
+apt install -y --no-install-recommends apt-utils
 apt upgrade -V -y
 
 # Install custom packages (git should already be installed).
