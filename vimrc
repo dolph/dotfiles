@@ -128,6 +128,9 @@ Plugin 'rust-lang/rust.vim'
 " Plugin 'plasticboy/vim-markdown'
 Bundle 'gabrielelana/vim-markdown'
 
+" Unifies vim and tmux split navigation.
+Bundle 'christoomey/vim-tmux-navigator'
+
 " end loading plugins
 call vundle#end()
 filetype plugin indent on
