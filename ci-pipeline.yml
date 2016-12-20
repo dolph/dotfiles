@@ -1,28 +1,44 @@
 ---
 resources:
-- name: repo
+- name: dotfiles-repo
   type: git
   source:
     uri: https://github.com/dolph/dotfiles.git
     branch: master
 
 jobs:
-- name: job-provision-ubuntu-headless
+- name: job-provision-ubuntu
   plan:
-  - get: repo
+  - get: dotfiles-repo
     trigger: true
-  - task: task-provision-ubuntu-headless
+  - task: task-provision-ubuntu-latest-headless
     config:
         platform: linux
         image_resource:
             type: docker-image
             source:
                 repository: ubuntu
-                tag: "16.04"
+                tag: "latest"
         inputs:
-        - name: repo
+        - name: dotfiles-repo
         run:
-            path: repo/provision_ubuntu_headless.sh
+            path: dotfiles-repo/provision_ubuntu_headless.sh
+  - task: task-provision-ubuntu-devel-headless
+    config:
+        platform: linux
+        image_resource:
+            type: docker-image
+            source:
+                repository: ubuntu
+                tag: "devel"
+        inputs:
+        - name: dotfiles-repo
+        run:
+            path: dotfiles-repo/provision_ubuntu_headless.sh
+- name: job-provision-debian
+  plan:
+  - get: dotfiles-repo
+    trigger: true
   - task: task-provision-debian-stable-headless
     config:
         platform: linux
@@ -32,9 +48,9 @@ jobs:
                 repository: debian
                 tag: "stable"
         inputs:
-        - name: repo
+        - name: dotfiles-repo
         run:
-            path: repo/provision_ubuntu_headless.sh
+            path: dotfiles-repo/provision_ubuntu_headless.sh
   - task: task-provision-debian-testing-headless
     config:
         platform: linux
@@ -44,9 +60,9 @@ jobs:
                 repository: debian
                 tag: "testing"
         inputs:
-        - name: repo
+        - name: dotfiles-repo
         run:
-            path: repo/provision_ubuntu_headless.sh
+            path: dotfiles-repo/provision_ubuntu_headless.sh
   - task: task-provision-debian-unstable-headless
     config:
         platform: linux
@@ -56,6 +72,6 @@ jobs:
                 repository: debian
                 tag: "unstable"
         inputs:
-        - name: repo
+        - name: dotfiles-repo
         run:
-            path: repo/provision_ubuntu_headless.sh
+            path: dotfiles-repo/provision_ubuntu_headless.sh
