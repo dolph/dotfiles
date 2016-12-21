@@ -5,5 +5,6 @@ vim/bundle/*
 
 vim/.netrwhist
 
-# Ignore the rackspace binary, which is platform dependent
+# Ignore platform-specific binaries
 bin/rack
+bin/fly
