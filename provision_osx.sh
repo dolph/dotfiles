@@ -35,7 +35,6 @@ brew cask install kindle
 brew cask install mumble
 brew cask install scroll-reverser
 brew cask install slack
-brew cask install smoothmouse
 brew cask install vlc
 
 # install fonts
@@ -101,6 +100,9 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Mouse: disable scrolling inertia on the mouse wheel
 defaults write .GlobalPreferences com.apple.scrollwheel.scaling -1
+
+# Mouse: disable pointer acceleration (requires logout)
+defaults write .GlobalPreferences com.apple.mouse.scaling -1
 
 # Increase sound quality for Bluetooth headphones/headsets
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
