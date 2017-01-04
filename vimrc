@@ -165,3 +165,9 @@ set nojoinspaces
 " allow CTRL+C and CTRL+X to use the OS X clipboard
 vmap <C-x> :!pbcopy<CR>
 vmap <C-c> :w !pbcopy<CR><CR>
+
+" integrate yanking & pasting with the OS X clipboard
+set clipboard=unnamed
+
+" Always use unix-style line endings
+set ff=unix
