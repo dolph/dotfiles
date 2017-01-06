@@ -7,3 +7,4 @@ vim/.netrwhist
 
 # Ignore the rackspace binary, which is platform dependent
 bin/rack
+bin/fly
