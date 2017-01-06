@@ -20,6 +20,7 @@ apt-get install -V -y \
     curl \
     hexchat \
     htop \
+    maxima \
     python \
     tmux \
     tree \
