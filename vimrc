@@ -123,6 +123,9 @@ Plugin 'scrooloose/nerdtree'
 " Rust support
 Plugin 'rust-lang/rust.vim'
 
+" TOML support
+Plugin 'cespare/vim-toml'
+
 " Markdown support
 " Plugin 'godlygeek/tabular' " must appear before plasticboy/vim-markdown
 " Plugin 'plasticboy/vim-markdown'
