@@ -174,3 +174,6 @@ set clipboard=unnamed
 
 " Always use unix-style line endings
 set ff=unix
+
+" 2-space indention in yaml files
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
