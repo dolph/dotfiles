@@ -15,7 +15,7 @@ alias dev="ssh -p 443 dev.dolphm.com -t 'tmux att -d || tmux new'"
 
 # default: PS1='\h:\W \u\$'
 # hostname cwd $
-PS1="\[\033[32m\]\h \[\033[34m\]\W \[\033[40m\]$ \[\033[39m\]"
+export PS1="[\[\033[36m\]\d @ \t\[\033[39m\]] \[\033[32m\]\u\[\033[39m\]@\[\033[34m\]\h\[\033[39m\]:\[\033[33m\]\w\n\[\033[33m\]\\$ \[\033[40m\]\[$(tput sgr0)\]\[\033[39m\]"
 
 # Set virtualenv shortcuts.
 export WORKON_HOME=$HOME/venv
