@@ -123,6 +123,9 @@ Plugin 'scrooloose/nerdtree'
 " Rust support
 Plugin 'rust-lang/rust.vim'
 
+" TOML support
+Plugin 'cespare/vim-toml'
+
 " Markdown support
 " Plugin 'godlygeek/tabular' " must appear before plasticboy/vim-markdown
 " Plugin 'plasticboy/vim-markdown'
@@ -171,3 +174,6 @@ set clipboard=unnamed
 
 " Always use unix-style line endings
 set ff=unix
+
+" 2-space indention in yaml files
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
