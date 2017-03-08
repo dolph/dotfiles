@@ -1,13 +1,13 @@
 [dashboard]
 title = OSIC
 description =
-foreach = is:open (owner:ronald.de.rose)
+foreach = is:open -label:Code-Review<=+2,self label:Verified+1,jenkins label:Workflow+0 (owner:ronald.de.rose OR owner:"Luz Cazares <luz.cazares@intel.com>" OR owner:castulo.martinez@intel.com OR owner:steve.heyman@rackspace.com)
 
 [section "New"]
-query = -label:Code-Review<=2 label:Verified+1,jenkins label:Workflow+0
+query = -label:Code-Review<=2
 
 [section "+1"]
-query = -label:Code-Review<=+2,self -label:Code-Review<=-1 label:Code-Review+1 -label:Code-Review+2 label:Verified+1,jenkins label:Workflow+0
+query = -label:Code-Review<=-1 label:Code-Review+1 -label:Code-Review+2
 
 [section "+2"]
-query = -label:Code-Review<=+2,self -label:Code-Review<=-1 label:Code-Review+2 label:Verified+1,jenkins label:Workflow+0
+query = -label:Code-Review<=-1 label:Code-Review+2
