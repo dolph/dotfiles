@@ -1,10 +1,7 @@
 [dashboard]
 title = Queue
-description = Review Inbox
+description =
 foreach =
-
-[section "Starred (needs attention)"]
-query = is:open is:starred -owner:self -label:Code-Review<=2,self (label:Code-Review<=-1 OR -label:Verified+1,jenkins) -label:Workflow+1
 
 [section "New"]
 query = is:open (is:watched OR is:starred) -owner:self -label:Code-Review<=2 label:Verified+1,jenkins label:Workflow+0
@@ -14,12 +11,3 @@ query = is:open (is:watched OR is:starred) -owner:self -label:Code-Review<=+2,se
 
 [section "+2"]
 query = is:open (is:watched OR is:starred) -owner:self -label:Code-Review<=+2,self -label:Code-Review<=-1 label:Code-Review+2 label:Verified+1,jenkins label:Workflow+0
-
-[section "Pending gating"]
-query = is:open (is:watched OR is:starred) -owner:self label:Verified=+1,jenkins label:Workflow+1
-
-[section "Gating"]
-query = is:open (is:watched OR is:starred) -owner:self -label:Verified<=-1,jenkins -label:Verified>=+1,jenkins label:Workflow+1
-
-[section "Failed gating"]
-query = is:open (is:watched OR is:starred) -owner:self label:Verified<=-1,jenkins label:Workflow+1
