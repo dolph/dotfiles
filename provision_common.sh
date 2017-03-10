@@ -22,6 +22,9 @@ for file in $rawfiles; do
     ln -s $SCRIPTPATH/$file ~/$file
 done
 
+mkdir ~/.weechat/
+ln -s $SCRIPTPATH/weechat.conf ~/.weechat/weechat.conf
+
 # install vim plugins
 cd $SCRIPTPATH
 git submodule init

@@ -18,13 +18,13 @@ apt-get install -V -y \
     ack-grep \
     build-essential \
     curl \
-    hexchat \
     htop \
     maxima \
     python \
     tmux \
     tree \
     vim \
+    weechat \
     ;
 
 apt-get remove -y --purge \
@@ -38,11 +38,6 @@ apt-get remove -y --purge \
 apt-get autoremove -y
 apt-get clean
 apt-get autoclean
-
-# Setup HexChat colors
-wget https://dl.hexchat.net/themes/Solarized%20Dark.hct -O /tmp/hexchat-solarized-dark.hct
-unzip -o /tmp/hexchat-solarized-dark.hct -d ~/.config/hexchat/
-rm /tmp/hexchat-solarized-dark.hct
 
 # Set terminal to Solarized Black color scheme.
 # gconftool-2 -s -t string /apps/gnome-terminal/profiles/Default/palette '#000000000000:#DCDC32322F2F:#858599990000:#B5B589890000:#26268B8BD2D2:#D3D336368282:#2A2AA1A19898:#EEEEE8E8D5D5:#00002B2B3636:#CBCB4B4B1616:#58586E6E7575:#65657B7B8383:#838394949696:#6C6C7171C4C4:#9393A1A1A1A1:#FDFDF6F6E3E3'

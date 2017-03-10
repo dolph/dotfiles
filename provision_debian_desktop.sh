@@ -19,7 +19,6 @@ apt-get upgrade -V -y
 # install custom packages (git should already be installed)
 apt-get install -V -y \
     google-chrome-stable \
-    xchat \
     ;
 
 # run updates
