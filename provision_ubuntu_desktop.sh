@@ -24,6 +24,7 @@ apt-get install -V -y \
     tmux \
     tree \
     vim \
+    vlc \
     weechat \
     ;
 
