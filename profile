@@ -44,3 +44,5 @@ Linux|Darwin)
 FreeBSD)
     ;;
 esac
+
+export PATH="$HOME/.cargo/bin:$PATH"
