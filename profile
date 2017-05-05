@@ -13,6 +13,7 @@ then
     git config --global user.email "dolph.mathews@gmail.com"
     git config --global user.name "Dolph Mathews"
     git config --global core.excludesfile $HOME/.gitignore_global
+    git config --global help.autocorrect 1
 fi
 
 # Launch keychain to manage SSH passphrases.
