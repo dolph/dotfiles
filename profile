@@ -23,26 +23,14 @@ fi
 # Detect platform ($OSTYPE is not populated in FreeBSD 11).
 case "$(uname -s)" in
 Linux|Darwin)
+    # Go
     export GOPATH=$HOME/go
+    export PATH="$PATH:$GOPATH/bin:/usr/local/go/bin"
+
+    # Rust
     export RUSTPATH=$HOME/.cargo/bin
-    export PATH=$HOME/bin:$RUSTPATH:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:$GOPATH/bin:$PATH
-
-    # If this is an interactive shell, then configure the prompt (else, it's an
-    # x11 session)
-    # http://unix.stackexchange.com/questions/26676/how-to-check-if-a-shell-is-login-interactive-batch
-    if [[ $- == *i* ]]; then
-        # default: PS1='\h:\W \u\$'
-        # hostname cwd $
-        PS1="\[$(tput setaf 2)\]\h \[$(tput setaf 4)\]\W \[$(tput setaf 10)\]$ \[$(tput sgr0)\]"
-    fi
-
-    # Development defaults for OpenStack Keystone.
-    export OS_IDENTITY_API_VERSION=3
-    export OS_TOKEN=ADMIN
-    export OS_URL=http://localhost:35357/v3
+    export PATH="$HOME/.cargo/bin:$PATH"
     ;;
 FreeBSD)
     ;;
 esac
-
-export PATH="$HOME/.cargo/bin:$PATH"
