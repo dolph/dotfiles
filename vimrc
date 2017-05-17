@@ -175,5 +175,8 @@ set clipboard=unnamed
 " Always use unix-style line endings
 set ff=unix
 
-" 2-space indention in yaml files
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" 2-space indention in YAML files
+autocmd FileType yaml setlocal tabstop=2 sts=2 shiftwidth=2 expandtab
+
+" 4-space tab-based in Go files
+autocmd FileType go setlocal noexpandtab listchars=tab:\ \ ,trail:~
