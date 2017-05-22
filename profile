@@ -24,6 +24,9 @@ fi
 # Detect platform ($OSTYPE is not populated in FreeBSD 11).
 case "$(uname -s)" in
 Linux|Darwin)
+    # dotfiles executables
+    export PATH="$PATH:$HOME/bin"
+
     # Go
     export GOPATH=$HOME/go
     export PATH="$PATH:$GOPATH/bin:/usr/local/go/bin"
