@@ -99,7 +99,7 @@ call vundle#begin()
 " Let Vundle manage itself. To install new plugins, update all plugins, and
 " remove extra plugins without any confirmations (such as after modifying the
 " set of plugins), run:
-"   vim +PluginInstall! +PluginClean! +qall
+"   vim +PluginInstall! +PluginClean! +GoInstallBinaries! +qall
 Plugin 'gmarik/Vundle.vim'
 
 " Custom color scheme
@@ -122,6 +122,9 @@ Plugin 'scrooloose/nerdtree'
 
 " Rust support
 Plugin 'rust-lang/rust.vim'
+
+" Go support
+Plugin 'fatih/vim-go'
 
 " TOML support
 Plugin 'cespare/vim-toml'
@@ -180,3 +183,5 @@ autocmd FileType yaml setlocal tabstop=2 sts=2 shiftwidth=2 expandtab
 
 " 4-space tab-based in Go files
 autocmd FileType go setlocal noexpandtab listchars=tab:\ \ ,trail:~
+" Automatically format Go files.
+" autocmd BufWritePre *.go Fmt
