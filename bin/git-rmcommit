@@ -1,0 +1,4 @@
+#!/bin/bash
+# Delete a specific commit from history.
+# Based on: https://stackoverflow.com/a/3705310/176741
+git rebase --onto $1^ $1 HEAD
