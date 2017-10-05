@@ -63,7 +63,7 @@ while read -r window; do
             wmctrl -i -r $window_id -e 0,0,$(expr $HALF_HEIGHT + 1),$THIRD_WIDTH,$(expr $HALF_HEIGHT - $TITLE_BAR_HEIGHT)
         else
             # Go left column
-            wmctrl -i -r $window_id -e 0,0,0,$THIRD_WIDTH,$DESKTOP_HEIGHT
+            wmctrl -i -r $window_id -e 0,0,0,$THIRD_WIDTH,$(expr $DESKTOP_HEIGHT - $TITLE_BAR_HEIGHT)
         fi
     fi
     if [[ $window_title =~ "Slack - " ]]; then
@@ -72,7 +72,7 @@ while read -r window; do
             wmctrl -i -r $window_id -e 0,0,$(expr $HALF_HEIGHT + 1),$THIRD_WIDTH,$(expr $HALF_HEIGHT - $TITLE_BAR_HEIGHT)
         else
             # Go left column
-            wmctrl -i -r $window_id -e 0,0,0,$THIRD_WIDTH,$DESKTOP_HEIGHT
+            wmctrl -i -r $window_id -e 0,0,0,$THIRD_WIDTH,$(expr $DESKTOP_HEIGHT - $TITLE_BAR_HEIGHT)
         fi
     fi
 
