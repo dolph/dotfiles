@@ -15,7 +15,7 @@ HALF_HEIGHT=$(expr $DESKTOP_HEIGHT / 2)
 
 WINDOWS=`wmctrl -l`
 
-if [[ $WINDOWS =~ "Netflix" ]] || [[ $WINDOWS =~ "YouTube" ]] || [[ $WINDOWS =~ "VLC media player" ]] || [[ $WINDOWS =~ "Zoom Meeting ID" ]]; then
+if [[ $WINDOWS =~ "Netflix" ]] || [[ $WINDOWS =~ "YouTube" ]] || [[ $WINDOWS =~ "VLC media player" ]]; then
     MEDIA_PLAYER=true
 else
     MEDIA_PLAYER=false
