@@ -15,7 +15,7 @@ HALF_HEIGHT=$(expr $DESKTOP_HEIGHT / 2)
 
 WINDOWS=`wmctrl -l`
 
-if [[ $WINDOWS =~ "YouTube" ]] || [[ $WINDOWS =~ "VLC media player" ]] || [[ $WINDOWS =~ "Zoom Meeting ID" ]]; then
+if [[ $WINDOWS =~ "Netflix" ]] || [[ $WINDOWS =~ "YouTube" ]] || [[ $WINDOWS =~ "VLC media player" ]] || [[ $WINDOWS =~ "Zoom Meeting ID" ]]; then
     MEDIA_PLAYER=true
 else
     MEDIA_PLAYER=false
@@ -53,7 +53,7 @@ while read -r window; do
             wmctrl -i -r $window_id -e 0,0,0,$THIRD_WIDTH,$DESKTOP_HEIGHT
         fi
     fi
-    if [[ $window_title =~ "YouTube" ]]; then
+    if [[ $window_title =~ "Netflix" ]] || [[ $window_title =~ "YouTube" ]]; then
         # Go left column
         wmctrl -i -r $window_id -e 0,0,0,$THIRD_WIDTH,$DESKTOP_HEIGHT
     fi
