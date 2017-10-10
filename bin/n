@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $HOME/.bashrc
+
 # time the command
 let start_time=`date +%s`;
 time "$@";
