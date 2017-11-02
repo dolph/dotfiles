@@ -17,4 +17,4 @@ def encode(number):
 
 
 s = encode(uuid.uuid4().int)
-print s, len(s)
+print(s)
