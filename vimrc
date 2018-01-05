@@ -185,3 +185,6 @@ autocmd FileType yaml setlocal tabstop=2 sts=2 shiftwidth=2 expandtab
 autocmd FileType go setlocal noexpandtab listchars=tab:\ \ ,trail:~
 " Automatically format Go files.
 " autocmd BufWritePre *.go Fmt
+
+" Disable the creation of *.swp files (allows write conflicts)
+set noswapfile
