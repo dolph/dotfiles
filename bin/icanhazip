@@ -1,0 +1,3 @@
+#!/bin/bash
+set -e
+n try curl icanhazip.com
