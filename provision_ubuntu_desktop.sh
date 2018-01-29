@@ -19,13 +19,11 @@ apt-get install -V -y \
     build-essential \
     curl \
     htop \
-    maxima \
     python \
     tmux \
     tree \
     vim \
     vlc \
-    weechat \
     ;
 
 apt-get remove -y --purge \
