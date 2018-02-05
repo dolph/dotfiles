@@ -53,7 +53,7 @@ if [ -d "~/.config/xfce4/" ]; then
 fi
 
 # Loopback default audio input on startup (for Chromecast on Line In).
-sudo sh -c 'echo "load-module module-loopback latency_msec=1" >> /etc/pulse/default.pa'
+# sudo sh -c 'echo "load-module module-loopback latency_msec=1" >> /etc/pulse/default.pa'
 
 # Run updates.
 sh provision_common.sh
