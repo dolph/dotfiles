@@ -15,7 +15,6 @@ apt-get upgrade -V -y
 # Install custom packages (git should already be installed).
 # google-chrome-stable \
 apt-get install -V -y \
-    ack-grep \
     build-essential \
     curl \
     htop \
