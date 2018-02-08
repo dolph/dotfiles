@@ -5,5 +5,7 @@
     name = Dolph Mathews
 [core]
     excludesfile = /home/dolph/.gitignore_global
+[url "git@github.com:"]
+    insteadOf = https://github.com/
 [url "git@github.ibm.com:"]
     insteadOf = https://github.ibm.com/
