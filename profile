@@ -38,3 +38,6 @@ Linux|Darwin)
 FreeBSD)
     ;;
 esac
+
+# Make caps lock behave like escape.
+setxkbmap -option caps:swapescape

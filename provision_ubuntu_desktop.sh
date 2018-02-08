@@ -15,7 +15,6 @@ apt-get upgrade -V -y
 # Install custom packages (git should already be installed).
 # google-chrome-stable \
 apt-get install -V -y \
-    ack-grep \
     build-essential \
     curl \
     htop \
@@ -54,7 +53,7 @@ if [ -d "~/.config/xfce4/" ]; then
 fi
 
 # Loopback default audio input on startup (for Chromecast on Line In).
-sudo sh -c 'echo "load-module module-loopback latency_msec=1" >> /etc/pulse/default.pa'
+# sudo sh -c 'echo "load-module module-loopback latency_msec=1" >> /etc/pulse/default.pa'
 
 # Run updates.
 sh provision_common.sh
