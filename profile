@@ -40,4 +40,4 @@ FreeBSD)
 esac
 
 # Make caps lock behave like escape.
-setxkbmap -option caps:swapescape
+setxkbmap -option caps:escape
