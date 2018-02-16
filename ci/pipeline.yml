@@ -12,6 +12,7 @@ jobs:
   - get: dotfiles-repo
     trigger: true
   - task: task-provision-ubuntu-latest-headless
+    timeout: 15m
     config:
         platform: linux
         image_resource:
@@ -28,6 +29,7 @@ jobs:
   - get: dotfiles-repo
     trigger: true
   - task: task-provision-ubuntu-devel-headless
+    timeout: 15m
     config:
         platform: linux
         image_resource:
@@ -44,6 +46,7 @@ jobs:
   - get: dotfiles-repo
     trigger: true
   - task: task-provision-debian-stable-headless
+    timeout: 15m
     config:
         platform: linux
         image_resource:
@@ -60,6 +63,7 @@ jobs:
   - get: dotfiles-repo
     trigger: true
   - task: task-provision-debian-testing-headless
+    timeout: 15m
     config:
         platform: linux
         image_resource:
@@ -76,6 +80,7 @@ jobs:
   - get: dotfiles-repo
     trigger: true
   - task: task-provision-debian-unstable-headless
+    timeout: 15m
     config:
         platform: linux
         image_resource:
