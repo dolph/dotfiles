@@ -22,7 +22,8 @@ for file in $rawfiles; do
     ln -s $SCRIPTPATH/$file ~/$file
 done
 
-mkdir ~/.weechat/
+mkdir -p ~/.weechat/
+rm -rf ~/.weechat/weechat.conf
 ln -s $SCRIPTPATH/weechat.conf ~/.weechat/weechat.conf
 
 # install vim plugins
