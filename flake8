@@ -1,0 +1,3 @@
+[flake8]
+# H102: Apache 2.0 license header
+ignore = H102
