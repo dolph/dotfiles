@@ -1,6 +1,6 @@
 #!/bin/bash
 # repeat a command until it succeeds, then exit
-until bash -c "$@"
+until "$@"
 do
     sleep 0.1
 done
