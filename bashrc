@@ -16,6 +16,11 @@ alias dev="ssh -p 443 dev.dolphm.com -t 'tmux att -d || tmux new'"
 # default: PS1='\h:\W \u\$'
 # hostname cwd $
 export PS1="[\[\033[36m\]\t\[\033[39m\]] \[\033[32m\]\u\[\033[39m\]@\[\033[34m\]\h\[\033[39m\]:\[\033[33m\]\w\n\[\033[33m\]\\$ \[\033[40m\]\[$(tput sgr0)\]\[\033[39m\]"
+# cwd $
+# export PS1="\[\033[32m\]\W \[\033[34m\]\\$ \[\033[34m\]\[$(tput sgr0)\]\[\033[96m\]"
+
+# Enable color file listings.
+alias ls='ls -o --almost-all --classify --color=auto'
 
 # Set virtualenv shortcuts.
 export WORKON_HOME=$HOME/venv
