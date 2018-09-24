@@ -7,6 +7,9 @@ export EDITOR=vim
 # I've avoided.
 alias e=vim
 
+# pyc files are annoying
+export PYTHONDONTWRITEBYTECODE=1
+
 # Make it trivial to jump into a development server and automatically create or
 # rejoin a tmux session. This will disconnect other tmux sessions
 # automatically, making it seamless to switch between multiple client devices.
