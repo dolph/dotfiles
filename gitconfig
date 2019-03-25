@@ -9,3 +9,5 @@
     insteadOf = https://github.com/
 [url "git@github.ibm.com:"]
     insteadOf = https://github.ibm.com/
+[hub]
+    host = github.ibm.com
