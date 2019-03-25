@@ -5,7 +5,10 @@ export EDITOR=vim
 
 # I edit a lot of text files, okay? Think of all the carpel tunnel syndrome
 # I've avoided.
-alias e=vim
+alias e="vim"
+alias q="exit"
+
+alias gist="gist-paste"
 
 # pyc files are annoying
 export PYTHONDONTWRITEBYTECODE=1
