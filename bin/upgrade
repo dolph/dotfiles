@@ -10,6 +10,7 @@ then
 elif [ -n "$(command -v yum )" ]
 then
     sudo yum update -y
+    sudo yum upgrade -y
 fi
 if [ -f /var/run/reboot-required ]; then
     echo 'Reboot required! Automatically rebooting...'
