@@ -12,6 +12,10 @@ then
     sudo yum update -y
     sudo yum upgrade -y
 fi
+
+# Upgrade vim plugins
+vim +PluginInstall! +PluginClean! +GoInstallBinaries! +qall
+
 if [ -f /var/run/reboot-required ]; then
     echo 'Reboot required! Automatically rebooting...'
     sudo reboot -n
