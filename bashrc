@@ -40,3 +40,11 @@ if hash ack-grep 2>/dev/null; then
         alias ack=ack-grep
     fi
 fi
+
+function ssh-unlock() {
+    if [ -z ${SSH_AGENT_PID+x} ] || [ ! "ps -p ${SSH_AGENT_PID} > /dev/null" ]; then
+        eval "$(ssh-agent -s)" > /dev/null
+        ssh-add $HOME/.ssh/id_rsa
+    fi
+}
+ssh-unlock
