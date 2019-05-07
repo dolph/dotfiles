@@ -40,4 +40,6 @@ FreeBSD)
 esac
 
 # Make caps lock behave like escape.
-command -v setxkbmap > /dev/null && setxkbmap -option caps:escape || true
+if [[ $DISPLAY ]]; then
+    command -v setxkbmap > /dev/null && setxkbmap -option caps:escape || true
+fi
