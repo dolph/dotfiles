@@ -1,0 +1,25 @@
+#!/bin/bash
+# repeat a command forever, tracking failure rates
+((successes=0))
+((failures=0))
+
+function success_rate {
+    ((total=successes+failures))
+    echo
+    echo "Success rate: $(echo "100 * $successes/$total" | bc)% ($successes / $total)"
+    echo
+}
+trap success_rate EXIT
+while [ 1 ]
+do
+    if "$@"; then
+        ((successes=successes+1))
+    else
+        ((failures=failures+1))
+    fi
+    success_rate
+
+    # Double sleep makes it easier to break the loop.
+    sleep 0.1
+    sleep 0.1
+done

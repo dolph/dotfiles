@@ -1,6 +1,10 @@
 #!/bin/bash
 # repeat a command until it succeeds, then exit
-until bash -c "$@"
+((counter=1))
+until "$@"
 do
-    sleep 0.1
+    echo "Attempt #$counter failed. Retrying..."
+    ((counter=counter+1))
+    sleep 1.0
 done
+echo "Tried $counter times before succeeding."

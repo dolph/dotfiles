@@ -5,7 +5,10 @@ export EDITOR=vim
 
 # I edit a lot of text files, okay? Think of all the carpel tunnel syndrome
 # I've avoided.
-alias e=vim
+alias e="vim"
+alias q="exit"
+
+alias gist="gist-paste"
 
 # pyc files are annoying
 export PYTHONDONTWRITEBYTECODE=1
@@ -19,6 +22,11 @@ alias dev="ssh -p 443 dev.dolphm.com -t 'tmux att -d || tmux new'"
 # default: PS1='\h:\W \u\$'
 # hostname cwd $
 export PS1="[\[\033[36m\]\t\[\033[39m\]] \[\033[32m\]\u\[\033[39m\]@\[\033[34m\]\h\[\033[39m\]:\[\033[33m\]\w\n\[\033[33m\]\\$ \[\033[40m\]\[$(tput sgr0)\]\[\033[39m\]"
+# cwd $
+# export PS1="\[\033[32m\]\W \[\033[34m\]\\$ \[\033[34m\]\[$(tput sgr0)\]\[\033[96m\]"
+
+# Enable color file listings.
+alias ls='ls --almost-all --classify --color=auto'
 
 # Set virtualenv shortcuts.
 export WORKON_HOME=$HOME/venv
@@ -32,3 +40,11 @@ if hash ack-grep 2>/dev/null; then
         alias ack=ack-grep
     fi
 fi
+
+function ssh-unlock() {
+    if [ -z ${SSH_AGENT_PID+x} ] || [ ! "ps -p ${SSH_AGENT_PID} > /dev/null" ]; then
+        eval "$(ssh-agent -s)" > /dev/null
+        ssh-add $HOME/.ssh/id_rsa
+    fi
+}
+ssh-unlock

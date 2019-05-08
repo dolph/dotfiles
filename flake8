@@ -1,3 +1,4 @@
 [flake8]
 # H102: Apache 2.0 license header
-ignore = H102
+# W503: line break before binary operator (cannot be enforced along with W504)
+ignore = H102, W503
