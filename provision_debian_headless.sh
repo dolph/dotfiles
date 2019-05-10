@@ -2,8 +2,7 @@
 set -e
 
 # update packages
-apt-get update
-apt-get upgrade -V -y
+sudo apt-get update
 
 # install custom packages (git should already be installed)
 apt-get install -V -y \

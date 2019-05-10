@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ex
 
 # Absolute path to this script, e.g. /home/user/bin/foo.sh
 SCRIPT=$(readlink -f "$0")
@@ -7,7 +7,7 @@ SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
 
 # create symlinks from the home directory to dotfiles in ~/dotfiles
-dotfiles="ackrc bash_profile bashrc profile flake8 inputrc vim vimrc gvimrc gitconfig gitignore_global tmux.conf"
+dotfiles="ackrc bash_profile bashrc profile flake8 inputrc vim vimrc gvimrc gitconfig gitignore_global tmux.conf fonts"
 rawfiles="bin"
 
 # symlink dotfiles to the home dir, each prefixed by a dot (.)
@@ -22,18 +22,8 @@ for file in $rawfiles; do
     ln -s $SCRIPTPATH/$file ~/$file
 done
 
-mkdir -p ~/.weechat/
-rm -rf ~/.weechat/weechat.conf
-ln -s $SCRIPTPATH/weechat.conf ~/.weechat/weechat.conf
-
 # install vim plugins
 cd $SCRIPTPATH
 git submodule init
 git submodule update
 vim +PluginInstall! +PluginClean! +qall
-
-# install python basics
-curl https://bootstrap.pypa.io/get-pip.py | python
-
-pip install virtualenv
-pip install hacking
