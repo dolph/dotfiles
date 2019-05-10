@@ -10,9 +10,11 @@ sudo apt-get install -V -y \
     curl \
     htop \
     python \
+    ruby \
     tmux \
     tree \
     vim \
+    virtualbox \
     vlc \
     ;
 
@@ -26,6 +28,8 @@ sudo apt-get remove -y --purge \
 sudo apt-get autoremove -y
 sudo apt-get clean
 sudo apt-get autoclean
+
+gem install --user-install gist
 
 # XFCE4
 if [ -f "/etc/default/motd-news" ]; then
