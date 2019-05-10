@@ -51,9 +51,6 @@ if [ -d "~/.config/xfce4/" ]; then
     cp terminalrc ~/.config/xfce4/terminal/terminalrc
 fi
 
-# Loopback default audio input on startup (for Chromecast on Line In).
-# sudo sh -c 'echo "load-module module-loopback latency_msec=1" >> /etc/pulse/default.pa'
-
 if [ -f "/etc/default/motd-news" ]; then
     sed "/^ENABLED=/s/=.*/=0/" /etc/default/motd-news > /tmp/motd-news
     mv /tmp/motd-news /etc/default/motd-news
