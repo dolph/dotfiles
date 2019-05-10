@@ -42,9 +42,11 @@ if hash ack-grep 2>/dev/null; then
 fi
 
 function ssh-unlock() {
-    if [ -z ${SSH_AGENT_PID+x} ] || [ ! "ps -p ${SSH_AGENT_PID} > /dev/null" ]; then
-        eval "$(ssh-agent -s)" > /dev/null
-        ssh-add $HOME/.ssh/id_rsa
+    if [ -n "$TMUX" ]; then
+        if [ -z ${SSH_AGENT_PID+x} ] || [ ! "ps -p ${SSH_AGENT_PID} > /dev/null" ]; then
+            eval "$(ssh-agent -s)" > /dev/null
+            ssh-add $HOME/.ssh/id_rsa
+        fi
     fi
 }
 ssh-unlock
