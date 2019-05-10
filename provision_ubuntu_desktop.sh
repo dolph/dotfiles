@@ -10,7 +10,6 @@ fc-cache -fv
 
 # Update packages.
 apt-get update
-apt-get upgrade -V -y
 
 # Install custom packages (git should already be installed).
 # google-chrome-stable \
