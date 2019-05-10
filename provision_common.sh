@@ -7,7 +7,7 @@ SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
 
 # create symlinks from the home directory to dotfiles in ~/dotfiles
-dotfiles="ackrc bash_profile bashrc profile flake8 inputrc screenrc vim vimrc gvimrc gitconfig gitignore_global tmux.conf"
+dotfiles="ackrc bash_profile bashrc profile flake8 inputrc vim vimrc gvimrc gitconfig gitignore_global tmux.conf"
 rawfiles="bin"
 
 # symlink dotfiles to the home dir, each prefixed by a dot (.)

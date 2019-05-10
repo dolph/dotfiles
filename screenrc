@@ -1,2 +1,0 @@
-# screen should always treat the shell as a login shell
-shell -$SHELL
