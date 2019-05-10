@@ -8,3 +8,5 @@ vim/.netrwhist
 # Ignore platform-specific binaries
 bin/rack
 bin/fly
+
+fonts/.uuid
