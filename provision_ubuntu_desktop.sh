@@ -6,12 +6,14 @@ sudo apt-get update
 
 # Install custom packages (git should already be installed).
 sudo apt-get install -V -y \
+    autossh \
     build-essential \
     curl \
     htop \
     python3 \
     python3-virtualenv \
     ruby \
+    sshpass \
     tmux \
     tree \
     vagrant \
