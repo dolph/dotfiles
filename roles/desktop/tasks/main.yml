@@ -40,3 +40,11 @@
 
 - name: configure custom fonts
   include: fonts.yml
+
+# TODO: Chrome
+# TODO: virtualenvwrapperlite
+# TODO: terminal config
+# TODO: gist
+# TODO: hub
+# TODO: ssh-client
+# TODO: ssh-server (security)
