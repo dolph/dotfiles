@@ -1,0 +1,9 @@
+- name: install virtualenv
+  pacman:
+    name: python-virtualenv
+  when: ansible_distribution == 'Archlinux'
+
+- name: configure flake8
+  template:
+    src: home/flake8
+    dest: /home/dolph/.flake8

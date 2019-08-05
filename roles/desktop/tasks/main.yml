@@ -1,2 +1,42 @@
+- name: allow passwordless sudo
+  template:
+    src: etc/sudoers.d/dolph
+    dest: /etc/sudoers.d/dolph
+    mode: 0400
+
+- name: configure git
+  include: git.yml
+
 - name: configure editor
   include: vim.yml
+
+- name: configure tmux
+  include: tmux.yml
+
+- name: configure ack
+  include: ack.yml
+
+- name: configure terminal
+  template:
+    src: "home/{{ item }}"
+    dest: "/home/dolph/.{{ item }}"
+  with_items:
+  - bash_profile
+  - bashrc
+  - inputrc
+  - profile
+
+- name: install additional packages
+  pacman:
+    name:
+    - autossh
+    - curl
+    - htop
+    - sshpass
+    - tree
+    - vagrant
+    - virtualbox
+    - vlc
+
+- name: configure custom fonts
+  include: fonts.yml

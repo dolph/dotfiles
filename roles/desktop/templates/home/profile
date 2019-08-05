@@ -6,16 +6,6 @@ set -o vi
 # Use color by default.
 export CLICOLOR=1
 
-if [ ! -e "$HOME/.gitconfig" ]
-then
-    # This doesn't need to be enabled every time, but why not?
-    git config --global color.ui true
-    git config --global user.email "dolph.mathews@gmail.com"
-    git config --global user.name "Dolph Mathews"
-    git config --global core.excludesfile $HOME/.gitignore_global
-    git config --global help.autocorrect 1
-fi
-
 # Launch keychain to manage SSH passphrases.
 if command -v keychain >/dev/null 2>&1 ; then
     eval `keychain --quiet --eval id_rsa`

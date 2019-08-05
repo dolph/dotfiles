@@ -1,0 +1,9 @@
+- name: install tmux
+  pacman:
+    name: tmux
+  when: ansible_distribution == 'Archlinux'
+
+- name: configure tmux
+  template:
+    src: home/tmux.conf
+    dest: /home/dolph/.tmux.conf

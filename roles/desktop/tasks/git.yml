@@ -1,0 +1,12 @@
+- name: install git
+  pacman:
+    name: git
+  when: ansible_distribution == 'Archlinux'
+
+- name: configure git
+  template:
+    src: "home/{{ item }}"
+    dest: "/home/dolph/.{{ item }}"
+  with_items:
+  - gitconfig
+  - gitignore_global

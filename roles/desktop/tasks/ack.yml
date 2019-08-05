@@ -1,0 +1,9 @@
+- name: install ack
+  pacman:
+    name: ack
+  when: ansible_distribution == 'Archlinux'
+
+- name: configure ack
+  template:
+    src: home/ackrc
+    dest: /home/dolph/.ackrc

@@ -1,8 +1,24 @@
 - name: install vim
   pacman:
     name: vim
+  when: ansible_distribution == 'Archlinux'
 
 - name: uninstall vi
   pacman:
     name: vi
     state: absent
+
+- name: configure vim
+  template:
+    src: home/vimrc
+    dest: /home/dolph/.vimrc
+
+- name: install vim plugin manager
+  become_user: dolph
+  git:
+    repo: https://github.com/VundleVim/Vundle.vim.git
+    dest: ~/.vim/bundle/Vundle.vim
+
+- name: install vim plugins
+  become_user: dolph
+  command: vim +PluginInstall! +PluginClean! +qall
