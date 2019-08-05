@@ -2,3 +2,4 @@
   pacman:
     name:
     - ttf-hack
+  when: ansible_distribution == 'Archlinux'
