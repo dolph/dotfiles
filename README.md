@@ -1,10 +1,16 @@
-dotfiles
-========
+# workbench
 
-Installation (`git` required, obviously):
+Build a machine with software, dotfiles, etc, for work.
 
-    git clone --recursive https://github.com/dolph/dotfiles.git ~/dotfiles
+## Dependencies
 
-The ``--recursive`` is necessary to pull in submodules.
+* `git`
+* `ansible`
 
-Finally, provision the machine using one of the ``provision_*.sh`` scripts.
+## Usage
+
+To deploy to `localhost`:
+
+    git clone https://github.com/dolph/dotfiles.git ~/workbench
+    cd ~/workbench
+    ansible-playbook site.yml
