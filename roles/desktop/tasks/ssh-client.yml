@@ -1,0 +1,5 @@
+- name: generate ssh identity
+  openssh_keypair:
+    path: /home/dolph/.ssh/id_rsa
+    size: 4096
+    comment: "dolph@{{ ansible_hostname}}"

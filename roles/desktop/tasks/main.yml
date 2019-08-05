@@ -4,6 +4,9 @@
     dest: /etc/sudoers.d/dolph
     mode: 0400
 
+- name: configure ssh-client
+  include: ssh-client.yml
+
 - name: configure git
   include: git.yml
 
@@ -46,5 +49,4 @@
 # TODO: terminal config
 # TODO: gist
 # TODO: hub
-# TODO: ssh-client
 # TODO: ssh-server (security)
