@@ -1,7 +1,0 @@
-[dashboard]
-title = Starred
-description =
-foreach =
-
-[section "Starred (needs attention)"]
-query = is:open is:starred -owner:self -label:Code-Review<=2,self (label:Code-Review<=-1 OR -label:Verified+1,jenkins) -label:Workflow+1
