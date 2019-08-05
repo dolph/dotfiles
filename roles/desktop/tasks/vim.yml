@@ -1,0 +1,8 @@
+- name: install vim
+  pacman:
+    name: vim
+
+- name: uninstall vi
+  pacman:
+    name: vi
+    state: absent

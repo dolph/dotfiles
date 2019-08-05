@@ -1,7 +1,2 @@
-- name: who dat
-  command: whoami
-  register: who
-
-- name: test
-  debug:
-    msg: "hello {{ who.stdout }}!"
+- name: configure editor
+  include: vim.yml
