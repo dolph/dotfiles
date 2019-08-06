@@ -1,0 +1,12 @@
+- name: configure xmodmap
+  template:
+    src: home/Xmodmap
+    dest: /home/dolph/.Xmodmap
+  register: xmodmap
+
+- name: apply xmodmap
+  become: true
+  become_user: dolph
+  command: xmodmap ~/.Xmodmap
+  when: xmodmap.changed
+

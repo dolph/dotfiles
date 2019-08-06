@@ -1,0 +1,2 @@
+!set caps lock to be another escape key
+keycode 58 = Escape
