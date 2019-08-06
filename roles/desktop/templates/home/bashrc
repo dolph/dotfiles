@@ -31,7 +31,7 @@ alias ls='ls --almost-all --classify --color=auto'
 
 # Set virtualenv shortcuts.
 export WORKON_HOME=$HOME/venv
-. ~/dotfiles/virtualenvwrapperlite/virtualenvwrapperlite.sh
+. ~/.virtualenvwrapperlite/virtualenvwrapperlite.sh
 
 # If ack-grep is installed...
 if hash ack-grep 2>/dev/null; then
