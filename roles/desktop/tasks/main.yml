@@ -45,6 +45,7 @@
 - name: configure custom fonts
   include: fonts.yml
 
+# TODO: XFCE config (xmodmap)
 # TODO: Chrome
 # TODO: terminal config
 # TODO: gist
