@@ -6,7 +6,7 @@
     - hub
   when: ansible_distribution == 'Archlinux'
 
-- name: configure git
+- name: configure git, gist
   template:
     src: "home/{{ item }}"
     dest: "/home/dolph/.{{ item }}"

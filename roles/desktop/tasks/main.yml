@@ -4,7 +4,7 @@
     dest: /etc/sudoers.d/dolph
     mode: 0400
 
-- name: configure ssh-client
+- name: configure ssh client
   include: ssh-client.yml
 
 - name: configure git
@@ -13,7 +13,7 @@
 - name: configure editor
   include: vim.yml
 
-- name: configure tmux
+- name: configure terminal multiplexer
   include: tmux.yml
 
 - name: configure ack
@@ -55,5 +55,4 @@
 
 # TODO: Chrome
 # TODO: terminal config
-# TODO: hub
 # TODO: ssh-server (security)
