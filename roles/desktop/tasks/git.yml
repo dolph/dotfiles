@@ -15,3 +15,4 @@
   with_items:
   - gitconfig
   - gitignore_global
+  - gist
