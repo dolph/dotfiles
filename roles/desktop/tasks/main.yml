@@ -19,10 +19,15 @@
 - name: configure ack
   include: ack.yml
 
+- name: configure python
+  include: python.yml
+
 - name: configure terminal
   template:
     src: "home/{{ item }}"
     dest: "/home/dolph/.{{ item }}"
+    owner: dolph
+    group: dolph
   with_items:
   - bash_profile
   - bashrc
@@ -50,6 +55,5 @@
 
 # TODO: Chrome
 # TODO: terminal config
-# TODO: gist
 # TODO: hub
 # TODO: ssh-server (security)

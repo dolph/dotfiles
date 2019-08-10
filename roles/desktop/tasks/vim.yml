@@ -13,8 +13,11 @@
   template:
     src: home/vimrc
     dest: /home/dolph/.vimrc
+    owner: dolph
+    group: dolph
 
 - name: install vim plugin manager
+  become: true
   become_user: dolph
   git:
     repo: https://github.com/VundleVim/Vundle.vim.git
@@ -23,5 +26,6 @@
   changed_when: "git_result.after|default('after') != git_result.before|default('before')"
 
 - name: install vim plugins
+  become: true
   become_user: dolph
   command: vim +PluginInstall! +PluginClean! +qall

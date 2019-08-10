@@ -1,12 +1,17 @@
-- name: install git
+- name: install git and friends
   pacman:
-    name: git
+    name:
+    - gist
+    - git
+    - hub
   when: ansible_distribution == 'Archlinux'
 
 - name: configure git
   template:
     src: "home/{{ item }}"
     dest: "/home/dolph/.{{ item }}"
+    owner: dolph
+    group: dolph
   with_items:
   - gitconfig
   - gitignore_global

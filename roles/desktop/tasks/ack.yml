@@ -7,3 +7,5 @@
   template:
     src: home/ackrc
     dest: /home/dolph/.ackrc
+    owner: dolph
+    group: dolph

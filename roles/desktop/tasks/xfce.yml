@@ -2,6 +2,8 @@
   template:
     src: home/Xmodmap
     dest: /home/dolph/.Xmodmap
+    owner: dolph
+    group: dolph
   register: xmodmap
 
 - name: apply xmodmap

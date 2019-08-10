@@ -7,3 +7,5 @@
   template:
     src: home/tmux.conf
     dest: /home/dolph/.tmux.conf
+    owner: dolph
+    group: dolph

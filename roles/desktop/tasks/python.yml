@@ -7,8 +7,11 @@
   template:
     src: home/flake8
     dest: /home/dolph/.flake8
+    owner: dolph
+    group: dolph
 
 - name: install virtualenvwrapperlite
+  become: true
   become_user: dolph
   git:
     repo: https://github.com/dolph/virtualenvwrapperlite.git
