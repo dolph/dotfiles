@@ -11,23 +11,15 @@ if command -v keychain >/dev/null 2>&1 ; then
     eval `keychain --quiet --eval id_rsa`
 fi
 
-# Detect platform ($OSTYPE is not populated in FreeBSD 11).
-case "$(uname -s)" in
-Linux|Darwin)
-    # dotfiles executables
-    export PATH="$PATH:$HOME/bin"
+# dotfiles executables
+export PATH="$PATH:$HOME/bin"
 
-    # Go
-    export GOPATH=$HOME/go
-    export PATH="$PATH:$GOPATH/bin:/usr/local/go/bin"
+# Go
+export PATH="$PATH:$HOME/go/bin"
 
-    # Rust
-    export RUSTPATH=$HOME/.cargo/bin
-    export PATH="$HOME/.cargo/bin:$PATH"
-    ;;
-FreeBSD)
-    ;;
-esac
+# Rust
+export RUSTPATH=$HOME/.cargo/bin
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Make caps lock behave like escape.
 if [[ $DISPLAY ]]; then

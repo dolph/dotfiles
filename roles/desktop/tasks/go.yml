@@ -1,0 +1,11 @@
+- name: install go
+  pacman:
+    name: go
+  when: ansible_distribution == 'Archlinux'
+
+- name: create GOPATH
+  file:
+    path: /home/dolph/go
+    state: directory
+    owner: dolph
+    group: dolph

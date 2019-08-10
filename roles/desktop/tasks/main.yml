@@ -22,6 +22,9 @@
 - name: configure python
   include: python.yml
 
+- name: configure go
+  include: go.yml
+
 - name: configure terminal
   template:
     src: "home/{{ item }}"
