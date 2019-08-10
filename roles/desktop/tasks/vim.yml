@@ -19,6 +19,8 @@
   git:
     repo: https://github.com/VundleVim/Vundle.vim.git
     dest: ~/.vim/bundle/Vundle.vim
+  register: git_result
+  changed_when: "git_result.after|default('after') != git_result.before|default('before')"
 
 - name: install vim plugins
   become_user: dolph
