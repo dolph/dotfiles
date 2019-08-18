@@ -9,3 +9,8 @@
     state: directory
     owner: dolph
     group: dolph
+
+- name: install vim-go plugins
+  become: true
+  become_user: dolph
+  command: vim +GoInstallBinaries! +qall

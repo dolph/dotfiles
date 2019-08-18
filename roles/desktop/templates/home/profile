@@ -20,8 +20,3 @@ export PATH="$PATH:$HOME/go/bin"
 # Rust
 export RUSTPATH=$HOME/.cargo/bin
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# Make caps lock behave like escape.
-if [[ $DISPLAY ]]; then
-    command -v setxkbmap > /dev/null && setxkbmap -option caps:escape || true
-fi

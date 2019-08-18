@@ -10,6 +10,9 @@
 - name: configure git
   include: git.yml
 
+- name: configure go
+  include: go.yml
+
 - name: configure editor
   include: vim.yml
 
@@ -21,9 +24,6 @@
 
 - name: configure python
   include: python.yml
-
-- name: configure go
-  include: go.yml
 
 - name: configure terminal
   template:
