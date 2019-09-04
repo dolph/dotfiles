@@ -6,24 +6,31 @@
 
 - name: configure ssh client
   include: ssh-client.yml
+  tags: ssh
 
 - name: configure git
   include: git.yml
+  tags: git
 
 - name: configure go
   include: go.yml
+  tags: go
 
 - name: configure editor
   include: vim.yml
+  tags: vim
 
 - name: configure terminal multiplexer
   include: tmux.yml
+  tags: tmux
 
 - name: configure ack
   include: ack.yml
+  tags: ack
 
 - name: configure python
   include: python.yml
+  tags: python
 
 - name: configure terminal
   template:
@@ -52,9 +59,11 @@
 
 - name: configure xfce
   include: xfce.yml
+  tags: xfce
 
 - name: configure custom fonts
   include: fonts.yml
+  tags: fonts
 
 # TODO: Chrome
 # TODO: terminal config
