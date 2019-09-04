@@ -188,3 +188,6 @@ autocmd FileType go setlocal noexpandtab listchars=tab:\ \ ,trail:~
 
 " Disable the creation of *.swp files (allows write conflicts)
 set noswapfile
+
+" Use the X11 clipboard (shared with tmux, over SSH, etc)
+set clipboard=unnamedplus
