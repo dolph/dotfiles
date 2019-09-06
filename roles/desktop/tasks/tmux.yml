@@ -27,8 +27,16 @@
     group: dolph
   register: tmux_conf
 
+- name: check if tmux is running
+  become: true
+  become_user: dolph
+  command: tmux info
+  failed_when: false
+  changed_when: false
+  register: tmux_running
+
 - name: apply tmux config
   become: true
   become_user: dolph
   command: tmux source-file /home/dolph/.tmux.conf
-  when: tmux_conf.changed
+  when: tmux_conf.changed and tmux_running.rc == 0
