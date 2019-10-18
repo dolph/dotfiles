@@ -21,6 +21,13 @@
     classic: true
   when: ansible_distribution == 'Ubuntu'
 
+- name: configure hub
+  template:
+    src: home/config/hub
+    dest: /home/dolph/.config/hub
+    owner: dolph
+    group: dolph
+
 - name: configure git, gist
   template:
     src: "home/{{ item }}"

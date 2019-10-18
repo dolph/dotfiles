@@ -1,0 +1,4 @@
+github.ibm.com:
+- protocol: https
+  user: {{ github_enterprise_username }}
+  oauth_token: {{ github_enterprise_oauth_token }}
