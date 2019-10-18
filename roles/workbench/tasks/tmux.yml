@@ -1,11 +1,14 @@
 - name: install tmux on arch
   pacman:
-    name: tmux
+    name:
+    - tmux
   when: ansible_distribution == 'Archlinux'
 
 - name: install tmux on ubuntu
   apt:
-    name: tmux
+    name:
+    - tmux
+    - xsel # to allow copy-pasting out with yank
     force_apt_get: true
   when: ansible_distribution == 'Ubuntu'
 
