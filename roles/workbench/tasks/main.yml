@@ -43,6 +43,7 @@
   - bashrc
   - inputrc
   - profile
+  tags: terminal
 
 - name: install additional packages on arch
   pacman:
