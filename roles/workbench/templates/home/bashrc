@@ -46,7 +46,7 @@ function ssh-unlock() {
     if [ -n "$TMUX" ]; then
         if [ -z ${SSH_AGENT_PID+x} ] || [ ! "ps -p ${SSH_AGENT_PID} > /dev/null" ]; then
             eval "$(ssh-agent -s)" > /dev/null
-            ssh-add $HOME/.ssh/id_rsa
+            ssh-add $(ls $HOME/.ssh/*.pub | xargs | sed 's/.pub//g')
         fi
     fi
 }
