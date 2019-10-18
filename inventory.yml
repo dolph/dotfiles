@@ -3,3 +3,8 @@ all:
     localhost:
       ansible_connection: local
       ansible_become: true
+  children:
+    desktop:
+      hackbox:
+      hacktop:
+      bluetop:

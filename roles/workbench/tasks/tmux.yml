@@ -1,7 +1,13 @@
-- name: install tmux
+- name: install tmux on arch
   pacman:
     name: tmux
   when: ansible_distribution == 'Archlinux'
+
+- name: install tmux on ubuntu
+  apt:
+    name: tmux
+    force_apt_get: true
+  when: ansible_distribution == 'Ubuntu'
 
 - name: create tmux plugins dir
   become: true

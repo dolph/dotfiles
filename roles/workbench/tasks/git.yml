@@ -6,6 +6,21 @@
     - hub
   when: ansible_distribution == 'Archlinux'
 
+- name: install git and friends
+  apt:
+    name:
+    - gist
+    - git
+    force_apt_get: true
+  when: ansible_distribution == 'Ubuntu'
+
+- name: install hub
+  snap:
+    name:
+    - hub
+    classic: true
+  when: ansible_distribution == 'Ubuntu'
+
 - name: configure git, gist
   template:
     src: "home/{{ item }}"

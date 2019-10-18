@@ -1,7 +1,13 @@
-- name: install go
+- name: install go on arch
   pacman:
     name: go
   when: ansible_distribution == 'Archlinux'
+
+- name: install go on ubuntu
+  apt:
+    name: golang
+    force_apt_get: true
+  when: ansible_distribution == 'Ubuntu'
 
 - name: create GOPATH
   file:

@@ -1,7 +1,13 @@
-- name: install ack
+- name: install ack on arch
   pacman:
     name: ack
   when: ansible_distribution == 'Archlinux'
+
+- name: install ack on ubuntu
+  apt:
+    name: ack
+    force_apt_get: true
+  when: ansible_distribution == 'Ubuntu'
 
 - name: configure ack
   template:

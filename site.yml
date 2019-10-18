@@ -1,4 +1,8 @@
 ---
 - hosts: all
   roles:
+  - role: workbench
+
+- hosts: desktops
+  roles:
   - role: desktop

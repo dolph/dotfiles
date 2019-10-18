@@ -1,0 +1,75 @@
+- name: allow passwordless sudo
+  template:
+    src: etc/sudoers.d/dolph
+    dest: /etc/sudoers.d/dolph
+    mode: 0400
+
+- name: configure ssh client
+  include: ssh-client.yml
+  tags: ssh
+
+- name: configure git
+  include: git.yml
+  tags: git
+
+- name: configure go
+  include: go.yml
+  tags: go
+
+- name: configure editor
+  include: vim.yml
+  tags: vim
+
+- name: configure terminal multiplexer
+  include: tmux.yml
+  tags: tmux
+
+- name: configure ack
+  include: ack.yml
+  tags: ack
+
+- name: configure python
+  include: python.yml
+  tags: python
+
+- name: configure terminal
+  template:
+    src: "home/{{ item }}"
+    dest: "/home/dolph/.{{ item }}"
+    owner: dolph
+    group: dolph
+  with_items:
+  - bash_profile
+  - bashrc
+  - inputrc
+  - profile
+
+- name: install additional packages on arch
+  pacman:
+    name:
+    - autossh
+    - curl
+    - htop
+    - sshpass
+    - tree
+    - vagrant
+    - virtualbox
+    - vlc
+  when: ansible_distribution == 'Archlinux'
+
+- name: install additional packages on ubuntu
+  apt:
+    name:
+    - autossh
+    - curl
+    - htop
+    - sshpass
+    - tree
+    - vagrant
+    - virtualbox
+    - vlc
+    force_apt_get: true
+  when: ansible_distribution == 'Ubuntu'
+
+# TODO: ssh-server (security)
+# TODO: ~/bin

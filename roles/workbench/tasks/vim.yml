@@ -1,4 +1,4 @@
-- name: install vim
+- name: install vim on arch
   pacman:
     name: vim
   when: ansible_distribution == 'Archlinux'
@@ -8,6 +8,12 @@
     name: vi
     state: absent
   when: ansible_distribution == 'Archlinux'
+
+- name: install vim on ubuntu
+  apt:
+    name: vim
+    force_apt_get: true
+  when: ansible_distribution == 'Ubuntu'
 
 - name: configure vim
   template:

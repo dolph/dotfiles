@@ -1,5 +1,12 @@
-- name: install fonts
+- name: install fonts on arch
   pacman:
     name:
     - ttf-hack
   when: ansible_distribution == 'Archlinux'
+
+- name: install fonts on ubuntu
+  apt:
+    name:
+    - fonts-hack
+    force_apt_get: true
+  when: ansible_distribution == 'Ubuntu'
