@@ -56,3 +56,6 @@ export TXT_TWILIO_ACCOUNT_SID="{{ txt_twilio_account_sid }}"
 export TXT_TWILIO_AUTH_TOKEN="{{ txt_twilio_auth_token }}"
 export TXT_TO="{{ txt_to }}"
 export TXT_TWILIO_FROM="{{ txt_twilio_from }}"
+
+export GITHUB_ENTERPRISE_USERNAME="{{ github_enterprise_username }}"
+export GITHUB_ENTERPRISE_TOKEN="{{ github_enterprise_token }}"
