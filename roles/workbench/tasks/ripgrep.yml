@@ -1,0 +1,21 @@
+- name: install ripgrep on arch
+  pacman:
+    name: ripgrep
+  when: ansible_distribution == 'Archlinux'
+
+- name: install ripgrep on ubuntu
+  apt:
+    deb: https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
+  when: ansible_distribution == 'Ubuntu'
+
+- name: add ripgrep repo on rhelish
+  yum_repository:
+    name: copr
+    baseurl: https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+
+- name: configure ripgrep
+  template:
+    src: home/ripgreprc
+    dest: /home/dolph/.ripgreprc
+    owner: dolph
+    group: dolph

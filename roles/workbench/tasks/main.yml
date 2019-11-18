@@ -28,6 +28,12 @@
   include: ack.yml
   tags: ack
 
+- name: configure ripgrep
+  include: ripgrep.yml
+  tags:
+  - ripgrep
+  - rg
+
 - name: configure python
   include: python.yml
   tags: python

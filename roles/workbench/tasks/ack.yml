@@ -1,17 +1,17 @@
-- name: install ack on arch
+- name: uninstall ack on arch
   pacman:
     name: ack
+    state: absent
   when: ansible_distribution == 'Archlinux'
 
-- name: install ack on ubuntu
+- name: uninstall ack on ubuntu
   apt:
     name: ack
     force_apt_get: true
+    state: absent
   when: ansible_distribution == 'Ubuntu'
 
-- name: configure ack
-  template:
-    src: home/ackrc
-    dest: /home/dolph/.ackrc
-    owner: dolph
-    group: dolph
+- name: remove ack configuration
+  file:
+    path: /home/dolph/.ackrc
+    state: absent
