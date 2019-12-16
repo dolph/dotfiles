@@ -1,0 +1,40 @@
+---
+- name: pull chrome source
+  become: true
+  become_user: dolph
+  git:
+    repo: https://aur.archlinux.org/google-chrome.git
+    dest: /tmp/google-chrome
+  when: ansible_distribution == 'Archlinux'
+
+- name: clean chrome repo
+  args:
+    chdir: /tmp/google-chrome
+  command: git clean -fdx
+  when: ansible_distribution == 'Archlinux'
+
+- name: build chrome package
+  become: true
+  become_user: dolph
+  args:
+    chdir: /tmp/google-chrome
+  command: makepkg -s
+  when: ansible_distribution == 'Archlinux'
+
+- name: find built package
+  find:
+    paths:
+    - /tmp/google-chrome/
+    patterns:
+    - google-chrome-*.xz
+  register: chrome_packages
+  when: ansible_distribution == 'Archlinux'
+
+- name: install chrome
+  args:
+    chdir: /tmp/google-chrome
+  command: "pacman --upgrade --noconfirm {{ item.path }}"
+  loop: "{{ chrome_packages.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when: ansible_distribution == 'Archlinux'

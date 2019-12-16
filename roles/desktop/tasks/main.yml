@@ -19,5 +19,8 @@
   include: fonts.yml
   tags: fonts
 
-# TODO: Chrome
+- name: install google chrome
+  include: chrome.yml
+  tags: chrome
+
 # TODO: terminal config
