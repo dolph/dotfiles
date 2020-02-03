@@ -38,3 +38,14 @@
   loop_control:
     label: "{{ item.path }}"
   when: ansible_distribution == 'Archlinux'
+
+- name: install workstation repos
+  dnf:
+    name: fedora-workstation-repositories
+  when: ansible_distribution == 'Fedora'
+
+- name: install chrome
+  dnf:
+    name: google-chrome-stable
+    enablerepo: google-chrome
+  when: ansible_distribution == 'Fedora'

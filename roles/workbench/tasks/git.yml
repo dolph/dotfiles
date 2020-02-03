@@ -1,4 +1,4 @@
-- name: install git and friends
+- name: install git and friends on arch
   pacman:
     name:
     - gist
@@ -6,13 +6,20 @@
     - hub
   when: ansible_distribution == 'Archlinux'
 
-- name: install git and friends
+- name: install git and friends on ubuntu
   apt:
     name:
     - gist
     - git
     force_apt_get: true
   when: ansible_distribution == 'Ubuntu'
+
+- name: install git and friends on fedora
+  yum:
+    name:
+    - git
+    - hub
+  when: ansible_distribution == 'Fedora'
 
 - name: install hub
   snap:

@@ -11,4 +11,3 @@
   become_user: dolph
   command: xmodmap ~/.Xmodmap
   when: xmodmap.changed
-

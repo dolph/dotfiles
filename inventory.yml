@@ -4,7 +4,6 @@ all:
       ansible_connection: local
       ansible_become: true
   children:
-    desktop:
-      hackbox:
-      hacktop:
-      bluetop:
+    desktops:
+      hosts:
+        localhost:

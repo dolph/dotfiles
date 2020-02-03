@@ -12,6 +12,12 @@
     force_apt_get: true
   when: ansible_distribution == 'Ubuntu'
 
+- name: install tmux on fedora
+  yum:
+    name:
+    - tmux
+  when: ansible_distribution == 'Fedora'
+
 - name: create tmux plugins dir
   become: true
   become_user: dolph

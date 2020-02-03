@@ -1,0 +1,25 @@
+---
+- name: install vlc on arch
+  pacman:
+    name:
+    - vlc
+  when: ansible_distribution == 'Archlinux'
+
+- name: install vlc on ubuntu
+  apt:
+    name:
+    - vlc
+  when: ansible_distribution == 'Ubuntu'
+
+- name: install rpmfusion on fedora
+  dnf:
+    name:
+    - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
+    - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
+  when: ansible_distribution == 'Fedora'
+
+- name: install vlc on fedora
+  dnf:
+    name:
+    - vlc
+  when: ansible_distribution == 'Fedora'

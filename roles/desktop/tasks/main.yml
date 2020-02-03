@@ -1,15 +1,7 @@
 ---
-- name: install additional packages on arch
-  pacman:
-    name:
-    - vlc
-  when: ansible_distribution == 'Archlinux'
-
-- name: install additional packages on ubuntu
-  apt:
-    name:
-    - vlc
-  when: ansible_distribution == 'Ubuntu'
+- name: configure vlc
+  include: vlc.yml
+  tags: vlc
 
 - name: configure xfce
   include: xfce.yml

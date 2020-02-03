@@ -8,17 +8,30 @@
   include: ssh-client.yml
   tags: ssh
 
+- name: configure terminal
+  template:
+    src: "home/{{ item }}"
+    dest: "/home/dolph/.{{ item }}"
+    owner: dolph
+    group: dolph
+  with_items:
+  - bash_profile
+  - bashrc
+  - inputrc
+  - profile
+  tags: terminal
+
 - name: configure git
   include: git.yml
   tags: git
 
-- name: configure go
-  include: go.yml
-  tags: go
-
 - name: configure editor
   include: vim.yml
   tags: vim
+
+- name: configure go
+  include: go.yml
+  tags: go
 
 - name: configure terminal multiplexer
   include: tmux.yml
@@ -37,19 +50,6 @@
 - name: configure python
   include: python.yml
   tags: python
-
-- name: configure terminal
-  template:
-    src: "home/{{ item }}"
-    dest: "/home/dolph/.{{ item }}"
-    owner: dolph
-    group: dolph
-  with_items:
-  - bash_profile
-  - bashrc
-  - inputrc
-  - profile
-  tags: terminal
 
 - name: install additional packages on arch
   pacman:
@@ -77,6 +77,18 @@
     - vlc
     force_apt_get: true
   when: ansible_distribution == 'Ubuntu'
+
+- name: install additional packages on fedora
+  yum:
+    name:
+    - autossh
+    - curl
+    - htop
+    - sshpass
+    - tree
+    - vagrant
+    # - virtualbox
+  when: ansible_distribution == 'Fedora'
 
 # TODO: ssh-server (security)
 # TODO: ~/bin

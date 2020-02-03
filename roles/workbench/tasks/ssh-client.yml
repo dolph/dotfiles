@@ -2,6 +2,6 @@
   openssh_keypair:
     path: /home/dolph/.ssh/id_rsa
     size: 4096
-    comment: "dolph@{{ ansible_hostname}}"
+    comment: "dolph@{{ ansible_hostname }}"
     owner: dolph
     group: dolph

@@ -9,6 +9,11 @@
     force_apt_get: true
   when: ansible_distribution == 'Ubuntu'
 
+- name: install go on fedora
+  yum:
+    name: golang
+  when: ansible_distribution == 'Fedora'
+
 - name: create GOPATH
   file:
     path: /home/dolph/go

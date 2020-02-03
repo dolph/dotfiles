@@ -1,1 +1,3 @@
+{% if gist_token is defined %}
 {{ gist_token }}
+{% endif %}
