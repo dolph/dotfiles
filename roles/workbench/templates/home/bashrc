@@ -32,14 +32,8 @@ alias ls='ls --almost-all --classify --color=auto'
 export WORKON_HOME=$HOME/venv
 . ~/.virtualenvwrapperlite/virtualenvwrapperlite.sh
 
-# If ack-grep is installed...
-if hash ack-grep 2>/dev/null; then
-    # But ack is not a thing...
-    if ! hash ack 2>/dev/null; then
-        # Then set an alias for ack.
-        alias ack=ack-grep
-    fi
-fi
+# Configure ripgrep
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 function ssh-unlock() {
     if [ -n "$TMUX" ]; then
