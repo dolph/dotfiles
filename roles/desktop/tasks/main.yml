@@ -1,4 +1,8 @@
 ---
+- name: set timezone
+  timezone:
+    name: America/Chicago
+
 - name: configure vlc
   include: vlc.yml
   tags: vlc
