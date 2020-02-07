@@ -94,5 +94,38 @@
     # - virtualbox
   when: ansible_distribution == 'Fedora'
 
+- name: create a bin directory
+  file:
+    path: /home/dolph/bin
+    state: directory
+
+- name: populate bin dir
+  copy:
+    src: "bin/{{ item }}"
+    dest: /home/dolph/bin
+    mode: 0770
+  loop:
+  - a
+  - fail
+  - gac
+  - gacp
+  - gap
+  - gcp
+  - git-delete-merged-branches
+  - git-list-merged-branches
+  - git-pr
+  - git-ready
+  - git-recommit
+  - git-rmcommit
+  - git-uncommit
+  - icanhazip
+  - loop
+  - n
+  - try
+  - upgrade
+  - uplink-monitor
+  - uuid
+  tags:
+  - bin
+
 # TODO: ssh-server (security)
-# TODO: ~/bin

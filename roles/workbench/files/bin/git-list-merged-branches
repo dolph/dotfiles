@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+PRIMARY_BRANCH=${1:-master}
+
+git fetch -p origin
+git branch -r --merged | grep origin | grep -v '>' | grep -v $PRIMARY_BRANCH | xargs -L1 | awk '{split($0,a,"/"); print a[2]}'

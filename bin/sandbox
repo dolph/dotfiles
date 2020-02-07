@@ -1,6 +1,0 @@
-#!/bin/bash
-if [ $# -eq 0 ]; then
-    docker run -it ubuntu /bin/bash
-else
-    n docker run -it ubuntu /bin/bash -c "$@"
-fi

@@ -1,0 +1,83 @@
+#!/bin/bash
+PHONE_NUMBER='+12104133559'
+RELAXED_SLEEP_DURATION=15
+AGGRESSIVE_SLEEP_DURATION=1
+
+UP=1
+SLEEP_DURATION=$RELAXED_SLEEP_DURATION
+
+if [ -f /tmp/icanhazip ]; then
+    IP=$(cat /tmp/icanhazip)
+else
+    IP=''
+fi
+if [ -f /tmp/icanhazip ]; then
+    LAST_UP=$(cat /tmp/icanhazip-timestamp)
+else
+    LAST_UP=''
+fi
+
+# Convert some number of seconds to a human-readable string.
+# Source: https://unix.stackexchange.com/questions/27013/displaying-seconds-as-days-hours-mins-seconds
+function displaytime {
+    local T=$1
+    local D=$((T/60/60/24))
+    local H=$((T/60/60%24))
+    local M=$((T/60%60))
+    local S=$((T%60))
+    (( $D > 1 )) && printf '%d days ' $D
+    (( $D == 1 )) && printf '%d day ' $D
+    (( $H > 1 )) && printf '%d hours ' $H
+    (( $H == 1 )) && printf '%d hour ' $H
+    (( $M > 1 )) && printf '%d minutes ' $M
+    (( $M == 1 )) && printf '%d minute ' $M
+    (( $D > 0 || $H > 0 || $M > 0 )) && printf 'and '
+    (( $S != 1)) && printf '%d seconds\n' $S
+    (( $S == 1)) && printf '%d second\n' $S
+}
+
+while :
+do
+    NEW_IP=$(curl -fsSL https://icanhazip.com)
+    RC=$?
+
+    if [[ "$UP" == "1" && "$RC" != "0" ]]; then
+        # Connection just went down.
+        UP=0
+
+        # Aggressively poll for the connection to return.
+        SLEEP_DURATION=$AGGRESSIVE_SLEEP_DURATION
+    elif [[ "$UP" == "1" && "$RC" == "0" ]]; then
+        # Connection remains healthy (no-op).
+        LAST_UP=$(date +%s)
+        echo "$LAST_UP" > /tmp/icanhazip-timestamp
+    elif [[ "$UP" == "0" && "$RC" != "0" ]]; then
+        # Connection remains down (no-op).
+        :
+    elif [[ "$UP" == "0" && "$RC" == "0" ]]; then
+        # Connection was just restored.
+        UP=1
+
+        # Relax uptime polling.
+        SLEEP_DURATION=$RELAXED_SLEEP_DURATION
+
+        DOWNTIME_IN_SECONDS=$(expr $(date +%s) - $LAST_UP)
+        if [ $DOWNTIME_IN_SECONDS -gt $(expr 3 * $AGGRESSIVE_SLEEP_DURATION) ]; then
+            DOWNTIME=$(displaytime $DOWNTIME_IN_SECONDS)
+            TXT_TO=$PHONE_NUMBER /home/dolph/bin/txt "[$(hostname)] Connection restored after $DOWNTIME of downtime."
+        fi
+
+        # Update last uptime.
+        LAST_UP=$(date +%s)
+        echo "$LAST_UP" > /tmp/icanhazip-timestamp
+    fi
+
+    if [[ "$RC" == "0" && "$NEW_IP" != "$IP" ]]; then
+        # IP address changed.
+        TXT_TO=$PHONE_NUMBER /home/dolph/bin/txt "[$(hostname)] New IP: $NEW_IP"
+        echo $NEW_IP > /tmp/icanhazip
+        IP=$NEW_IP
+    fi
+
+    sleep $SLEEP_DURATION
+done

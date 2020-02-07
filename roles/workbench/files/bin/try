@@ -1,10 +1,20 @@
 #!/bin/bash
 # repeat a command until it succeeds, then exit
+
+set -ex
+SLEEP_INTERVAL=1
+COMMAND="$*"
+if [[ "$1" =~ ^[0-9]+$ ]]; then
+    SLEEP_INTERVAL="$1"
+    shift
+    COMMAND="$*"
+fi
+
 ((counter=1))
-until "$@"
+until $COMMAND ;
 do
     echo "Attempt #$counter failed. Retrying..."
     ((counter=counter+1))
-    sleep 1.0
+    sleep $SLEEP_INTERVAL
 done
 echo "Tried $counter times before succeeding."

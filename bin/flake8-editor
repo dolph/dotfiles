@@ -1,4 +1,0 @@
-#!/bin/bash
-flake8 --format="%(path)s" | grep "^\." | sort -u | while read l ; do
-    $EDITOR $l < /dev/tty
-done

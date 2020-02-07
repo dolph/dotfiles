@@ -20,6 +20,6 @@ do
     success_rate
 
     # Double sleep makes it easier to break the loop.
-    sleep 0.1
+    sleep 60
     sleep 0.1
 done
