@@ -4,6 +4,10 @@
     dest: /etc/sudoers.d/dolph
     mode: 0400
 
+- name: configure automated upgrades
+  include: automated-upgrades.yml
+  tags: dnf-automatic
+
 - name: configure ssh client
   include: ssh-client.yml
   tags: ssh

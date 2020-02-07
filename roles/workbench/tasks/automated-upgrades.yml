@@ -1,0 +1,19 @@
+---
+- name: install dnf-automatic
+  yum:
+    name:
+    - dnf-automatic
+
+- name: configure yum-cron
+  template:
+    src: etc/dnf/automatic.conf
+    dest: /etc/dnf/automatic.conf
+    mode: 0644
+    owner: root
+    group: root
+
+- name: ensure dnf-automatic is running
+  service:
+    name: dnf-automatic
+    state: restarted
+    enabled: true
