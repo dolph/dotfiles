@@ -98,12 +98,16 @@
   file:
     path: /home/dolph/bin
     state: directory
+    owner: dolph
+    group: dolph
 
 - name: populate bin dir
   copy:
     src: "bin/{{ item }}"
     dest: /home/dolph/bin
     mode: 0770
+    owner: dolph
+    group: dolph
   loop:
   - a
   - fail
