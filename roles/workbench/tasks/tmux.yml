@@ -2,13 +2,14 @@
   pacman:
     name:
     - tmux
+    - xsel
   when: ansible_distribution == 'Archlinux'
 
 - name: install tmux on ubuntu
   apt:
     name:
     - tmux
-    - xsel # to allow copy-pasting out with yank
+    - xsel
     force_apt_get: true
   when: ansible_distribution == 'Ubuntu'
 
@@ -16,6 +17,7 @@
   yum:
     name:
     - tmux
+    - xsel
   when: ansible_distribution == 'Fedora'
 
 - name: create tmux plugins dir
