@@ -17,3 +17,4 @@
     name: dnf-automatic
     state: restarted
     enabled: true
+  failed_when: false # this will fail to start if ibm repos are installed and not on the IBM network
