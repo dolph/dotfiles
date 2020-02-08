@@ -25,3 +25,10 @@
   become: true
   become_user: dolph
   command: vim +GoInstallBinaries! +qall
+  when: ansible_distribution != 'Fedora'
+
+- name: install vim-go plugins
+  become: true
+  become_user: dolph
+  command: gvim -v +GoInstallBinaries! +qall
+  when: ansible_distribution == 'Fedora'

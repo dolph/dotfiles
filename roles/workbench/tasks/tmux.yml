@@ -45,6 +45,7 @@
     owner: dolph
     group: dolph
   register: tmux_conf
+  tags: configure-tmux
 
 - name: check if tmux is running
   become: true

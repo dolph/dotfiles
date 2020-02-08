@@ -156,24 +156,14 @@ autocmd BufWritePost *.py call Flake8()
 " requires `cargo install rustfmt`
 let g:rustfmt_autosave = 1
 
-" cut, copy & paste
-nmap <C-V> "+gP
-imap <C-V> <ESC>"+gpi
-vmap <C-V> c<ESC>"+gph
-vmap <C-C> "+y
-
 " enable spell checking
 set spell spelllang=en_us
 
 " disable double spacing between sentences
 set nojoinspaces
 
-" allow CTRL+C and CTRL+X to use the OS X clipboard
-vmap <C-x> :!pbcopy<CR>
-vmap <C-c> :w !pbcopy<CR><CR>
-
-" integrate yanking & pasting with the OS X clipboard
-set clipboard=unnamed
+" Use the X11 clipboard (shared with tmux, over SSH, etc)
+set clipboard=unnamedplus
 
 " Always use unix-style line endings
 set ff=unix
@@ -188,6 +178,3 @@ autocmd FileType go setlocal noexpandtab listchars=tab:\ \ ,trail:~
 
 " Disable the creation of *.swp files (allows write conflicts)
 set noswapfile
-
-" Use the X11 clipboard (shared with tmux, over SSH, etc)
-set clipboard=unnamedplus
