@@ -11,6 +11,6 @@ Build a machine with software, dotfiles, etc, for work.
 
 To deploy to `localhost`:
 
-    git clone https://github.com/dolph/dotfiles.git ~/workbench
-    cd ~/workbench
+    git clone https://github.com/dolph/dotfiles.git
+    cd dotfiles
     ansible-playbook site.yml
