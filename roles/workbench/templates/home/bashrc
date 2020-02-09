@@ -66,3 +66,6 @@ export GITHUB_ENTERPRISE_TOKEN="{{ github_enterprise_token }}"
 if [ -z "$TMUX" ]; then
     tmux attach -d || tmux new
 fi
+
+# Allow local account customization
+. $HOME/.localrc

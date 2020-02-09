@@ -23,7 +23,20 @@
   - bashrc
   - inputrc
   - profile
-  tags: terminal
+  tags:
+  - terminal
+  - bashrc
+
+- name: ensure a localrc exists
+  copy:
+    content: ""
+    dest: /home/dolph/.localrc
+    force: false
+    owner: dolph
+    group: dolph
+  tags:
+  - terminal
+  - localrc
 
 - name: configure git
   include: git.yml
