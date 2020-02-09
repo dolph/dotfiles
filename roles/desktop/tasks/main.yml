@@ -3,6 +3,12 @@
   timezone:
     name: America/Chicago
 
+- name: configure terminal
+  include: terminal.yml
+  tags:
+  - terminal
+  - xfce
+
 - name: configure vlc
   include: vlc.yml
   tags: vlc
@@ -18,5 +24,3 @@
 - name: install google chrome
   include: chrome.yml
   tags: chrome
-
-# TODO: terminal config

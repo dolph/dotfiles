@@ -1,0 +1,14 @@
+---
+- name: create xfce terminal config dir
+  file:
+    dest: /home/dolph/.config/xfce4/terminal/
+    state: directory
+    owner: dolph
+    group: dolph
+
+- name: push terminal config
+  template:
+    src: home/config/xfce4/terminal/terminalrc
+    dest: /home/dolph/.config/xfce4/terminal/terminalrc
+    owner: dolph
+    group: dolph
