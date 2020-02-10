@@ -9,9 +9,11 @@
     force_apt_get: true
   when: ansible_distribution == 'Ubuntu'
 
-- name: install virtualenv on fedora
+- name: install python dependencies on fedora
   yum:
-    name: python3-virtualenv
+    name:
+    - python3-virtualenv
+    - python3-devel
   when: ansible_distribution == 'Fedora'
 
 - name: configure flake8
