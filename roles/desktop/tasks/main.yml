@@ -2,6 +2,7 @@
 - name: set timezone
   timezone:
     name: America/Chicago
+  tags: timezone
 
 - name: configure terminal
   include: terminal.yml
