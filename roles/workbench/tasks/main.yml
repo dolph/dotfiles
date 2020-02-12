@@ -113,6 +113,8 @@
     state: directory
     owner: dolph
     group: dolph
+  tags:
+  - bin
 
 - name: populate bin dir
   copy:
