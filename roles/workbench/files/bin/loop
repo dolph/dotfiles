@@ -1,5 +1,13 @@
 #!/bin/bash
 # repeat a command forever, tracking failure rates
+SLEEP_INTERVAL=1
+COMMAND="$*"
+if [[ "$1" =~ ^[0-9]+$ ]]; then
+    SLEEP_INTERVAL="$1"
+    shift
+    COMMAND="$*"
+fi
+
 ((successes=0))
 ((failures=0))
 
@@ -12,7 +20,7 @@ function success_rate {
 trap success_rate EXIT
 while [ 1 ]
 do
-    if "$@"; then
+    if $COMMAND; then
         ((successes=successes+1))
     else
         ((failures=failures+1))
@@ -20,6 +28,5 @@ do
     success_rate
 
     # Double sleep makes it easier to break the loop.
-    sleep 60
-    sleep 0.1
+    sleep $SLEEP_INTERVAL
 done
