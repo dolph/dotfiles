@@ -1,3 +1,10 @@
+- name: create ssh directory
+  file:
+    path: /home/dolph/.ssh
+    state: directory
+    owner: dolph
+    group: dolph
+
 - name: generate ssh identity
   openssh_keypair:
     path: /home/dolph/.ssh/id_rsa
