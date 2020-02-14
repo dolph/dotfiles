@@ -5,6 +5,7 @@ ACTION=${1:-null}
 ENV=${2:-null}
 TARGET=${3:-null}
 DO=${4:-null}
+DONT=${5:-null}
 
 # Split target into SCOPE@HOSTS, if delimited
 if [[ $TARGET == *"@"* ]]; then
@@ -27,6 +28,13 @@ fi
 
 if [ "$ACTION" == "sh" ] && [ "$DO" == "null" ]; then
     echo "The fourth argument must be a command statement."
+    exit 1
+fi
+
+if [[ "$DONT" == -* ]]; then
+    DONT=$(echo $DONT | cut -c2-)
+elif [ "$DONT" != "null" ]; then
+    echo "The last argument must be prefixed with '-'."
     exit 1
 fi
 
@@ -72,6 +80,12 @@ else
     tags_flag="--tags=${DO}"
 fi
 
+if [ "$DONT" == 'null' ]; then
+    skip_tags=""
+else
+    skip_tags="--skip-tags=${DONT}"
+fi
+
 if [ "$ACTION" == 'try' ]; then
     try='try'
 else
@@ -79,12 +93,12 @@ else
 fi
 
 set -x
-$try ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${extra_vars_flag} ${check_flag}
+$try ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${check_flag}
 set +x
 
 if [ "$ACTION" == 'try' ]; then
     check_flag=''
     set -x
-    ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${extra_vars_flag} ${check_flag}
+    ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${check_flag}
     set +x
 fi
