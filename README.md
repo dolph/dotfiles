@@ -1,6 +1,6 @@
-# workbench
+# dotfiles
 
-Build a machine with software, dotfiles, etc, for work.
+Build a machine with software, dotfiles, etc, for productivity.
 
 ## Dependencies
 
