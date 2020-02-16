@@ -1,7 +1,7 @@
 - name: whoami
   set_fact:
     whoami: "{{ lookup('env', 'USER') }}"
-  tags: whoami
+  tags: always
 
 - name: allow passwordless sudo
   template:
