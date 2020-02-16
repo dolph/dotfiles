@@ -147,6 +147,9 @@ silent! colorscheme solarized
 " set shortcut key and open NerdTree at start
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '\.db$']
+" disable key mappings that conflict with vim-tmux-navigator
+let g:NERDTreeMapJumpNextSibling=""
+let g:NERDTreeMapJumpPrevSibling=""
 
 " run flake8 on open & save
 autocmd BufReadPost *.py call Flake8()

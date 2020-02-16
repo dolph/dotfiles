@@ -50,7 +50,7 @@
   command: vim +PluginInstall! +PluginClean! +qall
   when: ansible_distribution != 'Fedora'
 
-- name: install vim plugins
+- name: install gvim plugins
   become: true
   become_user: "{{ whoami }}"
   command: gvim -v +PluginInstall! +PluginClean! +qall
