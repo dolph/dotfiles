@@ -1,14 +1,14 @@
 ---
 - name: create xfce terminal config dir
   file:
-    dest: /home/dolph/.config/xfce4/terminal/
+    dest: "/home/{{ whoami }}/.config/xfce4/terminal/"
     state: directory
-    owner: dolph
-    group: dolph
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
 
 - name: push terminal config
   template:
     src: home/config/xfce4/terminal/terminalrc
-    dest: /home/dolph/.config/xfce4/terminal/terminalrc
-    owner: dolph
-    group: dolph
+    dest: "/home/{{ whoami }}/.config/xfce4/terminal/terminalrc"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"

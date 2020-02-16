@@ -13,5 +13,5 @@
 
 - name: remove ack configuration
   file:
-    path: /home/dolph/.ackrc
+    path: "/home/{{ whoami }}/.ackrc"
     state: absent

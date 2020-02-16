@@ -22,14 +22,14 @@
 
 - name: create tmux plugins dir
   become: true
-  become_user: dolph
+  become_user: "{{ whoami }}"
   file:
     path: ~/.tmux-plugins
     state: directory
 
 - name: install tmux plugins
   become: true
-  become_user: dolph
+  become_user: "{{ whoami }}"
   git:
     repo: "https://github.com/tmux-plugins/tmux-{{ item }}.git"
     dest: "~/.tmux-plugins/{{ item }}"
@@ -41,15 +41,15 @@
 - name: configure tmux
   template:
     src: home/tmux.conf
-    dest: /home/dolph/.tmux.conf
-    owner: dolph
-    group: dolph
+    dest: "/home/{{ whoami }}/.tmux.conf"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
   register: tmux_conf
   tags: configure-tmux
 
 - name: check if tmux is running
   become: true
-  become_user: dolph
+  become_user: "{{ whoami }}"
   command: tmux info
   failed_when: false
   changed_when: false
@@ -57,6 +57,6 @@
 
 - name: apply tmux config
   become: true
-  become_user: dolph
-  command: tmux source-file /home/dolph/.tmux.conf
+  become_user: "{{ whoami }}"
+  command: "tmux source-file /home/{{ whoami }}/.tmux.conf"
   when: tmux_conf.changed and tmux_running.rc == 0

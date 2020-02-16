@@ -16,19 +16,19 @@
 
 - name: create GOPATH
   file:
-    path: /home/dolph/go
+    path: "/home/{{ whoami }}/go"
     state: directory
-    owner: dolph
-    group: dolph
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
 
 - name: install vim-go plugins
   become: true
-  become_user: dolph
+  become_user: "{{ whoami }}"
   command: vim +GoInstallBinaries! +qall
   when: ansible_distribution != 'Fedora'
 
 - name: install vim-go plugins
   become: true
-  become_user: dolph
+  become_user: "{{ whoami }}"
   command: gvim -v +GoInstallBinaries! +qall
   when: ansible_distribution == 'Fedora'

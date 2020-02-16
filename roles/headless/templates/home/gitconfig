@@ -3,10 +3,10 @@
 [help]
     autocorrect = 1
 [user]
-    email = dolph.mathews@gmail.com
-    name = Dolph Mathews
+    email = {{ email }}
+    name = {{ full_name }}
 [core]
-    excludesfile = /home/dolph/.gitignore_global
+    excludesfile = /home/{{ whoami }}/.gitignore_global
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [url "git@github.ibm.com:"]

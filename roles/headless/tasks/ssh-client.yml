@@ -1,14 +1,14 @@
 - name: create ssh directory
   file:
-    path: /home/dolph/.ssh
+    path: "/home/{{ whoami }}/.ssh"
     state: directory
-    owner: dolph
-    group: dolph
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
 
 - name: generate ssh identity
   openssh_keypair:
-    path: /home/dolph/.ssh/id_rsa
+    path: "/home/{{ whoami }}/.ssh/id_rsa"
     size: 4096
-    comment: "dolph@{{ ansible_hostname }}"
-    owner: dolph
-    group: dolph
+    comment: "{{ whoami }}@{{ ansible_hostname }}"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"

@@ -1,7 +1,7 @@
 ---
 - name: pull chrome source
   become: true
-  become_user: dolph
+  become_user: "{{ whoami }}"
   git:
     repo: https://aur.archlinux.org/google-chrome.git
     dest: /tmp/google-chrome
@@ -15,7 +15,7 @@
 
 - name: build chrome package
   become: true
-  become_user: dolph
+  become_user: "{{ whoami }}"
   args:
     chdir: /tmp/google-chrome
   command: makepkg -s

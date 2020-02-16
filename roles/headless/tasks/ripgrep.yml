@@ -16,6 +16,6 @@
 - name: configure ripgrep
   template:
     src: home/ripgreprc
-    dest: /home/dolph/.ripgreprc
-    owner: dolph
-    group: dolph
+    dest: "/home/{{ whoami }}/.ripgreprc"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"

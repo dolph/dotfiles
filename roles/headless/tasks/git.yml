@@ -1,11 +1,11 @@
 - name: trust github.com
   lineinfile:
-    path: /home/dolph/.ssh/known_hosts
+    path: "/home/{{ whoami }}/.ssh/known_hosts"
     line: "{{ item }}"
     create: true
     mode: 0644
-    owner: dolph
-    group: dolph
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
   loop:
   - "github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=="
   - "[ssh.github.com]:443,[192.30.253.122]:443 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=="
@@ -45,16 +45,16 @@
 - name: configure hub
   template:
     src: home/config/hub
-    dest: /home/dolph/.config/hub
-    owner: dolph
-    group: dolph
+    dest: "/home/{{ whoami }}/.config/hub"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
 
 - name: configure git, gist
   template:
     src: "home/{{ item }}"
-    dest: "/home/dolph/.{{ item }}"
-    owner: dolph
-    group: dolph
+    dest: "/home/{{ whoami }}/.{{ item }}"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
   with_items:
   - gitconfig
   - gitignore_global

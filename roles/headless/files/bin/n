@@ -25,7 +25,7 @@ fi
 
 if [ $duration -ge 1 ] ; then
     if hash txt 2>/dev/null; then
-        /home/dolph/bin/txt "$* (rc=${rval} time=$(date -d@${duration} -u +%H:%M:%S))"
+        $HOME/bin/txt "$* (rc=${rval} time=$(date -d@${duration} -u +%H:%M:%S))"
     fi
 fi
 

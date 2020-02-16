@@ -1,5 +1,5 @@
 #!/bin/bash
-PHONE_NUMBER='+12104133559'
+PHONE_NUMBER='{{ txt_to }}'
 RELAXED_SLEEP_DURATION=15
 AGGRESSIVE_SLEEP_DURATION=1
 
@@ -64,7 +64,7 @@ do
         DOWNTIME_IN_SECONDS=$(expr $(date +%s) - $LAST_UP)
         if [ $DOWNTIME_IN_SECONDS -gt $(expr 3 * $AGGRESSIVE_SLEEP_DURATION) ]; then
             DOWNTIME=$(displaytime $DOWNTIME_IN_SECONDS)
-            TXT_TO=$PHONE_NUMBER /home/dolph/bin/txt "[$(hostname)] Connection restored after $DOWNTIME of downtime."
+            TXT_TO=$PHONE_NUMBER $HOME/bin/txt "[$(hostname)] Connection restored after $DOWNTIME of downtime."
         fi
 
         # Update last uptime.
@@ -74,7 +74,7 @@ do
 
     if [[ "$RC" == "0" && "$NEW_IP" != "$IP" ]]; then
         # IP address changed.
-        TXT_TO=$PHONE_NUMBER /home/dolph/bin/txt "[$(hostname)] New IP: $NEW_IP"
+        TXT_TO=$PHONE_NUMBER $HOME/bin/txt "[$(hostname)] New IP: $NEW_IP"
         echo $NEW_IP > /tmp/icanhazip
         IP=$NEW_IP
     fi

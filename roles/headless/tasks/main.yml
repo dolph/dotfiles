@@ -1,7 +1,12 @@
+- name: whoami
+  set_fact:
+    whoami: "{{ lookup('env', 'USER') }}"
+  tags: whoami
+
 - name: allow passwordless sudo
   template:
-    src: etc/sudoers.d/dolph
-    dest: /etc/sudoers.d/dolph
+    src: etc/sudoers.d/whoami
+    dest: "/etc/sudoers.d/{{ whoami }}"
     mode: 0400
 
 - name: configure automated upgrades
@@ -15,9 +20,9 @@
 - name: configure terminal
   template:
     src: "home/{{ item }}"
-    dest: "/home/dolph/.{{ item }}"
-    owner: dolph
-    group: dolph
+    dest: "/home/{{ whoami }}/.{{ item }}"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
   with_items:
   - bash_profile
   - bashrc
@@ -30,10 +35,10 @@
 - name: ensure a localrc exists
   copy:
     content: ""
-    dest: /home/dolph/.localrc
+    dest: "/home/{{ whoami }}/.localrc"
     force: false
-    owner: dolph
-    group: dolph
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
   tags:
   - terminal
   - localrc
@@ -109,20 +114,20 @@
 
 - name: create a bin directory
   file:
-    path: /home/dolph/bin
+    path: "/home/{{ whoami }}/bin"
     state: directory
-    owner: dolph
-    group: dolph
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
   tags:
   - bin
 
 - name: populate bin dir
   copy:
     src: "bin/{{ item }}"
-    dest: /home/dolph/bin
+    dest: "/home/{{ whoami }}/bin"
     mode: 0770
-    owner: dolph
-    group: dolph
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
   loop:
   - a
   - fail

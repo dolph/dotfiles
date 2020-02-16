@@ -1,13 +1,13 @@
 - name: configure xmodmap
   template:
     src: home/Xmodmap
-    dest: /home/dolph/.Xmodmap
-    owner: dolph
-    group: dolph
+    dest: "/home/{{ whoami }}/.Xmodmap"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
   register: xmodmap
 
 - name: apply xmodmap
   become: true
-  become_user: dolph
+  become_user: "{{ whoami }}"
   command: xmodmap ~/.Xmodmap
   when: xmodmap.changed

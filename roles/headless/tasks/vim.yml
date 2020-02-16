@@ -31,13 +31,13 @@
 - name: configure vim
   template:
     src: home/vimrc
-    dest: /home/dolph/.vimrc
-    owner: dolph
-    group: dolph
+    dest: "/home/{{ whoami }}/.vimrc"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
 
 - name: install vim plugin manager
   become: true
-  become_user: dolph
+  become_user: "{{ whoami }}"
   git:
     repo: git@github.com:VundleVim/Vundle.vim.git
     dest: ~/.vim/bundle/Vundle.vim
@@ -46,12 +46,12 @@
 
 - name: install vim plugins
   become: true
-  become_user: dolph
+  become_user: "{{ whoami }}"
   command: vim +PluginInstall! +PluginClean! +qall
   when: ansible_distribution != 'Fedora'
 
 - name: install vim plugins
   become: true
-  become_user: dolph
+  become_user: "{{ whoami }}"
   command: gvim -v +PluginInstall! +PluginClean! +qall
   when: ansible_distribution == 'Fedora'

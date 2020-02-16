@@ -20,13 +20,13 @@
 - name: configure flake8
   template:
     src: home/flake8
-    dest: /home/dolph/.flake8
-    owner: dolph
-    group: dolph
+    dest: "/home/{{ whoami }}/.flake8"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
 
 - name: install virtualenvwrapperlite
   become: true
-  become_user: dolph
+  become_user: "{{ whoami }}"
   git:
-    repo: https://github.com/dolph/virtualenvwrapperlite.git
-    dest: /home/dolph/.virtualenvwrapperlite
+    repo: "https://github.com/dolph/virtualenvwrapperlite.git"
+    dest: "/home/{{ whoami }}/.virtualenvwrapperlite"
