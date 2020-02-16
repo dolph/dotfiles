@@ -111,9 +111,6 @@ Plugin 'fholgado/minibufexpl.vim'
 " Tab completion
 Plugin 'ervandew/supertab'
 
-" ack-grep
-Plugin 'mileszs/ack.vim'
-
 " Run flake8 on save
 Plugin 'nvie/vim-flake8'
 
