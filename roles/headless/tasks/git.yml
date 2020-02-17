@@ -42,6 +42,13 @@
     classic: true
   when: ansible_distribution == 'Ubuntu'
 
+- name: ensure config dir exists
+  file:
+    path: "/home/{{ whoami }}/.config"
+    state: directory
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+
 - name: configure hub
   template:
     src: home/config/hub

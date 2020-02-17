@@ -39,7 +39,7 @@
   become: true
   become_user: "{{ whoami }}"
   git:
-    repo: git@github.com:VundleVim/Vundle.vim.git
+    repo: https://github.com/VundleVim/Vundle.vim.git
     dest: ~/.vim/bundle/Vundle.vim
   register: git_result
   changed_when: "git_result.after|default('after') != git_result.before|default('before')"

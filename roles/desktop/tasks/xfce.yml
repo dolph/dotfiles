@@ -9,5 +9,5 @@
 - name: apply xmodmap
   become: true
   become_user: "{{ whoami }}"
-  command: xmodmap ~/.Xmodmap
+  shell: if [ -n "${DISPLAY+x}" ]; then xmodmap ~/.Xmodmap; fi
   when: xmodmap.changed

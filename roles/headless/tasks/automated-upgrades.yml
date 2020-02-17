@@ -1,10 +1,14 @@
 ---
 - name: install dnf-automatic
-  yum:
+  dnf:
     name:
     - dnf-automatic
+  register: install_dnf_automatic
+  until: install_dnf_automatic.rc == 0
+  retries: 20
+  delay: 0
 
-- name: configure yum-cron
+- name: configure dnf-automatic
   template:
     src: etc/dnf/automatic.conf
     dest: /etc/dnf/automatic.conf
