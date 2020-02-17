@@ -158,4 +158,8 @@
   tags:
   - bin
 
+- name: configure docker
+  include: docker.yml
+  tags: docker
+
 # TODO: ssh-server (security)
