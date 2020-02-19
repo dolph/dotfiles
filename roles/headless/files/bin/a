@@ -21,6 +21,11 @@ if [ "$ACTION" != "check" ] && [ "$ACTION" != "play" ] && [ "$ACTION" != "try" ]
     exit 1
 fi
 
+if [ "$ENV" != "dev" ] && [ "$ENV" != "prod" ]; then
+    echo "The second argument must be either 'dev' or 'prod'."
+    exit 1
+fi
+
 if [ "$ACTION" != "edit" ] && [ "$HOSTS" == "null" ]; then
     echo "The third argument must match one or more hosts in inventory, or specify an inventory."
     exit 1
