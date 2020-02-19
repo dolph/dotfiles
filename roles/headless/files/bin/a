@@ -43,6 +43,8 @@ elif [ "$DONT" != "null" ]; then
     exit 1
 fi
 
+tmux rename-window "$TARGET"
+
 if [[ $HOSTS != *"."* ]] && [[ $HOSTS != *"*"* ]] && [[ $HOSTS != *"localhost"* ]] && [[ $HOSTS != "all" ]]; then
     HOSTS="$HOSTS.*"
 fi
