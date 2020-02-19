@@ -87,6 +87,10 @@ set hlsearch
 " incrementally search while typing a /regex
 set incsearch
 
+" add hyphens to the list of "word characters" so that they aren't word
+" separators anymore
+set iskeyword+=-
+
 " remove trailing whitespace on <leader>S
 noremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 
