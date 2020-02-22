@@ -11,3 +11,29 @@
   become_user: "{{ whoami }}"
   shell: if [ -n "${DISPLAY+x}" ]; then xmodmap ~/.Xmodmap; fi
   when: xmodmap.changed
+
+- name: install dependencies to manage xml
+  dnf:
+    name: python3-lxml
+
+- name: check for whiskermenu shortcuts
+  become: true
+  become_user: "{{ whoami }}"
+  xml:
+    path: "/home/{{ whoami }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml"
+    xpath: /channel[@name="xfce4-keyboard-shortcuts"]/property[@name="commands"][@type="empty"]/property[@name="custom"][@type="empty"]/property[@value="xfce4-popup-whiskermenu"]
+    count: true
+  register: whiskermenu_shortcuts
+
+- name: make the Windows key open the whiskermenu
+  become: true
+  become_user: "{{ whoami }}"
+  xml:
+    path: "/home/{{ whoami }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml"
+    xpath: /channel[@name="xfce4-keyboard-shortcuts"]/property[@name="commands"][@type="empty"]/property[@name="custom"][@type="empty"]
+    add_children:
+    - property:
+        name: Super_L
+        type: string
+        value: xfce4-popup-whiskermenu
+  when: whiskermenu_shortcuts.count == 0
