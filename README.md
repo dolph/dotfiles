@@ -13,4 +13,4 @@ To deploy to `localhost`:
 
     git clone https://github.com/dolph/dotfiles.git
     cd dotfiles
-    ansible-playbook headless.yml # or desktop.yml
+    ansible-playbook --ask-become-pass headless.yml # or desktop.yml
