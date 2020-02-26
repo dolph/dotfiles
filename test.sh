@@ -11,6 +11,8 @@ function cleanup {
 }
 trap cleanup EXIT
 
+docker exec --tty $container_id env TERM=xterm /etc/ansible/bootstrap.sh
+
 if [ "$ROLE" == "headless" ]; then
     docker exec --tty $container_id env TERM=xterm ansible-playbook /etc/ansible/headless.yml
 elif [ "$ROLE" == "desktop" ]; then
