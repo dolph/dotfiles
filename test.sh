@@ -3,6 +3,8 @@ set -e
 
 ROLE=${1:-headless}
 
+docker pull geerlingguy/docker-fedora31-ansible:latest
+
 container_id=$(docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --volume="$(pwd):/etc/ansible:ro" geerlingguy/docker-fedora31-ansible:latest)
 function cleanup {
     docker rm -f $container_id
