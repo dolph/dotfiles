@@ -3,7 +3,3 @@ all:
     localhost:
       ansible_connection: local
       ansible_become: true
-  children:
-    desktops:
-      hosts:
-        localhost:
