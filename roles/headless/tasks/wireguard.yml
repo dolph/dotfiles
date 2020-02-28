@@ -1,0 +1,97 @@
+---
+# https://copr.fedorainfracloud.org/
+- name: check enabled community repos
+  command: dnf copr list --enabled
+  args:
+    warn: false
+  changed_when: false
+  register: enabled_copr_repos
+  when:
+  - ansible_distribution == 'Fedora'
+  - ansible_distribution_major_version | int == 31
+
+# https://copr.fedorainfracloud.org/
+- name: enable wireguard community repo
+  command: dnf copr enable -y jdoss/wireguard
+  args:
+    warn: false
+  when:
+  - ansible_distribution == 'Fedora'
+  - ansible_distribution_major_version | int == 31
+  - "'jdoss/wireguard' not in enabled_copr_repos.stdout"
+
+- name: install kernel dev stuff
+  dnf:
+    name:
+    - "kernel-headers-{{ ansible_kernel }}"
+    - "kernel-devel-{{ ansible_kernel }}"
+
+- name: uninstall wireguard on Fedora 31
+  dnf:
+    name:
+    - wireguard-dkms
+    - wireguard-tools
+    state: absent
+  when:
+  - ansible_distribution == 'Fedora'
+  - ansible_distribution_major_version | int == 31
+
+- name: install wireguard on Fedora 31
+  dnf:
+    name:
+    - wireguard-dkms
+    - wireguard-tools
+  when:
+  - ansible_distribution == 'Fedora'
+  - ansible_distribution_major_version | int == 31
+
+- name: install wireguard on Fedora 32+
+  dnf:
+    name:
+    - wireguard-tools
+  when:
+  - ansible_distribution == 'Fedora'
+  - ansible_distribution_major_version | int >= 32
+
+- name: create config dir
+  file:
+    path: /etc/wireguard/
+    state: directory
+    mode: 0600
+
+- name: generate private key
+  shell: wg genkey > /etc/wireguard/private
+  args:
+    creates: /etc/wireguard/private
+
+- name: protect private key
+  file:
+    path: /etc/wireguard/private
+    mode: 0600
+
+- name: generate public key from private key
+  shell: wg pubkey < /etc/wireguard/private
+  changed_when: false
+  register: pubkey
+
+- name: create a wireguard interface
+  command: ip link add dev wg0 type wireguard
+
+- name: assign an IP to the wireguard interface
+  command: "ip addr add {{ wireguard_ip }}/24 dev wg0"
+
+- name: load wireguard's private key
+  command: wg set wg0 private-key /etc/wireguard/private
+
+- name: enable the connection
+  command: ip link set wg0 up
+
+- name: add wireguard peers
+  command: "wg set wg0 peer {{ hostvars[item].pubkey.stdout }} allowed-ips {{ hostvars[item].wireguard_ip }}/32 endpoint {{ hostvars[item].ansible_default_ipv4_address }}:51820"
+  loop: "{{ groups.wireguard_peers }}"
+  when: item.ansible_hostname != ansible_hostname
+
+- name: test connectivity to peers
+  command: "ping -c 1 {{ hostvars[item].wireguard_ip }}"
+  loop: "{{ groups.wireguard_peers }}"
+  when: item.ansible_hostname != ansible_hostname
