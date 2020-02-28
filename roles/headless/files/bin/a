@@ -21,8 +21,8 @@ if [ "$ACTION" != "check" ] && [ "$ACTION" != "play" ] && [ "$ACTION" != "try" ]
     exit 1
 fi
 
-if [ "$ENV" != "dev" ] && [ "$ENV" != "prod" ]; then
-    echo "The second argument must be either 'dev' or 'prod'."
+if [ "$ENV" != "dev" ] && [ "$ENV" != "lab" ] && [ "$ENV" != "prod" ]; then
+    echo "The second argument must be either 'dev', 'lab', or 'prod'."
     exit 1
 fi
 
