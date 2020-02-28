@@ -11,6 +11,6 @@ Build a machine with software, dotfiles, etc, for productivity.
 
 To deploy to `localhost`:
 
-    git clone https://github.com/dolph/dotfiles.git
-    cd dotfiles
-    ansible-playbook headless.yml # or desktop.yml
+    curl https://raw.githubusercontent.com/dolph/dotfiles/master/bootstrap.sh | bash
+    cd $HOME/dotfiles
+    ansible-playbook --ask-become-pass headless.yml # or desktop.yml

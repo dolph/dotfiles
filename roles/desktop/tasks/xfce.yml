@@ -11,3 +11,50 @@
   become_user: "{{ whoami }}"
   shell: if [ -n "${DISPLAY+x}" ]; then xmodmap ~/.Xmodmap; fi
   when: xmodmap.changed
+
+- name: load panel from backup
+  block:
+  - name: move panel backup into position
+    become: true
+    become_user: "{{ whoami }}"
+    copy:
+      src: panel-backup.tar.gz
+      decrypt: true
+      dest: /tmp/panel-backup.tar.gz
+
+  - name: load xfce panel backup
+    become: true
+    become_user: "{{ whoami }}"
+    command: xfce4-panel-profiles load /tmp/panel-backup.tar.gz
+
+  always:
+  - name: cleanup decrypted panel backup
+    file:
+      path: /tmp/panel-backup.tar.gz
+      state: absent
+
+- name: install dependencies to manage xml
+  dnf:
+    name: python3-lxml
+
+- name: check for whiskermenu shortcuts
+  become: true
+  become_user: "{{ whoami }}"
+  xml:
+    path: "/home/{{ whoami }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml"
+    xpath: /channel[@name="xfce4-keyboard-shortcuts"]/property[@name="commands"][@type="empty"]/property[@name="custom"][@type="empty"]/property[@value="xfce4-popup-whiskermenu"]
+    count: true
+  register: whiskermenu_shortcuts
+
+- name: make the Windows key open the whiskermenu
+  become: true
+  become_user: "{{ whoami }}"
+  xml:
+    path: "/home/{{ whoami }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml"
+    xpath: /channel[@name="xfce4-keyboard-shortcuts"]/property[@name="commands"][@type="empty"]/property[@name="custom"][@type="empty"]
+    add_children:
+    - property:
+        name: Super_L
+        type: string
+        value: xfce4-popup-whiskermenu
+  when: whiskermenu_shortcuts.count == 0

@@ -162,4 +162,9 @@
   include: docker.yml
   tags: docker
 
+- name: configure wireguard
+  include: wireguard.yml
+  when: wireguard_ip is defined
+  tags: wireguard
+
 # TODO: ssh-server (security)
