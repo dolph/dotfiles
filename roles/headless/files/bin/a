@@ -43,18 +43,19 @@ elif [ "$DONT" != "null" ]; then
     exit 1
 fi
 
-tmux rename-window "$TARGET"
-
 if [[ $HOSTS != *"."* ]] && [[ $HOSTS != *"*"* ]] && [[ $HOSTS != *"localhost"* ]] && [[ $HOSTS != "all" ]]; then
     HOSTS="$HOSTS.*"
 fi
 
 if [ "$ACTION" == "edit" ]; then
     set -x
+    tmux rename-window "$ENV/inventory"
     ansible-vault edit --vault-id "$ENV.pass" "$ENV.yml"
     set +x
     exit 0
 fi
+
+tmux rename-window "$ENV/${TARGET//\*}"
 
 if [ "$ACTION" == 'sh' ]; then
     set -x
