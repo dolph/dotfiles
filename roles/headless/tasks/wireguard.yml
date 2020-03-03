@@ -23,12 +23,12 @@
 - name: install kernel dev stuff
   dnf:
     name:
-    - "kernel-headers-{{ ansible_kernel }}"
-    - "kernel-devel-{{ ansible_kernel }}"
+    - kernel-headers
+    - kernel-devel
   register: task
   until: task.rc == 0
-  retries: 20
-  delay: 60
+  retries: 3
+  delay: 0
 
 - name: install wireguard on Fedora 31
   dnf:
@@ -40,8 +40,8 @@
   - ansible_distribution_major_version | int == 31
   register: task
   until: task.rc == 0
-  retries: 20
-  delay: 60
+  retries: 3
+  delay: 0
 
 - name: install wireguard on Fedora 32+
   dnf:
@@ -52,8 +52,8 @@
   - ansible_distribution_major_version | int >= 32
   register: task
   until: task.rc == 0
-  retries: 20
-  delay: 60
+  retries: 3
+  delay: 0
 
 - name: create config dir
   file:
@@ -77,6 +77,10 @@
   changed_when: false
   register: wireguard_private_key
 
+- name: set private key variable
+  set_fact:
+    wireguard_private_key: "{{ wireguard_private_key.content | b64decode }}"
+
 - name: generate public key from private key
   shell: wg pubkey < /etc/wireguard/private
   changed_when: false
@@ -90,18 +94,19 @@
   become: false
   local_action:
     module: lineinfile
-    line: "- {'wireguard_ip': '{{ wireguard_ip }}', 'ip': '{{ ansible_default_ipv4.address }}', 'public_key': '{{ wireguard_public_key }}'}"
+    line: "- {'hostname': '{{ ansible_hostname }}', 'wireguard_ip': '{{ wireguard_ip }}', 'ip': '{{ ansible_default_ipv4.address }}', 'public_key': '{{ wireguard_public_key }}'}"
     path: vars/wireguard-peers
     regexp: "^\ {'wireguard_ip':\ '{{ wireguard_ip }}',\ "
 
 - name: load wireguard peers
   include_vars:
     file: vars/wireguard-peers
+  tags: ping-wireguard-peers
 
 - name: push wireguard config
   template:
     src: etc/wireguard/wg0.conf
-    path: /etc/wireguard/wg0.conf
+    dest: /etc/wireguard/wg0.conf
 
 - name: enable wireguard
   command: wg-quick up wg0
@@ -111,3 +116,5 @@
   command: "ping -c 1 {{ item.wireguard_ip }}"
   loop: "{{ wireguard_peers }}"
   when: item.wireguard_ip != wireguard_ip
+  changed_when: false
+  tags: ping-wireguard-peers
