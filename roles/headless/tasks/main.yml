@@ -162,6 +162,13 @@
   include: docker.yml
   tags: docker
 
+- name: check for wireguard_ip
+  fail:
+    msg: "A wireguard_ip is not defined. Skipping wireguard configuration. Example: --extra-vars=wireguard_ip=192.168.2.x"
+  ignore_errors: true
+  when: wireguard_ip is not defined
+  tags: wireguard
+
 - name: configure wireguard
   include: wireguard.yml
   when: wireguard_ip is defined
