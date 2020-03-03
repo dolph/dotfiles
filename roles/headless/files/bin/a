@@ -21,8 +21,8 @@ if [ "$ACTION" != "check" ] && [ "$ACTION" != "play" ] && [ "$ACTION" != "try" ]
     exit 1
 fi
 
-if [ "$ENV" != "dev" ] && [ "$ENV" != "prod" ]; then
-    echo "The second argument must be either 'dev' or 'prod'."
+if [ "$ENV" != "dev" ] && [ "$ENV" != "lab" ] && [ "$ENV" != "prod" ]; then
+    echo "The second argument must be either 'dev', 'lab', or 'prod'."
     exit 1
 fi
 
@@ -43,18 +43,19 @@ elif [ "$DONT" != "null" ]; then
     exit 1
 fi
 
-tmux rename-window "$TARGET"
-
 if [[ $HOSTS != *"."* ]] && [[ $HOSTS != *"*"* ]] && [[ $HOSTS != *"localhost"* ]] && [[ $HOSTS != "all" ]]; then
     HOSTS="$HOSTS.*"
 fi
 
 if [ "$ACTION" == "edit" ]; then
     set -x
+    tmux rename-window "$ENV/inventory"
     ansible-vault edit --vault-id "$ENV.pass" "$ENV.yml"
     set +x
     exit 0
 fi
+
+tmux rename-window "$ENV/${TARGET//\*}"
 
 if [ "$ACTION" == 'sh' ]; then
     set -x

@@ -51,11 +51,6 @@ export TXT_TO="{{ txt_to }}"
 export TXT_TWILIO_FROM="{{ txt_twilio_from }}"
 {% endif %}
 
-{% if github_enterprise_username is defined %}
-export GITHUB_ENTERPRISE_USERNAME="{{ github_enterprise_username }}"
-export GITHUB_ENTERPRISE_TOKEN="{{ github_enterprise_token }}"
-{% endif %}
-
 # Automatically jump into an existing tmux session.
 if [ -z "$TMUX" ]; then
     tmux attach -d || tmux new
