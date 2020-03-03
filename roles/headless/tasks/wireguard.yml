@@ -62,57 +62,50 @@
     mode: 0600
 
 - name: generate private key
-  shell: wg genkey > /etc/wireguard/private
+  shell: umask 077; wg genkey > /etc/wireguard/private
   args:
     creates: /etc/wireguard/private
 
-- name: protect private key
+- name: ensure private key is protected correctly
   file:
     path: /etc/wireguard/private
     mode: 0600
 
+- name: read private key
+  slurp:
+    src: /etc/wireguard/private
+  changed_when: false
+  register: wireguard_private_key
+
 - name: generate public key from private key
   shell: wg pubkey < /etc/wireguard/private
   changed_when: false
-  register: pubkey
-  tags: pubkey
+  register: wireguard_public_key
+
+- name: set public key variable
+  set_fact:
+    wireguard_public_key: "{{ wireguard_public_key.stdout }}"
 
 - name: write public key to local file
   become: false
   local_action:
     module: lineinfile
-    line: "- {'wireguard_ip': '{{ wireguard_ip }}', 'ip': '{{ ansible_default_ipv4.address }}', 'pubkey': '{{ pubkey.stdout }}'}"
+    line: "- {'wireguard_ip': '{{ wireguard_ip }}', 'ip': '{{ ansible_default_ipv4.address }}', 'public_key': '{{ wireguard_public_key }}'}"
     path: vars/wireguard-peers
     regexp: "^\ {'wireguard_ip':\ '{{ wireguard_ip }}',\ "
-  tags: pubkey
 
 - name: load wireguard peers
   include_vars:
     file: vars/wireguard-peers
 
-- name: check for existing wireguard interface
-  command: ip link show wg0
-  changed_when: false
-  failed_when: false
-  register: interface
+- name: push wireguard config
+  template:
+    src: etc/wireguard/wg0.conf
+    path: /etc/wireguard/wg0.conf
 
-- name: create a wireguard interface
-  command: ip link add dev wg0 type wireguard
-  when: interface.rc == 1
-
-- name: assign an IP to the wireguard interface
-  command: "ip addr add {{ wireguard_ip }}/24 dev wg0"
-
-- name: load wireguard's private key
-  command: wg set wg0 private-key /etc/wireguard/private
-
-- name: enable the connection
-  command: ip link set wg0 up
-
-- name: add wireguard peers
-  command: "wg set wg0 peer {{ item.pubkey }} allowed-ips {{ item.wireguard_ip }}/32 endpoint {{ item.ip }}:51820"
-  loop: "{{ wireguard_peers }}"
-  when: item.wireguard_ip != wireguard_ip
+- name: enable wireguard
+  command: wg-quick up wg0
+  when: wireguard_peers | length >= 2
 
 - name: test connectivity to peers
   command: "ping -c 1 {{ item.wireguard_ip }}"
