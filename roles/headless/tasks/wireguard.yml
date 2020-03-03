@@ -25,16 +25,10 @@
     name:
     - "kernel-headers-{{ ansible_kernel }}"
     - "kernel-devel-{{ ansible_kernel }}"
-
-- name: uninstall wireguard on Fedora 31
-  dnf:
-    name:
-    - wireguard-dkms
-    - wireguard-tools
-    state: absent
-  when:
-  - ansible_distribution == 'Fedora'
-  - ansible_distribution_major_version | int == 31
+  register: task
+  until: task.rc == 0
+  retries: 20
+  delay: 60
 
 - name: install wireguard on Fedora 31
   dnf:
@@ -44,6 +38,10 @@
   when:
   - ansible_distribution == 'Fedora'
   - ansible_distribution_major_version | int == 31
+  register: task
+  until: task.rc == 0
+  retries: 20
+  delay: 60
 
 - name: install wireguard on Fedora 32+
   dnf:
@@ -52,6 +50,10 @@
   when:
   - ansible_distribution == 'Fedora'
   - ansible_distribution_major_version | int >= 32
+  register: task
+  until: task.rc == 0
+  retries: 20
+  delay: 60
 
 - name: create config dir
   file:
@@ -73,9 +75,30 @@
   shell: wg pubkey < /etc/wireguard/private
   changed_when: false
   register: pubkey
+  tags: pubkey
+
+- name: write public key to local file
+  become: false
+  local_action:
+    module: lineinfile
+    line: "- {'wireguard_ip': '{{ wireguard_ip }}', 'ip': '{{ ansible_default_ipv4.address }}', 'pubkey': '{{ pubkey.stdout }}'}"
+    path: vars/wireguard-peers
+    regexp: "^\ {'wireguard_ip':\ '{{ wireguard_ip }}',\ "
+  tags: pubkey
+
+- name: load wireguard peers
+  include_vars:
+    file: vars/wireguard-peers
+
+- name: check for existing wireguard interface
+  command: ip link show wg0
+  changed_when: false
+  failed_when: false
+  register: interface
 
 - name: create a wireguard interface
   command: ip link add dev wg0 type wireguard
+  when: interface.rc == 1
 
 - name: assign an IP to the wireguard interface
   command: "ip addr add {{ wireguard_ip }}/24 dev wg0"
@@ -87,11 +110,11 @@
   command: ip link set wg0 up
 
 - name: add wireguard peers
-  command: "wg set wg0 peer {{ hostvars[item].pubkey.stdout }} allowed-ips {{ hostvars[item].wireguard_ip }}/32 endpoint {{ hostvars[item].ansible_default_ipv4_address }}:51820"
-  loop: "{{ groups.wireguard_peers }}"
-  when: item.ansible_hostname != ansible_hostname
+  command: "wg set wg0 peer {{ item.pubkey }} allowed-ips {{ item.wireguard_ip }}/32 endpoint {{ item.ip }}:51820"
+  loop: "{{ wireguard_peers }}"
+  when: item.wireguard_ip != wireguard_ip
 
 - name: test connectivity to peers
-  command: "ping -c 1 {{ hostvars[item].wireguard_ip }}"
-  loop: "{{ groups.wireguard_peers }}"
-  when: item.ansible_hostname != ansible_hostname
+  command: "ping -c 1 {{ item.wireguard_ip }}"
+  loop: "{{ wireguard_peers }}"
+  when: item.wireguard_ip != wireguard_ip
