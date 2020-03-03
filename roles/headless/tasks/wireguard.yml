@@ -98,7 +98,7 @@
     path: vars/wireguard-peers
     regexp: "^\ {'wireguard_ip':\ '{{ wireguard_ip }}',\ "
 
-- name: load wireguard peers
+- name: reload wireguard peers
   include_vars:
     file: vars/wireguard-peers
   tags: ping-wireguard-peers
@@ -107,10 +107,30 @@
   template:
     src: etc/wireguard/wg0.conf
     dest: /etc/wireguard/wg0.conf
+  register: wireguard_conf
+
+- name: stop wireguard
+  command: wg-quick down wg0
+  when:
+  - wireguard_conf.changed
+  - ansible_wg0 is defined
+
+- name: refresh facts
+  setup:
+  when:
+  - wireguard_conf.changed
+  - ansible_wg0 is defined
+
+- debug:
+    var: ansible_wg0
+  when:
+  - ansible_wg0 is defined
 
 - name: enable wireguard
   command: wg-quick up wg0
-  when: wireguard_peers | length >= 2
+  when:
+  - wireguard_peers | length >= 2
+  - ansible_wg0 is not defined
 
 - name: test connectivity to peers
   command: "ping -c 1 {{ item.wireguard_ip }}"

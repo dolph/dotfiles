@@ -162,6 +162,29 @@
   include: docker.yml
   tags: docker
 
+- name: find wireguard ip from ansible facts
+  set_fact:
+    wireguard_ip: "{{ ansible_wg0.ipv4.address }}"
+  when:
+  - wireguard_ip is not defined
+  - ansible_wg0 is defined
+  tags: wireguard
+
+- name: load wireguard peers
+  include_vars:
+    file: vars/wireguard-peers
+  when: wireguard_ip is not defined
+  tags: wireguard
+
+- name: find wireguard ip
+  set_fact:
+    wireguard_ip: "{{ item.wireguard_ip }}"
+  loop: "{{ wireguard_peers }}"
+  when:
+  - wireguard_ip is not defined
+  - item.hostname == ansible_hostname
+  tags: wireguard
+
 - name: check for wireguard_ip
   fail:
     msg: "A wireguard_ip is not defined. Skipping wireguard configuration. Example: --extra-vars=wireguard_ip=192.168.2.x"
