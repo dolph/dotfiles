@@ -90,6 +90,12 @@
   set_fact:
     wireguard_public_key: "{{ wireguard_public_key.stdout }}"
 
+- name: decrypt wireguard-peers locally
+  become: true
+  become: "{{ whoami }}"
+  delegate_to: localhost
+  command: /home/{{ whoami }}/venv/ansible/bin/ansible-vault decrypt vars/wireguard-peers
+
 - name: write public key to local file
   become: false
   local_action:
@@ -97,6 +103,18 @@
     line: "- {'hostname': '{{ ansible_hostname }}', 'wireguard_ip': '{{ wireguard_ip }}', 'ip': '{{ ansible_default_ipv4.address }}', 'public_key': '{{ wireguard_public_key }}'}"
     path: vars/wireguard-peers
     regexp: "^\ {'wireguard_ip':\ '{{ wireguard_ip }}',\ "
+
+- name: re-encrypt wireguard-peers locally
+  become: true
+  become: "{{ whoami }}"
+  delegate_to: localhost
+  command: /home/{{ whoami }}/venv/ansible/bin/ansible-vault encrypt vars/wireguard-peers
+
+- name: ensure permissions on wireguard-peers are set correctly
+  file:
+    path: vars/wireguard-peers
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
 
 - name: reload wireguard peers
   include_vars:
@@ -109,21 +127,16 @@
     dest: /etc/wireguard/wg0.conf
   register: wireguard_conf
 
-- name: stop wireguard
+- name: stop wireguard when wireguard config changes
   command: wg-quick down wg0
   when:
   - wireguard_conf.changed
   - ansible_wg0 is defined
 
-- name: refresh facts
+- name: refresh facts after stopping wireguard
   setup:
   when:
   - wireguard_conf.changed
-  - ansible_wg0 is defined
-
-- debug:
-    var: ansible_wg0
-  when:
   - ansible_wg0 is defined
 
 - name: enable wireguard
@@ -135,6 +148,8 @@
 - name: test connectivity to peers
   command: "ping -c 1 {{ item.wireguard_ip }}"
   loop: "{{ wireguard_peers }}"
+  loop_control:
+    label: "{{ item.hostname }} ({{ item.wireguard_ip }})"
   when: item.wireguard_ip != wireguard_ip
   changed_when: false
   tags: ping-wireguard-peers
