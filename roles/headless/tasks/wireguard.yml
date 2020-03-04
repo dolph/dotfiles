@@ -102,6 +102,16 @@
   set_fact:
     wireguard_public_key: "{{ wireguard_public_key.stdout }}"
 
+- name: backup encrypted wireguard-peers locally
+  become: true
+  become_user: "{{ whoami }}"
+  delegate_to: localhost
+  run_once: true
+  copy:
+    src: vars/wireguard-peers
+    dest: vars/wireguard-peers.backup
+    decrypt: false
+
 - name: decrypt wireguard-peers locally
   become: true
   become_user: "{{ whoami }}"
@@ -109,7 +119,7 @@
   run_once: true
   command: /home/{{ whoami }}/venv/ansible/bin/ansible-vault decrypt vars/wireguard-peers
 
-- name: write public key to local file
+- name: write peer to local file
   become: true
   become_user: "{{ whoami }}"
   local_action:
@@ -117,6 +127,7 @@
     line: "- {'hostname': '{{ ansible_hostname }}', 'wireguard_ip': '{{ wireguard_ip }}', 'ip': '{{ ansible_default_ipv4.address }}', 'public_key': '{{ wireguard_public_key }}'}"
     path: vars/wireguard-peers
     regexp: "^\ {'wireguard_ip':\ '{{ wireguard_ip }}',\ "
+  register: peers
 
 - name: re-encrypt wireguard-peers locally
   become: true
@@ -124,6 +135,28 @@
   delegate_to: localhost
   run_once: true
   command: /home/{{ whoami }}/venv/ansible/bin/ansible-vault encrypt vars/wireguard-peers
+  when: peers.changed
+
+- name: restore wireguard-peers locally
+  become: true
+  become_user: "{{ whoami }}"
+  delegate_to: localhost
+  run_once: true
+  copy:
+    src: vars/wireguard-peers.backup
+    dest: vars/wireguard-peers
+    decrypt: false
+  when: not peers.changed
+
+- name: remove wireguard-peers local backup
+  become: true
+  become_user: "{{ whoami }}"
+  delegate_to: localhost
+  run_once: true
+  file:
+    path: vars/wireguard-peers.backup
+    state: absent
+  changed_when: false
 
 - name: reload wireguard peers
   include_vars:
