@@ -104,12 +104,14 @@
 
 - name: decrypt wireguard-peers locally
   become: true
-  become: "{{ whoami }}"
+  become_user: "{{ whoami }}"
   delegate_to: localhost
+  run_once: true
   command: /home/{{ whoami }}/venv/ansible/bin/ansible-vault decrypt vars/wireguard-peers
 
 - name: write public key to local file
-  become: false
+  become: true
+  become_user: "{{ whoami }}"
   local_action:
     module: lineinfile
     line: "- {'hostname': '{{ ansible_hostname }}', 'wireguard_ip': '{{ wireguard_ip }}', 'ip': '{{ ansible_default_ipv4.address }}', 'public_key': '{{ wireguard_public_key }}'}"
@@ -118,15 +120,10 @@
 
 - name: re-encrypt wireguard-peers locally
   become: true
-  become: "{{ whoami }}"
+  become_user: "{{ whoami }}"
   delegate_to: localhost
+  run_once: true
   command: /home/{{ whoami }}/venv/ansible/bin/ansible-vault encrypt vars/wireguard-peers
-
-- name: ensure permissions on wireguard-peers are set correctly
-  file:
-    path: vars/wireguard-peers
-    owner: "{{ whoami }}"
-    group: "{{ whoami }}"
 
 - name: reload wireguard peers
   include_vars:
