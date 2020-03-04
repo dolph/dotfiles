@@ -18,6 +18,7 @@
 - name: configure automated upgrades
   include: automated-upgrades.yml
   tags: dnf-automatic
+  when: ansible_distribution == 'Fedora'
 
 - name: configure ssh client
   include: ssh-client.yml

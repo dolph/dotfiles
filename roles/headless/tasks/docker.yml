@@ -34,6 +34,7 @@
     key: https://download.docker.com/linux/fedora/gpg
     # Support is added for this in ansible v2.9
     # fingerprint: 060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35
+  when: ansible_distribution == 'Fedora'
 
 - name: install docker
   dnf:

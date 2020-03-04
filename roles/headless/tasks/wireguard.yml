@@ -25,6 +25,7 @@
     name:
     - kernel-headers
     - kernel-devel
+  when: ansible_distribution == 'Fedora'
   register: task
   until: task.rc == 0
   retries: 3
@@ -54,6 +55,17 @@
   until: task.rc == 0
   retries: 3
   delay: 0
+
+- name: add wireguard apt repository
+  apt_repository:
+    repo: ppa:wireguard/wireguard
+  when: ansible_distribution == 'Ubuntu'
+
+- name: install wireguard
+  apt:
+    name: wireguard
+    update_cache: true
+  when: ansible_distribution == 'Ubuntu'
 
 - name: create config dir
   file:
