@@ -111,6 +111,7 @@
     src: vars/wireguard-peers
     dest: vars/wireguard-peers.backup
     decrypt: false
+  changed_when: false
 
 - name: decrypt wireguard-peers locally
   become: true
@@ -118,6 +119,7 @@
   delegate_to: localhost
   run_once: true
   command: /home/{{ whoami }}/venv/ansible/bin/ansible-vault decrypt vars/wireguard-peers
+  changed_when: false
 
 - name: write peer to local file
   become: true
@@ -136,6 +138,7 @@
   run_once: true
   command: /home/{{ whoami }}/venv/ansible/bin/ansible-vault encrypt vars/wireguard-peers
   when: peers.changed
+  changed_when: false
 
 - name: restore wireguard-peers locally
   become: true
@@ -147,6 +150,7 @@
     dest: vars/wireguard-peers
     decrypt: false
   when: not peers.changed
+  changed_when: false
 
 - name: remove wireguard-peers local backup
   become: true
