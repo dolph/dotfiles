@@ -152,7 +152,7 @@
   command: wg-quick up wg0
   when:
   - wireguard_peers | length >= 2
-  - ansible_wg0 is not defined
+  - ansible_wg0 is not defined or not ansible_wg0.active
 
 - name: test connectivity to peers
   command: "ping -c 1 {{ item.wireguard_ip }}"
