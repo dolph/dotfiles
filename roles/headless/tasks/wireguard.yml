@@ -160,5 +160,9 @@
   loop_control:
     label: "{{ item.hostname }} ({{ item.wireguard_ip }})"
   when: item.wireguard_ip != wireguard_ip
+  register: task
+  until: task.rc == 0
+  retries: 3
+  delay: 0
   changed_when: false
   tags: ping-wireguard-peers
