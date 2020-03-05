@@ -88,19 +88,23 @@
     src: /etc/wireguard/private
   changed_when: false
   register: wireguard_private_key
+  tags: wireguard-config
 
 - name: set private key variable
   set_fact:
     wireguard_private_key: "{{ wireguard_private_key.content | b64decode }}"
+  tags: wireguard-config
 
 - name: generate public key from private key
   shell: wg pubkey < /etc/wireguard/private
   changed_when: false
   register: wireguard_public_key
+  tags: wireguard-config
 
 - name: set public key variable
   set_fact:
     wireguard_public_key: "{{ wireguard_public_key.stdout }}"
+  tags: wireguard-config
 
 - name: backup encrypted wireguard-peers locally
   become: true
@@ -172,6 +176,7 @@
     src: etc/wireguard/wg0.conf
     dest: /etc/wireguard/wg0.conf
   register: wireguard_conf
+  tags: wireguard-config
 
 - name: stop wireguard when wireguard config changes
   command: wg-quick down wg0
@@ -199,7 +204,7 @@
   when: item.wireguard_ip != wireguard_ip
   register: task
   until: task.rc == 0
-  retries: 3
+  retries: 1
   delay: 0
   changed_when: false
   tags: ping-wireguard-peers

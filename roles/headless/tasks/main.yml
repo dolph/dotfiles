@@ -169,13 +169,17 @@
   when:
   - wireguard_ip is not defined
   - ansible_wg0 is defined
-  tags: wireguard
+  tags:
+  - wireguard
+  - wireguard-config
 
 - name: load wireguard peers
   include_vars:
     file: vars/wireguard-peers
   when: wireguard_ip is not defined
-  tags: wireguard
+  tags:
+  - wireguard
+  - wireguard-config
 
 - name: find wireguard ip
   set_fact:
@@ -184,14 +188,18 @@
   when:
   - wireguard_ip is not defined
   - item.hostname == ansible_hostname
-  tags: wireguard
+  tags:
+  - wireguard
+  - wireguard-config
 
 - name: check for wireguard_ip
   fail:
     msg: "A wireguard_ip is not defined. Skipping wireguard configuration. Example: --extra-vars=wireguard_ip=192.168.2.x"
   ignore_errors: true
   when: wireguard_ip is not defined
-  tags: wireguard
+  tags:
+  - wireguard
+  - wireguard-config
 
 - name: configure wireguard
   include: wireguard.yml
