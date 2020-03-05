@@ -169,7 +169,9 @@
 - name: reload wireguard peers
   include_vars:
     file: vars/wireguard-peers
-  tags: ping-wireguard-peers
+  tags:
+  - ping-wireguard-peers
+  - wireguard-config
 
 - name: push wireguard config
   template:
