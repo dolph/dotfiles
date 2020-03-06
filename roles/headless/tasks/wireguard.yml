@@ -204,6 +204,7 @@
   template:
     src: etc/wireguard/wg0.conf
     dest: /etc/wireguard/wg0.conf
+    mode: 0600
   register: wireguard_conf
   tags: wireguard-config
 
