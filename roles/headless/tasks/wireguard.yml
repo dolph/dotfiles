@@ -214,17 +214,10 @@
   - wireguard_conf.changed
   - ansible_wg0 is defined
 
-- name: refresh facts after stopping wireguard
-  setup:
-  when:
-  - wireguard_conf.changed
-  - ansible_wg0 is defined
-
 - name: enable wireguard
   command: wg-quick up wg0
   when:
   - wireguard_peers | length >= 2
-  - ansible_wg0 is not defined or not ansible_wg0.active
 
 - name: test connectivity to peers (and self)
   command: "ping -c 1 {{ item.wireguard_ip }}"
