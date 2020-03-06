@@ -180,6 +180,7 @@
   tags:
   - wireguard
   - wireguard-config
+  - ping-wireguard-peers
 
 - name: find wireguard ip
   set_fact:

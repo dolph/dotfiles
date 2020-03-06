@@ -27,7 +27,7 @@
     - kernel-devel
   when: ansible_distribution == 'Fedora'
   register: task
-  until: task.rc == 0
+  until: task is succeeded
   retries: 3
   delay: 0
 
@@ -40,7 +40,7 @@
   - ansible_distribution == 'Fedora'
   - ansible_distribution_major_version | int == 31
   register: task
-  until: task.rc == 0
+  until: task is succeeded
   retries: 3
   delay: 0
 
@@ -52,7 +52,7 @@
   - ansible_distribution == 'Fedora'
   - ansible_distribution_major_version | int >= 32
   register: task
-  until: task.rc == 0
+  until: task is succeeded
   retries: 3
   delay: 0
 
