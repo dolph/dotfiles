@@ -124,6 +124,7 @@
 - name: generate public key from private key
   shell: wg pubkey < /etc/wireguard/private
   changed_when: false
+  check_mode: false
   register: wireguard_public_key
   tags: wireguard-config
 
