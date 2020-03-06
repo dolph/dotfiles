@@ -218,7 +218,7 @@
   command: wg-quick up wg0
   register: task
   failed_when: task is not succeeded and 'already exists' not in task.stderr
-  changed_when: "'ip link add wg0 type wireguard' in task.stdout"
+  changed_when: "'ip link add wg0 type wireguard' in task.stderr"
   when:
   - wireguard_peers | length >= 2
 
