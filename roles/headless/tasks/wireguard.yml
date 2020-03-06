@@ -208,12 +208,10 @@
   register: wireguard_conf
   tags: wireguard-config
 
-- name: stop wireguard when wireguard config changes
+- name: stop wireguard
   command: wg-quick down wg0
   register: task
-  changed_when: "'ip link delete dev wg0' in task.stdout"
-  when:
-  - wireguard_conf.changed
+  changed_when: "'ip link delete dev wg0' in task.stderr"
 
 - name: enable wireguard
   command: wg-quick up wg0
