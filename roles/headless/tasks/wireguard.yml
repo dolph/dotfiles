@@ -226,12 +226,11 @@
   - wireguard_peers | length >= 2
   - ansible_wg0 is not defined or not ansible_wg0.active
 
-- name: test connectivity to peers
+- name: test connectivity to peers (and self)
   command: "ping -c 1 {{ item.wireguard_ip }}"
   loop: "{{ wireguard_peers }}"
   loop_control:
     label: "{{ item.hostname }} ({{ item.wireguard_ip }})"
-  when: item.wireguard_ip != wireguard_ip
   register: task
   until: task.rc == 0
   retries: 1
