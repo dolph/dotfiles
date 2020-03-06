@@ -56,6 +56,32 @@
   retries: 3
   delay: 0
 
+- name: install iptables on gateway
+  dnf:
+    name:
+    - iptables-services
+  when:
+  - ansible_distribution == 'Fedora'
+  - wireguard_ip.endswith('.1')
+  register: task
+  until: task is succeeded
+  retries: 3
+  delay: 0
+
+- name: enable iptables on gateway
+  systemd:
+    name: iptables
+    enabled: true
+    state: started
+  when:
+  - ansible_distribution == 'Fedora'
+  - wireguard_ip.endswith('.1')
+  register: task
+  until: task is succeeded
+  retries: 3
+  delay: 0
+
+
 - name: add wireguard apt repository
   apt_repository:
     repo: ppa:wireguard/wireguard
