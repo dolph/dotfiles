@@ -15,6 +15,9 @@ alias q="exit"
 
 alias gist="gist-paste"
 
+# Shortcut to open a SOCKS proxy
+alias proxy="ssh -D 8123 -q -N"
+
 # pyc files are annoying
 export PYTHONDONTWRITEBYTECODE=1
 
