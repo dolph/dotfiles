@@ -12,3 +12,11 @@
     comment: "{{ whoami }}@{{ ansible_hostname }}"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+
+- name: create an SSH config file
+  file:
+    path: "/home/{{ whoami }}/.ssh/config"
+    state: touch
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: 0600

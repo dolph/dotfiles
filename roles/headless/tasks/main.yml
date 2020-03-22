@@ -24,6 +24,10 @@
   include: ssh-client.yml
   tags: ssh
 
+- name: configure ssh server
+  include: ssh-server.yml
+  tags: ssh
+
 - name: configure terminal
   template:
     src: "home/{{ item }}"

@@ -1,0 +1,26 @@
+# This allows remote X11 clients to send a window ID upon connect, which
+# somehow helps unify clipboards across systems.
+- name: accept remote X Window ID
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: AcceptEnv WINDOWID
+
+- name: allow X11 forwarding
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: X11Forwarding yes
+
+- name: disallow remote root logins
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: PermitRootLogin no
+
+- name: disallow password authentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: PasswordAuthentication no
+
+- name: restart sshd
+  service:
+    name: sshd
+    state: restarted
