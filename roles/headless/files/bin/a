@@ -107,12 +107,12 @@ else
 fi
 
 set -x
-$try ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${check_flag}
+ANSIBLE_DISPLAY_OK_HOSTS=false $try ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${check_flag}
 set +x
 
 if [ "$ACTION" == 'try' ]; then
     check_flag=''
     set -x
-    ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${check_flag}
+    ANSIBLE_DISPLAY_OK_HOSTS=false ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${check_flag}
     set +x
 fi
