@@ -47,6 +47,12 @@ if [[ $HOSTS != *"."* ]] && [[ $HOSTS != *"*"* ]] && [[ $HOSTS != *"localhost"* 
     HOSTS="$HOSTS.*"
 fi
 
+current_tmux_window_name=$(tmux display-message -p '#W')
+function restore_tmux_window_name {
+    tmux rename-window "$current_tmux_window_name"
+}
+trap restore_tmux_window_name EXIT
+
 if [ "$ACTION" == "edit" ]; then
     set -x
     tmux rename-window "$ENV/inventory"
