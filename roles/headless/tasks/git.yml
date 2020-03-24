@@ -50,11 +50,18 @@
     group: "{{ whoami }}"
 
 - name: configure hub
-  template:
-    src: home/config/hub
+  blockinfile:
+    marker: "# {mark} DOTFILES-MANAGED BLOCK"
+    block: |
+      github.com:
+      - protocol: https
+        user: {{ github_username }}
+        oauth_token: {{ github_oauth_token }}
     dest: "/home/{{ whoami }}/.config/hub"
+    create: true
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+  when: github_username is defined
 
 - name: configure git, gist
   template:
