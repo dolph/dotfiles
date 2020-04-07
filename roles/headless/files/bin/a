@@ -16,8 +16,8 @@ else
     HOSTS=$TARGET
 fi
 
-if [ "$ACTION" != "check" ] && [ "$ACTION" != "play" ] && [ "$ACTION" != "try" ] && [ "$ACTION" != "sh" ] && [ "$ACTION" != "ping" ] && [ "$ACTION" != "edit" ]; then
-    echo "The first argument must be either 'check', 'play', 'try', 'sh', 'ping', or 'edit'."
+if [ "$ACTION" != "check" ] && [ "$ACTION" != "play" ] && [ "$ACTION" != "try" ] && [ "$ACTION" != "sh" ] && [ "$ACTION" != "ping" ] && [ "$ACTION" != "edit" ] && [ "$ACTION" != "diff" ]; then
+    echo "The first argument must be either 'check', 'play', 'try', 'sh', 'ping', 'edit', or 'diff'."
     exit 1
 fi
 
@@ -26,7 +26,7 @@ if [ "$ENV" != "dev" ] && [ "$ENV" != "lab" ] && [ "$ENV" != "prod" ]; then
     exit 1
 fi
 
-if [ "$ACTION" != "edit" ] && [ "$HOSTS" == "null" ]; then
+if [ "$ACTION" != "edit" ] && [ "$ACTION" != "diff" ] && [ "$HOSTS" == "null" ]; then
     echo "The third argument must match one or more hosts in inventory, or specify an inventory."
     exit 1
 fi
@@ -58,6 +58,15 @@ if [ "$ACTION" == "edit" ]; then
     tmux rename-window "$ENV/inventory"
     ansible-vault edit --vault-id "$ENV.pass" "$ENV.yml"
     set +x
+    exit 0
+fi
+
+if [ "$ACTION" == "diff" ]; then
+    # Show a diff of uncommitted changes to an ansible-vault encrypted file
+    # without storing plaintext on disk and without modifying tracked files.
+    git show "HEAD:Ansible/$ENV.yml" > ".$ENV.head.yml"
+    diff --color=always -u20 <(ansible-vault view --vault-id "$ENV.pass" ".$ENV.head.yml") <(ansible-vault view --vault-id "$ENV.pass" "$ENV.yml") || true
+    rm -rf ".$ENV.head.yml"
     exit 0
 fi
 
