@@ -14,7 +14,7 @@ then
 fi
 
 # Upgrade vim plugins
-vim +PluginInstall! +PluginClean! +GoInstallBinaries! +qall
+$EDITOR +PluginInstall! +PluginClean! +GoInstallBinaries! +qall
 
 if [ -f /var/run/reboot-required ]; then
     echo 'Reboot required! Automatically rebooting...'
