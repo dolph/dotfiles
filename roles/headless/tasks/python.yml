@@ -28,5 +28,5 @@
   become: true
   become_user: "{{ whoami }}"
   git:
-    repo: "https://github.com/dolph/virtualenvwrapperlite.git"
+    repo: https://github.com/dolph/virtualenvwrapperlite.git
     dest: "/home/{{ whoami }}/.virtualenvwrapperlite"
