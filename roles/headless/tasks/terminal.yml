@@ -1,0 +1,26 @@
+---
+- name: configure terminal
+  template:
+    src: "home/{{ item }}"
+    dest: "/home/{{ whoami }}/.{{ item }}"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+  with_items:
+  - bash_profile
+  - bashrc
+  - inputrc
+  - profile
+  tags:
+  - terminal
+  - bashrc
+
+- name: ensure a localrc exists
+  copy:
+    content: ""
+    dest: "/home/{{ whoami }}/.localrc"
+    force: false
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+  tags:
+  - terminal
+  - localrc
