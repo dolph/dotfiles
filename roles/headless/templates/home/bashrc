@@ -61,3 +61,23 @@ fi
 
 # Allow local account customization
 . $HOME/.localrc
+
+# Define preexec / precmd to keep tmux environment updated when reattaching.
+if [ -n "$TMUX" ]; then
+    function refresh {
+        export $(tmux show-environment | grep "^WINDOWID")
+    }
+else
+    function refresh {
+        :
+    }
+fi
+function preexec {
+    refresh
+}
+function precmd {
+    refresh
+}
+
+# Enable precmd and preexec support
+source $HOME/.bash-preexec/bash-preexec.sh

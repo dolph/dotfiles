@@ -1,4 +1,11 @@
 ---
+- name: install bash-preexec
+  become: true
+  become_user: "{{ whoami }}"
+  git:
+    repo: https://github.com/rcaloras/bash-preexec.git
+    dest: "/home/{{ whoami }}/.bash-preexec"
+
 - name: configure terminal
   template:
     src: "home/{{ item }}"
