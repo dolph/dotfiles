@@ -10,3 +10,28 @@
     - fonts-hack
     force_apt_get: true
   when: ansible_distribution == 'Ubuntu'
+
+- name: create install directory for hack
+  file:
+    path: /usr/share/fonts/hack
+    state: directory
+  when: ansible_distribution == 'Fedora'
+
+# https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
+- name: install hack
+  copy:
+    src: ttf/{{ item }}
+    dest: /usr/share/fonts/hack/{{ item }}
+  loop:
+  - Hack-Bold.ttf
+  - Hack-BoldItalic.ttf
+  - Hack-Italic.ttf
+  - Hack-Regular.ttf
+  register: new_fonts
+  when: ansible_distribution == 'Fedora'
+
+- name: update the font cache
+  command: fc-cache -v
+  when:
+  - new_fonts.changed
+  - ansible_distribution == 'Fedora'
