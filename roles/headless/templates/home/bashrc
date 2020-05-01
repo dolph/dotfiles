@@ -65,9 +65,11 @@ fi
 # Define preexec / precmd to keep tmux environment updated when reattaching.
 if [ -n "$TMUX" ]; then
     function refresh {
-        export $(tmux show-environment | grep "^WINDOWID")
-        export $(tmux show-environment | grep "^DISPLAY")
-        export $(tmux show-environment | grep "^XAUTHORITY")
+        for var in WINDOWID DISPLAY XAUTHORITY; do
+            if [ -n "$(tmux show-environment | grep "^$var")" ]; then
+                export $(tmux show-environment | grep "^$var")
+            fi
+        done
     }
 else
     function refresh {
