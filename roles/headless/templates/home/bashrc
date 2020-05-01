@@ -66,6 +66,8 @@ fi
 if [ -n "$TMUX" ]; then
     function refresh {
         export $(tmux show-environment | grep "^WINDOWID")
+        export $(tmux show-environment | grep "^DISPLAY")
+        export $(tmux show-environment | grep "^XAUTHORITY")
     }
 else
     function refresh {
