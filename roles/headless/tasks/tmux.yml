@@ -37,6 +37,7 @@
   command: tmux info
   failed_when: false
   changed_when: false
+  check_mode: false # Force this task to run, even in check mode.
   register: tmux_running
 
 - name: apply tmux config
