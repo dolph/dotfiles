@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 REVIEWERS=${1:-null}
 if [ "$BRANCH_NAME" == "master" ]; then
