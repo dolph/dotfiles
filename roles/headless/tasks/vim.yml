@@ -29,3 +29,4 @@
   become: true
   become_user: "{{ whoami }}"
   command: gvim -v +PluginInstall! +PluginClean! +qall
+  no_log: true # prevent vim from messing with ansible's stdout/stderr
