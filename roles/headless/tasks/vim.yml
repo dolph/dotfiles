@@ -1,32 +1,13 @@
-- name: install vim on arch
-  pacman:
-    name: vim
-  when: ansible_distribution == 'Archlinux'
-
-- name: uninstall vi
-  pacman:
-    name: vi
-    state: absent
-  when: ansible_distribution == 'Archlinux'
-
-- name: install vim on ubuntu
-  apt:
-    name: vim
-    force_apt_get: true
-  when: ansible_distribution == 'Ubuntu'
-
-- name: uninstall vim on fedora
+- name: uninstall vim
   dnf:
     name:
     - vim
     - vim-enhanced
     state: absent
-  when: ansible_distribution == 'Fedora'
 
-- name: install gvim on fedora (to get X11 clipboard support)
+- name: install gvim (to get X11 clipboard support)
   dnf:
     name: vim-X11
-  when: ansible_distribution == 'Fedora'
 
 - name: configure vim
   template:
@@ -44,14 +25,7 @@
   register: git_result
   changed_when: "git_result.after|default('after') != git_result.before|default('before')"
 
-- name: install vim plugins
-  become: true
-  become_user: "{{ whoami }}"
-  command: vim +PluginInstall! +PluginClean! +qall
-  when: ansible_distribution != 'Fedora'
-
 - name: install gvim plugins
   become: true
   become_user: "{{ whoami }}"
   command: gvim -v +PluginInstall! +PluginClean! +qall
-  when: ansible_distribution == 'Fedora'

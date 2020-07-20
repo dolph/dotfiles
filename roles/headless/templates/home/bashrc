@@ -1,15 +1,10 @@
 #!/bin/bash
 
-{% if ansible_distribution == 'Fedora' %}
 # Priorities.
 export EDITOR="gvim -v"
 alias e="gvim -v"
 alias vi="gvim -v"
 alias vim="gvim -v"
-{% else %}
-export EDITOR="vim"
-alias e="vim"
-{% endif %}
 
 alias q="exit"
 

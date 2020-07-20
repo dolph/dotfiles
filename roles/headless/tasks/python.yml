@@ -1,21 +1,9 @@
-- name: install virtualenv on arch
-  pacman:
-    name: python-virtualenv
-  when: ansible_distribution == 'Archlinux'
-
-- name: install virtualenv on ubuntu
-  apt:
-    name: python-virtualenv
-    force_apt_get: true
-  when: ansible_distribution == 'Ubuntu'
-
-- name: install python dependencies on fedora
+- name: install python dependencies
   yum:
     name:
     - python3-virtualenv
     - python3-devel
     - python3-flake8
-  when: ansible_distribution == 'Fedora'
 
 - name: configure flake8
   template:

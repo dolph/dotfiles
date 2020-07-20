@@ -1,24 +1,8 @@
-- name: install tmux on arch
-  pacman:
-    name:
-    - tmux
-    - xsel
-  when: ansible_distribution == 'Archlinux'
-
-- name: install tmux on ubuntu
-  apt:
-    name:
-    - tmux
-    - xsel
-    force_apt_get: true
-  when: ansible_distribution == 'Ubuntu'
-
-- name: install tmux on fedora
+- name: install tmux
   yum:
     name:
     - tmux
     - xsel
-  when: ansible_distribution == 'Fedora'
 
 - name: create tmux plugins dir
   become: true

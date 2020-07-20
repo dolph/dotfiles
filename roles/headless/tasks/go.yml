@@ -1,18 +1,6 @@
-- name: install go on arch
-  pacman:
-    name: go
-  when: ansible_distribution == 'Archlinux'
-
-- name: install go on ubuntu
-  apt:
+- name: install golang
+  dnf:
     name: golang
-    force_apt_get: true
-  when: ansible_distribution == 'Ubuntu'
-
-- name: install go on fedora
-  yum:
-    name: golang
-  when: ansible_distribution == 'Fedora'
 
 - name: create GOPATH
   file:
@@ -24,11 +12,4 @@
 - name: install vim-go plugins
   become: true
   become_user: "{{ whoami }}"
-  command: vim +GoInstallBinaries! +qall
-  when: ansible_distribution != 'Fedora'
-
-- name: install vim-go plugins
-  become: true
-  become_user: "{{ whoami }}"
   command: gvim -v +GoInstallBinaries! +qall
-  when: ansible_distribution == 'Fedora'

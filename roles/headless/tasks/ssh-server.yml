@@ -21,6 +21,6 @@
     line: PasswordAuthentication no
 
 - name: restart sshd
-  service:
+  systemd:
     name: sshd
     state: restarted

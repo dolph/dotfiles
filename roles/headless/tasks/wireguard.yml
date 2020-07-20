@@ -81,18 +81,6 @@
   retries: 3
   delay: 0
 
-
-- name: add wireguard apt repository
-  apt_repository:
-    repo: ppa:wireguard/wireguard
-  when: ansible_distribution == 'Ubuntu'
-
-- name: install wireguard
-  apt:
-    name: wireguard
-    update_cache: true
-  when: ansible_distribution == 'Ubuntu'
-
 - name: create config dir
   file:
     path: /etc/wireguard/

@@ -33,7 +33,6 @@
 # Can/should this be undone?
 # - name: enable backwards compatibility for cgroups
 #   command: grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
-#   when: ansible_distribution == 'Fedora'
 
 - name: remove docker group
   group:
