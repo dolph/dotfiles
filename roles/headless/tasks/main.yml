@@ -145,6 +145,11 @@
   include: docker.yml
   tags: docker
 
+- name: install podman
+  dnf:
+    name: podman
+  tags: podman
+
 - name: find wireguard ip from ansible facts
   set_fact:
     wireguard_ip: "{{ ansible_wg0.ipv4.address }}"
