@@ -4,6 +4,10 @@
     name: America/Chicago
   tags: timezone
 
+- name: configure custom fonts
+  include: fonts.yml
+  tags: fonts
+
 - name: configure terminal
   include: terminal.yml
   tags:
@@ -17,10 +21,6 @@
 - name: configure xfce
   include: xfce.yml
   tags: xfce
-
-- name: configure custom fonts
-  include: fonts.yml
-  tags: fonts
 
 - name: install google chrome
   include: chrome.yml
