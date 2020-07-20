@@ -46,11 +46,6 @@ export TXT_TO="{{ txt_to }}"
 export TXT_TWILIO_FROM="{{ txt_twilio_from }}"
 {% endif %}
 
-# Automatically jump into an existing tmux session.
-if [ -z "$TMUX" ]; then
-    tmux attach -d || tmux new
-fi
-
 # Allow local account customization
 . $HOME/.localrc
 
