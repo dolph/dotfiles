@@ -9,12 +9,8 @@ let duration=`expr $end_time - $start_time`;
 
 # emit a notification if the command took longer than 2 seconds
 if [ $duration -ge 2 ] ; then
-    # try to send a text message first
-    if hash txt 2>/dev/null; then
-        $HOME/bin/txt "$* (rc=${rval} time=$(date -d@${duration} -u +%H:%M:%S))"
-
     # try to emit a growl-style notification
-    elif hash notify-send 2>/dev/null; then
+    if hash notify-send 2>/dev/null; then
         # Debian
         notify-send \
             --app-name="Terminal" \
@@ -25,6 +21,12 @@ if [ $duration -ge 2 ] ; then
 
     # and try to make a beep noise
     echo ;
+fi
+
+if [ $duration -ge 1 ] ; then
+    if hash txt 2>/dev/null; then
+        $HOME/bin/txt "$* (rc=${rval} time=$(date -d@${duration} -u +%H:%M:%S))"
+    fi
 fi
 
 exit $rval;
