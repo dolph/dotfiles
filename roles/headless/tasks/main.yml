@@ -141,7 +141,7 @@
   tags:
   - bin
 
-- name: configure docker
+- name: remove docker
   include: docker.yml
   tags: docker
 

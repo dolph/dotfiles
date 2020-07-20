@@ -1,66 +1,41 @@
 ---
-- name: ensure old versions of docker are uninstalled
+- name: ensure docker is uninstalled
   dnf:
     name:
+    - containerd.io
     - docker
+    - docker-ce
+    - docker-ce-cli
     - docker-client
     - docker-client-latest
     - docker-common
+    - docker-engine
+    - docker-engine-selinux
     - docker-latest
     - docker-latest-logrotate
     - docker-logrotate
     - docker-selinux
-    - docker-engine-selinux
-    - docker-engine
     state: absent
-  when: ansible_distribution == 'Fedora'
 
-- name: enable management of dnf repositories and grub
-  dnf:
-    name:
-    - dnf-plugins-core
-    - grubby
-  when: ansible_distribution == 'Fedora'
-
-- name: enable docker repo
+- name: disable docker repo
   yum_repository:
     name: docker
     baseurl: https://download.docker.com/linux/fedora/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/stable/
     description: Docker Community Edition
-  when: ansible_distribution == 'Fedora'
+    state: absent
 
-- name: trust docker's gpg key
+- name: untrust docker's gpg key
   rpm_key:
     key: https://download.docker.com/linux/fedora/gpg
     fingerprint: 060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35
-  when: ansible_distribution == 'Fedora'
+    state: absent
 
-- name: install docker
-  dnf:
-    name:
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
-    update_cache: true
-  when: ansible_distribution == 'Fedora'
+# Can/should this be undone?
+# - name: enable backwards compatibility for cgroups
+#   command: grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
+#   when: ansible_distribution == 'Fedora'
 
-- name: enable backwards compatibility for cgroups
-  command: grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
-  when: ansible_distribution == 'Fedora'
-
-- name: ensure docker is started
-  systemd:
+- name: remove docker group
+  group:
     name: docker
-    state: started
-    enabled: true
-
-- name: ensure user is in docker group
-  user:
-    name: "{{ whoami }}"
-    groups: docker
-    append: true
-
-- name: ensure docker works
-  become: false
-  command: docker run hello-world
-  changed_when: false
+    state: absent
