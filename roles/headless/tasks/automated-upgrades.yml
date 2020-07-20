@@ -1,10 +1,9 @@
 ---
 - name: install dnf-automatic
   dnf:
-    name:
-    - dnf-automatic
-  register: install_dnf_automatic
-  until: install_dnf_automatic.rc == 0
+    name: dnf-automatic
+  register: task
+  until: task is succeeded
   retries: 20
   delay: 0
 
@@ -17,8 +16,7 @@
     group: root
 
 - name: ensure dnf-automatic is running
-  service:
-    name: dnf-automatic
-    state: restarted
+  systemd:
+    name: dnf-automatic.timer
+    state: started
     enabled: true
-  failed_when: false # this will fail to start if ibm repos are installed and not on the IBM network
