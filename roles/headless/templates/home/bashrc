@@ -16,11 +16,8 @@ alias proxy="ssh -D 8123 -q -N"
 # pyc files are annoying
 export PYTHONDONTWRITEBYTECODE=1
 
-# default: PS1='\h:\W \u\$'
-# hostname cwd $
-export PS1="[\[\033[36m\]\t\[\033[39m\]] \[\033[32m\]\u\[\033[39m\]@\[\033[34m\]\h\[\033[39m\]:\[\033[33m\]\w\n\[\033[33m\]\\$ \[\033[40m\]\[$(tput sgr0)\]\[\033[39m\]"
-# cwd $
-# export PS1="\[\033[32m\]\W \[\033[34m\]\\$ \[\033[34m\]\[$(tput sgr0)\]\[\033[96m\]"
+# [time] user@hostname:workdir $
+export PS1="[\[\033[36m\]\t\[\033[39m\]] \[\033[32m\]\u\[\033[39m\]@\[\033[34m\]\h\[\033[39m\]:\[\033[33m\]\w \[\033[32m\]\\$ \[\033[40m\]\[$(tput sgr0)\]\[\033[39m\]"
 
 # Enable color file listings.
 alias ls='ls --almost-all --classify --color=auto'
