@@ -1,56 +1,18 @@
 ---
-# https://copr.fedorainfracloud.org/
-- name: check enabled community repos
-  command: dnf copr list --enabled
-  args:
-    warn: false
-  changed_when: false
-  register: enabled_copr_repos
-  when:
-  - ansible_distribution == 'Fedora'
-  - ansible_distribution_major_version | int == 31
-
-# https://copr.fedorainfracloud.org/
-- name: enable wireguard community repo
-  command: dnf copr enable -y jdoss/wireguard
-  args:
-    warn: false
-  when:
-  - ansible_distribution == 'Fedora'
-  - ansible_distribution_major_version | int == 31
-  - "'jdoss/wireguard' not in enabled_copr_repos.stdout"
-
 - name: install kernel dev stuff
   dnf:
     name:
     - kernel-headers
     - kernel-devel
-  when: ansible_distribution == 'Fedora'
   register: task
   until: task is succeeded
   retries: 3
   delay: 0
 
-- name: install wireguard on Fedora 31
-  dnf:
-    name:
-    - wireguard-dkms
-    - wireguard-tools
-  when:
-  - ansible_distribution == 'Fedora'
-  - ansible_distribution_major_version | int == 31
-  register: task
-  until: task is succeeded
-  retries: 3
-  delay: 0
-
-- name: install wireguard on Fedora 32+
+- name: install wireguard
   dnf:
     name:
     - wireguard-tools
-  when:
-  - ansible_distribution == 'Fedora'
-  - ansible_distribution_major_version | int >= 32
   register: task
   until: task is succeeded
   retries: 3
@@ -61,7 +23,6 @@
     name:
     - iptables-services
   when:
-  - ansible_distribution == 'Fedora'
   - wireguard_ip.endswith('.1')
   register: task
   until: task is succeeded
@@ -74,7 +35,6 @@
     enabled: true
     state: started
   when:
-  - ansible_distribution == 'Fedora'
   - wireguard_ip.endswith('.1')
   register: task
   until: task is succeeded
