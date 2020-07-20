@@ -1,26 +1,16 @@
-# This allows remote X11 clients to send a window ID upon connect, which
-# somehow helps unify clipboards across systems.
-- name: accept remote X Window ID
+- name: configure sshd
   lineinfile:
     path: /etc/ssh/sshd_config
-    line: AcceptEnv WINDOWID
-
-- name: allow X11 forwarding
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    line: X11Forwarding yes
-
-- name: disallow remote root logins
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    line: PermitRootLogin no
-
-- name: disallow password authentication
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    line: PasswordAuthentication no
+    line: "{{ item }}"
+  loop:
+  - AcceptEnv WINDOWID # accept remote X Window ID, to unify remote and local clipboards
+  - X11Forwarding yes # allow X11 forwarding
+  - PermitRootLogin no # disallow remote root logins
+  - PasswordAuthentication no # disallow password authentication
+  register: sshd_config
 
 - name: restart sshd
   systemd:
     name: sshd
     state: restarted
+  when: sshd_config.changed
