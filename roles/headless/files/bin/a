@@ -16,13 +16,8 @@ else
     HOSTS=$TARGET
 fi
 
-if [ "$ACTION" != "check" ] && [ "$ACTION" != "play" ] && [ "$ACTION" != "try" ] && [ "$ACTION" != "sh" ] && [ "$ACTION" != "ping" ] && [ "$ACTION" != "edit" ] && [ "$ACTION" != "diff" ]; then
-    echo "The first argument must be either 'check', 'play', 'try', 'sh', 'ping', 'edit', or 'diff'."
-    exit 1
-fi
-
-if [ "$ENV" != "dev" ] && [ "$ENV" != "lab" ] && [ "$ENV" != "prod" ]; then
-    echo "The second argument must be either 'dev', 'lab', or 'prod'."
+if [ "$ACTION" != "list" ] && [ "$ACTION" != "check" ] && [ "$ACTION" != "play" ] && [ "$ACTION" != "try" ] && [ "$ACTION" != "sh" ] && [ "$ACTION" != "ping" ] && [ "$ACTION" != "edit" ] && [ "$ACTION" != "diff" ]; then
+    echo "The first argument must be either 'list', 'check', 'play', 'try', 'sh', 'ping', 'edit', or 'diff'."
     exit 1
 fi
 
@@ -62,11 +57,20 @@ if [ "$ACTION" == "edit" ]; then
 fi
 
 if [ "$ACTION" == "diff" ]; then
+    if [ ! -f "$ENV" ]; then
+        echo "The second argument must correspond to an encrypted file in the current directory."
+        exit 1
+    fi
+
+    if [ "$TARGET" == "null" ]; then
+        TARGET=HEAD
+    fi
+    base_filename=$(echo $ENV | cut -d'.' -f1)
     # Show a diff of uncommitted changes to an ansible-vault encrypted file
     # without storing plaintext on disk and without modifying tracked files.
-    git show "HEAD:Ansible/$ENV.yml" > ".$ENV.head.yml"
-    diff --color=always -u20 <(ansible-vault view --vault-id "$ENV.pass" ".$ENV.head.yml") <(ansible-vault view --vault-id "$ENV.pass" "$ENV.yml") || true
-    rm -rf ".$ENV.head.yml"
+    git show "$TARGET:Ansible/$ENV" > ".$ENV.$TARGET"
+    diff --color=always -u20 <(ansible-vault view --vault-id "$base_filename.pass" ".$ENV.$TARGET") <(ansible-vault view --vault-id "$base_filename.pass" "$ENV") || true
+    rm -rf ".$ENV.$TARGET"
     exit 0
 fi
 
@@ -83,9 +87,11 @@ elif [ "$ACTION" == 'ping' ]; then
     set +x
     exit 0
 elif [ "$ACTION" == 'check' ] || [ "$ACTION" == 'try' ]; then
-    check_flag='--check'
+    modifier_flag='--check'
+elif [ "$ACTION" == 'list' ]; then
+    modifier_flag='--list-tasks'
 else
-    check_flag=''
+    modifier_flag=''
 fi
 
 if [ "$SCOPE" != 'null' ]; then
@@ -116,12 +122,12 @@ else
 fi
 
 set -x
-ANSIBLE_DISPLAY_OK_HOSTS=false $try ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${check_flag} -v
+ANSIBLE_DISPLAY_OK_HOSTS=false $try ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${modifier_flag} -v
 set +x
 
 if [ "$ACTION" == 'try' ]; then
-    check_flag=''
+    modifier_flag=''
     set -x
-    ANSIBLE_DISPLAY_OK_HOSTS=false ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${check_flag} -v
+    ANSIBLE_DISPLAY_OK_HOSTS=false ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${modifier_flag} -v
     set +x
 fi
