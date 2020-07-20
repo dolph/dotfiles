@@ -22,4 +22,5 @@
   dnf:
     name:
     - vlc
+    - vlc-extras
   when: ansible_distribution == 'Fedora'
