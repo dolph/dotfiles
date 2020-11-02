@@ -58,15 +58,15 @@
   tags: python
 
 - name: install additional packages on fedora
-  yum:
+  dnf:
     name:
     - autossh
     - curl
     - htop
+    - jq
     - sshpass
     - tree
     - vagrant
-    - VirtualBox
 
 - name: create a bin directory
   file:
