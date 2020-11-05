@@ -11,3 +11,5 @@
     insteadOf = https://github.ibm.com/
 [hub]
     host = github.ibm.com
+[pull]
+    ff = only
