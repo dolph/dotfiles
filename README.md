@@ -13,4 +13,5 @@ To deploy to `localhost`:
 
     curl https://raw.githubusercontent.com/dolph/dotfiles/master/bootstrap.sh | bash
     cd $HOME/dotfiles
+    source ~/venv/ansible/bin/activate
     ansible-playbook --ask-become-pass headless.yml # or desktop.yml
