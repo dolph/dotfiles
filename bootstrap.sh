@@ -1,4 +1,5 @@
 #!/bin/bash
+set =e
 sudo dnf -y install git python-virtualenv
 mkdir $HOME/venv
 virtualenv $HOME/venv/ansible
