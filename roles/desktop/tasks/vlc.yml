@@ -3,7 +3,7 @@
   dnf:
     name:
     - rpmfusion-free-release
-    - rpmfusion-free-nonrelease
+    - rpmfusion-nonfree-release
 
 - name: install vlc
   dnf:
