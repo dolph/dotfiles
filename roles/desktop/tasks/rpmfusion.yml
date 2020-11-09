@@ -1,0 +1,6 @@
+# This is required for VLC and Nvidia drivers
+- name: install rpmfusion
+  dnf:
+    name:
+    - rpmfusion-free-release
+    - rpmfusion-nonfree-release

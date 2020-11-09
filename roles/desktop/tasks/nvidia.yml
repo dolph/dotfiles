@@ -1,0 +1,20 @@
+- name: check for nvidia devices
+  shell: lspci | grep --extended-regexp 'VGA|3D' | grep --ignore-case nvidia
+  check_mode: false # Force this task to run, even in check mode.
+  register: nvidia_device
+  failed_when: false
+
+# This conflicts with the nvidia driver.
+- name: ensure nouveau is uninstalled
+  dnf:
+    name:
+    - xorg-x11-drv-nouveau
+    state: absent
+  when: nvidia_device.rc == 0
+
+- name: install nvidia drivers
+  dnf:
+    name:
+    - kmod-nvidia
+    - xorg-x11-drv-nvidia
+  when: nvidia_device.rc == 0

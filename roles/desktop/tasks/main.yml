@@ -14,6 +14,10 @@
   - terminal
   - xfce
 
+- name: install rpmfusion
+  include: rpmfusion.yml
+  tags: rpmfusion
+
 - name: configure vlc
   include: vlc.yml
   tags: vlc
@@ -25,3 +29,7 @@
 - name: install google chrome
   include: chrome.yml
   tags: chrome
+
+- name: install nvidia drivers
+  include: nvidia.yml
+  tags: nvidia
