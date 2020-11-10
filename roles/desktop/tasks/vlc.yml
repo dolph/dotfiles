@@ -4,3 +4,14 @@
     name:
     - vlc
     - vlc-extras
+
+- name: add VLC + Chromecast service to firewall
+  template:
+    src: etc/firewalld/services/vlc-chromecast.xml
+    dest: /etc/firewalld/services/vlc-chromecast.xml
+
+- name: enable VLC + Chromecast service in firewall
+  ansible.posix.firewalld:
+    service: vlc-chromecast
+    state: enabled
+    permanent: true
