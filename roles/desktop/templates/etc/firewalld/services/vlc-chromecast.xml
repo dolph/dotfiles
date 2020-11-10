@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service version="3">
+  <short>vlc-chromecast</short>
+  <description>Allows VLC to stream to a Chromecast.</description>
+  <port port="8009" protocol="tcp"/>
+  <port port="8010" protocol="tcp"/>
+</service>
