@@ -1,4 +1,4 @@
-# This is required for VLC and Nvidia drivers
+# This is required for VLC, Nvidia drivers, and Virtualbox
 - name: install rpmfusion
   dnf:
     name:

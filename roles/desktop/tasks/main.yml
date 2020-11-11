@@ -32,3 +32,7 @@
 - name: install nvidia drivers
   include: nvidia.yml
   tags: nvidia
+
+- name: install virtualbox
+  include: virtualbox.yml
+  tags: virtualbox
