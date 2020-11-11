@@ -3,6 +3,7 @@
   check_mode: false # Force this task to run, even in check mode.
   register: nvidia_device
   failed_when: false
+  changed_when: false
 
 # This conflicts with the nvidia driver.
 - name: ensure nouveau is uninstalled
