@@ -21,17 +21,20 @@
       src: panel-backup.tar.gz
       decrypt: true
       dest: /tmp/panel-backup.tar.gz
+    tags: panel
 
   - name: load xfce panel backup
     become: true
     become_user: "{{ whoami }}"
     command: xfce4-panel-profiles load /tmp/panel-backup.tar.gz
+    tags: panel
 
   always:
   - name: cleanup decrypted panel backup
     file:
       path: /tmp/panel-backup.tar.gz
       state: absent
+    tags: panel
 
 - name: install dependencies to manage xml
   dnf:
