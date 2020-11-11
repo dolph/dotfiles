@@ -1,4 +1,3 @@
----
 - name: install workstation repos
   dnf:
     name: fedora-workstation-repositories
