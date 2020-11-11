@@ -103,7 +103,8 @@ call vundle#begin()
 " Let Vundle manage itself. To install new plugins, update all plugins, and
 " remove extra plugins without any confirmations (such as after modifying the
 " set of plugins), run:
-"   vim +PluginInstall! +PluginClean! +GoInstallBinaries! +qall
+"   vim +PluginInstall! +PluginClean! +qall
+"   vim +GoInstallBinaries +qall
 Plugin 'gmarik/Vundle.vim'
 
 " Custom color scheme
