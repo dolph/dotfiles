@@ -6,4 +6,4 @@ sudo dnf upgrade -y --refresh
 $EDITOR +PluginInstall! +PluginClean! +qall
 $EDITOR +GoInstallBinaries +qall
 
-sudo dnf restart-required -r
+sudo dnf needs-restarting -r
