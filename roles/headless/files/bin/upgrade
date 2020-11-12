@@ -1,23 +1,9 @@
 #!/bin/bash
 set -e
-if [ -n "$(command -v apt )" ]
-then
-    sudo apt update
-    sudo apt upgrade -V -y
-    sudo apt autoremove -y
-    sudo apt autoclean -y
-    sudo apt clean
-elif [ -n "$(command -v yum )" ]
-then
-    sudo yum update -y
-    sudo yum upgrade -y
-fi
+sudo dnf upgrade -y --refresh
 
 # Upgrade vim plugins
 $EDITOR +PluginInstall! +PluginClean! +qall
 $EDITOR +GoInstallBinaries +qall
 
-if [ -f /var/run/reboot-required ]; then
-    echo 'Reboot required! Automatically rebooting...'
-    sudo reboot -n
-fi
+sudo dnf restart-required -r
