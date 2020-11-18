@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
+
 sudo dnf upgrade -y --refresh
+sudo dnf clean packages
 
 # Upgrade vim plugins
 $EDITOR +PluginInstall! +PluginClean! +qall
