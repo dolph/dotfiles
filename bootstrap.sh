@@ -7,3 +7,4 @@ source $HOME/venv/ansible/bin/activate
 git clone https://github.com/dolph/dotfiles.git $HOME/dotfiles
 pip install -r $HOME/dotfiles/requirements.txt
 ansible-galaxy collection install ansible.posix
+ansible-galaxy collection install community.general

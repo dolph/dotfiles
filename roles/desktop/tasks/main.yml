@@ -3,6 +3,12 @@
     name: America/Chicago
   tags: timezone
 
+- name: disable dnfdragora-updater
+  include: dnfdragora.yml
+  tags:
+  - dnf
+  - dnfdragora
+
 - name: configure custom fonts
   include: fonts.yml
   tags: fonts

@@ -17,7 +17,9 @@
 
 - name: configure automated upgrades
   include: automated-upgrades.yml
-  tags: dnf-automatic
+  tags:
+  - dnf
+  - dnf-automatic
 
 - name: configure ssh client
   include: ssh-client.yml
