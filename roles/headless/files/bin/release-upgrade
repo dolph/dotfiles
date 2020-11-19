@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+if upgrade; then
+    source /etc/os-release
+    echo 'sudo dnf system-upgrade download --refresh --releasever="$(expr $VERSION_ID + 1)"'
+    echo 'sudo dnf system-upgrade reboot'
+fi

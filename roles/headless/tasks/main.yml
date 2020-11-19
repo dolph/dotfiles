@@ -64,6 +64,7 @@
     name:
     - autossh
     - curl
+    - dnf-plugin-system-upgrade
     - htop
     - jq
     - sshpass
