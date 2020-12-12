@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 sudo dnf -y install git python-virtualenv
-mkdir $HOME/venv
+mkdir -p $HOME/venv
 virtualenv $HOME/venv/ansible
 source $HOME/venv/ansible/bin/activate
 git clone https://github.com/dolph/dotfiles.git $HOME/dotfiles
