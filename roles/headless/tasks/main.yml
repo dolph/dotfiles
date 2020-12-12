@@ -59,10 +59,6 @@
   include: python.yml
   tags: python
 
-- name: configure vagrant
-  include: vagrant.yml
-  tags: vagrant
-
 - name: install additional packages on fedora
   dnf:
     name:

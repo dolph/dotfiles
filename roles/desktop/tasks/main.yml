@@ -42,3 +42,7 @@
 - name: install virtualbox
   include: virtualbox.yml
   tags: virtualbox
+
+- name: configure vagrant
+  include: vagrant.yml
+  tags: vagrant
