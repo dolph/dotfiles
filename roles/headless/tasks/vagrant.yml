@@ -8,6 +8,9 @@
   blockinfile:
     path: /home/{{ whoami }}/.vagrant.d/Vagrantfile
     marker: "# {mark} ANSIBLE MANAGED RED HAT SUBSCRIPTION BLOCK"
+    create: true
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
     block: |
       Vagrant.configure('2') do |config|
         config.registration.username = '{{ redhat_subscription_username }}'
