@@ -46,3 +46,7 @@
 - name: configure vagrant
   include: vagrant.yml
   tags: vagrant
+
+- name: configure pulseaudio
+  include: pulseaudio.yml
+  tags: pulseaudio
