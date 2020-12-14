@@ -1,2 +1,3 @@
 - name: restart pulseaudio
+  become_user: "{{ whoami }}"
   command: pulseaudio -k
