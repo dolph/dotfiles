@@ -1,5 +1,5 @@
 - name: install tmux
-  yum:
+  dnf:
     name:
     - tmux
     - xsel
