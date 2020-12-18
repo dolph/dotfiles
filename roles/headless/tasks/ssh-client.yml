@@ -18,7 +18,7 @@
   args:
     creates: "/home/{{ whoami }}/.ssh/config"
 
-- name: set ssh config permissions0
+- name: set ssh config permissions
   file:
     path: "/home/{{ whoami }}/.ssh/config"
     owner: "{{ whoami }}"
