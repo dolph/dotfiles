@@ -131,6 +131,9 @@ Plugin 'fatih/vim-go'
 " TOML support
 Plugin 'cespare/vim-toml'
 
+" Syntax highlighting for CSV files
+Plugin 'mechatroner/rainbow_csv'
+
 " Markdown support
 " Plugin 'godlygeek/tabular' " must appear before plasticboy/vim-markdown
 " Plugin 'plasticboy/vim-markdown'
