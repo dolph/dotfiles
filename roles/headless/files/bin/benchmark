@@ -1,0 +1,32 @@
+#!/bin/bash
+ITERATIONS=3
+COMMAND="$*"
+if [[ "$1" =~ ^[0-9]+$ ]]; then
+    ITERATIONS="$1"
+    shift
+    COMMAND="$*"
+fi
+
+((total_time=0))
+((successes=0))
+((failures=0))
+
+function status {
+    ((total=successes+failures))
+    echo
+    echo "Success rate: $(echo "100 * $successes/$total" | bc)% ($successes / $total)"
+    echo "Average time: $(echo "$total_time/$total/1000000" | bc) ms"
+    echo
+}
+trap status EXIT
+for i in $(seq 1 $ITERATIONS); do
+    start_time=$(date +%s%N)
+    if $COMMAND; then
+        ((successes=successes+1))
+    else
+        ((failures=failures+1))
+    fi
+    end_time=$(date +%s%N)
+    ((total_time=total_time+(end_time-start_time)))
+    status
+done
