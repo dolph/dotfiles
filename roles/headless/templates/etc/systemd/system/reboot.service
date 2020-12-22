@@ -1,0 +1,10 @@
+[Unit]
+Description=Reboot automatically wheen needed
+Wants=reboot.timer
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "dnf needs-restarting -r || shutdown -r"
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Reboot when needed on Monday mornings
+Requires=reboot.service
+
+[Timer]
+Unit=reboot.service
+OnCalendar=Mon *-*-* *:14:00
+
+[Install]
+WantedBy=timers.target

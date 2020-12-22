@@ -20,3 +20,21 @@
     name: dnf-automatic.timer
     state: started
     enabled: true
+
+- name: schedule automatic reboots when necessary
+  template:
+    src: etc/systemd/system/{{ unit }}
+    dest: /etc/systemd/system/{{ unit }}
+  loop:
+  - reboot.service
+  - reboot.timer
+  loop_control:
+    loop_var: unit
+  register: reboot_units
+
+- name: enable scheduled reboots
+  systemd:
+    name: reboot.timer
+    state: started
+    enabled: true
+    daemon_reload: "{{ reboot_units.changed }}"
