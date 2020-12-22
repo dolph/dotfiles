@@ -1,12 +1,14 @@
 - name: configure sshd
   lineinfile:
     path: /etc/ssh/sshd_config
-    line: "{{ item }}"
-  loop:
-  - AcceptEnv WINDOWID # accept remote X Window ID, to unify remote and local clipboards
-  - X11Forwarding yes # allow X11 forwarding
-  - PermitRootLogin no # disallow remote root logins
-  - PasswordAuthentication no # disallow password authentication
+    regex: '^{{ item.key }}'
+    insertafter: '^#( )?{{ item.key }} '
+    line: "{{ item.key }} {{ item.value }}"
+  with_dict:
+  - AcceptEnv: 'WINDOWID' # accept remote X Window ID, to unify remote and local clipboards
+  - X11Forwarding: 'yes' # allow X11 forwarding
+  - PermitRootLogin: 'no' # disallow remote root logins
+  - PasswordAuthentication: 'no' # disallow password authentication
   register: sshd_config
 
 - name: restart sshd
