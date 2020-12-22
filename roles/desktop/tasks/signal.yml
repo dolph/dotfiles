@@ -1,0 +1,14 @@
+- name: install snapd
+  dnf:
+    name: snapd
+
+# - name: enable "classic" snap support
+#   file:
+#     path: /snap
+#     dest: /var/lib/snapd/snap
+#     state: link
+
+- name: install signal
+  community.general.snap:
+    name: signal-desktop
+    # classic: true
