@@ -50,3 +50,9 @@
 - name: configure pulseaudio
   include: pulseaudio.yml
   tags: pulseaudio
+
+- name: configure signal
+  include: signal.yml
+  tags:
+  - signal
+  - never
