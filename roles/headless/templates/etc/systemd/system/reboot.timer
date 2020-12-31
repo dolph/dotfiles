@@ -5,6 +5,7 @@ Requires=reboot.service
 [Timer]
 Unit=reboot.service
 OnCalendar=Mon *-*-* 14:00:00
+RandomizedDelaySec=7200
 
 [Install]
 WantedBy=timers.target
