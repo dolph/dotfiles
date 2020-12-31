@@ -2,9 +2,11 @@
     ui = true
 [help]
     autocorrect = 1
+{% if full_name is defined and email is defined %}
 [user]
     email = {{ email }}
     name = {{ full_name }}
+{% endif %}
 [core]
     excludesfile = /home/{{ whoami }}/.gitignore_global
 [url "git@github.ibm.com:"]
