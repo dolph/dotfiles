@@ -1,16 +1,7 @@
-- name: configure xmodmap
-  template:
-    src: home/Xmodmap
-    dest: "/home/{{ whoami }}/.Xmodmap"
-    owner: "{{ whoami }}"
-    group: "{{ whoami }}"
-  register: xmodmap
-
-- name: apply xmodmap
-  become: true
-  become_user: "{{ whoami }}"
-  shell: if [ -n "${DISPLAY+x}" ]; then xmodmap ~/.Xmodmap; fi
-  when: xmodmap.changed
+- name: remove old xmodmap config to remap caps lock
+  file:
+    path: "/home/{{ whoami }}/.Xmodmap"
+    state: absent
 
 - name: load panel from backup
   block:
