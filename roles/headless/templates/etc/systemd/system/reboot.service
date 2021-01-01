@@ -1,5 +1,5 @@
 [Unit]
-Description=Reboot automatically wheen needed
+Description=Reboot automatically when needed
 Wants=reboot.timer
 
 [Service]
