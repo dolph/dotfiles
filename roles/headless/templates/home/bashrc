@@ -54,27 +54,3 @@ export SUB_PASSWORD='{{ redhat_subscription_password }}'
 
 # Allow local account customization
 . $HOME/.localrc
-
-# Define preexec / precmd to keep tmux environment updated when reattaching.
-if [ -n "$TMUX" ]; then
-    function refresh {
-        for var in WINDOWID DISPLAY XAUTHORITY; do
-            if [ -n "$(tmux show-environment | grep "^$var")" ]; then
-                export $(tmux show-environment | grep "^$var")
-            fi
-        done
-    }
-else
-    function refresh {
-        :
-    }
-fi
-function preexec {
-    refresh
-}
-function precmd {
-    refresh
-}
-
-# Enable precmd and preexec support
-source $HOME/.bash-preexec/bash-preexec.sh
