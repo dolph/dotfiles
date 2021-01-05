@@ -23,11 +23,15 @@
 
 - name: configure ssh client
   include: ssh-client.yml
-  tags: ssh
+  tags:
+  - ssh
+  - ssh-client
 
 - name: configure ssh server
   include: ssh-server.yml
-  tags: ssh
+  tags:
+  - ssh-server
+  - ssh
 
 - name: configure terminal
   include: terminal.yml
