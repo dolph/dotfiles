@@ -1,0 +1,13 @@
+- name: copy default dnfdragora configuration
+  copy:
+    src: /etc/xdg/autostart/org.mageia.dnfdragora-updater.desktop
+    dest: /home/{{ whoami }}/.config/autostart/org.mageia.dnfdragora-updater.desktop
+    force: false
+
+- name: hide dnfdragora
+  community.general.ini_file:
+    path: /home/{{ whoami }}/.config/autostart/org.mageia.dnfdragora-updater.desktop
+    section: Desktop Entry
+    option: Hidden
+    value: 'true'
+    no_extra_spaces: true

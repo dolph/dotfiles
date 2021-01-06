@@ -63,9 +63,10 @@
     no_extra_spaces: true
   with_dict:
     Name: Unclutter
-    Exec: unclutter -idle 3
+    Exec: unclutter --timeout 3
     Comment: Launch Unclutter to hide the mouse
-    Terminal: false
+    Terminal: 'false'
     Type: Application
-    StartupNotify: false
+    StartupNotify: 'false'
     Icon: unclutter
+  tags: ucconfig

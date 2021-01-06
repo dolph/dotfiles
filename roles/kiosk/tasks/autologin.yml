@@ -1,0 +1,25 @@
+- name: create autologin user group
+  group:
+    name: autologin
+
+- name: add user to autologin group
+  user:
+    name: "{{ whoami }}"
+    groups: autologin
+    append: true
+
+- name: automatically login as personal user
+  ini_file:
+    path: /etc/lightdm/lightdm.conf
+    section: SeatDefaults
+    option: autologin-user
+    value: "{{ whoami }}"
+    no_extra_spaces: true
+
+- name: automatically login immediately
+  ini_file:
+    path: /etc/lightdm/lightdm.conf
+    section: SeatDefaults
+    option: autologin-user-timeout
+    value: '0'
+    no_extra_spaces: true

@@ -3,29 +3,14 @@
     name: America/Chicago
   tags: timezone
 
-- name: remove screensavers
-  dnf:
-    name: xscreensaver*
-    state: absent
-
 - name: install package dependencies
   dnf:
     name:
     - firefox
 
-- name: automatically login as personal user
-  ini_file:
-    path: /etc/lightdm/lightdm.conf
-    section: LightDM
-    option: autologin-user
-    value: "{{ whoami }}"
-
-- name: automatically login immediately
-  ini_file:
-    path: /etc/lightdm/lightdm.conf
-    section: LightDM
-    option: autologin-user-timeout
-    value: 0
+- name: automatically login on boot
+  include: autologin.yml
+  tags: autologin
 
 - name: launch Firefox in kiosk mode automatically
   become: true
@@ -49,24 +34,10 @@
   include: unclutter.yml
   tags: unclutter
 
-- name: disable display power management on boot
-  become: true
-  become_user: "{{ whoami}}"
-  ini_file:
-    path: /home/{{ whoami }}/.config/autostart/power-manager.desktop
-    section: Desktop Entry
-    option: "{{ item.key }}"
-    value: "{{ item.value }}"
-    no_extra_spaces: true
-  with_dict:
-    Name: Power Manager
-    Exec: xfce4-power-manager -q
-    Comment: Disable power manager
-    Terminal: false
-    Type: Application
-    StartupNotify: false
+- name: disable dnfdragora notifications
+  include: dnfdragora.yml
+  tags: dnfdragora
 
-- name: disable display power management immediately
-  become: true
-  become_user: "{{ whoami }}"
-  command: xfce4-power-manager -q
+- name: keep the display on permanently
+  include: stay-on.yml
+  tags: stay-on

@@ -1,0 +1,26 @@
+- name: remove screensavers
+  dnf:
+    name: xscreensaver*
+    state: absent
+
+- name: disable display power management on boot
+  become: true
+  become_user: "{{ whoami}}"
+  ini_file:
+    path: /home/{{ whoami }}/.config/autostart/power-manager.desktop
+    section: Desktop Entry
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: true
+  with_dict:
+    Name: Power Manager
+    Exec: xfce4-power-manager -q
+    Comment: Disable power manager
+    Terminal: false
+    Type: Application
+    StartupNotify: false
+
+- name: disable display power management immediately
+  become: true
+  become_user: "{{ whoami }}"
+  command: xfce4-power-manager -q
