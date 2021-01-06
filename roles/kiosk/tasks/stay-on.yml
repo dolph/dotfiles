@@ -14,7 +14,7 @@
     no_extra_spaces: true
   with_dict:
     Name: Power Manager
-    Exec: xfce4-power-manager -q
+    Exec: sh -c "sleep 60; xfce4-power-manager -q"
     Comment: Disable power manager
     Terminal: false
     Type: Application
@@ -38,7 +38,7 @@
     no_extra_spaces: true
   with_dict:
     Name: Disable Energy Star
-    Exec: xset -dpms
+    Exec: sh -c "sleep 60; xset -dpms"
     Comment: Disable energy star power management for display
     Terminal: false
     Type: Application
