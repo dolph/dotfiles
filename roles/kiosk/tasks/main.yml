@@ -3,32 +3,13 @@
     name: America/Chicago
   tags: timezone
 
-- name: install package dependencies
-  dnf:
-    name:
-    - firefox
-
 - name: automatically login on boot
   include: autologin.yml
   tags: autologin
 
-- name: launch Firefox in kiosk mode automatically
-  become: true
-  become_user: "{{ whoami}}"
-  ini_file:
-    path: /home/{{ whoami }}/.config/autostart/firefox.desktop
-    section: Desktop Entry
-    option: "{{ item.key }}"
-    value: "{{ item.value }}"
-    no_extra_spaces: true
-  with_dict:
-    Name: Firefox
-    Exec: /usr/bin/firefox --kiosk https://play.google.com/store/movies
-    Comment: Launch Firefox in kiosk mode
-    Terminal: false
-    Type: Application
-    StartupNotify: false
-    Icon: firefox
+- name: configure firefox
+  include: firefox.yml
+  tags: firefox
 
 - name: hide the mouse when idle
   include: unclutter.yml
