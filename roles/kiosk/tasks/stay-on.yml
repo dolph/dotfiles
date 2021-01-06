@@ -24,3 +24,31 @@
   become: true
   become_user: "{{ whoami }}"
   command: xfce4-power-manager -q
+  async: 60
+  poll: 0
+
+- name: disable energy star on boot
+  become: true
+  become_user: "{{ whoami }}"
+  ini_file:
+    path: /home/{{ whoami }}/.config/autostart/energy-star.desktop
+    section: Desktop Entry
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: true
+  with_dict:
+    Name: Disable Energy Star
+    Exec: xset -dpms
+    Comment: Disable energy star power management for display
+    Terminal: false
+    Type: Application
+    StartupNotify: false
+
+- name: disable energy star immediately
+  become: true
+  become_user: "{{ whoami }}"
+  environment:
+    DISPLAY: ":0.0"
+  command: xset -dpms
+  async: 60
+  poll: 0

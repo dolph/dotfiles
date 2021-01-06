@@ -14,16 +14,9 @@
     no_extra_spaces: true
   with_dict:
     Name: Firefox
-    Exec: /usr/bin/firefox --kiosk https://play.google.com/store/movies
+    Exec: /usr/bin/firefox --kiosk "{{ kiosk_url | default('https://google.com/') }}"
     Comment: Launch Firefox in kiosk mode
     Terminal: false
     Type: Application
     StartupNotify: false
     Icon: firefox
-
-- name: launch Firefox in kiosk mode immediately
-  become: true
-  become_user: "{{ whoami }}"
-  command: /usr/bin/firefox --kiosk https://play.google.com/store/movies
-  async: 45
-  poll: 0
