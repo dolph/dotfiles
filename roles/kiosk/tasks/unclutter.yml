@@ -1,0 +1,71 @@
+- name: install package dependencies
+  dnf:
+    name:
+    - arm-none-eabi-binutils-cs
+    - arm-none-eabi-gcc-cs
+    - arm-none-eabi-gcc-cs-c++
+    - arm-none-eabi-newlib
+    - asciidoc
+    - gcc
+    - libX11-devel
+    - libXfixes-devel
+    - libXi-devel
+    - libev-devel
+    - make
+
+- name: clone unclutter
+  become: true
+  become_user: "{{ whoami }}"
+  git:
+    repo: https://github.com/Airblader/unclutter-xfixes
+    dest: "/home/{{ whoami }}/unclutter"
+    version: v1.3
+  register: unclutter_git
+
+- name: clean unclutter
+  become: true
+  become_user: "{{ whoami }}"
+  command:
+    chdir: "/home/{{ whoami }}/unclutter"
+    cmd: make clean
+  when: unclutter_git.changed
+
+- name: link wrong package config (hack)
+  file:
+    path: /usr/bin/armv7hnl-redhat-linux-gnueabi-pkg-config
+    src: /usr/bin/armv7hl-redhat-linux-gnueabi-pkg-config
+    state: link
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=1906956
+# /usr/bin/pkg-config: line 8: /usr/bin/armv7hnl-redhat-linux-gnueabi-pkg-config: No such file or directory
+- name: build unclutter
+  become: true
+  become_user: "{{ whoami }}"
+  command:
+    chdir: "/home/{{ whoami }}/unclutter"
+    cmd: make
+  register: build_unclutter
+
+- name: install unclutter
+  command:
+    chdir: "/home/{{ whoami }}/unclutter"
+    cmd: make install
+  when: build_unclutter.changed
+
+- name: hide the mouse whenever it's idle
+  become: true
+  become_user: "{{ whoami}}"
+  ini_file:
+    path: /home/{{ whoami }}/.config/autostart/unclutter.desktop
+    section: Desktop Entry
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: true
+  with_dict:
+    Name: Unclutter
+    Exec: unclutter -idle 3
+    Comment: Launch Unclutter to hide the mouse
+    Terminal: false
+    Type: Application
+    StartupNotify: false
+    Icon: unclutter
