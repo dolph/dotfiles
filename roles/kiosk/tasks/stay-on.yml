@@ -27,7 +27,7 @@
   async: 60
   poll: 0
 
-- name: disable energy star on boot
+- name: disable energy star and screensaver on boot
   become: true
   become_user: "{{ whoami }}"
   ini_file:
@@ -38,8 +38,8 @@
     no_extra_spaces: true
   with_dict:
     Name: Disable Energy Star
-    Exec: sh -c "sleep 60; xset -dpms"
-    Comment: Disable energy star power management for display
+    Exec: sh -c "sleep 60; xset -dpms; xset s noblank; xset s off;"
+    Comment: Disable display power management
     Terminal: false
     Type: Application
     StartupNotify: false
