@@ -30,12 +30,6 @@
     cmd: make clean
   when: unclutter_git.changed
 
-- name: link wrong package config (hack)
-  file:
-    path: /usr/bin/armv7hnl-redhat-linux-gnueabi-pkg-config
-    src: /usr/bin/armv7hl-redhat-linux-gnueabi-pkg-config
-    state: link
-
 # https://bugzilla.redhat.com/show_bug.cgi?id=1906956
 # /usr/bin/pkg-config: line 8: /usr/bin/armv7hnl-redhat-linux-gnueabi-pkg-config: No such file or directory
 - name: build unclutter

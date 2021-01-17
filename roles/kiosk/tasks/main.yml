@@ -3,13 +3,25 @@
     name: America/Chicago
   tags: timezone
 
+- name: install xfce
+  dnf:
+    name: '@Xfce Desktop'
+  tags: xfce
+
+- name: boot into graphical desktop
+  file:
+    src: /lib/systemd/system/runlevel5.target
+    path: /etc/systemd/system/default.target
+    state: link
+  tags: xfce
+
 - name: automatically login on boot
   include: autologin.yml
   tags: autologin
 
-- name: configure firefox
-  include: firefox.yml
-  tags: firefox
+- name: configure chromium
+  include: chromium.yml
+  tags: chromium
 
 - name: hide the mouse when idle
   include: unclutter.yml

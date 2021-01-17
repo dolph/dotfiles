@@ -1,0 +1,21 @@
+- name: install chromium
+  dnf:
+    name: chromium
+
+- name: launch Chromium in kiosk mode automatically
+  become: true
+  become_user: "{{ whoami }}"
+  ini_file:
+    path: /home/{{ whoami }}/.config/autostart/chromium.desktop
+    section: Desktop Entry
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: true
+  with_dict:
+    Name: Chromium
+    Exec: /usr/bin/chromium-browser --kiosk "{{ kiosk_url | default('https://google.com/') }}"
+    Comment: Launch Chromium in kiosk mode
+    Terminal: false
+    Type: Application
+    StartupNotify: false
+    Icon: chromium
