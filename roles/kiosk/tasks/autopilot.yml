@@ -1,0 +1,36 @@
+- name: enable SSH forwarding for sudo
+  lineinfile:
+    path: /etc/sudoers
+    insertafter: '^#?\s*Defaults\s+env_keep\b'
+    line: 'Defaults env_keep += "SSH_AUTH_SOCK"'
+
+- name: get value of SSH_AUTH_SOCK
+  command: echo $SSH_AUTH_SOCK
+  changed_when: false
+  register: ssh_auth_sock
+
+- name: let whoami read the SSH agent remote socket dir
+  acl:
+    path: "{{ ssh_auth_sock.stdout | dirname }}"
+    entity: "{{ whoami }}"
+    etype: user
+    permissions: x
+    state: present
+
+- name: let whoami use the SSH agent remote socket
+  acl:
+    path: "{{ ssh_auth_sock.stdout }}"
+    entity: "{{ whoami }}"
+    etype: user
+    permissions: rwx
+    state: present
+
+- name: clone movie poster kisok
+  become: true
+  become_user: "{{ whoami }}"
+  become_method: sudo
+  become_flags: -E
+  git:
+    repo: git@github.com:dolph/movie-poster-kiosk.git
+    dest: "/home/{{ whoami }}/dolph/movie-poster-kiosk"
+    update: true
