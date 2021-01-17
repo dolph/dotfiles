@@ -34,3 +34,7 @@
 - name: keep the display on permanently
   include: stay-on.yml
   tags: stay-on
+
+- name: configure autopilot
+  include: autopilot.yml
+  tags: autopilot
