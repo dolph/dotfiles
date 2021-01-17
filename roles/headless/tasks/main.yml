@@ -9,6 +9,12 @@
   user:
     name: "{{ whoami }}"
 
+- name: authorize local user to access remote user
+  authorized_key:
+    user: "{{ whoami }}"
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+  tags: access
+
 - name: allow passwordless sudo
   template:
     src: etc/sudoers.d/whoami
