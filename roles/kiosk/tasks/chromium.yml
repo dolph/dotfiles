@@ -13,7 +13,7 @@
     no_extra_spaces: true
   with_dict:
     Name: Chromium
-    Exec: /usr/bin/chromium-browser --kiosk "{{ kiosk_url | default('https://google.com/') }}"
+    Exec: /usr/bin/chromium-browser --disable-software-rasterizer --disable-gpu --disable-hardware-acceleration --kiosk http://127.0.0.1:5000/
     Comment: Launch Chromium in kiosk mode
     Terminal: false
     Type: Application

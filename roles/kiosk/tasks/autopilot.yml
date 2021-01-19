@@ -1,3 +1,7 @@
+- name: install chromedriver
+  dnf:
+    name: chromedriver
+
 - name: enable SSH forwarding for sudo
   lineinfile:
     path: /etc/sudoers
@@ -25,7 +29,7 @@
     permissions: rwx
     state: present
 
-- name: clone movie poster kisok
+- name: clone movie poster kiosk
   become: true
   become_user: "{{ whoami }}"
   become_method: sudo
@@ -34,3 +38,69 @@
     repo: git@github.com:dolph/movie-poster-kiosk.git
     dest: "/home/{{ whoami }}/dolph/movie-poster-kiosk"
     update: true
+
+- name: install requirements
+  become: true
+  become_user: "{{ whoami }}"
+  become_method: sudo
+  become_flags: -E
+  pip:
+    requirements: "/home/{{ whoami }}/dolph/movie-poster-kiosk/requirements.txt"
+    virtualenv: "/home/{{ whoami }}/venv/movie-poster-kiosk"
+    state: latest
+
+- name: create systemd user directory
+  file:
+    path: /home/{{ whoami }}/.config/systemd/user/
+    state: directory
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+
+- name: install systemd user units
+  template:
+    src: home/config/systemd/user/{{ unit }}
+    dest: /home/{{ whoami }}/.config/systemd/user/{{ unit }}
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+  loop:
+  - kiosk-web.service
+  - kiosk-crawler.service
+  - kiosk-crawler.timer
+  loop_control:
+    loop_var: unit
+  register: systemd_units
+
+- name: reload systemd
+  become: true
+  become_user: "{{ whoami }}"
+  systemd:
+    daemon_reload: true
+    scope: user
+  when: systemd_units.changed
+
+- name: enable systemd user units
+  become: true
+  become_user: "{{ whoami }}"
+  systemd:
+    name: "{{ unit }}"
+    enabled: true
+    scope: user
+  loop:
+  - kiosk-web.service
+  - kiosk-crawler.service
+  - kiosk-crawler.timer
+  loop_control:
+    loop_var: unit
+
+- name: start simple systemd service units
+  become: true
+  become_user: "{{ whoami }}"
+  systemd:
+    name: "{{ unit }}"
+    state: started
+    scope: user
+  loop:
+  - kiosk-web.service
+  - kiosk-crawler.timer
+  loop_control:
+    loop_var: unit
