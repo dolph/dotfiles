@@ -1,6 +1,8 @@
 - name: install chromedriver
   dnf:
-    name: chromedriver
+    name:
+    - chromedriver
+    - chromium
 
 - name: enable SSH forwarding for sudo
   lineinfile:

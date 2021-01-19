@@ -1,0 +1,21 @@
+- name: install web browser
+  dnf:
+    name: midori
+
+- name: launch web browser in kiosk mode automatically
+  become: true
+  become_user: "{{ whoami }}"
+  ini_file:
+    path: /home/{{ whoami }}/.config/autostart/browser.desktop
+    section: Desktop Entry
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: true
+  with_dict:
+    Name: Browser
+    Exec: /usr/bin/midori -e Fullscreen -a http://127.0.0.1:5000/
+    Comment: Launch web browser in kiosk mode
+    Terminal: false
+    Type: Application
+    StartupNotify: false
+    Icon: midori

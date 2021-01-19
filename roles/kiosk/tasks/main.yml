@@ -19,9 +19,9 @@
   include: autologin.yml
   tags: autologin
 
-- name: configure chromium
-  include: chromium.yml
-  tags: chromium
+- name: configure web browser
+  include: browser.yml
+  tags: browser
 
 - name: hide the mouse when idle
   include: unclutter.yml
