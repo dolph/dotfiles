@@ -1,0 +1,8 @@
+- name: install travis CLI
+  become: true
+  become_user: "{{ whoami }}"
+  community.general.gem:
+    name: travis
+    state: latest
+    user_install: true
+    include_doc: false

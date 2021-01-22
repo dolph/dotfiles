@@ -47,6 +47,10 @@
   include: git.yml
   tags: git
 
+- name: configure travis
+  include: travis.yml
+  tags: travis
+
 - name: configure editor
   include: vim.yml
   tags: vim
