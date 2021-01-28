@@ -1,2 +1,2 @@
 #!/bin/bash
-git checkout -p
+git checkout -p "$@"
