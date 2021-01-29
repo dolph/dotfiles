@@ -1,0 +1,12 @@
+[Unit]
+Description=Run a web browser in kiosk mode
+PartOf=graphical-session.target
+
+[Service]
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/{{ whoami }}/.Xauthority
+ExecStart=/usr/bin/chromium-browser --kiosk http://127.0.0.1:5000/
+Restart=always
+
+[Install]
+WantedBy=graphical-session.target

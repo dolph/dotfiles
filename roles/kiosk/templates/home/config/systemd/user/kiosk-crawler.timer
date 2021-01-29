@@ -1,0 +1,10 @@
+[Unit]
+Description=Crawl new movies every day
+Requires=kiosk-crawler.service
+
+[Timer]
+Unit=kiosk-crawler.service
+OnUnitInactiveSec=28800
+
+[Install]
+WantedBy=timers.target

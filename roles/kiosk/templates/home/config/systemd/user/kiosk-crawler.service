@@ -1,0 +1,11 @@
+[Unit]
+Description=Run a kiosk crawler
+
+[Service]
+WorkingDirectory=/home/dolph/dolph/movie-poster-kiosk/
+Environment=CHROMEDRIVER=/usr/bin/chromedriver
+ExecStart=/home/dolph/venv/movie-poster-kiosk/bin/autopilot --headless --verbose movies.py
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target

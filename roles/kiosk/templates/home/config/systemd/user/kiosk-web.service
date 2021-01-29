@@ -1,0 +1,10 @@
+[Unit]
+Description=Run a kiosk web server
+
+[Service]
+WorkingDirectory=/home/dolph/dolph/movie-poster-kiosk/
+ExecStart=/home/dolph/venv/movie-poster-kiosk/bin/flask run --host=0.0.0.0 --port 5000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
