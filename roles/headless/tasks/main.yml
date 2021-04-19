@@ -12,7 +12,24 @@
 - name: authorize local user to access remote user
   authorized_key:
     user: "{{ whoami }}"
-    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub').rsplit(' ', 1)[0] }}"
+  tags: access
+
+- name: fetch public github keys
+  uri:
+    url: https://github.com/dolph.keys
+    return_content: true
+  register: github_keys
+  tags: access
+
+- name: trust public github keys to access remote user
+  authorized_key:
+    user: "{{ whoami }}"
+    key: "{{ key }}"
+  loop: "{{ github_keys.content.splitlines() }}"
+  loop_control:
+    loop_var: key
+  when: github_keys.status == 200
   tags: access
 
 - name: allow passwordless sudo
