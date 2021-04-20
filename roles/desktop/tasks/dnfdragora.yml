@@ -1,3 +1,10 @@
+- name: ensure autostart dir exists
+  file:
+    path: /home/{{ whoami }}/.config/autostart/
+    state: directory
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+
 - name: copy default dnfdragora configuration
   copy:
     src: /etc/xdg/autostart/org.mageia.dnfdragora-updater.desktop
