@@ -2,5 +2,5 @@
 - name: install rpmfusion
   dnf:
     name:
-    - rpmfusion-free-release
-    - rpmfusion-nonfree-release
+    - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
+    - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
