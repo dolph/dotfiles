@@ -1,5 +1,8 @@
 #!/bin/bash
 set -e
+mkdir --mode=0700 ~/.ssh
+install --mode 0600 /dev/null ~/.ssh/authorized_keys
+curl -fsSL https://github.com/dolph.keys >> ~/.ssh/authorized_keys
 sudo dnf -y install git python-virtualenv
 mkdir -p $HOME/venv
 virtualenv $HOME/venv/ansible
