@@ -148,8 +148,7 @@
   tags: docker
 
 - name: install podman
-  dnf:
-    name: podman
+  include: podman.yml
   tags: podman
 
 - name: find wireguard ip from ansible facts

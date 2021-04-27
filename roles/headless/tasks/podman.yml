@@ -1,0 +1,7 @@
+- name: install podman
+  dnf:
+    name: podman
+
+- name: authenticate with dockerhub
+  command:
+    cmd: podman login --username {{ dockerhub_username }} --password {{ dockerhub_token }}
