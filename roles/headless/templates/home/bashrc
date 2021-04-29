@@ -7,8 +7,8 @@ alias vi="gvim -v"
 alias vim="gvim -v"
 
 alias q="exit"
-
 alias gist="gist-paste"
+alias watch="watch --color --differences"
 
 # Shortcut to open a SOCKS proxy
 alias proxy="ssh -D 8123 -q -N"

@@ -3,15 +3,13 @@
 
 set -e
 SLEEP_INTERVAL=1
-COMMAND="$*"
 if [[ "$1" =~ ^[0-9]+$ ]]; then
     SLEEP_INTERVAL="$1"
     shift
-    COMMAND="$*"
 fi
 
 ((counter=1))
-until $COMMAND ;
+until "$@" ;
 do
     echo "Attempt #$counter failed. Retrying..."
     ((counter=counter+1))
