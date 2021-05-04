@@ -19,6 +19,7 @@
   uri:
     url: https://github.com/dolph.keys
     return_content: true
+  check_mode: false  # force this task to run, even in check mode
   register: github_keys
   tags: access
 
