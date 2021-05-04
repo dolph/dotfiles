@@ -142,6 +142,9 @@ Bundle 'gabrielelana/vim-markdown'
 " Unifies vim and tmux split navigation.
 Bundle 'christoomey/vim-tmux-navigator'
 
+" Add support for PlantUML syntax
+Plugin 'aklt/plantuml-syntax'
+
 " end loading plugins
 call vundle#end()
 filetype plugin indent on
