@@ -42,8 +42,6 @@ if [[ $HOSTS != *"."* ]] && [[ $HOSTS != *"*"* ]] && [[ $HOSTS != *"localhost"* 
     HOSTS="$HOSTS.*"
 fi
 
-trap restore_tmux_window_name EXIT
-
 if [ "$ACTION" == "edit" ]; then
     set -x
     ansible-vault edit --vault-id "$ENV.pass" "$ENV.yml"
