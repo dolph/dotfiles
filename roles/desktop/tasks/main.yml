@@ -3,6 +3,10 @@
     name: America/Chicago
   tags: timezone
 
+- name: remap keyboard
+  include: keyboard.yml
+  tags: keyboard
+
 - name: disable dnfdragora-updater
   include: dnfdragora.yml
   tags:

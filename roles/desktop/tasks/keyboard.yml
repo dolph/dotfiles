@@ -1,0 +1,6 @@
+- name: remap caps lock to escape
+  lineinfile:
+    path: /usr/share/X11/xkb/symbols/pc
+    line: "    key <CAPS> {	[ Escape		]	};"
+    regexp: key <CAPS>
+  notify: clear xkb cache

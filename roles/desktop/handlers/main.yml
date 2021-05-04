@@ -1,3 +1,10 @@
 - name: restart pulseaudio
   become_user: "{{ whoami }}"
   command: pulseaudio -k
+
+- name: clear xkb cache
+  shell:
+    cmd: rm -rf /var/lib/xkb/*
+    # The file module does not have an idempotent way to delete contents of
+    # directory, without touching the directory itself.
+    warn: false
