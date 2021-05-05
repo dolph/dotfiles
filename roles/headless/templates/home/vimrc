@@ -143,7 +143,9 @@ Bundle 'gabrielelana/vim-markdown'
 Bundle 'christoomey/vim-tmux-navigator'
 
 " Add support for PlantUML syntax
+Plugin 'tyru/open-browser.vim'
 Plugin 'aklt/plantuml-syntax'
+Plugin 'weirongxu/plantuml-previewer.vim'
 
 " end loading plugins
 call vundle#end()
