@@ -1,3 +1,6 @@
+- name: switch back to pulseaudio from pipewire
+  command: dnf swap --allowerasing pipewire-pulseaudio pulseaudio
+
 # https://askubuntu.com/a/765024/22414
 - name: add echo cancellation to mic input
   blockinfile:

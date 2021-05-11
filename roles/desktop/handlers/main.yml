@@ -1,6 +1,8 @@
 - name: restart pulseaudio
   become_user: "{{ whoami }}"
   command: pulseaudio -k
+  register: task
+  failed_when: task.rc != 0 and 'No such process' not in task.stderr
 
 - name: clear xkb cache
   shell:
