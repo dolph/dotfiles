@@ -53,6 +53,9 @@
 
 - name: configure pulseaudio
   include: pulseaudio.yml
+  when:
+  - ansible_distribution == 'Fedora'
+  - ansible_distribution_major_version < '33'
   tags: pulseaudio
 
 - name: configure signal
