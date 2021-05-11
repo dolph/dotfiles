@@ -69,3 +69,4 @@
     name:
     - plantuml
     - java-11-openjdk  # dnf provides /usr/lib/jvm/java-11-openjdk-11.0.11.0.9-0.fc34.x86_64/lib/libawt_xawt.so
+  tags: vim
