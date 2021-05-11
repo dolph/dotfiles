@@ -61,9 +61,9 @@ if [ "$ACTION" == "diff" ]; then
     base_filename=$(basename $ENV | cut -d'.' -f1)
     # Show a diff of uncommitted changes to an ansible-vault encrypted file
     # without storing plaintext on disk and without modifying tracked files.
-    git show "$TARGET:$ENV" > ".$ENV.$TARGET.tmp"
-    diff --color=always -u20 <(ansible-vault view --vault-id "$base_filename.pass" ".$ENV.$TARGET.tmp") <(ansible-vault view --vault-id "$base_filename.pass" "$ENV") || true
-    rm -rf ".$ENV.$TARGET.tmp"
+    git show "$TARGET:$ENV" > "$ENV.$TARGET.tmp"
+    diff --color=always -u20 <(ansible-vault view --vault-id "$base_filename.pass" "$ENV.$TARGET.tmp") <(ansible-vault view --vault-id "$base_filename.pass" "$ENV") || true
+    rm -rf "$ENV.$TARGET.tmp"
     exit 0
 fi
 
