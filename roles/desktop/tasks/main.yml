@@ -7,6 +7,17 @@
   include: keyboard.yml
   tags: keyboard
 
+- name: removed unused desktop packages
+  dnf:
+    name:
+    - asunder
+    - claws-mail
+    - geany
+    - pidgin
+    - pragha
+    state: absent
+  tags: dnf
+
 - name: disable dnfdragora-updater
   include: dnfdragora.yml
   tags:
@@ -67,3 +78,7 @@
     - plantuml
     - java-11-openjdk  # dnf provides /usr/lib/jvm/java-11-openjdk-11.0.11.0.9-0.fc34.x86_64/lib/libawt_xawt.so
   tags: vim
+
+- name: configure gimp
+  include: gimp.yml
+  tags: gimp
