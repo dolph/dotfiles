@@ -8,6 +8,11 @@
 
 # ~/.config/i3/config
 
-# ~/.Xresources
+- name: configure urvxt
+  template:
+    src: home/Xresources
+    dest: /home/{{ whoami }}/.Xresources
+    owner: "{{ whoami}}"
+    group: "{{ whoami}}"
 
 # https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
