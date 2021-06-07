@@ -21,3 +21,7 @@
     group: "{{ whoami}}"
 
 # https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
+- name: configure touchpad tap-to-click
+  template:
+    src: etc/X11/xorg.conf.d/90-touchpad.conf
+    dest: /etc/X11/xorg.conf.d/90-touchpad.conf
