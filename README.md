@@ -16,7 +16,7 @@ To deploy to `localhost`:
     source ~/venv/ansible/bin/activate
     ansible-playbook --ask-become-pass headless.yml # or desktop.yml
 
-## Desktop interface design: `i3` + `tmux` + `vim`
+## Desktop interface design: `i3` + `urvxt` + `tmux` + `vim`
 
 ### Motions
 
@@ -39,7 +39,7 @@ have the same effect at each layer.
 Copying text at any one layer should make it available to paste at any other
 layer in the stack.
 
-* `X` / `i3`:
+* `i3`:
   * Copy: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>
   * Paste <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>
 * `urvxt`:
