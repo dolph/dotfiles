@@ -6,7 +6,12 @@
     - rofi
     - lxappearance
 
-# ~/.config/i3/config
+- name: configure i3
+  template:
+    src: home/config/i3/config
+    dest: /home/{{ whoami }}/.config/i3/config
+    owner: "{{ whoami}}"
+    group: "{{ whoami}}"
 
 - name: configure urvxt
   template:
