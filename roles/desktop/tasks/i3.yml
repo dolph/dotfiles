@@ -1,0 +1,13 @@
+- name: install i3
+  dnf:
+    name:
+    - i3
+    - numix-gtk-theme
+    - rofi
+    - lxappearance
+
+# ~/.config/i3/config
+
+# ~/.Xresources
+
+# https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
