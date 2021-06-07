@@ -17,3 +17,5 @@
     host = github.ibm.com
 [pull]
     ff = only
+[init]
+    defaultBranch = main
