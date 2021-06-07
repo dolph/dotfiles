@@ -176,7 +176,7 @@ set spell spelllang=en_us
 set nojoinspaces
 
 " Use the X11 clipboard (shared with tmux, over SSH, etc)
-set clipboard=unnamedplus
+" set clipboard=unnamedplus " does not seem to be needed with i3 + tmux + gvim?
 
 " Always use unix-style line endings
 set ff=unix
