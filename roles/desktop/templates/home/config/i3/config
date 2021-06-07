@@ -161,5 +161,4 @@ bar {
         status_command i3status
 }
 
-exec google-chrome $ws1
-exec --no-startup-id urxvt $ws2
+exec --no-startup-id i3-msg 'workspace $ws1; exec urxvt -e sh -c "tmux att -d || tmux new"; workspace $ws2; exec google-chrome; '
