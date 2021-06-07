@@ -1,5 +1,9 @@
 - name: switch back to pulseaudio from pipewire
-  command: dnf swap -y --allowerasing pipewire-pulseaudio pulseaudio
+  command:
+    cmd: dnf swap -y --allowerasing pipewire-pulseaudio pulseaudio
+    warn: false # dnf module does not support swap operation
+  register: dnf_swap
+  changed_when: "'Nothing to do.' not in dnf_swap.stdout"
 
 # https://askubuntu.com/a/765024/22414
 - name: add echo cancellation to mic input
