@@ -1,3 +1,12 @@
+- name: get the resolution of the primary monitor
+  shell: xrandr --listactivemonitors | grep ' 0:' | cut -d' ' -f4 | cut -d'/' -f1
+  register: horizontal_resolution
+  changed_when: false
+
+- name: determine system font size
+  set_fact:
+    font_size: "{{ 12 if (horizontal_resolution.stdout|int) > 1920 else 11 }}"
+
 - name: install i3
   dnf:
     name:
@@ -29,13 +38,7 @@
   - i3status
   loop_control:
     loop_var: dir
-
-- name: configure i3status
-  template:
-    src: home/config/i3status/config
-    dest: /home/{{ whoami }}/.config/i3status/config
-    owner: "{{ whoami}}"
-    group: "{{ whoami}}"
+  notify: restart i3
 
 - name: configure urvxt
   template:
@@ -43,6 +46,7 @@
     dest: /home/{{ whoami }}/.Xresources
     owner: "{{ whoami}}"
     group: "{{ whoami}}"
+  notify: reload X database
 
 # https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
 - name: configure touchpad tap-to-click

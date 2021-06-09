@@ -4,7 +4,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Hack Bold 11
+font pango:Hack Bold {{ font_size }}
 
 # <colorclass> <border> <background> <text> <indicator> <child_border>
 # A client which currently has the focus.

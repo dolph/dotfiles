@@ -58,8 +58,8 @@
 *color15:               S_base3
 
 !! URxvt configuration
-URxvt.font: xft:Hack:style=Bold:size=11
-URxvt.boldFont: xft:Hack:style=Bold:size=11
+URxvt.font: xft:Hack:style=Bold:size={{ font_size }}
+URxvt.boldFont: xft:Hack:style=Bold:size={{ font_size }}
 
 URxvt.scrollBar: false
 URxvt.keysym.Control-Tab: eval:system('tmux select-window -t +')

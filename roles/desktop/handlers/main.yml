@@ -10,3 +10,11 @@
     # The file module does not have an idempotent way to delete contents of
     # directory, without touching the directory itself.
     warn: false
+
+- name: restart i3
+  become_user: "{{ whoami }}"
+  command: i3-msg restart
+
+- name: reload X database
+  become_user: "{{ whoami }}"
+  command: xrdb /home/{{ whoami }}/.Xresources
