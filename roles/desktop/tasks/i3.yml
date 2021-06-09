@@ -6,19 +6,29 @@
     - rofi
     - lxappearance
 
-- name: create i3 config dir
+- name: create i3 config dirs
   file:
-    dest: /home/{{ whoami }}/.config/i3
+    dest: /home/{{ whoami }}/.config/{{ dir }}
     state: directory
     owner: "{{ whoami}}"
     group: "{{ whoami}}"
+  loop:
+  - i3
+  - i3status
+  loop_control:
+    loop_var: dir
 
 - name: configure i3
   template:
-    src: home/config/i3/config
-    dest: /home/{{ whoami }}/.config/i3/config
+    src: home/config/{{ dir }}/config
+    dest: /home/{{ whoami }}/.config/{{ dir }}/config
     owner: "{{ whoami}}"
     group: "{{ whoami}}"
+  loop:
+  - i3
+  - i3status
+  loop_control:
+    loop_var: dir
 
 - name: configure i3status
   template:
