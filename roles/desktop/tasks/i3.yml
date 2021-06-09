@@ -20,6 +20,13 @@
     owner: "{{ whoami}}"
     group: "{{ whoami}}"
 
+- name: configure i3status
+  template:
+    src: home/config/i3status/config
+    dest: /home/{{ whoami }}/.config/i3status/config
+    owner: "{{ whoami}}"
+    group: "{{ whoami}}"
+
 - name: configure urvxt
   template:
     src: home/Xresources
