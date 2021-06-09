@@ -53,3 +53,10 @@
   template:
     src: etc/X11/xorg.conf.d/90-touchpad.conf
     dest: /etc/X11/xorg.conf.d/90-touchpad.conf
+
+- name: configure X
+  template:
+    src: home/xinitrc
+    dest: /home/{{ whoami }}/.xinitrc
+    owner: "{{ whoami}}"
+    group: "{{ whoami}}"
