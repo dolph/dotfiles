@@ -2,6 +2,7 @@
   shell: xrandr --listactivemonitors | grep ' 0:' | cut -d' ' -f4 | cut -d'/' -f1
   register: horizontal_resolution
   changed_when: false
+  check_mode: false
 
 - name: determine system font size
   set_fact:
