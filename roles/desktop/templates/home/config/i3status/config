@@ -14,9 +14,11 @@ order += "memory"
 order += "battery all"
 order += "ethernet _first_"
 order += "wireless _first_"
+order += "time"
 
 cpu_usage {
     format = "%usage CPU"
+    separator_block_width = 21
     max_threshold = 75
     degraded_threshold = 25
 }
@@ -24,20 +26,24 @@ cpu_usage {
 memory {
     format = "%percentage_used MEM"
     format_degraded = "CRITICAL %percentage_used MEM"
+    separator_block_width = 21
 }
 
 wireless _first_ {
     format_up = "%ip%quality"
     format_down = "wlan"
+    separator_block_width = 21
 }
 
 ethernet _first_ {
     format_up = "%ip"
     format_down = "eth"
+    separator_block_width = 21
 }
 
 battery all {
     format = "%status %percentage %remaining"
+    separator_block_width = 21
     integer_battery_capacity = true
     format_down = "NO BAT"
     status_chr = "CHARGING"
@@ -46,4 +52,9 @@ battery all {
     status_full = "FULL"
     path = "/sys/class/power_supply/BAT%d/uevent"
     low_threshold = 10
+}
+
+time {
+    format = "%b %e %l:%M %P "
+    separator_block_width = 21
 }
