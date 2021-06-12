@@ -1,12 +1,6 @@
-- name: get the resolution of the primary monitor
-  shell: xrandr --listactivemonitors | grep ' 0:' | cut -d' ' -f4 | cut -d'/' -f1
-  register: horizontal_resolution
-  changed_when: false
-  check_mode: false
-
-- name: determine system font size
+- name: set system font size
   set_fact:
-    font_size: "{{ 12 if (horizontal_resolution.stdout|int) > 1920 else 11 }}"
+    font_size: 12
 
 - name: install i3
   dnf:
