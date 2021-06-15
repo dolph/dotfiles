@@ -6,6 +6,7 @@
   dnf:
     name:
     - i3
+    - maim
     - numix-gtk-theme
     - rofi
     - lxappearance

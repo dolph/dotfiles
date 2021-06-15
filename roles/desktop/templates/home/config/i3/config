@@ -142,6 +142,9 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exit
 
+# screenshot
+bindsym Print exec --no-startup-id maim --hidecursor --select | xclip -selection clipboard -t image/png
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
