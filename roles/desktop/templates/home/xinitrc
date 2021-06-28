@@ -2,3 +2,6 @@
 xset s off
 xset -dpms
 xset s noblank
+
+[ -f /etc/xprofile ] && . /etc/xprofile
+[ -f ~/.xprofile ] && . ~/.xprofile
