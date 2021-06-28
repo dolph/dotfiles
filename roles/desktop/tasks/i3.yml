@@ -56,3 +56,4 @@
     dest: /home/{{ whoami }}/.xinitrc
     owner: "{{ whoami}}"
     group: "{{ whoami}}"
+    mode: 0770
