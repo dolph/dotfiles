@@ -6,3 +6,11 @@
   dnf:
     name: google-chrome-stable
     enablerepo: google-chrome
+  when:
+  - ansible_architecture != 'aarch64'
+
+- name: settle for chromium
+  dnf:
+    name: chromium
+  when:
+  - ansible_architecture == 'aarch64'
