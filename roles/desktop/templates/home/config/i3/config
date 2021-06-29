@@ -182,6 +182,14 @@ bar {
 # Start a keyring
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
+# Disable display power management
+exec --no-startup-id xset s off
+exec --no-startup-id xset s noblank
+exec --no-startup-id xset -dpms
+
+# Enable keyboard & mouse sharing across devices
+exec --no-startup-id barrier
+
 # Workspace 1: urvxt in fullscreen
 # Workspace 2: chrome
 for_window [instance="terminal"] fullscreen enable
