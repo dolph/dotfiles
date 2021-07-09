@@ -121,6 +121,7 @@
   loop:
   - a
   - benchmark
+  - enc
   - fail
   - gac
   - gacp

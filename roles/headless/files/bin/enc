@@ -1,0 +1,51 @@
+#!/bin/python
+
+# Usage in vim:
+# 1. `<Shift>+<v>` to highlight a selection in YAML
+# 2. `:!enc <vault-id>` do not specify `.pass`)
+# 3. The selection is replaced with a vault-encrypted value.
+
+import io
+import subprocess
+import sys
+import yaml
+
+s = sys.stdin.read()
+
+# Count the number of spaces the output should be indented by
+indent = ' ' * (len(s) - len(s.lstrip(' ')))
+
+for key, value in yaml.load(s, Loader=yaml.Loader).items():
+    # For whatever reason, pyyaml dumps plain values as:
+    #
+    #    value
+    #    ...
+    #
+    # So we have to strip off the extra newlines and ellipsis.
+    # And then multiline values come out with double lined breaks and sing quotes, which both need to be fixed.
+    yaml_value = yaml.dump(value, Dumper=yaml.Dumper).strip().rstrip('.').strip().replace('\n\n', '\n').strip("'")
+
+    # Remove extra 2-space indentation from multi-line values.
+    new_yaml_value = []
+    for idx, line in enumerate(yaml_value.splitlines()):
+        if idx == 0:
+            new_yaml_value.append(line)
+        else:
+            new_yaml_value.append(line[2:])
+    yaml_value = '\n'.join(new_yaml_value)
+
+    completed_process = subprocess.run([
+        'ansible-vault',
+        'encrypt_string',
+        '--stdin-name={}'.format(key),
+        '--vault-id={}.pass'.format(sys.argv[1])],
+        input=yaml_value,
+        encoding='utf-8',
+        capture_output=True)
+    if completed_process.returncode == 0:
+        formatted_output = completed_process.stdout.replace(' ' * 8, indent)
+        print('{}{}'.format(indent, formatted_output.rstrip()))
+    else:
+        print(completed_process.stdout)
+        print(completed_process.stderr)
+        print('return code: {}'.format(completed_process))
