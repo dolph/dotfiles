@@ -4,7 +4,7 @@ Requires=reboot.service
 
 [Timer]
 Unit=reboot.service
-OnCalendar=Mon *-*-* 13:00:00 UTC
+OnCalendar=Sat *-*-* 13:00:00 UTC
 RandomizedDelaySec=0
 
 [Install]
