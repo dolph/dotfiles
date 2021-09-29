@@ -16,17 +16,6 @@ set background=dark
 " ignore these files when completing
 set wildignore+=.git,*.pyc
 
-" show a line at column 79
-if exists("&colorcolumn")
-    set colorcolumn=79
-endif
-
-" have a line indicate the cursor location
-set cursorline
-
-" show the cursor position all the time
-set ruler
-
 " use spaces, not tabs, for autoindent/tab key.
 set expandtab
 
