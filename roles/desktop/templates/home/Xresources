@@ -1,7 +1,7 @@
 !! Solarized Dark color scheme, with base02 and base03 set to black.
 
-#define S_base03        #000000
-#define S_base02        #000000
+#define S_base03        #002b36
+#define S_base02        #073642
 #define S_base01        #586e75
 #define S_base00        #657b83
 #define S_base0         #839496
@@ -9,7 +9,7 @@
 #define S_base2         #eee8d5
 #define S_base3         #fdf6e3
 
-*background:            S_base03
+*background:            #000000
 *foreground:            S_base0
 *fadeColor:             S_base03
 *cursorColor:           S_base1
