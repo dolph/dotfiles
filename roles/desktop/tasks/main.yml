@@ -76,12 +76,6 @@
   - signal
   - never
 
-- name: install keyboard & mouse sharing
-  dnf:
-    name:
-    - barrier
-  tags: barrier
-
 - name: install plantuml
   dnf:
     name:
