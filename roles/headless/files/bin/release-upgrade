@@ -3,6 +3,6 @@ set -e
 
 if upgrade; then
     source /etc/os-release
-    sudo dnf system-upgrade download --refresh --assumeyes --releasever="$(expr $VERSION_ID + 1)"
+    sudo dnf system-upgrade download --refresh --assumeyes --releasever="$(expr $VERSION_ID + 1)" --allowerasing
     sudo dnf system-upgrade reboot
 fi
