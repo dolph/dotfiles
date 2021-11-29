@@ -185,6 +185,5 @@ exec --no-startup-id xset s noblank
 exec --no-startup-id xset -dpms
 
 # Workspace 1: urvxt in fullscreen
-# Workspace 2: chrome
 for_window [instance="terminal"] fullscreen enable
-exec --no-startup-id i3-msg 'workspace $ws1; exec urxvt -name terminal -e sh -c "tmux att -d || tmux new"; workspace $ws2; exec {% if ansible_architecture != 'aarch64' %}google-chrome{% else %}chromium{% endif %} --password-store=basic'
+exec --no-startup-id i3-msg 'exec urxvt -name terminal -e sh -c "tmux att -d || tmux new"'
