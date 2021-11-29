@@ -144,7 +144,8 @@ bindsym $mod+Shift+e exit
 
 # screenshot
 bindsym Print exec --no-startup-id maim --hidecursor --select | xclip -selection clipboard -t image/png
-bindsym Shift+Print exec --no-startup-id maim --hidecursor --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec --no-startup-id maim --hidecursor --select ~/Pictures/screenshot-$(date +%s).png
+bindsym $mod+Print exec --no-startup-id maim --hidecursor --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
