@@ -179,6 +179,13 @@ bar {
     }
 }
 
+# Start a session locker
+exec --no-startup-id xautolock -time 30 -locker "i3lock --color=111111"
+
+# Start a keyring
+# https://www.reddit.com/r/i3wm/comments/8zj0jl/passwords_are_not_saved_in_google_chrome_in_i3/e78rjbq/
+# exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+
 # Disable display power management
 exec --no-startup-id xset s off
 exec --no-startup-id xset s noblank
