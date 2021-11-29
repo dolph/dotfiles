@@ -119,12 +119,12 @@ else
 fi
 
 set -x
-$try ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${modifier_flag} -v
+$try ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${modifier_flag} ${force}
 set +x
 
 if [ "$ACTION" == 'try' ]; then
     modifier_flag=''
     set -x
-    ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${modifier_flag} -v
+    ansible-playbook --limit="$(echo "$HOSTS")" --vault-id "deploy.pass" --vault-id "$ENV.pass" -i "$ENV.yml" $playbook ${tags_flag} ${skip_tags} ${extra_vars_flag} ${modifier_flag} ${force}
     set +x
 fi
