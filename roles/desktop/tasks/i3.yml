@@ -51,6 +51,11 @@
     src: etc/X11/xorg.conf.d/90-touchpad.conf
     dest: /etc/X11/xorg.conf.d/90-touchpad.conf
 
+- name: disable mouse acceleration
+  template:
+    src: etc/X11/xorg.conf.d/50-mouse-acceleration.conf
+    dest: /etc/X11/xorg.conf.d/50-mouse-acceleration.conf
+
 - name: configure X
   template:
     src: home/xinitrc
