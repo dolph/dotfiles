@@ -3,7 +3,7 @@
     path: "/home/{{ whoami }}/.ssh/known_hosts"
     line: "{{ item }}"
     create: true
-    mode: 0644
+    mode: 0600
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
   loop:
