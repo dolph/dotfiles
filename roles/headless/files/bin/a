@@ -6,6 +6,7 @@ ENV=${2:-null}
 TARGET=${3:-null}
 DO=${4:-null}
 DONT=${5:-null}
+FORCE=${5:-null}
 
 # Split target into SCOPE@HOSTS, if delimited
 if [[ $TARGET == *"@"* ]]; then
@@ -104,6 +105,11 @@ if [ "$DONT" == 'null' ]; then
     skip_tags=""
 else
     skip_tags="--skip-tags=${DONT}"
+fi
+if [ "$FORCE" == '--force' ]; then
+    force="--extra-vars=force=true"
+else
+    force=""
 fi
 
 if [ "$ACTION" == 'try' ]; then
