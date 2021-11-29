@@ -10,6 +10,7 @@
     - numix-gtk-theme
     - rofi
     - lxappearance
+    - xautolock
 
 - name: create i3 config dirs
   file:
