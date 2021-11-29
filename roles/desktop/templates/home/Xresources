@@ -27,6 +27,7 @@
 
 !! black dark/light
 *color0:                S_base02
+!! should color8 be base04 to improve look?
 *color8:                S_base03
 
 !! red dark/light
