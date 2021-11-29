@@ -3,7 +3,7 @@
 ((counter=1))
 until ! "$@"
 do
-    echo "Attempt #$counter succeeded. Retrying..."
+    echo "Attempt #$counter succeeded. Retrying in 60s..."
     sleep 60.0
     ((counter=counter+1))
 done
