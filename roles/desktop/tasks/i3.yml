@@ -63,3 +63,15 @@
     owner: "{{ whoami}}"
     group: "{{ whoami}}"
     mode: 0770
+
+- name: install xrandr & autorandr
+  dnf:
+    name:
+    - autorandr
+    - xrandr
+
+- name: enable autorandr
+  systemd:
+    name: autorandr
+    state: started
+    enabled: true
