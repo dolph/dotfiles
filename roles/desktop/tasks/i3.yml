@@ -11,6 +11,7 @@
     - rofi
     - lxappearance
     - xautolock
+    - xbacklight
 
 - name: create i3 config dirs
   file:
