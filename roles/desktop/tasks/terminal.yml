@@ -11,3 +11,16 @@
     dest: "/home/{{ whoami }}/.config/xfce4/terminal/terminalrc"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+
+- name: disable terminal bell on boot by disabling PC speaker
+  line_in_file:
+    path: /etc/modprobe.d/nobeep.conf
+    line: blacklist pcspkr
+    owner: root
+    group: root
+    mode: 0644
+
+- name: disable terminal bell immediately
+  modprobe:
+    name: pcspkr
+    state: absent
