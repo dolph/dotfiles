@@ -15,6 +15,7 @@
 - name: disable terminal bell on boot by disabling PC speaker
   lineinfile:
     path: /etc/modprobe.d/nobeep.conf
+    create: true
     line: blacklist pcspkr
     owner: root
     group: root
