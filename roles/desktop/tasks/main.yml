@@ -42,10 +42,6 @@
   include: vlc.yml
   tags: vlc
 
-- name: configure xfce
-  include: xfce.yml
-  tags: xfce
-
 - name: configure i3
   include: i3.yml
   tags: i3
