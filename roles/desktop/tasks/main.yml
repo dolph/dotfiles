@@ -18,12 +18,6 @@
     state: absent
   tags: dnf
 
-- name: disable dnfdragora-updater
-  import_tasks: dnfdragora.yml
-  tags:
-  - dnf
-  - dnfdragora
-
 - name: configure custom fonts
   import_tasks: fonts.yml
   tags: fonts
