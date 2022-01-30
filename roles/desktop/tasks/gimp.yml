@@ -7,6 +7,13 @@
   register: gimp_version
   failed_when: '"2.10" not in gimp_version.stdout'
 
+- name: ensure gimp config dir exists
+  file:
+    path: /home/{{ whoami }}/.config/GIMP/2.10
+    state: directory
+    owner: "{{ whoami}}"
+    group: "{{ whoami}}"
+
 - name: configure keyboard shortcuts for gimp
   get_url:
     url: https://raw.githubusercontent.com/doctormo/GimpPs/master/menurc
