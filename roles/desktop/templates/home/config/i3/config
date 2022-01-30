@@ -20,12 +20,9 @@ client.placeholder #000000 #002b36 #839496 #000000 #000000
 # Background color which will be used to paint the background of the client window on top of which the client will be rendered. Only clients which do not cover the whole area of this window expose the color. Note that this colorclass only takes a single color.
 client.background #000000
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=000000 --show-failed-attempts
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -183,9 +180,6 @@ bar {
         statusline #839496
     }
 }
-
-# Start a session locker
-exec --no-startup-id xautolock -time 30 -locker "i3lock --color=111111"
 
 # Start a keyring
 # https://www.reddit.com/r/i3wm/comments/8zj0jl/passwords_are_not_saved_in_google_chrome_in_i3/e78rjbq/
