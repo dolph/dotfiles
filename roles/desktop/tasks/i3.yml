@@ -75,3 +75,11 @@
     name: autorandr
     state: started
     enabled: true
+
+- name: set greeter background
+  ini_file:
+    path: /etc/lightdm/lightdm-gtk-greeter.conf
+    section: greeter
+    option: background
+    value: "#000000"
+    no_extra_spaces: true
