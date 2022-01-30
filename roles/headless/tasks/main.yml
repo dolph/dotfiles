@@ -50,55 +50,55 @@
     mode: 0400
 
 - name: configure automated upgrades
-  include: automated-upgrades.yml
+  import_tasks: automated-upgrades.yml
   tags:
   - dnf
   - dnf-automatic
 
 - name: configure ssh client
-  include: ssh-client.yml
+  import_tasks: ssh-client.yml
   tags:
   - ssh
   - ssh-client
 
 - name: configure ssh server
-  include: ssh-server.yml
+  import_tasks: ssh-server.yml
   tags:
   - ssh-server
   - ssh
 
 - name: configure terminal
-  include: terminal.yml
+  import_tasks: terminal.yml
   tags: terminal
 
 - name: configure git
-  include: git.yml
+  import_tasks: git.yml
   tags: git
 
 - name: configure travis
-  include: travis.yml
+  import_tasks: travis.yml
   tags: travis
 
 - name: configure editor
-  include: vim.yml
+  import_tasks: vim.yml
   tags: vim
 
 - name: configure go
-  include: go.yml
+  import_tasks: go.yml
   tags: go
 
 - name: configure terminal multiplexer
-  include: tmux.yml
+  import_tasks: tmux.yml
   tags: tmux
 
 - name: configure ripgrep
-  include: ripgrep.yml
+  import_tasks: ripgrep.yml
   tags:
   - ripgrep
   - rg
 
 - name: configure python
-  include: python.yml
+  import_tasks: python.yml
   tags: python
 
 - name: install additional packages
@@ -156,9 +156,9 @@
   - bin
 
 - name: remove docker
-  include: docker.yml
+  import_tasks: docker.yml
   tags: docker
 
 - name: install podman
-  include: podman.yml
+  import_tasks: podman.yml
   tags: podman

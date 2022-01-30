@@ -16,25 +16,25 @@
   tags: xfce
 
 - name: automatically login on boot
-  include: autologin.yml
+  import_tasks: autologin.yml
   tags: autologin
 
 - name: configure web browser
-  include: browser.yml
+  import_tasks: browser.yml
   tags: browser
 
 - name: hide the mouse when idle
-  include: unclutter.yml
+  import_tasks: unclutter.yml
   tags: unclutter
 
 - name: disable dnfdragora notifications
-  include: dnfdragora.yml
+  import_tasks: dnfdragora.yml
   tags: dnfdragora
 
 - name: keep the display on permanently
-  include: stay-on.yml
+  import_tasks: stay-on.yml
   tags: stay-on
 
 - name: configure autopilot
-  include: autopilot.yml
+  import_tasks: autopilot.yml
   tags: autopilot

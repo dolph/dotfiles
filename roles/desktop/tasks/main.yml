@@ -4,7 +4,7 @@
   tags: timezone
 
 - name: remap keyboard
-  include: keyboard.yml
+  import_tasks: keyboard.yml
   tags: keyboard
 
 - name: removed unused desktop packages
@@ -19,55 +19,55 @@
   tags: dnf
 
 - name: disable dnfdragora-updater
-  include: dnfdragora.yml
+  import_tasks: dnfdragora.yml
   tags:
   - dnf
   - dnfdragora
 
 - name: configure custom fonts
-  include: fonts.yml
+  import_tasks: fonts.yml
   tags: fonts
 
 - name: configure terminal
-  include: terminal.yml
+  import_tasks: terminal.yml
   tags:
   - terminal
   - xfce
 
 - name: install rpmfusion
-  include: rpmfusion.yml
+  import_tasks: rpmfusion.yml
   tags: rpmfusion
 
 - name: configure vlc
-  include: vlc.yml
+  import_tasks: vlc.yml
   tags: vlc
 
 - name: configure i3
-  include: i3.yml
+  import_tasks: i3.yml
   tags: i3
 
 - name: install google chrome
-  include: chrome.yml
+  import_tasks: chrome.yml
   tags: chrome
 
 - name: install nvidia drivers
-  include: nvidia.yml
+  import_tasks: nvidia.yml
   tags: nvidia
 
 - name: install virtualbox
-  include: virtualbox.yml
+  import_tasks: virtualbox.yml
   tags: virtualbox
 
 - name: configure vagrant
-  include: vagrant.yml
+  import_tasks: vagrant.yml
   tags: vagrant
 
 - name: configure pulseaudio
-  include: pulseaudio.yml
+  import_tasks: pulseaudio.yml
   tags: pulseaudio
 
 - name: configure signal
-  include: signal.yml
+  import_tasks: signal.yml
   tags:
   - signal
   - never
@@ -80,5 +80,5 @@
   tags: vim
 
 - name: configure gimp
-  include: gimp.yml
+  import_tasks: gimp.yml
   tags: gimp
