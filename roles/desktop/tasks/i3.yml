@@ -10,7 +10,7 @@
     - numix-gtk-theme
     - rofi
     - lxappearance
-    - xautolock
+    - xsetroot
 
 - name: create i3 config dirs
   file:
@@ -75,3 +75,6 @@
     name: autorandr
     state: started
     enabled: true
+
+- name: set desktop background color
+  command: xsetroot -solid "#000000"

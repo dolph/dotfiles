@@ -1,6 +1,0 @@
-- name: ensure autostart dir exists
-  file:
-    path: /home/{{ whoami }}/.config/autostart/
-    state: directory
-    owner: "{{ whoami }}"
-    group: "{{ whoami }}"
