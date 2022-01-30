@@ -26,7 +26,6 @@
   import_tasks: terminal.yml
   tags:
   - terminal
-  - xfce
 
 - name: install rpmfusion
   import_tasks: rpmfusion.yml
