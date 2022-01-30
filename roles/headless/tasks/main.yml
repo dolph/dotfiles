@@ -9,10 +9,20 @@
   user:
     name: "{{ whoami }}"
 
+- name: check for local public key
+  find:
+    paths: /home/{{ whoami }}/.ssh/
+    patterns: id_*.pub
+  register: public_keys
+  tags: access
+
 - name: authorize local user to access remote user
   authorized_key:
     user: "{{ whoami }}"
-    key: "{{ lookup('file', '~/.ssh/id_rsa.pub').rsplit(' ', 1)[0] }}"
+    key: "{{ lookup('file', public_key.path).rsplit(' ', 1)[0] }}"
+  loop: "{{ public_keys.files }}"
+  loop_control:
+    loop_var: public_key
   tags: access
 
 - name: fetch public github keys
