@@ -5,14 +5,6 @@
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: generate ssh identity
-  openssh_keypair:
-    path: "/home/{{ whoami }}/.ssh/id_rsa"
-    size: 4096
-    comment: "{{ whoami }}@{{ ansible_hostname }}"
-    owner: "{{ whoami }}"
-    group: "{{ whoami }}"
-
 - name: create an SSH config file
   command: touch "/home/{{ whoami }}/.ssh/config"
   args:
