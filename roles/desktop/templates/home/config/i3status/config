@@ -42,7 +42,7 @@ ethernet _first_ {
 }
 
 battery all {
-    format = "%status %percentage %remaining"
+    format = "%percentage %status"
     separator_block_width = 21
     integer_battery_capacity = true
     format_down = "NO BAT"

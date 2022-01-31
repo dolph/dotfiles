@@ -19,8 +19,12 @@
     dest: "~/.tmux-plugins/{{ item }}"
   register: git_result
   with_items:
-  - yank
+  - battery
+  - copycat
+  - cpu
+  - net-speed
   - open
+  - yank
 
 - name: configure tmux
   template:
