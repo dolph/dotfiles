@@ -6,7 +6,9 @@ ENV=${2:-null}
 TARGET=${3:-null}
 DO=${4:-null}
 DONT=${5:-null}
-FORCE=${5:-null}
+FORCE=${6:-null}
+
+clear
 
 # Split target into SCOPE@HOSTS, if delimited
 if [[ $TARGET == *"@"* ]]; then
