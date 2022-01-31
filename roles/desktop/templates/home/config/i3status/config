@@ -54,6 +54,12 @@ battery all {
     low_threshold = 10
 }
 
+volume master {
+    device = "default"
+    format = "%volume"
+    format_muted = "%volume (muted)"
+}
+
 time {
     format = "%b %e %-l:%M %P "
     separator_block_width = 21
