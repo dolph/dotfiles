@@ -159,6 +159,8 @@
   get_url:
     url: https://github.com/dolph/find-replace/releases/latest/download/find-replace
     dest: /home/{{ whoami }}/bin/find-replace
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
     mode: 0770
   tags:
   - bin
