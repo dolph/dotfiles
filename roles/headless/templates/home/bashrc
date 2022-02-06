@@ -40,10 +40,10 @@ function ssh-unlock() {
 ssh-unlock
 
 {% if txt_twilio_account_sid is defined %}
-export TXT_TWILIO_ACCOUNT_SID="{{ txt_twilio_account_sid }}"
-export TXT_TWILIO_AUTH_TOKEN="{{ txt_twilio_auth_token }}"
+export TWILIO_ACCOUNT_SID="{{ txt_twilio_account_sid }}"
+export TWILIO_AUTH_TOKEN="{{ txt_twilio_auth_token }}"
 export TXT_TO="{{ txt_to }}"
-export TXT_TWILIO_FROM="{{ txt_twilio_from }}"
+export TXT_FROM="{{ txt_twilio_from }}"
 {% endif %}
 
 {% if redhat_subscription_password is defined %}
