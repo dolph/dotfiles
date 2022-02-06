@@ -155,6 +155,15 @@
   tags:
   - bin
 
+- name: install find-replace
+  get_url:
+    url: https://github.com/dolph/find-replace/releases/latest/download/find-replace
+    dest: /home/{{ whoami }}/bin/find-replace
+    mode: 0770
+  tags:
+  - bin
+  - find-replace
+
 - name: remove docker
   import_tasks: docker.yml
   tags: docker
