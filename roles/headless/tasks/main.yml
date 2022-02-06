@@ -155,16 +155,22 @@
   tags:
   - bin
 
-- name: install find-replace
+- name: install binaries from github
   get_url:
-    url: https://github.com/dolph/find-replace/releases/latest/download/find-replace
-    dest: /home/{{ whoami }}/bin/find-replace
+    url: https://github.com/dolph/{{ binary }}/releases/latest/download/{{ binary }}
+    dest: /home/{{ whoami }}/bin/{{ binary }}
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
     mode: 0770
+  loop:
+  - find-replace
+  - txt
+  loop_control:
+    loop_var: binary
   tags:
   - bin
   - find-replace
+  - txt
 
 - name: remove docker
   import_tasks: docker.yml
