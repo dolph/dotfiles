@@ -21,6 +21,7 @@
   loop:
   - i3
   - i3status
+  - rofi
   loop_control:
     loop_var: dir
 
@@ -35,6 +36,14 @@
   - i3status
   loop_control:
     loop_var: dir
+  notify: restart i3
+
+- name: configure rofi/dmenu
+  template:
+    src: home/config/rofi/config.rasi
+    dest: /home/{{ whoami }}/.config/rofi/config.rasi
+    owner: "{{ whoami}}"
+    group: "{{ whoami}}"
   notify: restart i3
 
 - name: configure urvxt
