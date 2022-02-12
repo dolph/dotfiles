@@ -172,10 +172,6 @@
   - find-replace
   - txt
 
-- name: remove docker
-  import_tasks: docker.yml
-  tags: docker
-
 - name: install podman
   import_tasks: podman.yml
   tags: podman
