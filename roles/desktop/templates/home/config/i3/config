@@ -20,6 +20,9 @@ client.placeholder #000000 #002b36 #839496 #000000 #000000
 # Background color which will be used to paint the background of the client window on top of which the client will be rendered. Only clients which do not cover the whole area of this window expose the color. Note that this colorclass only takes a single color.
 client.background #000000
 
+# Hide window title bars anyway, negating most of the colors above.
+for_window [class="^.*"] border none
+
 # Set desktop background color
 exec --no-startup-id xsetroot -solid "#000000"
 
@@ -193,6 +196,5 @@ exec --no-startup-id xset s off
 exec --no-startup-id xset s noblank
 exec --no-startup-id xset -dpms
 
-# Workspace 1: urvxt in fullscreen
-for_window [instance="terminal"] fullscreen enable
+# Workspace 1: urvxt with tmux running
 exec --no-startup-id i3-msg 'exec urxvt -name terminal -e sh -c "tmux att -d || tmux new"'
