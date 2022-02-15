@@ -1,6 +1,6 @@
 # dotfiles
 
-Build a machine with software, dotfiles, etc, for productivity.
+Build a system with software, dotfiles, etc, for productivity using Ansible.
 
 ## Dependencies
 
