@@ -109,6 +109,7 @@
     - dnf-plugin-system-upgrade
     - htop
     - jq
+    - neofetch
     - sshpass
     - tree
 
