@@ -61,9 +61,7 @@
 
 - name: configure signal
   import_tasks: signal.yml
-  tags:
-  - signal
-  - never
+  tags: signal
 
 - name: install plantuml
   dnf:

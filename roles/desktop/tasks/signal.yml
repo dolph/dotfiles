@@ -1,14 +1,5 @@
-- name: install snapd
-  dnf:
-    name: snapd
-
-# - name: enable "classic" snap support
-#   file:
-#     path: /snap
-#     dest: /var/lib/snapd/snap
-#     state: link
+- name: install flatpak repo
+  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 - name: install signal
-  community.general.snap:
-    name: signal-desktop
-    # classic: true
+  command: flatpak install -y flathub org.signal.Signal
