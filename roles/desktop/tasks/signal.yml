@@ -1,5 +1,9 @@
 - name: install flatpak repo
-  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  flatpak_remote:
+    name: flathub
+    method: system
+    flatpakrepo_url: flathub https://flathub.org/repo/flathub.flatpakrepo
 
 - name: install signal
-  command: flatpak install -y flathub org.signal.Signal
+  flatpak:
+    name: org.signal.Signal
