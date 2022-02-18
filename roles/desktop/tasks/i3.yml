@@ -10,6 +10,7 @@
     - numix-gtk-theme
     - rofi
     - lxappearance
+    - xclip
     - xsetroot
 
 - name: create i3 config dirs
