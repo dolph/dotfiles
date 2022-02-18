@@ -1,3 +1,4 @@
+---
 - name: check for nvidia devices
   shell: lspci | grep --extended-regexp 'VGA|3D' | grep --ignore-case nvidia
   check_mode: false # Force this task to run, even in check mode.
