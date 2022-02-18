@@ -4,6 +4,12 @@
     - tmux
     - xclip
 
+- name: uninstall xsel
+  dnf:
+    name:
+    - xsel
+    state: absent
+
 - name: create tmux plugins dir
   become: true
   become_user: "{{ whoami }}"
