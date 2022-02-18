@@ -6,6 +6,7 @@
   command: /usr/bin/gimp --version
   register: gimp_version
   failed_when: '"2.10" not in gimp_version.stdout'
+  changed_when: false
 
 - name: ensure gimp config dir exists
   file:

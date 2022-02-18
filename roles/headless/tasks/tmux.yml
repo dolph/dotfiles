@@ -2,7 +2,7 @@
   dnf:
     name:
     - tmux
-    - xsel
+    - xclip
 
 - name: create tmux plugins dir
   become: true

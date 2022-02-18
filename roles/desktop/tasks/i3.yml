@@ -82,7 +82,6 @@
 - name: enable autorandr
   systemd:
     name: autorandr
-    state: started
     enabled: true
 
 - name: set greeter background
