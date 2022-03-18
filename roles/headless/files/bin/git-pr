@@ -5,7 +5,6 @@ if [ "$BRANCH_NAME" == "master" ]; then
     echo "You must be on a non-master branch."
     exit 1
 fi
-git push --set-upstream origin $BRANCH_NAME
+try git push --set-upstream origin $BRANCH_NAME
 sleep 1 # proposed pull request message seems wrong otherwise?
 hub pull-request $@
-git ready

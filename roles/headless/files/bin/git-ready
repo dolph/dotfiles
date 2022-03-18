@@ -14,7 +14,7 @@ if ! git diff-index --quiet HEAD -- ; then
 fi
 
 git checkout master
-git pull
+try git pull
 
 if [ ! -z "$BRANCH_NAME" ]; then
     if git show-branch "remotes/origin/$BRANCH_NAME" 2>&- && git show-ref --verify --quiet "refs/heads/$BRANCH_NAME" ; then
