@@ -1,6 +1,6 @@
 - name: set system font size
   set_fact:
-    font_size: 12
+    font_size: 15
 
 - name: install i3
   dnf:
