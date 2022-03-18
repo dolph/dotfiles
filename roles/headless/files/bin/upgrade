@@ -8,4 +8,8 @@ sudo dnf clean packages
 $EDITOR +PluginInstall! +PluginClean! +qall
 $EDITOR +GoInstallBinaries +qall
 
+# On new Fedora installs, sometimes needs-restarting erroneously says the
+# system needs to be rebooted, even after rebooting. This has fixed the issue
+# twice, on two different systems, on different releases of Fedora (33 and 35).
+# sudo dnf remove -y $(sudo dnf repoquery --installonly --latest-limit=-2 -q)
 sudo dnf needs-restarting -r
