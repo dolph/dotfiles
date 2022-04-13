@@ -8,6 +8,11 @@ sudo dnf clean packages
 $EDITOR +PluginInstall! +PluginClean! +qall
 $EDITOR +GoInstallBinaries +qall
 
+if hash ibmcloud 2>/dev/null; then
+    ibmcloud update
+    ibmcloud plugin update --all
+fi
+
 # On new Fedora installs, sometimes needs-restarting erroneously says the
 # system needs to be rebooted, even after rebooting. This has fixed the issue
 # twice, on two different systems, on different releases of Fedora (33 and 35).
