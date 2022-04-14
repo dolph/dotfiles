@@ -191,10 +191,14 @@ bar {
 # https://www.reddit.com/r/i3wm/comments/8zj0jl/passwords_are_not_saved_in_google_chrome_in_i3/e78rjbq/
 # exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
+# Automatically select a display configuration based on connected devices
+exec --no-startup-id autorandr --change
+
 # Disable display power management
 exec --no-startup-id xset s off
 exec --no-startup-id xset s noblank
 exec --no-startup-id xset -dpms
 
-# Workspace 1: urvxt with tmux running
+# Start urvxt with tmux running
 exec --no-startup-id i3-msg 'exec urxvt -name terminal -e sh -c "tmux att -d || tmux new"'
+exec --no-startup-id tmux source-file ~/.tmux.conf
