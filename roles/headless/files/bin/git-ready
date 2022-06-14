@@ -13,7 +13,9 @@ if ! git diff-index --quiet HEAD -- ; then
     trap restore_uncommitted_changes EXIT
 fi
 
-git checkout master
+DEFAULT_BRANCH_NAME=$(sed -e 's/^.*\///' < $(git rev-parse --show-toplevel)/.git/refs/remotes/origin/HEAD)
+echo "Identified the default branch as '$DEFAULT_BRANCH_NAME'"
+git checkout $DEFAULT_BRANCH_NAME
 try git pull
 
 if [ ! -z "$BRANCH_NAME" ]; then
@@ -24,15 +26,18 @@ if [ ! -z "$BRANCH_NAME" ]; then
 
     if git show-ref --verify --quiet "refs/heads/$BRANCH_NAME" ; then
         # If the branch only exists locally, use it.
+        echo "Rebasing local branch '$BRANCH_NAME' on latest '$DEFAULT_BRANCH_NAME'"
         git checkout $BRANCH_NAME
-        git rebase master
+        git rebase $DEFAULT_BRANCH_NAME
     elif git show-branch "remotes/origin/$BRANCH_NAME" 2>&- ; then
         # If the branch only exists upstream, use it.
+        echo "Rebasing remote branch '$BRANCH_NAME'"
         git checkout --track "origin/$BRANCH_NAME"
         git pull origin $BRANCH_NAME
-        git rebase master
+        git rebase $DEFAULT_BRANCH_NAME
     else
         # Branch does not exist yet! Create it.
+        echo "Creating a new local branch '$BRANCH_NAME'"
         git checkout -b $BRANCH_NAME
     fi
 fi
