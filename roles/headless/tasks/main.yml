@@ -1,3 +1,4 @@
+---
 - name: whoami
   set_fact:
     whoami: "{{ lookup('env', 'USER') | default('dolph', true) }}"
