@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-BRANCH_NAME=${1:-$(uuid)}
+BRANCH_NAME=${1:-$(name)}
 
 # Preserve uncommitted changes, if there are any.
 if ! git diff-index --quiet HEAD -- ; then
