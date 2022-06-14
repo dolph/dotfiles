@@ -1,0 +1,1499 @@
+#!/bin/bash
+adjectives=(
+    abandoned abdominal abhorrent abiding abject able able-bodied abnormal
+    abounding abrasive abrupt absent absentminded absolute absorbed absorbing
+    abstracted absurd abundant abusive abysmal academic acceptable accepting
+    accessible accidental acclaimed accommodating accompanying accountable
+    accurate accusative accused accusing acerbic achievable aching acid acidic
+    acknowledged acoustic acrid acrimonious acrobatic actionable active actual
+    ad adamant adaptable adaptive addicted addictive additional adept adequate
+    adhesive adjacent adjoining adjustable administrative admirable admired
+    admiring adopted adoptive adorable adored adoring adrenalized adroit adult
+    advanced advantageous adventurous adversarial advisable aerial affable
+    affected affectionate affirmative affordable afraid afternoon ageless
+    aggravated aggravating aggressive agitated agonizing agrarian agreeable
+    aimless airline airsick ajar alarmed alarming alert algebraic alien
+    alienated alike alive all all-around alleged allowable all-purpose
+    all-too-common alluring allusive alone aloof alterable alternating
+    alternative amazed amazing ambiguous ambitious ambulant ambulatory amiable
+    amicable amphibian amused amusing an ancient anecdotal anemic angelic
+    angered angry angular animal animated annoyed annoying annual anonymous
+    another antagonistic anticipated anticlimactic anticorrosive antiquated
+    antiseptic antisocial antsy anxious any apathetic apologetic apologizing
+    appalling appealing appetizing applauding applicable applicative
+    appreciative apprehensive approachable approaching appropriate approving
+    approximate aquatic architectural ardent arduous arguable argumentative
+    arid aristocratic aromatic arresting arrogant artful artificial artistic
+    artless ashamed aspiring assertive assignable assorted assumable assured
+    assuring astonished astonishing astounded astounding astringent
+    astronomical astute asymmetrical athletic atomic atrocious attachable
+    attainable attentive attractive attributable atypical audacious auspicious
+    authentic authoritarian authoritative autobiographic autographed automatic
+    autonomous available avant-garde avenging average avian avid avoidable
+    awake awakening aware away awesome awful awkward axiomatic babbling baby
+    background backhanded bacterial bad bad-tempered baffled baffling bald
+    balding balmy bandaged banging bankable banned bantering barbaric barbarous
+    barbequed barefooted barking barren bashful basic battered batty bawling
+    beady beaming bearable beautiful beckoning bedazzled bedazzling beefy
+    beeping befitting befuddled beginning belching believable bellicose
+    belligerent bellowing bendable beneficial benevolent benign bent berserk
+    best betrayed better better better-late-than-never bewildered bewildering
+    bewitched bewitching biased biblical big big-city bigger biggest big-headed
+    bighearted bigoted bilingual billable billowy binary binding bioactive
+    biodegradable biographical bite-sized biting bitter bizarre black
+    black-and-blue blamable blameless bland blank blaring blasphemous blatant
+    blazing bleached bleak bleary bleary-eyed blessed blind blindfolded
+    blinding blissful blistering bloated blonde bloodied blood-red bloodthirsty
+    bloody blooming blossoming blue blundering blunt blurred blurry blushing
+    boastful bodacious bohemian boiling boisterous bold bookish booming boorish
+    bordering bored boring born bossy both bothered bouncing bouncy boundless
+    bountiful boyish braided brainless brainy brash brassy brave brawny brazen
+    breakable breathable breathless breathtaking breezy bribable brick brief
+    bright bright-eyed bright-red brilliant briny brisk bristly broad broken
+    broken-hearted bronchial bronze bronzed brooding brown bruised brunette
+    brutal brutish bubbly budget built-in bulky bumpy bungling buoyant
+    bureaucratic burly burnable burning bushy busiest business bustling busy
+    buzzing cackling caged cagey calculable calculated calculating callous calm
+    calming camouflaged cancelled cancerous candid cantankerous capable
+    capricious captivated captivating captive carefree careful careless caring
+    carnivorous carpeted carsick casual catastrophic catatonic catchable
+    caustic cautious cavalier cavernous ceaseless celebrated celestial centered
+    central cerebral ceremonial certain certifiable certified challenged
+    challenging chance changeable changing chanting charging charismatic
+    charitable charmed charming chattering chatting chatty chauvinistic cheap
+    cheapest cheeky cheerful cheering cheerless cheery chemical chewable chewy
+    chic chicken chief childish childlike chilling chilly chivalrous choice
+    choking choppy chronological chubby chuckling chunky cinematic circling
+    circular circumstantial civil civilian civilized clammy clamoring
+    clandestine clanging clapping clashing classic classical classifiable
+    classified classy clean cleanable clear cleared clearheaded clever climatic
+    climbable clinging clingy clinical cliquish clogged cloistered close
+    closeable closed close-minded cloudless cloudy clownish clueless clumsy
+    cluttered coachable coarse cockamamie cocky codified coercive cognitive
+    coherent cohesive coincidental cold coldhearted collaborative collapsed
+    collapsing collectable collegial colloquial colonial colorful colorless
+    colossal combative combined comfortable comforted comforting comical
+    commanding commemorative commendable commercial committed common communal
+    communicable communicative communist compact comparable comparative
+    compassionate compelling competent competitive complacent complaining
+    complete completed complex compliant complicated complimentary compound
+    comprehensive compulsive compulsory computer computerized concealable
+    concealed conceited conceivable concerned concerning concerted concise
+    concurrent condemned condensed condescending conditional confident
+    confidential confirmable confirmed conflicted conflicting conformable
+    confounded confused confusing congenial congested congressional congruent
+    congruous connectable connected connecting connective conscientious
+    conscious consecutive consensual consenting conservative considerable
+    considerate consistent consoling conspicuous conspiratorial constant
+    constitutional constrictive constructive consumable consummate contagious
+    containable contemplative contemporary contemptible contemptuous content
+    contented contentious contextual continual continuing continuous contoured
+    contractual contradicting contradictory contrarian contrary contributive
+    contrite controllable controlling controversial convenient conventional
+    conversational convinced convincing convoluted convulsive cooing cooked
+    cool coolest cooperative coordinated copious coquettish cordial corner
+    cornered corny corporate corpulent correct correctable corrective
+    corresponding corrosive corrupt corrupting corruptive cosmetic cosmic
+    costly cottony coughing courageous courteous covert coveted cowardly
+    cowering coy cozy crabby cracked crackling crafty craggy crammed cramped
+    cranky crashing crass craven crawling crazy creaking creaky creamy creative
+    credible creeping creepy crestfallen criminal crippled crippling crisp
+    crispy critical crooked cropped cross crossed crotchety crowded crucial
+    crude cruel crumbling crumbly crumply crunchable crunching crunchy
+    crushable crushed crusty crying cryptic crystalline crystallized cuddly
+    culpable cultural cultured cumbersome cumulative cunning curable curative
+    curious curly current cursed curt curved curvy customary cut cute cutting
+    cylindrical cynical daffy daft daily dainty damaged damaging damp danceable
+    dandy dangerous dapper daring dark darkened dashing daughterly daunting
+    dawdling day dazed dazzling dead deadly deadpan deaf deafening dear
+    debatable debonair decadent decayed decaying deceitful deceivable deceiving
+    decent decentralized deceptive decimated decipherable decisive declining
+    decorative decorous decreasing decrepit dedicated deep deepening defeated
+    defective defendable defenseless defensible defensive defiant deficient
+    definable definitive deformed degenerative degraded dehydrated dejected
+    delectable deliberate deliberative delicate delicious delighted delightful
+    delinquent delirious deliverable deluded demanding demented democratic
+    demonic demonstrative demure deniable dense dependable dependent deplorable
+    deploring depraved depressed depressing depressive deprived deranged
+    derivative derogative derogatory descriptive deserted designer desirable
+    desirous desolate despairing desperate despicable despised despondent
+    destroyed destructive detachable detached detailed detectable determined
+    detestable detrimental devastated devastating devious devoted devout
+    dexterous diabolical diagonal didactic different difficult diffuse
+    digestive digital dignified digressive dilapidated diligent dim diminishing
+    diminutive dingy diplomatic dire direct direful dirty disabled
+    disadvantaged disadvantageous disaffected disagreeable disappearing
+    disappointed disappointing disapproving disarming disastrous discarded
+    discernable disciplined disconnected discontented discordant discouraged
+    discouraging discourteous discredited discreet discriminating
+    discriminatory discussable disdainful diseased disenchanted disgraceful
+    disgruntled disgusted disgusting disheartened disheartening dishonest
+    dishonorable disillusioned disinclined disingenuous disinterested
+    disjointed dislikeable disliked disloyal dismal dismissive disobedient
+    disorderly disorganized disparaging disparate dispassionate dispensable
+    displaced displeased displeasing disposable disproportionate disproved
+    disputable disputatious disputed disreputable disrespectful disruptive
+    dissatisfied dissimilar dissolvable dissolving dissonant dissuasive distant
+    distasteful distinct distinctive distinguished distracted distracting
+    distraught distressed distressing distrustful disturbed disturbing
+    divergent diverging diverse diversified divided divine divisive dizzy
+    dizzying doable documentary dogged doggish dogmatic doleful dollish domed
+    domestic dominant domineering dorsal doting double doubtful doubting dovish
+    dowdy down down-and-out downhearted downloadable downtown downward dozing
+    drab drained dramatic drastic dreaded dreadful dreaming dreamy dreary
+    drenched dress dressy dried dripping drivable driven droll drooping droopy
+    drowsy drunk dry dual dubious due dulcet dull duplicitous durable dusty
+    dutiful dwarfish dwindling dynamic dysfunctional each eager early earnest
+    ear-piercing ear-splitting earthshaking earthy east eastern easy eatable
+    eccentric echoing ecological economic economical economy ecstatic edgy
+    editable educated educational eerie effective effervescent efficacious
+    efficient effortless effusive egalitarian egocentric egomaniacal
+    egotistical eight eighth either elaborate elastic elated elderly electric
+    electrical electrifying electronic elegant elementary elevated elfish
+    eligible elite eloquent elusive emaciated embarrassed embarrassing
+    embattled embittered emblematic emboldened embroiled emergency eminent
+    emotional emotionless empirical empty enamored enchanted enchanting
+    encouraged encouraging encrusted endangered endearing endemic endless
+    endurable enduring energetic energizing enforceable engaging engrossing
+    enhanced enigmatic enjoyable enlarged enlightened enormous enough enraged
+    ensuing enterprising entertained entertaining enthralled enthused
+    enthusiastic enticing entire entranced entrepreneurial enumerable enviable
+    envious environmental episodic equable equal equidistant equitable
+    equivalent erasable eroding errant erratic erroneous eruptive escalating
+    esoteric essential established estimated estranged eternal ethereal ethical
+    ethnic euphemistic euphoric evasive even evenhanded evening eventful
+    eventual everlasting every evil evocative exacerbating exact exacting
+    exaggerated exalted exasperated exasperating excellent exceptional
+    excessive exchangeable excitable excited exciting exclusive excruciating
+    excusable executable exemplary exhausted exhausting exhaustive exhilarated
+    exhilarating existing exotic expandable expanded expanding expansive
+    expectant expected expedient expeditious expendable expensive experimental
+    expert expired expiring explainable explicit exploding exploitative
+    exploited explosive exponential exposed express expressionistic
+    expressionless expressive exquisite extemporaneous extendable extended
+    extension extensive exterior external extra extra-large extraneous
+    extraordinary extra-small extravagant extreme exuberant eye-popping fabled
+    fabulous facetious facial factitious factual faded fading failed faint
+    fainthearted fair faithful faithless fallacious false falsified faltering
+    familiar famished famous fanatical fanciful fancy fantastic far faraway
+    farcical far-flung farsighted fascinated fascinating fascistic fashionable
+    fast fastest fastidious fast-moving fat fatal fateful fatherly fathomable
+    fathomless fatigued faulty favorable favorite fawning feared fearful
+    fearless fearsome feathered feathery feckless federal feeble feebleminded
+    feeling feigned felonious female feminine fermented ferocious fertile
+    fervent fervid festive fetching fetid feudal feverish few fewer fictional
+    fictitious fidgeting fidgety fiendish fierce fiery fifth filmy filtered
+    filthy final financial fine finicky finite fireproof firm first fiscal
+    fishy fit fitted fitting five fixable fixed flabby flagrant flaky
+    flamboyant flaming flammable flashy flat flattened flattered flattering
+    flavored flavorful flavorless flawed flawless fleeting flexible flickering
+    flimsy flippant flirtatious floating flooded floppy floral flowering
+    flowery fluent fluffy flushed fluttering flying foamy focused foggy folded
+    following fond foolhardy foolish forbidding forceful foreboding foregoing
+    foreign forensic foreseeable forged forgetful forgettable forgivable
+    forgiving forgotten forked formal formative former formidable formless
+    formulaic forthright fortuitous fortunate forward foul foul-smelling four
+    fourth foxy fractional fractious fragile fragmented fragrant frail frank
+    frantic fraternal fraudulent frayed freakish freaky freckled free freezing
+    frequent fresh fretful fried friendly frightened frightening frightful
+    frigid frilly frisky frivolous front frosty frothy frowning frozen frugal
+    fruitful fruitless fruity frumpy frustrated frustrating fulfilled
+    fulfilling full fully-grown fumbling fuming fun functional fundamental
+    fun-loving funniest funny furious furry furthest furtive fussy futile
+    future futuristic fuzzy gabby gainful gallant galling game gangly gaping
+    garbled gargantuan garish garrulous gaseous gasping gaudy gaunt gauzy gawky
+    general generative generic generous genial gentle genuine geographic
+    geologic geometric geriatric ghastly ghostly ghoulish giant giddy gifted
+    gigantic giggling gilded giving glad glamorous glaring glass glassy
+    gleaming glib glistening glittering global globular gloomy glorious glossy
+    glowing gluey glum gluttonous gnarly gold golden good good-looking
+    good-natured gooey goofy gorgeous graceful gracious gradual grainy grand
+    grandiose graphic grateful gratified gratifying grating gratis gratuitous
+    gray greasy great greatest greedy green gregarious grey grieving grim
+    grimacing grimy grinding grinning gripping gritty grizzled groaning groggy
+    groomed groovy gross grotesque grouchy growling grown-up grubby grueling
+    gruesome gruff grumbling grumpy guaranteed guarded guiltless guilt-ridden
+    guilty gullible gurgling gushing gushy gusty gutsy habitable habitual
+    haggard hairless hairy half halfhearted hallowed halting handsome handy
+    hanging haphazard hapless happy hard hard-to-find hardworking hardy
+    harebrained harmful harmless harmonic harmonious harried harsh hasty hated
+    hateful haughty haunting hawkish hazardous hazy head heady healthy
+    heartbreaking heartbroken heartless heartrending hearty heated heavenly
+    heavy hectic hefty heinous helpful helpless her heroic hesitant hideous
+    high highest highfalutin high-functioning high-maintenance high-pitched
+    high-risk hilarious his hissing historical hoarse hoggish holiday holistic
+    hollow home homeless homely homeopathic homey homogeneous honest honking
+    honorable hopeful hopeless horizontal hormonal horned horrendous horrible
+    horrid horrific horrified horrifying hospitable hostile hot hot hot-blooded
+    hotheaded hot-shot hot-tempered hour-long house howling huffy huge huggable
+    hulking human humanitarian humanlike humble humdrum humid humiliated
+    humiliating humming humongous humorless humorous hungry hurried hurt
+    hurtful hushed husky hydraulic hydrothermal hygienic hyper-active
+    hyperbolic hypercritical hyperirritable hypersensitive hypertensive
+    hypnotic hypnotizable hypothetical hysterical icky iconoclastic icy
+    icy-cold ideal idealistic identical identifiable idiosyncratic idiotic
+    idyllic ignorable ignorant ill illegal illegible illegitimate ill-equipped
+    ill-fated ill-humored illicit ill-informed illiterate illogical
+    illuminating illusive illustrious imaginable imaginary imaginative
+    imitative immaculate immanent immature immeasurable immediate immense
+    immensurable imminent immobile immodest immoral immortal immovable
+    impartial impassable impassioned impatient impeccable impenetrable
+    imperative imperceptible imperceptive imperfect imperial imperialistic
+    impermeable impersonal impertinent impervious impetuous impish implausible
+    implicit implosive impolite imponderable important imported imposing
+    impossible impoverished impractical imprecise impressionable impressive
+    improbable improper improvable improved improving imprudent impulsive
+    impure inaccessible inaccurate inactive inadequate inadmissible inadvertent
+    inadvisable inalienable inalterable inane inanimate inapplicable
+    inappropriate inapt inarguable inarticulate inartistic inattentive
+    inaudible inauspicious incalculable incandescent incapable incessant
+    incidental inclusive incoherent incomparable incompatible incompetent
+    incomplete incomprehensible inconceivable inconclusive incongruent
+    incongruous inconsequential inconsiderable inconsiderate inconsistent
+    inconsolable inconspicuous incontrovertible inconvenient incorrect
+    incorrigible incorruptible increasing incredible incredulous incremental
+    incurable indecent indecipherable indecisive indefensible indefinable
+    indefinite indelible independent indescribable indestructible
+    indeterminable indeterminate indicative indifferent indigenous indignant
+    indirect indiscreet indiscriminate indispensable indisputable indistinct
+    individual individualistic indivisible indomitable inductive indulgent
+    industrial industrious ineffective ineffectual inefficient inelegant
+    ineloquent inequitable inert inescapable inevitable inexact inexcusable
+    inexhaustible inexpedient inexpensive inexplicable inexpressible
+    inexpressive inextricable infallible infamous infantile infatuated infected
+    infectious inferable inferior infernal infinite infinitesimal inflamed
+    inflammable inflammatory inflatable inflated inflexible influential
+    informal informative informed infrequent infuriated infuriating ingenious
+    ingenuous inglorious ingratiating inhabitable inharmonious inherent
+    inhibited inhospitable inhuman inhumane initial injudicious injured
+    injurious innate inner innocent innocuous innovative innumerable
+    inoffensive inoperable inoperative inopportune inordinate inorganic
+    inquiring inquisitive insane insatiable inscrutable insecure insensible
+    insensitive inseparable inside insidious insightful insignificant insincere
+    insipid insistent insolent inspirational inspired inspiring instant
+    instantaneous instinctive instinctual institutional instructive
+    instrumental insubordinate insufferable insufficient insulted insulting
+    insurable insurmountable intangible integral intellectual intelligent
+    intelligible intended intense intensive intentional interactive
+    interchangeable interdepartmental interdependent interested interesting
+    interior intermediate intermittent internal international interpersonal
+    interracial intestinal intimate intimidating intolerable intolerant
+    intravenous intrepid intricate intrigued intriguing intrinsic introductory
+    introspective introverted intrusive intuitive invalid invaluable invasive
+    inventive invigorating invincible invisible invited inviting involuntary
+    involved inward irascible irate iridescent irksome iron iron-fisted ironic
+    irrational irreconcilable irrefutable irregular irrelative irrelevant
+    irremovable irreparable irreplaceable irrepressible irresistible
+    irresponsible irretrievably irreverent irreversible irrevocable irritable
+    irritated irritating isolated itchy its itty-bitty jabbering jaded jagged
+    jarring jaundiced jazzy jealous jeering jerky jiggling jittery jobless
+    jocular joint jolly jovial joyful joyless joyous jubilant judgmental
+    judicious juicy jumbled jumpy junior just justifiable juvenile kaput keen
+    key kind kindhearted kindly kinesthetic kingly kitchen knavish knightly
+    knobbed knobby knotty knowable knowing knowledgeable known labored
+    laborious lackadaisical lacking lacy lame lamentable languid languishing
+    lanky larcenous large larger largest lascivious last lasting late latent
+    later lateral latest latter laudable laughable laughing lavish lawful
+    lawless lax lazy lead leading lean learnable learned leased least leather
+    leathery lecherous leering left left-handed legal legendary legible
+    legislative legitimate lengthy lenient less lesser lesser-known
+    less-qualified lethal lethargic level liable libelous liberal licensed life
+    lifeless lifelike lifelong light light-blue lighthearted likable likeable
+    likely like-minded lily-livered limber limited limitless limp limping
+    linear lined lingering linguistic liquid listless literal literary literate
+    lithe lithographic litigious little livable live lively livid living
+    loathsome local locatable locked lofty logarithmic logical logistic lonely
+    long longer longest longing long-term long-winded loose lopsided loquacious
+    lordly lost loud lousy loutish lovable loveable lovely loving low
+    low-calorie low-carb lower low-fat lowly low-maintenance low-ranking
+    low-risk loyal lucent lucid lucky lucrative ludicrous lukewarm lulling
+    luminescent luminous lumpy lurid luscious lush lustrous luxurious lying
+    lyrical macabre Machiavellian macho mad maddening magenta magic magical
+    magnanimous magnetic magnificent maiden main maintainable majestic major
+    makeable makeshift maladjusted male malevolent malicious malignant
+    malleable mammoth manageable managerial mandatory maneuverable mangy
+    maniacal manic manicured manipulative man-made manual many marbled marginal
+    marked marketable married marvelous masked massive master masterful
+    matchless material materialistic maternal mathematical matronly matted
+    mature maximum meager mean meandering meaningful meaningless mean-spirited
+    measly measurable meat-eating meaty mechanical medical medicinal meditative
+    medium medium-rare meek melancholy mellow melodic melodious melodramatic
+    melted memorable menacing menial mental merciful merciless mercurial mere
+    merry messy metabolic metallic metaphoric meteoric meticulous microscopic
+    microwaveable middle middle-class midweek mighty mild militant militaristic
+    military milky mincing mind-bending mindful mindless mini miniature minimal
+    minimum minor minute miraculous mirthful miscellaneous mischievous
+    miscreant miserable miserly misguided misleading mission mistaken
+    mistrustful mistrusting misty mixed mnemonic moaning mobile mocking
+    moderate modern modest modified modular moist moldy momentary momentous
+    monetary money-grubbing monopolistic monosyllabic monotone monotonous
+    monstrous monumental moody moral moralistic morbid mordant more moronic
+    morose mortal mortified most mother motherly motionless motivated
+    motivating motivational motor mountain mountainous mournful mouthwatering
+    movable moved moving much muddled muddy muffled muggy multicultural
+    multifaceted multipurpose multitalented mumbled mundane municipal murky
+    muscular mushy musical musky musty mutative mute muted mutinous muttering
+    mutual my myopic mysterious mystic mystical mystified mystifying mythical
+    naive nameless narcissistic narrow narrow-minded nasal nasty national
+    native natural naughty nauseating nauseous nautical navigable navy-blue
+    near nearby nearest nearsighted neat nebulous necessary needless needy
+    nefarious negative neglected neglectful negligent negligible negotiable
+    neighborly neither nerve-racking nervous neurological neurotic neutral new
+    newest next next-door nice nifty nightmarish nimble nine ninth nippy no
+    noble nocturnal noiseless noisy nominal nonabrasive nonaggressive
+    nonchalant noncommittal noncompetitive nonconsecutive nondescript
+    nondestructive nonexclusive nonnegotiable nonproductive nonrefundable
+    nonrenewable nonresponsive nonrestrictive nonreturnable nonsensical
+    nonspecific nonstop nontransferable nonverbal nonviolent normal north
+    northeast northerly northwest nostalgic nosy notable noticeable notorious
+    novel noxious null numb numberless numbing numerable numeric numerous
+    nutritional nutritious nutty oafish obedient obeisant obese objectionable
+    objective obligatory obliging oblique oblivious oblong obnoxious obscene
+    obscure observable observant obsessive obsolete obstinate obstructive
+    obtainable obtrusive obtuse obvious occasional occupational occupied
+    oceanic odd odd-looking odiferous odious odorless odorous offbeat offensive
+    offhanded official officious oily OK okay old older oldest old-fashioned
+    ominous omniscient omnivorous one one-hour onerous one-sided only opaque
+    open opened openhanded openhearted opening open-minded operable operatic
+    operational operative opinionated opportune opportunistic opposable opposed
+    opposing opposite oppressive optimal optimistic optional opulent oral
+    orange ordinary organic organizational original ornamental ornate ornery
+    orphaned orthopedic ossified ostentatious other otherwise our outer
+    outermost outgoing outlandish outraged outrageous outside outspoken
+    outstanding outward oval overactive overaggressive overall overambitious
+    overassertive overbearing overcast overcautious overconfident overcritical
+    overcrowded overemotional overenthusiastic overjoyed overoptimistic
+    overpowering overpriced overprotective overqualified overrated
+    oversensitive oversized overt overwhelmed overwhelming overworked
+    overwrought overzealous own oxymoronic padded painful painless painstaking
+    palatable palatial pale pallid palpable paltry pampered panicky panoramic
+    paradoxical parallel paranormal parasitic parched pardonable parental
+    parenthetic parking parsimonious partial particular partisan part-time
+    party passing passionate passive past pastoral patched patchy patented
+    paternal paternalistic pathetic pathological patient patriotic patronizing
+    patterned payable peaceable peaceful peculiar pedantic pedestrian peerless
+    peeved peevish penetrable penetrating pensive peppery perceivable
+    perceptible perceptive perceptual peremptory perennial perfect perfumed
+    perilous period periodic peripheral perishable perky permanent permeable
+    permissible permissive pernicious perpendicular perpetual perplexed
+    perplexing persevering persistent personable personal persuasive pert
+    pertinent perturbed perturbing pervasive perverse pessimistic petite
+    pettish petty petulant pharmaceutical phenomenal philanthropic
+    philosophical phobic phonemic phonetic phosphorescent photographic physical
+    physiological picturesque piercing pigheaded pink pious piquant pitch-dark
+    pitch-perfect piteous pithy pitiful pitiless pivotal placid plaid plain
+    plane planned plastic platonic plausible playful pleading pleasant pleased
+    pleasing pleasurable plentiful pliable plodding plopping plucky plump
+    pluralistic plus plush pneumatic poetic poignant pointless poised poisonous
+    polished polite political polka-dotted polluted polyunsaturated pompous
+    ponderous poor poorer poorest popping popular populous porous portable
+    portly positive possessive possible post posthumous postoperative potable
+    potent potential powdery powerful powerless practical pragmatic
+    praiseworthy precarious precious precipitous precise precocious
+    preconceived predicative predictable predisposed predominant preeminent
+    preemptive prefabricated preferable preferential pregnant prehistoric
+    prejudiced prejudicial preliminary premature premeditated premium prenatal
+    preoccupied preoperative preparative prepared preposterous prescriptive
+    present presentable presidential pressing pressurized prestigious
+    presumable presumptive presumptuous pretend pretentious pretty prevalent
+    preventable preventative preventive previous priceless pricey prickly prim
+    primary primitive primordial princely principal principled prior prissy
+    pristine private prize prized proactive probabilistic probable problematic
+    procedural prodigious productive profane professed professional
+    professorial proficient profitable profound profuse programmable
+    progressive prohibitive prolific prominent promised promising prompt
+    pronounceable pronounced proof proper prophetic proportional proportionate
+    proportioned prospective prosperous protective prototypical proud
+    proverbial provisional provocative provoking proximal proximate prudent
+    prudential prying psychedelic psychiatric psychological psychosomatic
+    psychotic public puckish puffy pugnacious pumped punctual pungent
+    punishable punitive puny pure purified puritanical purple purported
+    purposeful purposeless purring pushy pusillanimous putrid puzzled puzzling
+    pyrotechnic quackish quacky quaint qualified qualitative quality
+    quantifiable quantitative quarrelsome queasy queenly querulous questionable
+    quick quick-acting quick-drying quickest quick-minded quick-paced
+    quick-tempered quick-thinking quick-witted quiet quintessential quirky
+    quivering quizzical quotable rabid racial racist radiant radical
+    radioactive ragged raging rainbow rainy rakish rambling rambunctious
+    rampageous rampant rancid rancorous random rank rapid rapid-fire rapturous
+    rare rascally rash rasping raspy rational ratty ravenous raving ravishing
+    raw razor-edged reactive ready real realistic reasonable reassured
+    reassuring rebel rebellious receding recent receptive recessive
+    rechargeable reciprocal reckless reclusive recognizable recognized
+    rectangular rectifiable recurrent recyclable red red-blooded reddish
+    redeemable redolent redundant referential refillable reflective refractive
+    refreshing refundable refurbished refutable regal regional regretful
+    regrettable regular reigning relatable relative relaxed relaxing relentless
+    relevant reliable relieved religious reluctant remaining remarkable
+    remedial reminiscent remorseful remorseless remote removable renegotiable
+    renewable rented repairable repaired repeated repentant
+    repetitious repetitive replaceable replicable reported reprehensible
+    representative repressive reproachful reproductive republican repugnant
+    repulsive reputable reputed rescued resealable resentful reserved resident
+    residential residual resilient resolute resolvable resonant resounding
+    resourceful respectable respectful respective responsible responsive rested
+    restful restless restored restrained restrictive retired retroactive
+    retrogressive retrospective reusable revamped revealing revengeful reverent
+    reverential reverse reversible reviewable reviled revisable revised
+    revocable revolting revolutionary rewarding rhetorical rhythmic rich richer
+    richest ridiculing ridiculous right righteous rightful right-handed rigid
+    rigorous ringing riotous ripe rippling risky ritualistic ritzy riveting
+    roaring roasted robotic robust rocketing roguish romantic roomy rosy
+    rotating rotten rotting rotund rough round roundtable rousing routine rowdy
+    royal ruddy rude rudimentary rueful rugged ruined ruinous rumbling rumpled
+    ruptured rural rusted rustic rustling rusty ruthless rutted saccharin
+    sacred sacrificial sacrilegious sad saddened safe saintly salacious salient
+    salt salted salty salvageable salvaged same sanctimonious sandy sane
+    sanguine sanitary sappy sarcastic sardonic sassy satin satiny satiric
+    satirical satisfactory satisfied satisfying saucy savage savory savvy
+    scalding scaly scandalous scant scanty scarce scared scarred scary scathing
+    scattered scenic scented scheduled schematic scholarly scholastic
+    scientific scintillating scorching scornful scrabbled scraggly scrappy
+    scratched scratchy scrawny screaming screeching scribbled scriptural
+    scruffy scrumptious scrupulous sculpted sculptural scummy sea sealed
+    seamless searching searing seasick seasonable seasonal secluded second
+    secondary second-hand secret secretive secular secure secured sedate
+    seditious seductive seedy seeming seemly seething seismic select selected
+    selective self-absorbed self-aggrandizing self-assured self-centered
+    self-confident self-directed self-disciplined self-effacing self-indulgent
+    self-interested selfish selfless self-reliant self-respect self-satisfied
+    sellable semiconscious semiofficial semiprecious semiprofessional senior
+    sensational senseless sensible sensitive sensual sensuous sentimental
+    separate sequential serendipitous serene serial serious serrated
+    serviceable seven seventh several severe shabbiest shabby shaded shadowed
+    shadowy shady shaggy shaky shallow shamefaced shameful shameless shapeless
+    shapely sharp sharpened shattered shattering sheepish sheer sheltered
+    shifty shimmering shining shiny shivering shivery shocked shocking shoddy
+    short short-lived shortsighted short-tempered short-term showy shrewd
+    shrieking shrill shut shy sick sickened sickening sickly side-splitting
+    signed significant silent silky silly silver silver-tongued simian similar
+    simple simpleminded simplified simplistic simultaneous sincere sinful
+    single single-minded singular sinister sinuous sisterly six sixth sizable
+    sizzling skeptical sketchy skilled skillful skimpy skin-deep skinny
+    skittish sky-blue slanderous slanted slanting sleek sleeping sleepless
+    sleepy slender slick slight slim slimy slippery sloped sloping sloppy
+    slothful slow slow-moving sluggish slushy sly small smaller smallest
+    small-minded small-scale small-time small-town smarmy smart smarter
+    smartest smashing smeared smelly smiling smoggy smoked smoky smooth
+    smothering smudged smug snapping snappish snappy snarling sneaky snide
+    snippy snobbish snoopy snooty snoring snotty snow-white snug snuggly soaked
+    soaking soaking soaring sober sociable social socialist sociological soft
+    softhearted soggy solar soldierly sole solemn solicitous solid solitary
+    somatic somber some sonic sonly soothed soothing sophisticated sordid sore
+    sorrowful sorry soulful soulless soundless sour south southeasterly
+    southern southwestern spacious spare sparing sparkling sparkly sparse
+    spasmodic spastic spatial spattered special specialist specialized specific
+    speckled spectacular spectral speculative speechless speedy spellbinding
+    spendthrift spherical spicy spiffy spiky spinal spineless spiral spiraled
+    spirited spiritless spiritual spiteful splashing splashy splattered
+    splendid splintered spoiled spoken spongy spontaneous spooky sporadic
+    sporting sportsmanly spotless spotted spotty springy sprite spry spurious
+    squalid squandered square squashed squashy squatting squawking squealing
+    squeamish squeezable squiggly squirming squirrelly stable stackable stacked
+    staggering stagnant stained stale stanch standard standing standoffish
+    starched star-crossed stark startled startling starving stately static
+    statistical statuesque status statutory staunch steadfast steady stealth
+    steaming steamy steel steely steep stereophonic stereotyped stereotypical
+    sterile stern sticky stiff stifled stifling stigmatic still stilled stilted
+    stimulating stinging stingy stinking stinky stirring stock stodgy stoic
+    stony stormy stout straggly straight straightforward stranded strange
+    strategic streaked street strenuous stressful stretchy strict strident
+    striking stringent striped strong stronger strongest structural stubborn
+    stubby stuck-up studied studious stuffed stuffy stumbling stunned stunning
+    stupendous sturdy stuttering stylish stylistic suave subconscious subdued
+    subject subjective sublime subliminal submissive subordinate subsequent
+    subservient substantial substantiated substitute subterranean subtitled
+    subtle subversive successful successive succinct succulent such sudden
+    suffering sufficient sugary suggestive suitable sulky sullen sumptuous
+    sunny super superabundant superb supercilious superficial superhuman
+    superior superlative supernatural supersensitive supersonic superstitious
+    supple supportive supposed suppressive supreme sure sure-footed surgical
+    surly surmountable surprised surprising surrealistic survivable susceptible
+    suspected suspicious sustainable swaggering swanky swaying sweaty sweeping
+    sweet sweltering swift swimming swinish swishing swollen swooping syllabic
+    syllogistic symbiotic symbolic symmetrical sympathetic symptomatic
+    synergistic synonymous syntactic synthetic systematic taboo tacit tacky
+    tactful tactical tactless tactual tainted take-charge talented talkative
+    tall taller tallest tame tamed tan tangential tangible tangled tangy tanned
+    tantalizing tapered tardy targeted tarnished tart tasteful tasteless tasty
+    tattered taunting taut taxing teachable tearful tearing teasing technical
+    technological tectonic tedious teenage teensy teeny teeny-tiny telegraphic
+    telekinetic telepathic telephonic telescopic telling temperamental
+    temperate tempestuous temporary tempted tempting ten tenable tenacious
+    tender tenderhearted ten-minute tense tentative tenth tenuous tepid
+    terminal terrestrial terrible terrific terrified terrifying territorial
+    terse tested testy tetchy textual textural thankful thankless that the
+    theatrical their thematic theological theoretical therapeutic thermal these
+    thick thievish thin thinkable third thirsty this thorny thorough those
+    thoughtful thoughtless thrashed threatened threatening three thriftless
+    thrifty thrilled thrilling throbbing thumping thundering thunderous ticking
+    tickling ticklish tidal tidy tight tightfisted time timeless timely timid
+    timorous tiny tipsy tired tireless tiresome tiring tolerable tolerant tonal
+    tone-deaf toneless toothsome toothy top topical topographical tormented
+    torpid torrential torrid torturous total touched touching touchy tough
+    towering toxic traditional tragic trainable trained training traitorous
+    tranquil transcendent transcendental transformational transformative
+    transformed transient transitional transitory translucent transparent
+    transplanted trapped trashed trashy traumatic treacherous treasonable
+    treasonous treasured treatable tremendous tremulous trenchant trendy
+    triangular tribal trick tricky trim tripping trite triumphant trivial
+    tropical troubled troublesome troubling truculent true trusted trustful
+    trusting trustworthy trusty truthful trying tumultuous tuneful tuneless
+    turbulent twinkling twinkly twisted twitchy two typical tyrannical
+    tyrannous ubiquitous ugly ultimate ultraconservative ultrasensitive
+    ultrasonic ultraviolet unabashed unabated unable unacceptable unaccompanied
+    unaccountable unaccustomed unacknowledged unadorned unadulterated
+    unadventurous unadvised unaffected unaffordable unafraid unaggressive
+    unaided unalienable unalterable unaltered unambiguous unanimous unannounced
+    unanswerable unanticipated unapologetic unappealing unappetizing
+    unappreciative unapproachable unashamed unassailable unassertive unassisted
+    unattached unattainable unattractive unauthorized unavailable unavailing
+    unavoidable unbalanced unbearable unbeatable unbeaten unbecoming
+    unbelievable unbelieving unbendable unbending unbiased unblemished
+    unblinking unblushing unbounded unbreakable unbridled uncanny uncaring
+    unceasing unceremonious uncertain unchangeable unchanging uncharacteristic
+    uncharitable uncharted uncivil uncivilized unclassified unclean uncluttered
+    uncomely uncomfortable uncommitted uncommon uncommunicative uncomplaining
+    uncomprehending uncompromising unconcerned unconditional unconfirmed
+    unconquerable unconscionable unconscious unconstitutional unconstrained
+    unconstructive uncontainable uncontrollable unconventional unconvinced
+    unconvincing uncooked uncooperative uncoordinated uncouth uncovered
+    uncreative uncritical undamaged undated undaunted undeclared undefeated
+    undefined undemocratic undeniable undependable underdeveloped underfunded
+    underhanded underprivileged understandable understanding understated
+    understood undeserved undesirable undetected undeterred undeveloped
+    undeviating undifferentiated undignified undiminished undiplomatic
+    undisciplined undiscovered undisguised undisputed undistinguished undivided
+    undoubted unearthly uneasy uneducated unemotional unemployed unencumbered
+    unending unendurable unenforceable unenthusiastic unenviable unequal
+    unequaled unequivocal unerring uneven uneventful unexceptional unexcited
+    unexpected unexplainable unexplored unexpressive unfailing unfair
+    unfaithful unfaltering unfamiliar unfashionable unfathomable unfavorable
+    unfeeling unfettered unfilled unflagging unflappable unflattering
+    unflinching unfocused unforeseeable unforgettable unforgivable unforgiving
+    unfortunate unfriendly unfulfilled ungallant ungenerous ungentlemanly
+    unglamorous ungraceful ungracious ungrateful unguarded unhandsome unhappy
+    unharmed unhealthy unheated unheeded unhelpful unhesitating unhurried
+    uniform unilateral unimaginable unimaginative unimpeachable unimpeded
+    unimpressive unincorporated uninformed uninhabitable uninhibited
+    uninitiated uninjured uninspired uninsurable unintelligent unintelligible
+    unintended unintentional uninterested uninterrupted uninvited unique united
+    universal unjust unjustifiable unkempt unkind unknowing unknown unlawful
+    unlicensed unlikable unlikely unlivable unloved unlucky unmanageable
+    unmanly unmanned unmarketable unmasked unmatched unmemorable unmentionable
+    unmerciful unmistakable unmitigated unmodified unmotivated unnatural
+    unnecessary unnerved unnerving unnoticeable unobserved unobtainable
+    unobtrusive unofficial unopened unopposed unorthodox unostentatious
+    unpalatable unpardonable unpersuasive unperturbed unplanned unpleasant
+    unprecedented unpredictable unpretentious unprincipled unproductive
+    unprofessional unprofitable unpromising unpronounceable unprovoked
+    unqualified unquantifiable unquenchable unquestionable unquestioned
+    unquestioning unraveled unreachable unreadable unrealistic unrealized
+    unreasonable unreceptive unrecognizable unrecognized unredeemable
+    unregulated unrelenting unreliable unremarkable unremitting unrepentant
+    unrepresentative unrepresented unreserved unrespectable unresponsive
+    unrestrained unripe unrivaled unromantic unruffled unruly unsafe
+    unsalvageable unsatisfactory unsatisfied unscheduled unscholarly
+    unscientific unscrupulous unseasonable unseemly unselfish unsettled
+    unsettling unshakable unshapely unsightly unsigned unsinkable unskilled
+    unsociable unsolicited unsolvable unsolved unsophisticated unsound
+    unsparing unspeakable unspoiled unstable unstated unsteady unstoppable
+    unstressed unstructured unsubstantial unsubstantiated unsuccessful
+    unsuitable unsuited unsupervised unsupported unsure unsurpassable
+    unsurpassed unsurprising unsuspected unsuspecting unsustainable
+    unsympathetic unsystematic untainted untamable untamed untapped untenable
+    untested unthinkable unthinking untidy untimely untitled untouchable
+    untraditional untrained untried untroubled untrustworthy untruthful unused
+    unusual unverified unwary unwashed unwatchable unwavering unwholesome
+    unwieldy unwilling unwise unwitting unworkable unworldly unworthy unwritten
+    unyielding upbeat upmost upper uppity upright uproarious upset upsetting
+    upstairs uptight up-to-date up-to-the-minute upward urbane urgent usable
+    used useful useless usual utilitarian utopian utter uttermost vacant
+    vacillating vacuous vagabond vagrant vague vain valiant valid valorous
+    valuable vanishing vapid vaporous variable varied various varying vast
+    vegetable vegetarian vegetative vehement velvety venal venerable vengeful
+    venomous venturesome venturous veracious verbal verbose verdant verifiable
+    verified veritable vernacular versatile versed vertical very vexed vexing
+    viable vibrant vibrating vicarious vicious victorious vigilant vigorous
+    vile villainous vindictive vinegary violent violet viperous viral virtual
+    virtuous virulent visceral viscous visible visionary visual vital vitriolic
+    vivacious vivid vocal vocational voiceless volatile volcanic voluminous
+    voluntary voluptuous voracious vulgar vulnerable wacky wailing waiting
+    wakeful wandering wanting wanton warlike warm warmest warning warring wary
+    waspish waste wasted wasteful watchful waterlogged waterproof watertight
+    watery wavering wax waxen weak weakened weak-willed wealthy wearisome weary
+    wee weedy week-long weekly weightless weighty weird welcoming well
+    well-adjusted well-argued well-aware well-balanced well-behaved well-built
+    well-conceived well-considered well-crafted well-deserved well-developed
+    well-done well-dressed well-educated well-equipped well-established
+    well-founded well-groomed well-heeled well-honed well-informed
+    well-intentioned well-kempt well-known well-liked well-lit well-made
+    well-maintained well-mannered well-meaning well-off well-placed
+    well-planned well-prepared well-qualified well-read well-received
+    well-rounded well-spoken well-suited well-thought-of well-thought-out
+    well-to-do well-traveled well-used well-versed well-worn well-written west
+    western wet what wheezing which whimpering whimsical whining whispering
+    whistling white whole wholehearted wholesale wholesome whooping whopping
+    whose wicked wide wide-eyed wide-ranging widespread wiggly wild willful
+    willing wily windy winning winsome winter wintery wiry wise wishful wispy
+    wistful withering witless witty wizardly wobbly woeful wolfish wonderful
+    wondrous wonted wood wooden wooing wool woolen woozy wordless wordy work
+    workable working work-oriented worldly worn worn worn worried worrisome
+    worrying worse worshipful worst worth worthless worthwhile worthy wounding
+    wrathful wrenching wretched wriggling wriggly wrinkled wrinkly written
+    wrong wrongful wry yawning yearly yearning yellow yelping yielding young
+    younger youngest youthful yummy zany zealous zestful zesty zippy zonked
+    zoological)
+
+animals=(
+    aardvark aardwolf abyssinian addax adelie-penguin aesculapian-snake
+    affenpinscher afghan-hound african-bullfrog african-bush-elephant
+    african-civet african-clawed-frog african-forest-elephant
+    african-grey-parrot african-palm-civet african-penguin african-tree-toad
+    african-wild-dog agama-lizard aidi ainu airedale-terrier airedoodle akbash
+    akita akita-shepherd alabai alaskan-husky alaskan-klee-kai alaskan-malamute
+    alaskan-pollock alaskan-shepherd albacore-tuna albatross
+    aldabra-giant-tortoise alligator alligator-gar alpaca alpine-dachsbracke
+    alpine-goat alusky amargasaurus amazon-parrot amazon-river-dolphin
+    pink-dolphin ambrosia-beetle american-alsatian american-bulldog
+    american-cocker-spaniel american-cockroach american-coonhound
+    american-dog-tick american-eskimo-dog american-foxhound
+    american-hairless-terrier american-leopard-hound american-pit-bull-terrier
+    american-pygmy-goat american-robin american-staffordshire-terrier
+    american-toad american-water-spaniel amur-leopard anaconda
+    anatolian-shepherd-dog anchovies angelfish anglerfish angora-ferret
+    angora-goat anole-lizard ant antarctic-scale-worm anteater antelope ape
+    appenzeller-dog apple-head-chihuahua arabian-cobra arafura-file-snake
+    arapaima archaeotherium archelon-turtle arctic-fox arctic-hare arctic-wolf
+    arctodus arctotherium arizona-bark-scorpion arizona-black-rattlesnake
+    arizona-coral-snake armadillo armadillo-lizard armyworm aruba-rattlesnake
+    asian-arowana asian-cockroach asian-elephant asian-giant-hornet
+    asian-palm-civet asian-vine-snake asiatic-black-bear asp assassin-bug
+    atlantic-salmon atlas-moth aurochs aussiedoodle aussiedor
+    australian-bulldog australian-cattle-dog australian-cockroach
+    australian-flathead-perch australian-gecko australian-kelpie-dog
+    australian-labradoodle australian-mist australian-retriever
+    australian-shepherd australian-terrier australopithecus avocet axolotl
+    aye-aye babirusa baboon bactrian-camel badger baiji bairds-rat-snake
+    bald-eagle baleen-whale balinese balkan-lynx ball-python banana-ball-python
+    banana-eel banana-spider banded-krait banded-palm-civet banded-water-snake
+    bandicoot banjo-catfish barb barbet barn-owl barn-swallow barnacle
+    barracuda barramundi-fish barred-owl basenji-dog basilisk-lizard
+    basilosaurus basking-shark bassador basset-fauve-de-bretagne basset-hound
+    bassetoodle bat batfish bavarian-mountain-hound baya bea-tzu beabull
+    beagador beagle beagle-shepherd beaglier beago bear bearded-collie
+    bearded-dragon bearded-vulture beaski beauceron beauty-rat-snake beaver
+    bed-bugs bedlington-terrier bee beefalo beetle belgian-shepherd
+    belgian-tervuren beluga-sturgeon bengal-tiger bergamasco berger-picard
+    bernedoodle bernese-mountain-dog bernese-shepherd betta-fish
+    siamese-fighting-fish bichir bichon-frise bichpoo biewer-terrier
+    bighorn-sheep bilby binturong bird bird-of-paradise birman biscuit-beetle
+    bison black-and-tan-coonhound black-mamba black-marlin black-rat-snake
+    black-rhinoceros black-russian-terrier black-wasp black-widow-spider
+    black-capped-chickadee black-footed-ferret black-headed-python
+    blackpoll-warbler bladefin-basslet blanket-octopus blind-snake
+    blister-beetle blobfish blood-python bloodhound blue-belly-lizard
+    blue-catfish blue-eyed-pleco blue-gray-gnatcatcher blue-grosbeak
+    blue-iguana blue-jay blue-lacy-dog blue-picardy-spaniel blue-racer
+    blue-shark blue-tit blue-whale blue-ringed-octopus bluefin-tuna bluegill
+    bluetick-coonhound boas bobcat bobolink boggle boglen-terrier boiga
+    bolivian-anaconda bolognese-dog bombay bongo bonito-fish bonnethead-shark
+    bonobo booby boomslang borador border-collie border-terrier bordoodle
+    borkie bornean-orang-utan borneo-elephant boston-terrier bottlenose-dolphin
+    bouvier-des-flandres bowfin bowhead-whale box-tree-moth box-turtle boxador
+    boxer-dog boxerdoodle boxfish boxsky boxweiler boykin-spaniel brachiosaurus
+    brahminy-blindsnake brazilian-terrier british-timber brittany brontosaurus
+    brookesia-micra brown-bear brown-dog-tick brown-hyena brown-snake
+    brown-water-snake brown-banded-cockroach brug brussels-griffon budgerigar
+    buffalo bull-shark bull-terrier bull-trout bulldog bullfrog bullmastiff
+    bullsnake bumblebee burmese burmese-python burrowing-frog burrowing-owl
+    bush-baby bush-viper bushmaster-snake butterfly butterfly-fish cabbage-moth
+    cactus-moth cactus-mouse caecilian caiman caiman-lizard cairn-terrier
+    california-kingsnake camel camel-cricket camel-spider canaan-dog
+    canada-lynx canada-warbler canadian-eskimo-dog canadian-horse cane-corso
+    cantil cape-lion capybara caracal caribou carolina-dog carolina-parakeet
+    carp carpenter-ant carpet-python carpet-viper cascabel cashmere-goat
+    cassowary cat cat-snake cat-eyed-snake catahoula-leopard catalan-sheepdog
+    caterpillar catfish cava-tzu cavador cavalier-king-charles-spaniel cavapoo
+    cave-bear cave-lion cecropia-moth centipede central-ranges-taipan
+    ceratosaurus cesky-fousek cesky-terrier chameleon chamois chartreux cheagle
+    checkered-garter-snake cheetah chesapeake-bay-retriever chickadee chicken
+    chicken-snake chihuahua childrens-python chimaera chimpanzee chinchilla
+    chinese-alligator chinese-cobra chinese-crested-dog chinese-geese
+    chinese-paddlefish chinese-shar-pei chinook chinook-salmon
+    chinstrap-penguin chipmunk chipoo chipping-sparrow chiweenie chorkie
+    chow-chow chow-shepherd christmas-island-red-crab cicada cichlid
+    cinereous-vulture cinnamon-ferret clouded-leopard clownfish clumber-spaniel
+    coachwhip-snake coastal-taipan coati cobia-fish cobras cockalier cockapoo
+    cockatiel cockatoo cocker-spaniel cockroach codfish codling-moth coelacanth
+    collared-peccary colletts-snake collie colossal-squid common-buzzard
+    common-european-adder common-frog common-furniture-beetle
+    common-house-spider common-loon common-raven common-toad compsognathus
+    conger-eel congo-snake cookiecutter-shark coopers-hawk copperhead coral
+    coral-snake corgidor corgipoo corkie corman-shepherd corn-rex-cat
+    cornish-rex corn-snake coton-de-tulear cotton-top-tamarin cottonmouth
+    cougar cow coyote crab crab-spider crab-eating-macaque crabeater-seal crane
+    crappie-fish crested-gecko crested-penguin cricket crocodile cross-fox
+    cross-river-gorilla crow crucian-carp cuban-boa cuban-cockroach cuckoo
+    curly-coated-retriever cuscus cuttlefish czechoslovakian-wolfdog dachsador
+    dachshund daeodon dalmadoodle dalmador dalmatian danios dapple-dachshund
+    darwins-fox darwins-frog death-adder deaths-head-cockroach
+    deathwatch-beetle deer deer-head-chihuahua deer-tick desert-kingsnake
+    desert-locust desert-rain-frog desert-tortoise deutsche-bracke
+    devils-coach-horse-beetle devon-rex dhole dik-dik dingo dire-wolf discus
+    doberman-pinscher dodo dog dog-tick dogo-argentino dogue-de-bordeaux
+    dolphin donkey dorgi dorkie dormouse double-doodle douc doxiepoo doxle
+    draco-volans-lizard dragonfish dragonfly drever drum-fish dubia-cockroach
+    duck dugong dumerils-boa dung-beetle dunker dunnock dusky-dolphin
+    dwarf-boa dwarf-crocodile dwarf-hamster eagle earthworm earwig
+    eastern-barred-bandicoot eastern-bluebird eastern-brown-snake
+    eastern-chipmunk eastern-coral-snake eastern-diamondback-rattlesnake
+    eastern-fence-lizard eastern-glass-lizard eastern-gorilla
+    eastern-gray-squirrel eastern-green-mamba eastern-indigo-snake
+    eastern-lowland-gorilla eastern-phoebe eastern-racer eastern-rat-snake
+    eastern-woodrat echidna eclectus-parrot edible-frog eel egyptian-cobra
+    egyptian-goose egyptian-mau eland elasmosaurus electric-catfish
+    electric-eel elegant-tern elephant elephant-seal elephant-shrew elk
+    emerald-tree-monitor emperor-penguin emperor-tamarin emu english-bulldog
+    english-cocker-spaniel english-cream-golden-retriever english-foxhound
+    english-pointer english-setter english-shepherd english-springer-spaniel
+    entlebucher-mountain-dog epagneul-pont-audemer equatorial-spitting-cobra
+    ermine escolar eskimo-dog eskipoo estrela-mountain-dog eurasian-beaver
+    eurasian-jay eurasian-lynx eurasian-nuthatch eurasian-wolf
+    european-bee-eater european-corn-borer european-polecat european-robin
+    european-wildcat evening-bat eyelash-viper falcon fallow-deer false-cobra
+    false-coral-snake false-killer-whale false-water-cobra false-widow-spider
+    fangtooth feist fennec-fox fer-de-lance-snake ferret ferruginous-hawk
+    fiddler-crab field-spaniel fierce-snake fila-brasileiro fin-whale
+    finnish-spitz fire-eel fire-salamander fire-bellied-toad firefly fish
+    fisher-cat fishing-cat flamingo flat-coated-retriever flea florida-gar
+    florida-panther florida-woods-cockroach flounder flowerhorn-fish fluke-fish
+    summer-flounder fly flying-fish flying-lemur flying-snake flying-squirrel
+    football-fish forest-cobra formosan-mountain-dog fossa fox fox-snakes
+    fox-squirrel fox-terrier french-bulldog frenchton frengle
+    freshwater-crocodile freshwater-eel freshwater-jellyfish frigatebird
+    frilled-lizard frilled-shark frog frogfish fruit-bat fruit-fly fur-seal
+    gaboon-viper galapagos-penguin galapagos-tortoise gar garden-eel
+    gargoyle-gecko garter-snake gazelle gecko genet gentoo-penguin
+    geoffroys-tamarin gerberian-shepsky gerbil german-cockroach german-pinscher
+    german-shepherd-guide german-sheppit german-sheprador
+    german-shorthaired-pointer german-spitz gharial ghost-catfish ghost-crab
+    giant-african-land-snail giant-armadillo giant-clam giant-leopard-moth
+    giant-panda-bear giant-salamander giant-schnauzer giant-schnoodle gibbon
+    gila-monster giraffe glass-frog glass-lizard glechon glen-of-imaal-terrier
+    glow-worm gnat goat goberian goblin-shark goldador golden-dox
+    golden-lancehead golden-lion-tamarin golden-masked-owl golden-newfie
+    golden-oriole golden-pyrenees golden-retriever golden-saint golden-shepherd
+    golden-crowned-flying-fox goldendoodle goldfish goliath-frog
+    goliath-tigerfish gomphotherium goonch-catfish goose gopher gopher-snake
+    gopher-tortoise gordon-setter gorilla goshawk gouldian-finch grass-carp
+    grass-snake grasshopper grasshopper-mouse gray-fox gray-tree-frog
+    great-blue-heron great-crested-flycatcher great-dane great-danoodle
+    great-egret great-plains-rat-snake great-pyrenees great-white-shark
+    greater-swiss-mountain-dog green-anaconda green-anole green-bee-eater
+    green-frog green-heron green-mamba green-rat-snake green-snake
+    green-tree-frog green-tree-python greenland-dog greenland-shark grey-heron
+    grey-mouse-lemur grey-reef-shark grey-seal greyhound griffon-vulture
+    griffonshire grizzly-bear groenendael ground-snake groundhog woodchuck
+    grouper grouse guinea-fowl guinea-pig guppy habu-snake haddock hagfish
+    halibut hammerhead-shark hamster harbor-seal hardhead-catfish hare
+    harlequin-snake harp-seal harpy-eagle harrier harris-hawk havanese havapoo
+    havashire hawaiian-crow hawaiian-goose hawaiian-monk-seal
+    hawk-moth-caterpillar hedgehog hellbender hercules-beetle hercules-moth
+    hermit-crab heron herring highland-cattle himalayan hippopotamus hoary-bat
+    hognose-snake hokkaido honduran-white-bat honey-badger honey-bee
+    honey-buzzard hooded-oriole hooded-seal hook-nosed-sea-snake hoopoe horgi
+    horn-shark hornbill horned-adder horned-frog horned-lizard horned-viper
+    horse horsefly horseshoe-crab house-finch house-sparrow house-wren housefly
+    howler-monkey human humboldt-penguin humboldt-squid hummingbird
+    hummingbird-hawk-moth humpback-whale huntaway huntsman-spider huskador
+    huskita husky husky-jack huskydoodle hyena ibex ibis ibizan-hound
+    icelandic-sheepdog iguana immortal-jellyfish impala imperial-moth
+    indian-cobra indian-elephant indian-giant-squirrel indian-palm-squirrel
+    indian-rhinoceros indian-star-tortoise indigo-snake indochinese-tiger indri
+    inland-taipan insect insects irish-doodle irish-setter irish-terrier
+    irish-water-spaniel irish-wolfhound italian-greyhound
+    ivory-billed-woodpecker jacana jack-russell jackabee jackal jackdaw
+    jackrabbit jacksons-chameleon jaguar jaguarundi-cat jamaican-boa
+    japanese-beetle japanese-chin japanese-macaque japanese-rat-snake
+    japanese-spitz japanese-squirrel japanese-terrier javan-rhinoceros javanese
+    jellyfish jerboa jonah-crab joro-spider jumping-spider junglefowl kai-ken
+    kakapo kangal kangaroo kangaroo-rat keel-billed-toucan keelback keeshond
+    kenyan-sand-boa kerry-blue-terrier kestrel keta-salmon key-deer kiko-goat
+    killdeer killer-whale kinabalu-giant-red-leech kinder-goat king-cobra
+    king-crab king-penguin king-rat-snake king-shepherd king-snake king-vulture
+    kingfisher kinkajou kirtlands-snake kishu kit-fox kiwi klipspringer koala
+    kodkod koi-fish komodo-dragon kooikerhondje kookaburra koolie kori-bustard
+    krait krill kudu kuvasz labahoula labmaraner labradane labradoodle
+    labrador-retriever labraheeler ladybug lake-sturgeon lakeland-terrier
+    lamancha-goat lamprey lancashire-heeler lappet-faced-vulture
+    lapponian-herder lawnmower-blenny lazarus-lizard leaf-tailed-gecko
+    leatherback-sea-turtle leech lemming lemur leonberger leopard leopard-cat
+    leopard-frog leopard-gecko leopard-lizard leopard-seal leopard-tortoise
+    lhasa-apso lhasapoo liger lion lions-mane-jellyfish lionfish
+    little-brown-bat little-penguin livyatan lizard lizardfish llama loach
+    lobster locust lone-star-tick long-eared-owl long-haired-rottweiler
+    long-tailed-tit longnose-gar lorikeet lowchen lumpfish lungfish lynx
+    lyrebird macaque macaroni-penguin macaw mackenzie-wolf
+    madagascar-hissing-cockroach madagascar-tree-boa magellanic-penguin maggot
+    magpie mahi-mahi dolphin-fish maiasaura maine-coon malayan-civet
+    malayan-krait malayan-tiger mallard malteagle maltese maltese-shih-tzu
+    maltipoo mamba mamushi-snake man-of-war-jellyfish manatee
+    manchester-terrier mandarin-rat-snake mandrill maned-wolf mangrove-snake
+    manta-ray mantella-frog marabou-stork marble-fox marine-iguana marine-toad
+    markhor marmoset marmot marsh-frog masked-angelfish masked-palm-civet
+    massasauga mastador mastiff mayfly meagle mealybug meerkat megalania
+    megalodon megamouth-shark mekong-giant-catfish mexican-alligator-lizard
+    mexican-black-kingsnake mexican-eagle northern-crested-caracara
+    mexican-free-tailed-bat mexican-mole-lizard microraptor
+    midget-faded-rattlesnake miki milk-snake milkfish millipede
+    mini-labradoodle miniature-bull-terrier miniature-husky miniature-pinscher
+    mink minke-whale mississippi-kite moccasin-snake mojarra mojave-rattlesnake
+    mola-mola ocean-sunfish mole mole-cricket mole-snake molly
+    monarch-butterfly mongoose mongrel monitor-lizard monkey monkfish
+    monocled-cobra monte-iberia-eleuth moon-jellyfish moorhen moose moray-eel
+    morkie moscow-watchdog mosquito moth mountain-bluebird mountain-cur
+    mountain-feist mountain-gorilla mountain-lion mourning-dove mouse
+    mozambique-spitting-cobra mud-snake mudi mudpuppy mule mulga-snake muntjac
+    muskox muskrat mussurana-snake muttaburrasaurus myna-bird naked-mole-rat
+    narwhal natterjack neanderthal neapolitan-mastiff nebelung needlefish
+    neptune-grouper newfoundland newfypoo newt nicobar-pigeon nigerian-goat
+    night-adder night-heron night-snake nightingale nile-crocodile nilgai
+    no-see-ums norfolk-terrier north-american-black-bear
+    northern-alligator-lizard northern-cardinal northern-fur-seal
+    northern-inuit-dog northern-water-snake norwegian-buhund norwegian-elkhound
+    norwegian-forest norwegian-lundehund norwich-terrier nose-horned-viper
+    nova-scotia-duck-tolling-retriever nubian-goat nudibranch numbat
+    nurse-shark nyala oak-toad ocelot octopus oenpelli-python okapi
+    old-english-sheepdog olive-baboon olive-sea-snake olm opossum orang-utan
+    orange-crowned-warbler orb-weaver ornithomimus ortolan-bunting oscar-fish
+    ostrich otter otterhound oviraptor owl ox oyster oyster-toadfish paddlefish
+    pademelon painted-turtle pangolin panther papillon paradise-flying-snake
+    parakeet parasaurolophus parrot parrot-snake parrotfish parrotlet
+    parson-russell-terrier patagotitan patas-monkey patterdale-terrier peacock
+    peacock-butterfly peacock-spider peagle peekapoo pekingese pelican
+    pembroke-welsh-corgi penguin pennsylvania-wood-cockroach
+    peppermint-angelfish pere-davids-deer peregrine-falcon peringueys-adder
+    perro-de-presa-canario persian peruvian-inca-orchid pesquets-parrotardvark
+    aardwolf abyssinian addax adelie penguin aesculapian snake affenpinscher
+    afghan hound african bullfrog african bush elephant african civet african
+    clawed frog african forest elephant african grey parrot african palm civet
+    african penguin african tree toad african wild dog agama lizard aidi ainu
+    airedale terrier airedoodle akbash akita akita shepherd alabai alaskan
+    husky alaskan klee kai alaskan malamute alaskan pollock alaskan shepherd
+    albacore tuna albatross aldabra giant tortoise alligator alligator gar
+    alpaca alpine dachsbracke alpine goat alusky amargasaurus amazon parrot
+    amazon river dolphin pink dolphin ambrosia beetle american alsatian
+    american bulldog american cocker spaniel american cockroach american
+    coonhound american dog tick american eskimo dog american foxhound american
+    hairless terrier american leopard hound american pit bull terrier american
+    pygmy goat american robin american staffordshire terrier american toad
+    american water spaniel amur leopard anaconda anatolian shepherd dog
+    anchovies angelfish anglerfish angora ferret angora goat anole lizard ant
+    antarctic scale worm anteater antelope ape appenzeller dog apple head
+    chihuahua arabian cobra arafura file snake arapaima archaeotherium archelon
+    turtle arctic fox arctic hare arctic wolf arctodus arctotherium arizona
+    bark scorpion arizona black rattlesnake arizona coral snake armadillo
+    armadillo lizard armyworm aruba rattlesnake asian arowana asian cockroach
+    asian elephant asian giant hornet asian palm civet asian vine snake asiatic
+    black bear asp assassin bug atlantic salmon atlas moth aurochs aussiedoodle
+    aussiedor australian bulldog australian cattle dog australian cockroach
+    australian flathead perch australian gecko australian kelpie dog australian
+    labradoodle australian mist australian retriever australian shepherd
+    australian terrier australopithecus avocet axolotl aye aye babirusa baboon
+    bactrian camel badger baiji bairds rat snake bald eagle baleen whale
+    balinese balkan lynx ball python banana ball python banana eel banana
+    spider banded krait banded palm civet banded water snake bandicoot banjo
+    catfish barb barbet barn owl barn swallow barnacle barracuda barramundi
+    fish barred owl basenji dog basilisk lizard basilosaurus basking shark
+    bassador basset fauve de bretagne basset hound bassetoodle bat batfish
+    bavarian mountain hound baya bea-tzu beabull beagador beagle beagle
+    shepherd beaglier beago bear bearded collie bearded dragon bearded vulture
+    beaski beauceron beauty rat snake beaver bed bugs bedlington terrier bee
+    beefalo beetle belgian shepherd belgian tervuren beluga sturgeon bengal
+    tiger bergamasco berger picard bernedoodle bernese mountain dog bernese
+    shepherd betta fish siamese fighting fish bichir bichon frise bichpoo
+    biewer terrier bighorn sheep bilby binturong bird bird of paradise birman
+    biscuit beetle bison black and tan coonhound black mamba black marlin black
+    rat snake black rhinoceros black russian terrier black wasp black widow
+    spider black-capped chickadee black-footed ferret black-headed python
+    blackpoll warbler bladefin basslet blanket octopus blind snake blister
+    beetle blobfish blood python bloodhound blue belly lizard blue catfish blue
+    eyed pleco blue gray gnatcatcher blue grosbeak blue iguana blue jay blue
+    lacy dog blue picardy spaniel blue racer blue shark blue tit blue whale
+    blue-ringed octopus bluefin tuna bluegill bluetick coonhound boas bobcat
+    bobolink boggle boglen terrier boiga bolivian anaconda bolognese dog bombay
+    bongo bonito fish bonnethead shark bonobo booby boomslang borador border
+    collie border terrier bordoodle borkie bornean orang-utan borneo elephant
+    boston terrier bottlenose dolphin bouvier des flandres bowfin bowhead whale
+    box tree moth box turtle boxador boxer dog boxerdoodle boxfish boxsky
+    boxweiler boykin spaniel brachiosaurus brahminy blindsnake brazilian
+    terrier british timber brittany brontosaurus brookesia micra brown bear
+    brown dog tick brown hyena brown snake brown water snake brown-banded
+    cockroach brug brussels griffon budgerigar buffalo bull shark bull terrier
+    bull trout bulldog bullfrog bullmastiff bullsnake bumblebee burmese burmese
+    python burrowing frog burrowing owl bush baby bush viper bushmaster snake
+    butterfly butterfly fish cabbage moth cactus moth cactus mouse caecilian
+    caiman caiman lizard cairn terrier california kingsnake camel camel cricket
+    camel spider canaan dog canada lynx canada warbler canadian eskimo dog
+    canadian horse cane corso cantil cape lion capybara caracal caribou
+    carolina dog carolina parakeet carp carpenter ant carpet python carpet
+    viper cascabel cashmere goat cassowary cat cat snake cat-eyed snake
+    catahoula leopard catalan sheepdog caterpillar catfish cava tzu cavador
+    cavalier king charles spaniel cavapoo cave bear cave lion cecropia moth
+    centipede central ranges taipan ceratosaurus cesky fousek cesky terrier
+    chameleon chamois chartreux cheagle checkered garter snake cheetah
+    chesapeake bay retriever chickadee chicken chicken snake chihuahua
+    childrens python chimaera chimpanzee chinchilla chinese alligator chinese
+    cobra chinese crested dog chinese geese chinese paddlefish chinese shar-pei
+    chinook chinook salmon chinstrap penguin chipmunk chipoo chipping sparrow
+    chiweenie chorkie chow chow chow shepherd christmas island red crab cicada
+    cichlid cinereous vulture cinnamon ferret clouded leopard clownfish clumber
+    spaniel coachwhip snake coastal taipan coati cobia fish cobras cockalier
+    cockapoo cockatiel cockatoo cocker spaniel cockroach codfish codling moth
+    coelacanth collared peccary colletts snake collie colossal squid common
+    buzzard common european adder common frog common furniture beetle common
+    house spider common loon common raven common toad compsognathus conger eel
+    congo snake cookiecutter shark coopers hawk copperhead coral coral snake
+    corgidor corgipoo corkie corman shepherd corn rex cat cornish rex corn
+    snake coton de tulear cotton-top tamarin cottonmouth cougar cow coyote crab
+    crab spider crab-eating macaque crabeater seal crane crappie fish crested
+    gecko crested penguin cricket crocodile cross fox cross river gorilla crow
+    crucian carp cuban boa cuban cockroach cuckoo curly coated retriever cuscus
+    cuttlefish czechoslovakian wolfdog dachsador dachshund daeodon dalmadoodle
+    dalmador dalmatian danios dapple dachshund darwins fox darwins frog death
+    adder deaths head cockroach deathwatch beetle deer deer head chihuahua
+    deer tick desert kingsnake desert locust desert rain frog desert tortoise
+    deutsche bracke devils coach horse beetle devon rex dhole dik-dik dingo
+    dire wolf discus doberman pinscher dodo dog dog tick dogo argentino dogue
+    de bordeaux dolphin donkey dorgi dorkie dormouse double doodle douc
+    doxiepoo doxle draco volans lizard dragonfish dragonfly drever drum fish
+    dubia cockroach duck dugong dumerils boa dung beetle dunker dunnock dusky
+    dolphin dwarf boa dwarf crocodile dwarf hamster eagle earthworm earwig
+    eastern barred bandicoot eastern bluebird eastern brown snake eastern
+    chipmunk eastern coral snake eastern diamondback rattlesnake eastern fence
+    lizard eastern glass lizard eastern gorilla eastern gray squirrel eastern
+    green mamba eastern indigo snake eastern lowland gorilla eastern phoebe
+    eastern racer eastern rat snake eastern woodrat echidna eclectus parrot
+    edible frog eel egyptian cobra egyptian goose egyptian mau eland
+    elasmosaurus electric catfish electric eel elegant tern elephant elephant
+    seal elephant shrew elk emerald tree monitor emperor penguin emperor
+    tamarin emu english bulldog english cocker spaniel english cream golden
+    retriever english foxhound english pointer english setter english shepherd
+    english springer spaniel entlebucher mountain dog epagneul pont audemer
+    equatorial spitting cobra ermine escolar eskimo dog eskipoo estrela
+    mountain dog eurasian beaver eurasian jay eurasian lynx eurasian nuthatch
+    eurasian wolf european bee-eater european corn borer european polecat
+    european robin european wildcat evening bat eyelash viper falcon fallow
+    deer false cobra false coral snake false killer whale false water cobra
+    false widow spider fangtooth feist fennec fox fer-de-lance snake ferret
+    ferruginous hawk fiddler crab field spaniel fierce snake fila brasileiro
+    fin whale finnish spitz fire eel fire salamander fire-bellied toad firefly
+    fish fisher cat fishing cat flamingo flat-coated retriever flea florida gar
+    florida panther florida woods cockroach flounder flowerhorn fish fluke fish
+    summer flounder fly flying fish flying lemur flying snake flying squirrel
+    football fish forest cobra formosan mountain dog fossa fox fox snakes fox
+    squirrel fox terrier french bulldog frenchton frengle freshwater crocodile
+    freshwater eel freshwater jellyfish frigatebird frilled lizard frilled
+    shark frog frogfish fruit bat fruit fly fur seal gaboon viper galapagos
+    penguin galapagos tortoise gar garden eel gargoyle gecko garter snake
+    gazelle gecko genet gentoo penguin geoffroys tamarin gerberian shepsky
+    gerbil german cockroach german pinscher german shepherd guide german
+    sheppit german sheprador german shorthaired pointer german spitz gharial
+    ghost catfish ghost crab giant african land snail giant armadillo giant
+    clam giant leopard moth giant panda bear giant salamander giant schnauzer
+    giant schnoodle gibbon gila monster giraffe glass frog glass lizard glechon
+    glen of imaal terrier glow worm gnat goat goberian goblin shark goldador
+    golden dox golden lancehead golden lion tamarin golden masked owl golden
+    newfie golden oriole golden pyrenees golden retriever golden saint golden
+    shepherd golden-crowned flying fox goldendoodle goldfish goliath frog
+    goliath tigerfish gomphotherium goonch catfish goose gopher gopher snake
+    gopher tortoise gordon setter gorilla goshawk gouldian finch grass carp
+    grass snake grasshopper grasshopper mouse gray fox gray tree frog great
+    blue heron great crested flycatcher great dane great danoodle great egret
+    great plains rat snake great pyrenees great white shark greater swiss
+    mountain dog green anaconda green anole green bee-eater green frog green
+    heron green mamba green rat snake green snake green tree frog green tree
+    python greenland dog greenland shark grey heron grey mouse lemur grey reef
+    shark grey seal greyhound griffon vulture griffonshire grizzly bear
+    groenendael ground snake groundhog woodchuck grouper grouse guinea fowl
+    guinea pig guppy habu snake haddock hagfish halibut hammerhead shark
+    hamster harbor seal hardhead catfish hare harlequin snake harp seal harpy
+    eagle harrier harris hawk havanese havapoo havashire hawaiian crow hawaiian
+    goose hawaiian monk seal hawk moth caterpillar hedgehog hellbender hercules
+    beetle hercules moth hermit crab heron herring highland cattle himalayan
+    hippopotamus hoary bat hognose snake hokkaido honduran white bat honey
+    badger honey bee honey buzzard hooded oriole hooded seal hook-nosed sea
+    snake hoopoe horgi horn shark hornbill horned adder horned frog horned
+    lizard horned viper horse horsefly horseshoe crab house finch house sparrow
+    house wren housefly howler monkey human humboldt penguin humboldt squid
+    hummingbird hummingbird hawk-moth humpback whale huntaway huntsman spider
+    huskador huskita husky husky jack huskydoodle hyena ibex ibis ibizan hound
+    icelandic sheepdog iguana immortal jellyfish impala imperial moth indian
+    cobra indian elephant indian giant squirrel indian palm squirrel indian
+    rhinoceros indian star tortoise indigo snake indochinese tiger indri inland
+    taipan insect insects irish doodle irish setter irish terrier irish water
+    spaniel irish wolfhound italian greyhound ivory-billed woodpecker jacana
+    jack russell jackabee jackal jackdaw jackrabbit jacksons chameleon jaguar
+    jaguarundi cat jamaican boa japanese beetle japanese chin japanese macaque
+    japanese rat snake japanese spitz japanese squirrel japanese terrier javan
+    rhinoceros javanese jellyfish jerboa jonah crab joro spider jumping spider
+    junglefowl kai ken kakapo kangal kangaroo kangaroo rat keel-billed toucan
+    keelback keeshond kenyan sand boa kerry blue terrier kestrel keta salmon
+    key deer kiko goat killdeer killer whale kinabalu giant red leech kinder
+    goat king cobra king crab king penguin king rat snake king shepherd king
+    snake king vulture kingfisher kinkajou kirtlands snake kishu kit fox kiwi
+    klipspringer koala kodkod koi fish komodo dragon kooikerhondje kookaburra
+    koolie kori bustard krait krill kudu kuvasz labahoula labmaraner labradane
+    labradoodle labrador retriever labraheeler ladybug lake sturgeon lakeland
+    terrier lamancha goat lamprey lancashire heeler lappet-faced vulture
+    lapponian herder lawnmower blenny lazarus lizard leaf-tailed gecko
+    leatherback sea turtle leech lemming lemur leonberger leopard leopard cat
+    leopard frog leopard gecko leopard lizard leopard seal leopard tortoise
+    lhasa apso lhasapoo liger lion lions mane jellyfish lionfish little brown
+    bat little penguin livyatan lizard lizardfish llama loach lobster locust
+    lone star tick long-eared owl long-haired rottweiler long-tailed tit
+    longnose gar lorikeet lowchen lumpfish lungfish lynx lyrebird oak toad
+    ocelot octopus oenpelli python okapi old english sheepdog olive baboon
+    olive sea snake olm opossum orang-utan orange-crowned warbler orb weaver
+    ornithomimus ortolan bunting oscar fish ostrich otter otterhound oviraptor
+    owl ox oyster oyster toadfish paddlefish pademelon painted turtle pangolin
+    panther papillon paradise flying snake parakeet parasaurolophus parrot
+    parrot snake parrotfish parrotlet parson russell terrier patagotitan patas
+    monkey patterdale terrier peacock peacock butterfly peacock spider peagle
+    peekapoo pekingese pelican pembroke welsh corgi penguin pennsylvania wood
+    cockroach peppermint angelfish pere davids deer peregrine falcon
+    peringueys adder perro de presa canario persian peruvian inca orchid
+    pesquets parrot dracula parrot petit basset griffon vendéen petite
+    goldendoodle pheasant philippine cobra phorusrhacos pied ball python pied
+    tamarin pig pigeon pika pike fish pileated woodpecker pine marten pine
+    snake pine snake pink fairy armadillo pipe snake pipefish piranha pit bull
+    pitador pitsky plains hognose snake platinum arowana platybelodon platypus
+    pocket beagle pocket pitbull pointer poison dart frog polar bear polecat
+    polish lowland sheepdog polka dot stingray polyphemus moth pomapoo pomchi
+    pomeagle pomeranian pomsky pond skater poochon poodle poogle pool frog
+    porbeagle shark porcupine porpoise possum potoo potoroo prairie dog prairie
+    rattlesnake prawn praying mantis proboscis monkey procoptodon pronghorn
+    psittacosaurus pteranodon pterodactyl pudelpointer puff adder pufferfish
+    puffin pug pugapoo puggle pugshire puma pumi purple emperor butterfly
+    purple finch puss moth pygmy hippopotamus pygmy marmoset finger monkey
+    pygmy python pygora goat pyrador pyredoodle python quagga quail queen snake
+    quetzal quokka quoll rabbit raccoon raccoon dog racer snake radiated
+    tortoise ragamuffin ragdoll raggle rainbow boa rainbow shark rat rat snakes
+    rat terrier rattlesnake red diamondback rattlesnake red finch red fox red
+    kite red knee tarantula red panda red racer snake red spitting cobra red
+    squirrel red tail boa common boa red wolf red-bellied black snake
+    red-billed quelea bird red-eared slider red-eyed tree frog red-footed
+    tortoise red-handed tamarin red-headed vulture red-lipped batfish
+    red-winged blackbird redback spider redbone coonhound redtail catfish reef
+    shark reindeer rhino viper rhinoceros rhombic egg-eater snake ribbon eel
+    ribbon snake ring-billed gull ringed kingfisher rinkhals snake river otter
+    river turtle robin rock crab rock hyrax rock python rockfish rockhopper
+    penguin rodents roe deer rooster rose-breasted grosbeak roseate spoonbill
+    rosy boa rottsky rottweiler rough green snake royal penguin rubber boa
+    ruby-throated hummingbird ruddy turnstone russell terrier russian bear dog
+    russian blue russian tortoise saanen goat saarloos wolfdog saber-toothed
+    tiger sable sable black german shepherd sable ferret saiga saint berdoodle
+    saint bernard saint shepherd salamander salmon salmon shark saluki sambar
+    samoyed san francisco garter snake sand crab sand lizard sand tiger shark
+    sand viper saola sardines satanic leaf-tailed gecko sauropoda savanna goat
+    savannah sparrow sawfish scarlet kingsnake scarlet macaw schipperke
+    schneagle schnoodle scimitar-horned oryx scorpion scorpion fish scottish
+    terrier scrotum frog sculpin sea anemone sea dragon sea eagle sea lion sea
+    otter sea roach sea slug sea squirt sea turtle sea urchin seagull seahorse
+    seal sealyham terrier sei whale senegal parrot serval shark sharp-tailed
+    snake sheep sheepadoodle shepadoodle shepkita shepweiler shiba inu shih poo
+    shih tzu shoebill stork shollie short-faced bear shrew shrimp siamese
+    siberian siberian husky siberian ibex siberian retriever siberian tiger
+    siberpoo sidewinder silkie chicken silky terrier silver dollar silver
+    labrador sinosauropteryx sixgill shark skate fish skink lizard skipjack
+    tuna skunk skye terrier sleeper shark sloth slow worm slug smokybrown
+    cockroach smooth fox terrier smooth green snake smooth snake snail snake
+    snapping turtle snook fish snorkie snouted cobra snow crab snow leopard
+    snowshoe snowshoe hare snowy owl sockeye salmon somali song sparrow song
+    thrush south china tiger southern black racer southern hognose snake
+    southern pacific rattlesnake spadefoot toad spanador spanish goat spanish
+    mastiff sparrow sparrowhawk speckled kingsnake spectacled bear sperm whale
+    spider spider ball python spider monkey spider wasp spider-tailed horned
+    viper spinner shark spinone italiano spinosaurus spiny dogfish spiny hill
+    turtle spitting cobra spixs macaw sponge spotted gar spotted lanternfly
+    spotted python springador springbok springerdoodle squash beetle squid
+    squirrel squirrel monkey squirrelfish sri lankan elephant stabyhoun
+    staffordshire bull terrier stag beetle standard schnauzer star-nosed mole
+    starfish stargazer fish steelhead salmon stellers sea cow stick insect
+    stiletto snake stingray stoat stone crab stork striped hyena striped rocket
+    frog sturgeon suchomimus sucker fish sugar glider sulcata tortoise sumatran
+    elephant sumatran orang-utan sumatran rhinoceros sumatran tiger sun bear
+    sunbeam snake surgeonfish swai fish swan swedish vallhund syrian hamster
+    taco terrier taipan takin tamaskan tang tapanuli orang-utan tapir tarantula
+    hawk tarpon tarsier tasmanian devil tasmanian tiger tawny owl teddy bear
+    hamster teddy roosevelt terrier telescope fish tennessee walking horse
+    tenterfield terrier termite terrier tetra texas blind snake texas coral
+    snake texas garter snake texas heeler texas indigo snake texas night snake
+    texas rat snake texas spiny lizard thai ridgeback thorny devil thrush
+    thylacoleo tibetan fox tibetan mastiff tibetan spaniel tibetan terrier tick
+    tiffany tiger tiger beetle tiger moth tiger rattlesnake tiger salamander
+    tiger shark timber rattlesnake canebrake rattlesnake tire track eel
+    titanoboa toadfish torkie tortoise toucan toy fox terrier toy poodle
+    transylvanian hound tree frog tree kangaroo tree snake tree swallow
+    treecreeper treeing tennessee brindle treeing walker coonhound troodon
+    tropicbird trout tsetse fly tuatara tuna turkey turkish angora turtles twig
+    snake tyrannosaurus rex uakari uguisu uinta ground squirrel uintatherium
+    umbrellabird unau linnaeuss two-toed sloth ural owl urutu snake utonagan
+    vampire bat vampire squid vaquita velociraptor venus flytrap vervet monkey
+    vicuña vine snake vinegaroon viper shark dogfish virgin islands dwarf gecko
+    vizsla volpino italiano vulture wahoo fish walking catfish wallaby walleye
+    fish walrus wandering albatross warthog wasp water buffalo water dragon
+    water vole weasel weaver bird weimaraner weimardoodle wels catfish welsh
+    corgi welsh terrier west highland terrier western blind snake western
+    diamondback rattlesnake western gorilla western green mamba western hognose
+    snake western lowland gorilla western rat snake westiepoo whale shark
+    wheaten terrier whimbrel whinchat whippet whiptail lizard white butterfly
+    white ferret / albino ferrets white rhinoceros white tiger white-faced
+    capuchin white-tail deer white-tailed eagle whiting whoodle whooping crane
+    wild boar wildebeest willow warbler wire fox terrier wirehaired pointing
+    griffon wolf wolf eel wolf snake wolf spider wolffish wolverine woma python
+    wombat wood bison wood frog wood tick wood turtle woodlouse woodlouse
+    spider woodpecker woodrat woolly mammoth woolly monkey woolly rhinoceros
+    worm worm snake wrasse writing spider wrought iron butterflyfish wyoming
+    toad x-ray tetra xerus xoloitzcuintli yak yakutian laika yarara yellow
+    anaconda yellow cobra yellow sac spider yellow spotted lizard
+    yellow-bellied sea snake yellow-eyed penguin yellowfin tuna yeti crab
+    yoranian yorkie bichon yorkie-poo yorkshire terrier zebra zebra finch zebra
+    mussels zebra pleco zebra shark zebra snake zebra spitting cobra zebu
+    zonkey zorse zuchon dracula-parrot petit-basset-griffon-vendéen
+    petite-goldendoodle pheasant philippine-cobra phorusrhacos pied-ball-python
+    pied-tamarin pig pigeon pika pike-fish pileated-woodpecker pine-marten
+    pine-snake pine-snake pink-fairy-armadillo pipe-snake pipefish piranha
+    pit-bull pitador pitsky plains-hognose-snake platinum-arowana platybelodon
+    platypus pocket-beagle pocket-pitbull pointer poison-dart-frog polar-bear
+    polecat polish-lowland-sheepdog polka-dot-stingray polyphemus-moth pomapoo
+    pomchi pomeagle pomeranian pomsky pond-skater poochon poodle poogle
+    pool-frog porbeagle-shark porcupine porpoise possum potoo potoroo
+    prairie-dog prairie-rattlesnake prawn praying-mantis proboscis-monkey
+    procoptodon pronghorn psittacosaurus pteranodon pterodactyl pudelpointer
+    puff-adder pufferfish puffin pug pugapoo puggle pugshire puma pumi
+    purple-emperor-butterfly purple-finch puss-moth pygmy-hippopotamus
+    pygmy-marmoset finger-monkey pygmy-python pygora-goat pyrador pyredoodle
+    python quagga quail queen-snake quetzal quokka quoll rabbit raccoon
+    raccoon-dog racer-snake radiated-tortoise ragamuffin ragdoll raggle
+    rainbow-boa rainbow-shark rat rat-snakes rat-terrier rattlesnake
+    red-diamondback-rattlesnake red-finch red-fox red-kite red-knee-tarantula
+    red-panda red-racer-snake red-spitting-cobra red-squirrel red-tail-boa
+    common-boa red-wolf red-bellied-black-snake red-billed-quelea-bird
+    red-eared-slider red-eyed-tree-frog red-footed-tortoise red-handed-tamarin
+    red-headed-vulture red-lipped-batfish red-winged-blackbird redback-spider
+    redbone-coonhound redtail-catfish reef-shark reindeer rhino-viper
+    rhinoceros rhombic-egg-eater-snake ribbon-eel ribbon-snake ring-billed-gull
+    ringed-kingfisher rinkhals-snake river-otter river-turtle robin rock-crab
+    rock-hyrax rock-python rockfish rockhopper-penguin rodents roe-deer rooster
+    rose-breasted-grosbeak roseate-spoonbill rosy-boa rottsky rottweiler
+    rough-green-snake royal-penguin rubber-boa ruby-throated-hummingbird
+    ruddy-turnstone russell-terrier russian-bear-dog russian-blue
+    russian-tortoise saanen-goat saarloos-wolfdog saber-toothed-tiger sable
+    sable-black-german-shepherd sable-ferret saiga saint-berdoodle
+    saint-bernard saint-shepherd salamander salmon salmon-shark saluki sambar
+    samoyed san-francisco-garter-snake sand-crab sand-lizard sand-tiger-shark
+    sand-viper saola sardines satanic-leaf-tailed-gecko sauropoda savanna-goat
+    savannah-sparrow sawfish scarlet-kingsnake scarlet-macaw schipperke
+    schneagle schnoodle scimitar-horned-oryx scorpion scorpion-fish
+    scottish-terrier scrotum-frog sculpin sea-anemone sea-dragon sea-eagle
+    sea-lion sea-otter sea-roach sea-slug sea-squirt sea-turtle sea-urchin
+    seagull seahorse seal sealyham-terrier sei-whale senegal-parrot serval
+    shark sharp-tailed-snake sheep sheepadoodle shepadoodle shepkita shepweiler
+    shiba-inu shih-poo shih-tzu shoebill-stork shollie short-faced-bear shrew
+    shrimp siamese siberian siberian-husky siberian-ibex siberian-retriever
+    siberian-tiger siberpoo sidewinder silkie-chicken silky-terrier
+    silver-dollar silver-labrador sinosauropteryx sixgill-shark skate-fish
+    skink-lizard skipjack-tuna skunk skye-terrier sleeper-shark sloth slow-worm
+    slug smokybrown-cockroach smooth-fox-terrier smooth-green-snake
+    smooth-snake snail snake snapping-turtle snook-fish snorkie snouted-cobra
+    snow-crab snow-leopard snowshoe snowshoe-hare snowy-owl sockeye-salmon
+    somali song-sparrow song-thrush south-china-tiger southern-black-racer
+    southern-hognose-snake southern-pacific-rattlesnake spadefoot-toad spanador
+    spanish-goat spanish-mastiff sparrow sparrowhawk speckled-kingsnake
+    spectacled-bear sperm-whale spider spider-ball-python spider-monkey
+    spider-wasp spider-tailed-horned-viper spinner-shark spinone-italiano
+    spinosaurus spiny-dogfish spiny-hill-turtle spitting-cobra spixs-macaw
+    sponge spotted-gar spotted-lanternfly spotted-python springador springbok
+    springerdoodle squash-beetle squid squirrel squirrel-monkey squirrelfish
+    sri-lankan-elephant stabyhoun staffordshire-bull-terrier stag-beetle
+    standard-schnauzer star-nosed-mole starfish stargazer-fish steelhead-salmon
+    stellers-sea-cow stick-insect stiletto-snake stingray stoat stone-crab
+    stork striped-hyena striped-rocket-frog sturgeon suchomimus sucker-fish
+    sugar-glider sulcata-tortoise sumatran-elephant sumatran-orang-utan
+    sumatran-rhinoceros sumatran-tiger sun-bear sunbeam-snake surgeonfish
+    swai-fish swan swedish-vallhund syrian-hamster taco-terrier taipan takin
+    tamaskan tang tapanuli-orang-utan tapir tarantula-hawk tarpon tarsier
+    tasmanian-devil tasmanian-tiger tawny-owl teddy-bear-hamster
+    teddy-roosevelt-terrier telescope-fish tennessee-walking-horse
+    tenterfield-terrier termite terrier tetra texas-blind-snake
+    texas-coral-snake texas-garter-snake texas-heeler texas-indigo-snake
+    texas-night-snake texas-rat-snake texas-spiny-lizard thai-ridgeback
+    thorny-devil thrush thylacoleo tibetan-fox tibetan-mastiff tibetan-spaniel
+    tibetan-terrier tick tiffany tiger tiger-beetle tiger-moth
+    tiger-rattlesnake tiger-salamander tiger-shark timber-rattlesnake
+    canebrake-rattlesnake tire-track-eel titanoboa toadfish torkie tortoise
+    toucan toy-fox-terrier toy-poodle transylvanian-hound tree-frog
+    tree-kangaroo tree-snake tree-swallow treecreeper treeing-tennessee-brindle
+    treeing-walker-coonhound troodon tropicbird trout tsetse-fly tuatara tuna
+    turkey turkish-angora turtles twig-snake tyrannosaurus-rex uakari uguisu
+    uinta-ground-squirrel uintatherium umbrellabird unau
+    linnaeus-two-toed-sloth ural-owl urutu-snake utonagan vampire-bat
+    vampire-squid vaquita velociraptor venus-flytrap vervet-monkey vicuña
+    vine-snake vinegaroon viper-shark dogfish virgin-islands-dwarf-gecko vizsla
+    volpino-italiano vulture wahoo-fish walking-catfish wallaby walleye-fish
+    walrus wandering-albatross warthog wasp water-buffalo water-dragon
+    water-vole weasel weaver-bird weimaraner weimardoodle wels-catfish
+    welsh-corgi welsh-terrier west-highland-terrier western-blind-snake
+    western-diamondback-rattlesnake western-gorilla western-green-mamba
+    western-hognose-snake western-lowland-gorilla western-rat-snake westiepoo
+    whale-shark wheaten-terrier whimbrel whinchat whippet whiptail-lizard
+    white-butterfly white-ferret-/-albino-ferrets white-rhinoceros white-tiger
+    white-faced-capuchin white-tail-deer white-tailed-eagle whiting whoodle
+    whooping-crane wild-boar wildebeest willow-warbler wire-fox-terrier
+    wirehaired-pointing-griffon wolf wolf-eel wolf-snake wolf-spider wolffish
+    wolverine woma-python wombat wood-bison wood-frog wood-tick wood-turtle
+    woodlouse woodlouse-spider woodpecker woodrat woolly-mammoth woolly-monkey
+    woolly-rhinoceros worm worm-snake wrasse writing-spider
+    wrought-iron-butterflyfish wyoming-toad x-ray-tetra xerus xoloitzcuintli
+    yak yakutian-laika yarara yellow-anaconda yellow-cobra yellow-sac-spider
+    yellow-spotted-lizard yellow-bellied-sea-snake yellow-eyed-penguin
+    yellowfin-tuna yeti-crab yoranian yorkie-bichon yorkie-poo
+    yorkshire-terrier zebra zebra-finch zebra-mussels zebra-pleco zebra-shark
+    zebra-snake zebra-spitting-cobra zebu zonkey zorse zuchon)
+
+foods=(
+    abiyuch acerola acorn agave agent agutuk alfalfa amaranth animal apache
+    apple applesauce apricot arrowhead arrowroot artichoke artificial arugula
+    ascidian asparagus avocado baby babyfood bacon bagel baking ball
+    balsam-pear bamboo banana bar barbecue barley basil bean bear beef
+    beerwurst beet berry besan beverage biscuit bison bit bitter blackberry
+    blackeye blend blueberry bockwurst bologna borage bowl boysenberry bran
+    brand bratwurst braunschweiger bread breadfruit breakfast broadbean
+    broccoli broth brotwurst brussels buckwheat buffalo bulgur bun burdock
+    burger burrito butter butterbur cabbage cake candied candy caper carambola
+    carbonated cardoon caribou carissa carne carob carob-flavor carrot cassava
+    catsup cattail cauliflower celeriac celery celtuce cereal chard chayote
+    cheese cheesecake cheesefurter cherimoya cherry chewing chicken chickpea
+    chicory chilchen child chili chip chiton chive chocolate chocolate-flavor
+    chocolate-flavored chokecherry chorizo chrysanthemum cilantro cinnamon
+    citronella citrus clam clementine cloudberry cocktail cocoa coffee
+    coffeecake collards commercially concentrate cone confectionery containing
+    cookie coriander corn corned cornmeal cornsalad cornstarch cotija couscous
+    cowpea crabapple cracker cranberry cranberry-apple cranberry-apricot
+    cranberry-grape cranberry-orange cream creamy cress croissant crouton crumb
+    crust crustacean cucumber currant custard custard-apple dairy dandelion
+    danish date deer dessert dill dinner dip dish dock dog dough doughnut dove
+    dressing drink dripping drumstick dry duck dulce durian dutch ear edamame
+    egg eggnog eggnog-flavor eggplant elderberry elk emu endive energy entree
+    epazote eppaw extender extract falafel fast fat fava feijoa fennel fern
+    fiddlehead fig fillet filling fireweed fish flake flan flavored flour
+    flower fluid focaccia foie food formula formulated frank frankfurter
+    frijole frog from frosting frozen fruit fruit-flavored frybread frying
+    fungi garbanzo garlic gelatin germ ginger gluten goat goose gooseberry
+    gourd grain gram granola grape grapefruit grass gravy green greens groat
+    ground groundcherry grouse guacamole guanabana guava guinea gum ham
+    hazelnut headcheese heart hen hibiscus hip hominy honey horned horseradish
+    household huckleberry hummus hush hyacinth hyacinth-bean hydrogenated
+    hydrolyzed ice imitation incaparina industrial isolate jackfruit jam
+    java-plum jelly jellyfish jerusalem-artichoke jicama juice jujube jute kale
+    kanpyo keikito kielbasa kiwano kiwifruit knackwurst kohlrabi kumquat lamb
+    lard lasagna leaf lean leavening lebanon leche leek leg lemon lemonade
+    lemonade-flavor lentil lettuce lima lime limeade link lion litchis liver
+    liverwurst loaf loganberry loin loquat lotus lulo lunch luncheon lupin
+    luxury macaroni made malabar malt malted mammy-apple mango mangosteen
+    maraschino margarine margarine-like marmalade mashu mayonnaise meal meat
+    meatball meatloaf melon milk millet miso mixed mocha molasses mollusk moose
+    mortadella mothbean mountain mouse muffin mulberry mung mungo mush mushroom
+    mustard mutton nance naranjilla natto navajo nectar nectarine nettle new
+    noodle nopales novelty nut nutritional oat octopus oheloberry oil
+    oil-butter okara okra olive onion oopah orange orange-flavor
+    orange-grapefruit ostrich oven-roasted palm pancake papad papaya parfait
+    parmesan parsley parsnip passion-fruit pasta pastrami pastry pate patty pea
+    peach peanut pear pectin peel people pepeao pepper peppered peppermint
+    pepperoni persimmon pheasant phyllo pickle picnic pie pigeon pigeonpea piki
+    pimento pimiento pineapple pinon pitanga pizza plain plantain plum pocket
+    pokeberry pomegranate popcorn pork potato potsticker poultry powder prairie
+    prepared preserve pretzel prickly product protein prune pudding puff pulled
+    pulp pummelo pumpkin punch punch-flavor puppy puree purslane quail quarter
+    queso quinoa raab radicchio radish raisin rambutan raspberry ravioli
+    ready-to-drink ready-to-eat red reddi reduced refried relish rennin
+    replacement restaurant rhubarb rice ring roast rojo roll root rose
+    rose-apple roselle rosemary rowal ruffed rutabaga rye salad salami salmon
+    salmonberry salsify salt sandwich sapodilla sapote sauce sauerkraut sausage
+    school scrapple sea seal seasoning seaweed seed semolina sesbania shake
+    shallot shell sherbet shoot shortening shoyu side smelt smoked smoothie
+    snack sorghum souffle soup sourdock soursop soy soybean soyburger soymilk
+    spaghetti spanish spearmint spelt spice spinach split spread sprout squab
+    squash squirrel steelhead stew stew/soup stick stinging strawberry
+    strawberry-flavor strudel stuffing substitute succotash sugar sugar-apple
+    supplement swamp sweet sweetener swisswurst syrup taco tamale tamari
+    tamarind tangerine tannier tapioca taquito taro tart tea teff tempeh tender
+    tennis thigh thuringer thyme toast toaster toddler tofu tomatillo tomato
+    topping tortellini tortilla tostada triticale trout tuber tunicate
+    tunughnak turkey turnip turnover turtle twist vanilla veal vegetable
+    vegetable-oil vegetarian veggie venison vermicelli vinegar vinespinach
+    vital volteados waffle walrus wasabi water water-chestnuts watercres
+    watermelon waxgourd weed wheat whey whiskey whole wild willow wine winged
+    wocas wonton wrapper yachtwurst yam yambean yardlong yautia yeast yellow
+    yogurt zealand zwieback)
+
+plants=(
+    african-rice african-sheepbush african-violet alder algerian-oak almond
+    aloe-vera amaranth ambrosia american-cress american-dogwood
+    american-nightshade american-white-hellebore american-winterberry amy-root
+    angel-trumpet annual-sow-thistle appalachian-tea apple apricot arfaj
+    arizona-sycamore arrowwood ash ash-leaved-maple asian-rice azolla baby-rose
+    bamboo banana bank-cress baobab bastard-pellitory bay bay-laurel bean
+    bearberry bear-corn beech belle-isle-cress bermuda-cress big-hellebore
+    bindweed birch bird-of-paradise birds-nest birds-nest-plant bittercress
+    bitter-nightshade bittersweet bitterweed black-alder black-ash blackberry
+    black-birch black-cap black-cherry black-eyed-susan blackhaw
+    blackhaw-viburnum black-hellebore blackiehead black-maple black-nightshade
+    black-raspberry black-weed blue-ash blue-atlas-cedar bluebell blueberry
+    blueberry-cornel blue-bindweed blue-oak blue-of-the-heavens
+    blunt-leaved-milkweed bolean-birch boston-fern-or-sword-fern bow-wood box
+    boxelder boxwood brackens-brown-beauty-magnolia brier brilliant-coneflower
+    bristly-dewberry bristly-groundberry brittlebush broadleaf
+    broadleaf-plantain brown-betty brown-daisy brown-eyed-susan buckeye
+    buffalo-weed bugle bulbous-cress bull-nettle bur-oak butterfly-flower
+    butterfly-weed cabbage cabinet-cherry california-bay california-black-oak
+    california-buckeye california-sycamore california-thistle california-walnut
+    canada-root canada-thistle cancer-jalap cane-ash canoe-birch
+    canyon-live-oak carolina-azolla carolina-horse-nettle carrot carrot-weed
+    cart-track-plant catalina-ironwood cedar chalk-milkwort champion-oak
+    charlock cherry cherry-birch chestnut chigger-flower chittick
+    christmas-fern chrysanthemum climbing-nightshade clove clover
+    clumpfoot-cabbage coakum coast-live-oak coast-polypody coconut coffee-plant
+    colic-weed collard columbine colwort comfrey common-alder
+    common-daisy,-daisy common-fig common-milkweed common-onion common-plantain
+    common-ragweed common-ragwort common-serviceberry common-tansy
+    common-yarrow coneflower cork-oak cornel cornelian-tree corn-sow-thistle
+    corn-speedwell corn-thistle corydalis cotton-plant coyote-willow
+    creek-maple creeping-thistle creeping-yellowcress cress crowfoot crows-nest
+    crows-toes cucumber cursed-thistle cutleaf-coneflower cutleaf-maple
+    cutleaf-toothwort daisy damask-violet dames-gilliflower dames-rocket
+    dames-violet deadly-nightshade deadnettle deciduous-holly deodar-cedar
+    desert-rose devils-bite devils-darning-needle devils-nose devils-plague
+    dewberry dindle dogs-tooth-violet-or-dogtooth-violet dogwood
+    dooryard-plantain downy-serviceberry drumstick duck-retten durian
+    durian-kura-kura durian-munjit durian-pulu duscle dwarf-wild-rose
+    dye-leaves dyers-oak early-wintercress earth-gall eastern-black-oak
+    eastern-coneflower eastern-redbud easter-orchid elderberry elegant-lupine
+    elephant-apple english-bulls-eye english-oak eucalyptus european-ash
+    -european-flax european-holly european-pellitory european-sycamore
+    european-weeping-birch european-white-birch european-white-hellebore
+    evergreen-huckleberry evergreen-winterberry extinguisher-moss eytelia
+    fairalls-honeysuckle fair-maid-of-france fairymoss false-alder false-box
+    false-boxwood false-hellebore fellenwort felonwood felonwort fennel
+    fern-leaf-corydalis fernleaf-yarrow ferns feverbush feverfew
+    field-forget-me-not field-sow-thistle fig flax florida-dogwood
+    flowering-dogwood fluxroot foxglove foxtail-amaranth fumewort
+    galaxy-magnolia gallberry garden-nightshade garget garlic garlic-mustard
+    garlic-root germander-speedwell gewa giant-onion giant-ragweed gilliflower
+    gloriosa-daisy golden-buttons golden-chain golden-corydalis golden-garlic
+    goldenglow golden-jerusalem goodding-willow goose-tongue gordaldo
+    grapefruit grapevine gray-alder gray-birch greater-plantain great-ragweed
+    green-ash green-berry-nightshade green-headed-coneflower green-honeysuckle
+    green-thistle groundberry gutweed hairy-bittercress haldi hard-thistle
+    hares-colwort hares-thistle harlequin hay-fever-weed healing-blade
+    heath-leaved-honeysuckle hedge-plant hellebore hemp hemp-dogbane
+    henbit-deadnettle hen-plant herb-barbara hispid-swamp-blackberry
+    hoary-ragwort hogweed holly holly-leaved-honeysuckle honesty honey-flower
+    honey-mesquite horse-cane horse-nettle horsetail-milkweed hounds-berry
+    houseleek huckleberry hydrangea indian-arrowwood indian-hemp
+    indian-paintbrush indian-poke indian-posy inkberry inkberry-holly ironwood
+    island-oak isle-of-man-cabbage itchweed ivy jack-by-the-hedge
+    jack-in-the-bush jane-magnolia japanese-flowering-dogwood jasmine
+    jewel-orchid jointed-rush judas-tree jugflower juneberry juniper
+    kay-parris-magnolia keek kimberly-queen-fern- king-fern kinnikinnik
+    kittentail knotweed korean-rock-fern kousa kousa-dogwood kudzu kumarahou
+    lace-fern laceflower ladys-mantle ladys-smock lambs-cress lambs-foot
+    land-cress latanier-palm laurel-magnolia lavender leatherleaf-viburnum leek
+    lemon leopard-lily lettuce lilac lily-leek lily-of-the-nile
+    little-gem-magnolia little-sunflower loblolly-pine lone-fleabane
+    love-lies-bleeding love-vine low-rose lupin magnolia mahogany-birch maize
+    mango many-flowered-honeysuckle maple maple-ash marsh-ragwort
+    meadow-cabbage meadow-holly mesquite milfoil milk-thistle milkweed
+    milky-tassel mirbecks-oak moonglow-magnolia moose-maple moosewood morel
+    morelle-verte mosquito-fern mosquito-plant mossycup-white-oak
+    mother-of-the-evening mountain-devil mountain-mahogany mount-connor-wattle
+    mulberry multiflora-rose native-fuchsia necklace-fern neem nettle
+    -new-zealand-flax night-blooming-cactus night-scented-gilliflower
+    nightshade nodding-onion nodding-thistle nodding-wakerobin
+    northern-moonwort northern-red-oak nosebleed oak-tree -obedient-plant olive
+    onion orange orange-coneflower orange-milkweed orange-root
+    orange-swallow-wort osage osage-orange osier oxford-ragwort pacific-dogwood
+    pale-corydalis paper-birch parsley parsnip pea peach peanut pear
+    pedunculate-oak pellitory pennsylvania-blackberry penny-hedge pepper-root
+    perennial-thistle petty-morel petty-spurge pigeon-berry pine pineapple
+    pink-corydalis pin-oak pistachio plane plantain pleurisy-root
+    poached-egg-plant pocan-bush poisonberry poisonflower poison-ivy poke
+    pokeroot pokeweed polecat-weed polkweed poor-annie poorland-daisy
+    poor-mans-mustard poplar poppy possumhaw potato prairie-rose
+    prickly-honeysuckle prickly-thistle primrose purple-flowered-toothwort
+    purple-raspberry queen-annes-lace queens-gilliflower quercitron
+    quercus-canariensis quercus-chrysolepis quercus-kelloggii radical-weed
+    ragweed ragwort rambler-rose rantipole rapeseed raspberry red-ash red-birch
+    redbrush redbud red-deadnettle red-durian red-ink-plant red-mulberry
+    red-oak red-osier red-river-maple redweed red-willow redwood-sorrel
+    rheumatism-root rhubarb ribwort rice river-ash river-birch river-maple
+    roadweed rocket rocketcress rock-harlequin rogues-gilliflower
+    roman-wormwood rose rosemary rose-milkweed rose-willow
+    round-leaf-honeysuckle roundleaf-plantain royal-star-magnolia rum-cherry
+    running-swamp-blackberry rye saffron-crocus sand-brier sanguinary saskatoon
+    sauce-alone scarlet-berry scarlet-oak scoke scotch-cap scrambled-eggs
+    screwbean-mesquite scrub-oak scurvy-cress scurvy-grass
+    serendipity-ruby-magnolia serviceberry sessile-oak shadblow
+    shadblow-serviceberry shadbush sharp-fringed-sow-thistle shrubby-mayweed
+    silkweed silky-cornel silky-dogwood silky-swallow-wort silver-birch
+    silverleaf-maple silver-maple silver-ragwort skunk-cabbage skunkweed
+    small-flowered-thistle snakeberry sneezeweed sneezewort sneezewort-yarrow
+    snowdrop soft-maple soldiers-woundwort sorrel spanish-oak speckled-alder
+    speedwell spice-birch spikenard spiny-leaved-sow-thistle spiny-sow-thistle
+    spoolwood spotted-deadnettle spotted-oak spring-cress squaw-bush stag-bush
+    stammerwort star-of-persia stellar-ruby-magnolia stickweed strawberry
+    strawberry-tree strawberry-tree-marina striped-maple sugarcane sugar-maple
+    sugarplum summer-lilac sundari sunflower swallow-wort swamp-ash
+    swamp-cabbage swamp-dewberry swamp-dogwood swamp-hellebore swamp-holly
+    swamp-maple swamp-milkweed swamp-oak swamp-silkweed swamp-spanish-oak
+    swamp-white-oak sweetbay-magnolia sweet-birch sweet-orange sweet-potato
+    sweet-potato-vine sweet-rocket swine-thistle swinies sword-ferns sycamore
+    tall-ambrosia tall-coneflower tansy tassel-weed tea teddy-bear-magnolia
+    thimbleberry thimbleweed thin-leaved-coneflower thistle thousand-leaf
+    thousand-seal three-leaved-coneflower thyme tickleweed tobacco-plant tomato
+    toothwort touch-me-not trailing-bittersweet trailing-nightshade
+    trailing-red-huckleberry trailing-violet-nightshade travellers-joy
+    tread-softly tree-onion tree-sow-thistle tree-tobacco trillium
+    true-cinnamon tuber-root tulip tulsi umbrella-palm umbrella-papyrus
+    upland-cress valley-oak vanilla-orchid varnish-tree velvet-bean viburnum
+    viola violet violet-bloom vipers-grass virginia-silkweed
+    virginia-virgins-bower virginia-winterberry virgins-bower voodoo-lily
+    wall-speedwell walnut water-ash water-birch water-fern
+    waterlilly-star-magnolia water-maple wattle waybread wayside-plantain
+    way-thistle weeping-birch western-redbud western-sword-fern
+    western-trillium western-wake-robin wheat whiskey-cherry white-alder
+    white-ash white-birch white-cornel white-hellebore white-indian-hemp
+    white-mans-foot white-maple white-mulberry white-oak white-root white-tansy
+    white-trillium whorled-milkweed wild-black-cherry wild-carrot wild-cherry
+    wild-cotton wild-garlic wild-honeysuckle wild-hops wild-onion wild-orange
+    wild-pellitory wild-rose wild-tansy willow windroot wineberry winterberry
+    winterberry-holly wintercress winter-gilliflower winter-rocket woodbine
+    woody-nightshade woolly-morning-glory woolly-yarrow wormwood wound-rocket
+    yam yarrow yellowbark-oak yellow-birch yellow-coneflower yellow-corydalis
+    yellow-daisy yellow-fieldcress yellow-fumewort yellow-harlequin
+    yellow-milkweed yellow-ox-eye-daisy yellow-rocket yellowwood
+    yunnan-camellia zebrawood zedoary)
+
+suffix=(-flavor -smell -aftertaste -style -stuff -thing -type -branch -idea -trick -feature -refactor -shortcut '')
+
+nouns=(foods animals plants)
+noun=${nouns[RANDOM%${#nouns[@]}]}
+if [ $noun == "animals" ]; then
+    echo ${adjectives[RANDOM%${#adjectives[@]}]}-${animals[RANDOM%${#animals[@]}]}${suffix[RANDOM%${#suffix[@]}]}
+elif [ $noun == "plants" ]; then
+    echo ${adjectives[RANDOM%${#adjectives[@]}]}-${plants[RANDOM%${#plants[@]}]}${suffix[RANDOM%${#suffix[@]}]}
+elif [ $noun == "foods" ]; then
+    echo ${adjectives[RANDOM%${#adjectives[@]}]}-${foods[RANDOM%${#foods[@]}]}${suffix[RANDOM%${#suffix[@]}]}
+fi

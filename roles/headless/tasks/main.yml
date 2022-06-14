@@ -148,6 +148,7 @@
   - icanhazip
   - loop
   - n
+  - name
   - release-upgrade
   - try
   - upgrade
