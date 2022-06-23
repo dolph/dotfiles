@@ -647,20 +647,20 @@ adjectives=(
 
 animals=(
     aardvark aardwolf abyssinian addax adelie-penguin aesculapian-snake
-    affenpinscher afghan-hound african-bullfrog african-bush-elephant
-    african-civet african-clawed-frog african-forest-elephant
-    african-grey-parrot african-palm-civet african-penguin african-tree-toad
-    african-wild-dog agama-lizard aidi ainu airedale-terrier airedoodle akbash
+    affenpinscher afghan-hound bullfrog bush-elephant
+    civet clawed-frog forest-elephant
+    grey-parrot palm-civet penguin tree-toad
+    wild-dog agama-lizard aidi ainu airedale-terrier airedoodle akbash
     akita akita-shepherd alabai alaskan-husky alaskan-klee-kai alaskan-malamute
     alaskan-pollock alaskan-shepherd albacore-tuna albatross
     aldabra-giant-tortoise alligator alligator-gar alpaca alpine-dachsbracke
     alpine-goat alusky amargasaurus amazon-parrot amazon-river-dolphin
-    pink-dolphin ambrosia-beetle american-alsatian american-bulldog
-    american-cocker-spaniel american-cockroach american-coonhound
-    american-dog-tick american-eskimo-dog american-foxhound
-    american-hairless-terrier american-leopard-hound american-pit-bull-terrier
-    american-pygmy-goat american-robin american-staffordshire-terrier
-    american-toad american-water-spaniel amur-leopard anaconda
+    pink-dolphin ambrosia-beetle alsatian bulldog
+    cocker-spaniel cockroach coonhound
+    dog-tick eskimo-dog foxhound
+    hairless-terrier leopard-hound pit-bull-terrier
+    pygmy-goat robin staffordshire-terrier
+    toad water-spaniel amur-leopard anaconda
     anatolian-shepherd-dog anchovies angelfish anglerfish angora-ferret
     angora-goat anole-lizard ant antarctic-scale-worm anteater antelope ape
     appenzeller-dog apple-head-chihuahua arabian-cobra arafura-file-snake
@@ -709,9 +709,9 @@ animals=(
     bullsnake bumblebee burmese burmese-python burrowing-frog burrowing-owl
     bush-baby bush-viper bushmaster-snake butterfly butterfly-fish cabbage-moth
     cactus-moth cactus-mouse caecilian caiman caiman-lizard cairn-terrier
-    california-kingsnake camel camel-cricket camel-spider canaan-dog
+    kingsnake camel camel-cricket camel-spider canaan-dog
     canada-lynx canada-warbler canadian-eskimo-dog canadian-horse cane-corso
-    cantil cape-lion capybara caracal caribou carolina-dog carolina-parakeet
+    cantil cape-lion capybara caracal caribou dog parakeet
     carp carpenter-ant carpet-python carpet-viper cascabel cashmere-goat
     cassowary cat cat-snake cat-eyed-snake catahoula-leopard catalan-sheepdog
     caterpillar catfish cava-tzu cavador cavalier-king-charles-spaniel cavapoo
@@ -726,9 +726,9 @@ animals=(
     cinereous-vulture cinnamon-ferret clouded-leopard clownfish clumber-spaniel
     coachwhip-snake coastal-taipan coati cobia-fish cobras cockalier cockapoo
     cockatiel cockatoo cocker-spaniel cockroach codfish codling-moth coelacanth
-    collared-peccary colletts-snake collie colossal-squid common-buzzard
-    common-european-adder common-frog common-furniture-beetle
-    common-house-spider common-loon common-raven common-toad compsognathus
+    collared-peccary colletts-snake collie colossal-squid buzzard
+    adder frog furniture-beetle
+    house-spider loon raven toad compsognathus
     conger-eel congo-snake cookiecutter-shark coopers-hawk copperhead coral
     coral-snake corgidor corgipoo corkie corman-shepherd corn-rex-cat
     cornish-rex corn-snake coton-de-tulear cotton-top-tamarin cottonmouth
@@ -746,22 +746,22 @@ animals=(
     draco-volans-lizard dragonfish dragonfly drever drum-fish dubia-cockroach
     duck dugong dumerils-boa dung-beetle dunker dunnock dusky-dolphin
     dwarf-boa dwarf-crocodile dwarf-hamster eagle earthworm earwig
-    eastern-barred-bandicoot eastern-bluebird eastern-brown-snake
-    eastern-chipmunk eastern-coral-snake eastern-diamondback-rattlesnake
-    eastern-fence-lizard eastern-glass-lizard eastern-gorilla
-    eastern-gray-squirrel eastern-green-mamba eastern-indigo-snake
-    eastern-lowland-gorilla eastern-phoebe eastern-racer eastern-rat-snake
-    eastern-woodrat echidna eclectus-parrot edible-frog eel egyptian-cobra
+    barred-bandicoot bluebird brown-snake
+    chipmunk coral-snake diamondback-rattlesnake
+    fence-lizard glass-lizard gorilla
+    gray-squirrel green-mamba indigo-snake
+    lowland-gorilla phoebe racer rat-snake
+    woodrat echidna eclectus-parrot edible-frog eel egyptian-cobra
     egyptian-goose egyptian-mau eland elasmosaurus electric-catfish
     electric-eel elegant-tern elephant elephant-seal elephant-shrew elk
-    emerald-tree-monitor emperor-penguin emperor-tamarin emu english-bulldog
-    english-cocker-spaniel english-cream-golden-retriever english-foxhound
-    english-pointer english-setter english-shepherd english-springer-spaniel
+    emerald-tree-monitor emperor-penguin emperor-tamarin emu bulldog
+    cocker-spaniel cream-golden-retriever foxhound
+    pointer setter shepherd springer-spaniel
     entlebucher-mountain-dog epagneul-pont-audemer equatorial-spitting-cobra
     ermine escolar eskimo-dog eskipoo estrela-mountain-dog eurasian-beaver
     eurasian-jay eurasian-lynx eurasian-nuthatch eurasian-wolf
-    european-bee-eater european-corn-borer european-polecat european-robin
-    european-wildcat evening-bat eyelash-viper falcon fallow-deer false-cobra
+    bee-eater corn-borer polecat robin
+    wildcat evening-bat eyelash-viper falcon fallow-deer false-cobra
     false-coral-snake false-killer-whale false-water-cobra false-widow-spider
     fangtooth feist fennec-fox fer-de-lance-snake ferret ferruginous-hawk
     fiddler-crab field-spaniel fierce-snake fila-brasileiro fin-whale
@@ -778,7 +778,7 @@ animals=(
     geoffroys-tamarin gerberian-shepsky gerbil german-cockroach german-pinscher
     german-shepherd-guide german-sheppit german-sheprador
     german-shorthaired-pointer german-spitz gharial ghost-catfish ghost-crab
-    giant-african-land-snail giant-armadillo giant-clam giant-leopard-moth
+    giant-land-snail giant-armadillo giant-clam giant-leopard-moth
     giant-panda-bear giant-salamander giant-schnauzer giant-schnoodle gibbon
     gila-monster giraffe glass-frog glass-lizard glechon glen-of-imaal-terrier
     glow-worm gnat goat goberian goblin-shark goldador golden-dox
@@ -844,7 +844,7 @@ animals=(
     markhor marmoset marmot marsh-frog masked-angelfish masked-palm-civet
     massasauga mastador mastiff mayfly meagle mealybug meerkat megalania
     megalodon megamouth-shark mekong-giant-catfish mexican-alligator-lizard
-    mexican-black-kingsnake mexican-eagle northern-crested-caracara
+    mexican-black-kingsnake mexican-eagle crested-caracara
     mexican-free-tailed-bat mexican-mole-lizard microraptor
     midget-faded-rattlesnake miki milk-snake milkfish millipede
     mini-labradoodle miniature-bull-terrier miniature-husky miniature-pinscher
@@ -859,13 +859,13 @@ animals=(
     narwhal natterjack neanderthal neapolitan-mastiff nebelung needlefish
     neptune-grouper newfoundland newfypoo newt nicobar-pigeon nigerian-goat
     night-adder night-heron night-snake nightingale nile-crocodile nilgai
-    no-see-ums norfolk-terrier north-american-black-bear
-    northern-alligator-lizard northern-cardinal northern-fur-seal
-    northern-inuit-dog northern-water-snake norwegian-buhund norwegian-elkhound
+    no-see-ums norfolk-terrier north-black-bear
+    alligator-lizard cardinal fur-seal
+    inuit-dog water-snake norwegian-buhund norwegian-elkhound
     norwegian-forest norwegian-lundehund norwich-terrier nose-horned-viper
     nova-scotia-duck-tolling-retriever nubian-goat nudibranch numbat
     nurse-shark nyala oak-toad ocelot octopus oenpelli-python okapi
-    old-english-sheepdog olive-baboon olive-sea-snake olm opossum orang-utan
+    old-sheepdog olive-baboon olive-sea-snake olm opossum orang-utan
     orange-crowned-warbler orb-weaver ornithomimus ortolan-bunting oscar-fish
     ostrich otter otterhound oviraptor owl ox oyster oyster-toadfish paddlefish
     pademelon painted-turtle pangolin panther papillon paradise-flying-snake
@@ -876,20 +876,17 @@ animals=(
     peppermint-angelfish pere-davids-deer peregrine-falcon peringueys-adder
     perro-de-presa-canario persian peruvian-inca-orchid pesquets-parrotardvark
     aardwolf abyssinian addax adelie penguin aesculapian snake affenpinscher
-    afghan hound african bullfrog african bush elephant african civet african
-    clawed frog african forest elephant african grey parrot african palm civet
-    african penguin african tree toad african wild dog agama lizard aidi ainu
+    afghan hound bullfrog bush elephant civet clawed frog forest elephant grey
+    parrot palm civet penguin tree toad wild dog agama lizard aidi ainu
     airedale terrier airedoodle akbash akita akita shepherd alabai alaskan
     husky alaskan klee kai alaskan malamute alaskan pollock alaskan shepherd
     albacore tuna albatross aldabra giant tortoise alligator alligator gar
     alpaca alpine dachsbracke alpine goat alusky amargasaurus amazon parrot
-    amazon river dolphin pink dolphin ambrosia beetle american alsatian
-    american bulldog american cocker spaniel american cockroach american
-    coonhound american dog tick american eskimo dog american foxhound american
-    hairless terrier american leopard hound american pit bull terrier american
-    pygmy goat american robin american staffordshire terrier american toad
-    american water spaniel amur leopard anaconda anatolian shepherd dog
-    anchovies angelfish anglerfish angora ferret angora goat anole lizard ant
+    amazon river dolphin pink dolphin ambrosia beetle alsatian bulldog cocker
+    spaniel cockroach coonhound dog tick eskimo dog foxhound hairless terrier
+    leopard hound pit bull terrier pygmy goat robin staffordshire terrier toad
+    water spaniel amur leopard anaconda anatolian shepherd dog anchovies
+    angelfish anglerfish angora ferret angora goat anole lizard ant
     antarctic scale worm anteater antelope ape appenzeller dog apple head
     chihuahua arabian cobra arafura file snake arapaima archaeotherium archelon
     turtle arctic fox arctic hare arctic wolf arctodus arctotherium arizona
@@ -1180,7 +1177,7 @@ animals=(
     rainbow-boa rainbow-shark rat rat-snakes rat-terrier rattlesnake
     red-diamondback-rattlesnake red-finch red-fox red-kite red-knee-tarantula
     red-panda red-racer-snake red-spitting-cobra red-squirrel red-tail-boa
-    common-boa red-wolf red-bellied-black-snake red-billed-quelea-bird
+    boa red-wolf red-bellied-black-snake red-billed-quelea-bird
     red-eared-slider red-eyed-tree-frog red-footed-tortoise red-handed-tamarin
     red-headed-vulture red-lipped-batfish red-winged-blackbird redback-spider
     redbone-coonhound redtail-catfish reef-shark reindeer rhino-viper
@@ -1209,9 +1206,9 @@ animals=(
     slug smokybrown-cockroach smooth-fox-terrier smooth-green-snake
     smooth-snake snail snake snapping-turtle snook-fish snorkie snouted-cobra
     snow-crab snow-leopard snowshoe snowshoe-hare snowy-owl sockeye-salmon
-    somali song-sparrow song-thrush south-china-tiger southern-black-racer
-    southern-hognose-snake southern-pacific-rattlesnake spadefoot-toad spanador
-    spanish-goat spanish-mastiff sparrow sparrowhawk speckled-kingsnake
+    somali song-sparrow song-thrush south-china-tiger black-racer
+    hognose-snake pacific-rattlesnake spadefoot-toad spanador
+    goat mastiff sparrow sparrowhawk speckled-kingsnake
     spectacled-bear sperm-whale spider spider-ball-python spider-monkey
     spider-wasp spider-tailed-horned-viper spinner-shark spinone-italiano
     spinosaurus spiny-dogfish spiny-hill-turtle spitting-cobra spixs-macaw
@@ -1245,9 +1242,9 @@ animals=(
     volpino-italiano vulture wahoo-fish walking-catfish wallaby walleye-fish
     walrus wandering-albatross warthog wasp water-buffalo water-dragon
     water-vole weasel weaver-bird weimaraner weimardoodle wels-catfish
-    welsh-corgi welsh-terrier west-highland-terrier western-blind-snake
-    western-diamondback-rattlesnake western-gorilla western-green-mamba
-    western-hognose-snake western-lowland-gorilla western-rat-snake westiepoo
+    welsh-corgi welsh-terrier west-highland-terrier blind-snake
+    diamondback-rattlesnake gorilla green-mamba
+    hognose-snake lowland-gorilla rat-snake westiepoo
     whale-shark wheaten-terrier whimbrel whinchat whippet whiptail-lizard
     white-butterfly white-ferret-/-albino-ferrets white-rhinoceros white-tiger
     white-faced-capuchin white-tail-deer white-tailed-eagle whiting whoodle
@@ -1340,9 +1337,9 @@ foods=(
     yogurt zealand zwieback)
 
 plants=(
-    african-rice african-sheepbush african-violet alder algerian-oak almond
-    aloe-vera amaranth ambrosia american-cress american-dogwood
-    american-nightshade american-white-hellebore american-winterberry amy-root
+    rice sheepbush violet alder oak almond
+    aloe-vera amaranth ambrosia cress dogwood
+    nightshade white-hellebore winterberry amy-root
     angel-trumpet annual-sow-thistle appalachian-tea apple apricot arfaj
     arizona-sycamore arrowwood ash ash-leaved-maple asian-rice azolla baby-rose
     bamboo banana bank-cress baobab bastard-pellitory bay bay-laurel bean
@@ -1353,37 +1350,37 @@ plants=(
     blackhaw-viburnum black-hellebore blackiehead black-maple black-nightshade
     black-raspberry black-weed blue-ash blue-atlas-cedar bluebell blueberry
     blueberry-cornel blue-bindweed blue-oak blue-of-the-heavens
-    blunt-leaved-milkweed bolean-birch boston-fern-or-sword-fern bow-wood box
+    blunt-leaved-milkweed bolean-birch boston-fern sword-fern bow-wood box
     boxelder boxwood brackens-brown-beauty-magnolia brier brilliant-coneflower
     bristly-dewberry bristly-groundberry brittlebush broadleaf
     broadleaf-plantain brown-betty brown-daisy brown-eyed-susan buckeye
     buffalo-weed bugle bulbous-cress bull-nettle bur-oak butterfly-flower
-    butterfly-weed cabbage cabinet-cherry california-bay california-black-oak
-    california-buckeye california-sycamore california-thistle california-walnut
+    butterfly-weed cabbage cabinet-cherry bay black-oak
+    buckeye sycamore thistle walnut
     canada-root canada-thistle cancer-jalap cane-ash canoe-birch
-    canyon-live-oak carolina-azolla carolina-horse-nettle carrot carrot-weed
+    canyon-live-oak azolla horse-nettle carrot carrot-weed
     cart-track-plant catalina-ironwood cedar chalk-milkwort champion-oak
     charlock cherry cherry-birch chestnut chigger-flower chittick
     christmas-fern chrysanthemum climbing-nightshade clove clover
     clumpfoot-cabbage coakum coast-live-oak coast-polypody coconut coffee-plant
-    colic-weed collard columbine colwort comfrey common-alder
-    common-daisy,-daisy common-fig common-milkweed common-onion common-plantain
-    common-ragweed common-ragwort common-serviceberry common-tansy
-    common-yarrow coneflower cork-oak cornel cornelian-tree corn-sow-thistle
+    colic-weed collard columbine colwort comfrey alder
+    daisy,-daisy fig milkweed onion plantain
+    ragweed ragwort serviceberry tansy
+    yarrow coneflower cork-oak cornel cornelian-tree corn-sow-thistle
     corn-speedwell corn-thistle corydalis cotton-plant coyote-willow
     creek-maple creeping-thistle creeping-yellowcress cress crowfoot crows-nest
     crows-toes cucumber cursed-thistle cutleaf-coneflower cutleaf-maple
     cutleaf-toothwort daisy damask-violet dames-gilliflower dames-rocket
     dames-violet deadly-nightshade deadnettle deciduous-holly deodar-cedar
     desert-rose devils-bite devils-darning-needle devils-nose devils-plague
-    dewberry dindle dogs-tooth-violet-or-dogtooth-violet dogwood
+    dewberry dindle dogs-tooth-violet dogtooth-violet dogwood
     dooryard-plantain downy-serviceberry drumstick duck-retten durian
     durian-kura-kura durian-munjit durian-pulu duscle dwarf-wild-rose
-    dye-leaves dyers-oak early-wintercress earth-gall eastern-black-oak
-    eastern-coneflower eastern-redbud easter-orchid elderberry elegant-lupine
-    elephant-apple english-bulls-eye english-oak eucalyptus european-ash
-    -european-flax european-holly european-pellitory european-sycamore
-    european-weeping-birch european-white-birch european-white-hellebore
+    dye-leaves dyers-oak early-wintercress earth-gall black-oak
+    coneflower redbud easter-orchid elderberry elegant-lupine
+    elephant-apple bulls-eye oak eucalyptus ash
+    flax holly pellitory sycamore
+    weeping-birch white-birch white-hellebore
     evergreen-huckleberry evergreen-winterberry extinguisher-moss eytelia
     fairalls-honeysuckle fair-maid-of-france fairymoss false-alder false-box
     false-boxwood false-hellebore fellenwort felonwood felonwort fennel
@@ -1420,9 +1417,9 @@ plants=(
     morelle-verte mosquito-fern mosquito-plant mossycup-white-oak
     mother-of-the-evening mountain-devil mountain-mahogany mount-connor-wattle
     mulberry multiflora-rose native-fuchsia necklace-fern neem nettle
-    -new-zealand-flax night-blooming-cactus night-scented-gilliflower
+    new-zealand-flax night-blooming-cactus night-scented-gilliflower
     nightshade nodding-onion nodding-thistle nodding-wakerobin
-    northern-moonwort northern-red-oak nosebleed oak-tree -obedient-plant olive
+    moonwort red-oak nosebleed oak-tree obedient-plant olive
     onion orange orange-coneflower orange-milkweed orange-root
     orange-swallow-wort osage osage-orange osier oxford-ragwort pacific-dogwood
     pale-corydalis paper-birch parsley parsnip pea peach peanut pear
@@ -1450,14 +1447,14 @@ plants=(
     silkweed silky-cornel silky-dogwood silky-swallow-wort silver-birch
     silverleaf-maple silver-maple silver-ragwort skunk-cabbage skunkweed
     small-flowered-thistle snakeberry sneezeweed sneezewort sneezewort-yarrow
-    snowdrop soft-maple soldiers-woundwort sorrel spanish-oak speckled-alder
+    snowdrop soft-maple soldiers-woundwort sorrel oak speckled-alder
     speedwell spice-birch spikenard spiny-leaved-sow-thistle spiny-sow-thistle
     spoolwood spotted-deadnettle spotted-oak spring-cress squaw-bush stag-bush
     stammerwort star-of-persia stellar-ruby-magnolia stickweed strawberry
     strawberry-tree strawberry-tree-marina striped-maple sugarcane sugar-maple
     sugarplum summer-lilac sundari sunflower swallow-wort swamp-ash
     swamp-cabbage swamp-dewberry swamp-dogwood swamp-hellebore swamp-holly
-    swamp-maple swamp-milkweed swamp-oak swamp-silkweed swamp-spanish-oak
+    swamp-maple swamp-milkweed swamp-oak swamp-silkweed swamp-oak
     swamp-white-oak sweetbay-magnolia sweet-birch sweet-orange sweet-potato
     sweet-potato-vine sweet-rocket swine-thistle swinies sword-ferns sycamore
     tall-ambrosia tall-coneflower tansy tassel-weed tea teddy-bear-magnolia
@@ -1472,8 +1469,8 @@ plants=(
     virginia-virgins-bower virginia-winterberry virgins-bower voodoo-lily
     wall-speedwell walnut water-ash water-birch water-fern
     waterlilly-star-magnolia water-maple wattle waybread wayside-plantain
-    way-thistle weeping-birch western-redbud western-sword-fern
-    western-trillium western-wake-robin wheat whiskey-cherry white-alder
+    way-thistle weeping-birch redbud sword-fern
+    trillium wake-robin wheat whiskey-cherry white-alder
     white-ash white-birch white-cornel white-hellebore white-indian-hemp
     white-mans-foot white-maple white-mulberry white-oak white-root white-tansy
     white-trillium whorled-milkweed wild-black-cherry wild-carrot wild-cherry
@@ -1486,14 +1483,12 @@ plants=(
     yellow-milkweed yellow-ox-eye-daisy yellow-rocket yellowwood
     yunnan-camellia zebrawood zedoary)
 
-suffix=(-flavor -smell -aftertaste -style -stuff -thing -type -branch -idea -trick -feature -refactor -shortcut '')
-
 nouns=(foods animals plants)
 noun=${nouns[RANDOM%${#nouns[@]}]}
 if [ $noun == "animals" ]; then
-    echo ${adjectives[RANDOM%${#adjectives[@]}]}-${animals[RANDOM%${#animals[@]}]}${suffix[RANDOM%${#suffix[@]}]}
+    echo ${adjectives[RANDOM%${#adjectives[@]}]}-${animals[RANDOM%${#animals[@]}]}
 elif [ $noun == "plants" ]; then
-    echo ${adjectives[RANDOM%${#adjectives[@]}]}-${plants[RANDOM%${#plants[@]}]}${suffix[RANDOM%${#suffix[@]}]}
+    echo ${adjectives[RANDOM%${#adjectives[@]}]}-${plants[RANDOM%${#plants[@]}]}
 elif [ $noun == "foods" ]; then
-    echo ${adjectives[RANDOM%${#adjectives[@]}]}-${foods[RANDOM%${#foods[@]}]}${suffix[RANDOM%${#suffix[@]}]}
+    echo ${adjectives[RANDOM%${#adjectives[@]}]}-${foods[RANDOM%${#foods[@]}]}
 fi
