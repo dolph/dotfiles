@@ -667,8 +667,8 @@ animals=(
     arapaima archaeotherium archelon-turtle arctic-fox arctic-hare arctic-wolf
     arctodus arctotherium arizona-bark-scorpion arizona-black-rattlesnake
     arizona-coral-snake armadillo armadillo-lizard armyworm aruba-rattlesnake
-    asian-arowana asian-cockroach asian-elephant asian-giant-hornet
-    asian-palm-civet asian-vine-snake asiatic-black-bear asp assassin-bug
+    arowana cockroach elephant giant-hornet
+    palm-civet vine-snake black-bear asp assassin-bug
     atlantic-salmon atlas-moth aurochs aussiedoodle aussiedor
     australian-bulldog australian-cattle-dog australian-cockroach
     australian-flathead-perch australian-gecko australian-kelpie-dog
@@ -758,8 +758,8 @@ animals=(
     cocker-spaniel cream-golden-retriever foxhound
     pointer setter shepherd springer-spaniel
     entlebucher-mountain-dog epagneul-pont-audemer equatorial-spitting-cobra
-    ermine escolar eskimo-dog eskipoo estrela-mountain-dog eurasian-beaver
-    eurasian-jay eurasian-lynx eurasian-nuthatch eurasian-wolf
+    ermine escolar eskimo-dog eskipoo estrela-mountain-dog beaver
+    jay lynx nuthatch wolf
     bee-eater corn-borer polecat robin
     wildcat evening-bat eyelash-viper falcon fallow-deer false-cobra
     false-coral-snake false-killer-whale false-water-cobra false-widow-spider
@@ -891,8 +891,8 @@ animals=(
     chihuahua arabian cobra arafura file snake arapaima archaeotherium archelon
     turtle arctic fox arctic hare arctic wolf arctodus arctotherium arizona
     bark scorpion arizona black rattlesnake arizona coral snake armadillo
-    armadillo lizard armyworm aruba rattlesnake asian arowana asian cockroach
-    asian elephant asian giant hornet asian palm civet asian vine snake asiatic
+    armadillo lizard armyworm aruba rattlesnake arowana cockroach
+    elephant giant hornet palm civet vine snake
     black bear asp assassin bug atlantic salmon atlas moth aurochs aussiedoodle
     aussiedor australian bulldog australian cattle dog australian cockroach
     australian flathead perch australian gecko australian kelpie dog australian
@@ -949,7 +949,7 @@ animals=(
     spaniel coachwhip snake coastal taipan coati cobia fish cobras cockalier
     cockapoo cockatiel cockatoo cocker spaniel cockroach codfish codling moth
     coelacanth collared peccary colletts snake collie colossal squid common
-    buzzard common european adder common frog common furniture beetle common
+    buzzard common adder common frog common furniture beetle common
     house spider common loon common raven common toad compsognathus conger eel
     congo snake cookiecutter shark coopers hawk copperhead coral coral snake
     corgidor corgipoo corkie corman shepherd corn rex cat cornish rex corn
@@ -979,9 +979,9 @@ animals=(
     retriever english foxhound english pointer english setter english shepherd
     english springer spaniel entlebucher mountain dog epagneul pont audemer
     equatorial spitting cobra ermine escolar eskimo dog eskipoo estrela
-    mountain dog eurasian beaver eurasian jay eurasian lynx eurasian nuthatch
-    eurasian wolf european bee-eater european corn borer european polecat
-    european robin european wildcat evening bat eyelash viper falcon fallow
+    mountain dog beaver jay lynx nuthatch
+    wolf bee-eater corn borer polecat
+    robin wildcat evening bat eyelash viper falcon fallow
     deer false cobra false coral snake false killer whale false water cobra
     false widow spider fangtooth feist fennec fox fer-de-lance snake ferret
     ferruginous hawk fiddler crab field spaniel fierce snake fila brasileiro
@@ -1341,7 +1341,7 @@ plants=(
     aloe-vera amaranth ambrosia cress dogwood
     nightshade white-hellebore winterberry amy-root
     angel-trumpet annual-sow-thistle appalachian-tea apple apricot arfaj
-    arizona-sycamore arrowwood ash ash-leaved-maple asian-rice azolla baby-rose
+    arizona-sycamore arrowwood ash ash-leaved-maple rice azolla baby-rose
     bamboo banana bank-cress baobab bastard-pellitory bay bay-laurel bean
     bearberry bear-corn beech belle-isle-cress bermuda-cress big-hellebore
     bindweed birch bird-of-paradise birds-nest birds-nest-plant bittercress
