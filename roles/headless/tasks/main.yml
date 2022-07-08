@@ -178,3 +178,10 @@
 - name: install podman
   import_tasks: podman.yml
   tags: podman
+
+- name: install kubernetes
+  import_tasks: kube.yml
+  tags:
+  - kube
+  - k8s
+  - kubernetes

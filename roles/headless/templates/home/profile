@@ -20,3 +20,6 @@ export PATH="$PATH:$HOME/go/bin"
 # Rust
 export RUSTPATH=$HOME/.cargo/bin
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# kubectl krew
+export PATH="$PATH:$HOME/.krew/bin"

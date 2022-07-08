@@ -1,6 +1,8 @@
-- name: install podman
+- name: install container tools
   dnf:
-    name: podman
+    name:
+    - podman
+    - buildah
 
 - name: authenticate with dockerhub
   command:

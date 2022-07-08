@@ -1,0 +1,96 @@
+---
+- name: discover latest version of kubectl
+  uri:
+    url: https://dl.k8s.io/release/stable.txt
+    return_content: true
+  register: kubectl_version
+
+- name: install kubectl
+  get_url:
+    url: https://dl.k8s.io/release/{{ kubectl_version.content }}/bin/linux/amd64/kubectl
+    dest: /home/{{ whoami }}/bin/kubectl
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: 0770
+
+- name: install krew
+  block:
+  - name: create temp dir to extract krew
+    become: true
+    become_user: "{{ whoami }}"
+    tempfile:
+      state: directory
+    register: krew_tempdir
+
+  - name: extract krew
+    become: true
+    become_user: "{{ whoami }}"
+    unarchive:
+      src: https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz
+      remote_src: true
+      dest: "{{ krew_tempdir.path }}"
+
+  - name: use krew to install krew
+    become: true
+    become_user: "{{ whoami }}"
+    command: "{{ krew_tempdir.path }}/krew-linux_amd64 install krew"
+
+  always:
+  - name: remove krew temp dir
+    file:
+      path: "{{ krew_tempdir.path }}"
+      state: absent
+    changed_when: false
+
+- name: install kube plugins
+  become: true
+  become_user: "{{ whoami }}"
+  shell: "source /home/{{ whoami }}/.profile; /home/{{ whoami }}/bin/kubectl krew install {{ plugin }}"
+  register: task
+  changed_when: '"Skipping plugin" is not in task.stdout'
+  loop:
+  - ctx
+  - ns
+  loop_control:
+    loop_var: plugin
+
+# install tekton https://github.com/tektoncd/cli/releases
+
+- name: install python3-github3 to help discover github release versions
+  dnf:
+    name: python3-github3py
+
+- name: discover the latest release tag of tekton
+  community.general.github_release:
+    user: tektoncd
+    repo: cli
+    action: latest_release
+  register: latest_tekton_release
+
+- name: install tekton
+  block:
+  - name: create temp dir to extract tekton
+    tempfile:
+      state: directory
+    register: tekton_tempdir
+
+  - name: extract tekton
+    unarchive:
+      src: https://github.com/kubernetes-sigs/tekton/releases/latest/download/tkn_{{ latest_tekton_release.latest_release }}_Linux_x86_64.tar.gz
+      remote_src: true
+      dest: "{{ tekton_tempdir.path }}"
+
+  - name: use tekton to install tekton
+    copy:
+      src: "{{ tekton_tempdir.path }}/tkn"
+      dest: /home/{{ whoami }}/bin/
+      owner: "{{ whoami }}"
+      group: "{{ whoami }}"
+      mode: 0770
+
+  always:
+  - name: remove tekton temp dir
+    file:
+      path: "{{ tekton_tempdir.path }}"
+      state: absent
+    changed_when: false
