@@ -77,7 +77,7 @@
 
   - name: extract tekton
     unarchive:
-      src: https://github.com/kubernetes-sigs/tekton/releases/latest/download/tkn_{{ latest_tekton_release.latest_release }}_Linux_x86_64.tar.gz
+      src: https://github.com/tektoncd/cli/releases/latest/download/tkn_{{ latest_tekton_release.tag.lstrip('v') }}_Linux_x86_64.tar.gz
       remote_src: true
       dest: "{{ tekton_tempdir.path }}"
 
