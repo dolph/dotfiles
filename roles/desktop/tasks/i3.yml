@@ -1,6 +1,16 @@
+- name: get horizontal screen size
+  shell: xrandr | grep '*' | awk '{print $1}' | cut -d'x' -f1
+  check_mode: false
+  register: horizontal_resolution
+
+- name: get vertical screen size
+  shell: xrandr | grep '*' | awk '{print $1}' | cut -d'x' -f2
+  check_mode: false
+  register: vertical_resolution
+
 - name: set system font size
   set_fact:
-    font_size: 15
+    font_size: "{{ (12 + (horizontal_resolution.stdout | int * vertical_resolution.stdout | int) / (1920 * 1080)) | int }}"
 
 - name: install i3
   dnf:
