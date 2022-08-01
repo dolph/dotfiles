@@ -3,6 +3,7 @@
   uri:
     url: https://dl.k8s.io/release/stable.txt
     return_content: true
+  check_mode: false
   register: kubectl_version
 
 - name: install kubectl
