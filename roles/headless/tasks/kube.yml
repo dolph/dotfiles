@@ -81,13 +81,21 @@
       remote_src: true
       dest: "{{ tekton_tempdir.path }}"
 
+  - name: check for tkn binary
+    stat:
+      path: "{{ tekton_tempdir.path }}/tkn"
+    register: tkn
+
   - name: use tekton to install tekton
     copy:
+      remote_src: true
       src: "{{ tekton_tempdir.path }}/tkn"
       dest: /home/{{ whoami }}/bin/
       owner: "{{ whoami }}"
       group: "{{ whoami }}"
       mode: 0770
+    when:
+    - tkn.stat.exists is defined
 
   always:
   - name: remove tekton temp dir
