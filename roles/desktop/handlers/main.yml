@@ -13,7 +13,7 @@
 
 - name: restart i3
   become_user: "{{ whoami }}"
-  command: i3-msg restart
+  shell: unset I3SOCK; i3-msg restart
 
 - name: reload X database
   become_user: "{{ whoami }}"
