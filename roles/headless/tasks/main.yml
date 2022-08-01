@@ -185,3 +185,7 @@
   - kube
   - k8s
   - kubernetes
+
+- name: install logdna
+  import_tasks: logdna.yml
+  tags: logdna

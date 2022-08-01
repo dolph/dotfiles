@@ -1,0 +1,10 @@
+---
+- name: trust the logdna GPG key
+  ansible.builtin.rpm_key:
+    key: https://repo.logdna.com/logdna.gpg
+    fingerprint: 02E0 C689 A9FC C811 0A8F ECB9 C1BF 174A EF50 6BE8
+
+- name: install logdna cli
+  ansible.builtin.dnf:
+    name: https://repo.logdna.com/linux/logdna-cli.rpm
+    disable_gpg_check: true
