@@ -1,0 +1,49 @@
+---
+- name: install the dnf local plugin
+  dnf:
+    name:
+    - python3-dnf-plugin-local
+    - nfs-utils
+
+- name: create repodir mount location
+  file:
+    path: /mnt/dnf
+    state: directory
+
+- name: mount dnf repo from NAS
+  ansible.posix.mount:
+    src: stuffbox.lan:/volume1/dnf
+    path: /mnt/dnf
+    state: mounted
+    fstype: nfs
+    opts: rw,sync,intr,tcp,timeo=20,rsize=32000,wsize=32000
+    boot: true
+    backup: false
+
+- name: enable dnf local plugin
+  ini_file:
+    path: /etc/dnf/plugins/local.conf
+    section: main
+    option: enabled
+    value: "true"
+
+- name: configure dnf local plugin repo
+  ini_file:
+    path: /etc/dnf/plugins/local.conf
+    section: main
+    option: repodir
+    value: /mnt/dnf
+
+- name: enable createrepo
+  ini_file:
+    path: /etc/dnf/plugins/local.conf
+    section: createrepo
+    option: enabled
+    value: "true"
+
+- name: configure createrepo cache dir
+  ini_file:
+    path: /etc/dnf/plugins/local.conf
+    section: createrepo
+    option: cachedir
+    value: /tmp/createrepo-local-plugin-cachedir

@@ -50,6 +50,12 @@
     dest: "/etc/sudoers.d/{{ whoami }}"
     mode: 0400
 
+- name: configure dnf
+  import_tasks: dnf.yml
+  tags:
+  - dnf
+  - debug
+
 - name: configure automated upgrades
   import_tasks: automated-upgrades.yml
   tags:
