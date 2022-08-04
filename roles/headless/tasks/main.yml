@@ -54,7 +54,6 @@
   import_tasks: dnf.yml
   tags:
   - dnf
-  - debug
 
 - name: configure automated upgrades
   import_tasks: automated-upgrades.yml
