@@ -2,6 +2,11 @@
   dnf:
     name: fedora-workstation-repositories
 
+- name: trust the google linux packaging GPG key
+  ansible.builtin.rpm_key:
+    key: https://dl.google.com/linux/linux_signing_key.pub
+    fingerprint: 4CCA 1EAF 950C EE4A B839 76DC A040 830F 7FAC 5991
+
 - name: install chrome
   dnf:
     name: google-chrome-stable
