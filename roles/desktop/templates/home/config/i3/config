@@ -199,6 +199,9 @@ exec --no-startup-id xset s off
 exec --no-startup-id xset s noblank
 exec --no-startup-id xset -dpms
 
+# Hide the mouse when idle
+exec --no-startup-id unclutter --timeout 60
+
 # Start urvxt with tmux running
 exec --no-startup-id i3-msg 'exec urxvt -name terminal -e sh -c "tmux att -d || tmux new"'
 exec --no-startup-id tmux source-file ~/.tmux.conf

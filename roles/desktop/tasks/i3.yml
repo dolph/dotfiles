@@ -23,6 +23,7 @@
     - rofi
     - lxappearance
     - rxvt-unicode
+    - unclutter-xfixes
     - xclip
     - xsetroot
 
