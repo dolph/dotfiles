@@ -22,6 +22,7 @@
     - numix-gtk-theme
     - rofi
     - lxappearance
+    - rxvt-unicode
     - xclip
     - xsetroot
 
