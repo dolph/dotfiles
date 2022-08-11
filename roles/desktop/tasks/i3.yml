@@ -26,6 +26,12 @@
     - unclutter-xfixes
     - xclip
     - xsetroot
+    - xss-lock
+
+- name: install screensaver required by IBM
+  dnf:
+    name: xscreensaver
+  when: ibm_managed
 
 - name: create i3 config dirs
   file:

@@ -1,3 +1,15 @@
+---
+- name: check if this is an IBM-managed system
+  stat:
+    path: /opt/ibm/
+  register: ibm_stat
+  tags: always
+
+- name: set fact
+  set_fact:
+    ibm_managed: "{{ ibm_stat is defined | bool }}"
+  tags: always
+
 - name: set timezone
   timezone:
     name: America/Chicago
