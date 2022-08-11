@@ -2,12 +2,12 @@
 - name: check if this is an IBM-managed system
   stat:
     path: /opt/ibm/
-  register: ibm_stat
+  register: ibm
   tags: always
 
 - name: set fact
   set_fact:
-    ibm_managed: "{{ ibm_stat is defined | bool }}"
+    ibm_managed: "{{ ibm.stat.isdir is defined | bool }}"
   tags: always
 
 - name: set timezone
