@@ -200,9 +200,13 @@ bar {
 exec --no-startup-id autorandr --change
 
 # Disable display power management
+exec --no-startup-id xset -dpms
+{% if ibm_managed %}
+exec --no-startup-id xset s 600 600
+{% else %}
 exec --no-startup-id xset s off
 exec --no-startup-id xset s noblank
-exec --no-startup-id xset -dpms
+{% endif %}
 
 # Hide the mouse when idle
 exec --no-startup-id unclutter --timeout 60
