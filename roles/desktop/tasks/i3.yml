@@ -1,11 +1,11 @@
 - name: get horizontal screen size
-  shell: xrandr | grep '*' | awk '{print $1}' | cut -d'x' -f1
+  shell: xrandr | grep '*' | awk '{print $1}' | head -1 | cut -d'x' -f1
   check_mode: false
   register: horizontal_resolution
   changed_when: false
 
 - name: get vertical screen size
-  shell: xrandr | grep '*' | awk '{print $1}' | cut -d'x' -f2
+  shell: xrandr | grep '*' | awk '{print $1}' | head -1 | cut -d'x' -f2
   check_mode: false
   register: vertical_resolution
   changed_when: false
