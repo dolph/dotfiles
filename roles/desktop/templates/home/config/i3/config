@@ -24,19 +24,19 @@ client.background #000000
 for_window [class="^.*"] border none
 
 # Set desktop background color
-exec --no-startup-id xsetroot -solid "#000000"
+exec_always --no-startup-id xsetroot -solid "#000000"
 
-exec --no-startup-id xset -dpms
+exec_always --no-startup-id xset -dpms
 {% if ibm_managed %}
 # Use screensaver required by IBM
-exec --no-startup-id xscreensaver
-exec --no-startup-id xset s 600 600
+exec_always --no-startup-id xscreensaver
+exec_always --no-startup-id xset s 600 600
 {% else %}
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=1c1c1c --show-failed-attempts
-exec --no-startup-id xset s off
-exec --no-startup-id xset s noblank
+exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=1c1c1c --show-failed-attempts
+exec_always --no-startup-id xset s off
+exec_always --no-startup-id xset s noblank
 {% endif %}
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
@@ -58,7 +58,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 20%-
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id rxvt-unicode
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -201,11 +201,14 @@ bar {
 # exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
 # Automatically select a display configuration based on connected devices
-exec --no-startup-id autorandr --change
+exec_always --no-startup-id autorandr --change
 
 # Hide the mouse when idle
 exec --no-startup-id unclutter --timeout 60
 
+# Start a desktop notification daemon
+exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
+
 # Start urvxt with tmux running
 exec --no-startup-id i3-msg 'exec urxvt -name terminal -e sh -c "tmux att -d || tmux new"'
-exec --no-startup-id tmux source-file ~/.tmux.conf
+exec --no-startup-id i3-msg 'exec tmux source-file ~/.tmux.conf'

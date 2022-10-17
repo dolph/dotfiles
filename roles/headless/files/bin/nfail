@@ -11,8 +11,8 @@ let duration=`expr $end_time - $start_time`;
 if [ $duration -ge 1 ] ; then
     # try to emit a growl-style notification
     if hash notify-send 2>/dev/null; then
-        if [ $rval == 0 ]; then
-            urgency="--urgency=fail"
+        if [ $rval != 0 ]; then
+            urgency="--urgency=low"
         else
             urgency="--urgency=critical"
         fi
@@ -27,7 +27,7 @@ if [ $duration -ge 1 ] ; then
     echo ;
 fi
 
-if [ $duration -ge 2 ] ; then
+if [ $rval != 0 ] && [ $duration -ge 2 ] ; then
     if hash txt 2>/dev/null; then
         $HOME/bin/txt "$* (rc=${rval} time=$(date -d@${duration} -u +%H:%M:%S))"
     fi

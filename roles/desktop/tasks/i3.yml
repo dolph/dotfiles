@@ -17,11 +17,12 @@
 - name: install i3
   dnf:
     name:
+    - dunst
     - i3
+    - lxappearance
     - maim
     - numix-gtk-theme
     - rofi
-    - lxappearance
     - rxvt-unicode
     - unclutter-xfixes
     - xclip
@@ -40,6 +41,7 @@
     owner: "{{ whoami}}"
     group: "{{ whoami}}"
   loop:
+  - dunst
   - i3
   - i3status
   - rofi
@@ -90,8 +92,8 @@
   template:
     src: home/xinitrc
     dest: /home/{{ whoami }}/.xinitrc
-    owner: "{{ whoami}}"
-    group: "{{ whoami}}"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
     mode: 0770
 
 - name: install xrandr & autorandr
@@ -112,3 +114,11 @@
     option: background
     value: "#000000"
     no_extra_spaces: true
+
+- name: configure dunst
+  template:
+    src: home/config/dunst/dunstrc
+    dest: /home/{{ whoami }}/.config/dunst/dunstrc
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: 0660
