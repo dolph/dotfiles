@@ -14,6 +14,11 @@
   set_fact:
     font_size: "{{ (13 + (horizontal_resolution.stdout | int * vertical_resolution.stdout | int) / (2 * 1920 * 1080)) | int }}"
 
+- name: report detected resolution
+  debug:
+    msg: "resolution={{ horizontal_resolution.stdout }}x{{ vertical_resolution.stdout }} font_size={{ font_size }}"
+  changed_when: true
+
 - name: install i3
   dnf:
     name:
