@@ -99,7 +99,7 @@ call vundle#begin()
 "   vim +GoInstallBinaries +qall
 Plugin 'gmarik/Vundle.vim'
 
-" Git diff management
+" Show git diffs in a gutter
 Plugin 'airblade/vim-gitgutter'
 
 " Custom color scheme
