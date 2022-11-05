@@ -76,6 +76,9 @@ set hlsearch
 " incrementally search while typing a /regex
 set incsearch
 
+" improve response time of plugins, etc
+set updatetime=100
+
 " add hyphens to the list of "word characters" so that they aren't word
 " separators anymore
 set iskeyword+=-
@@ -95,6 +98,9 @@ call vundle#begin()
 "   vim +PluginInstall! +PluginClean! +qall
 "   vim +GoInstallBinaries +qall
 Plugin 'gmarik/Vundle.vim'
+
+" Git diff management
+Plugin 'airblade/vim-gitgutter'
 
 " Custom color scheme
 Plugin 'dolph/vim-colors-solarized-black'
@@ -183,3 +189,12 @@ autocmd FileType go setlocal noexpandtab listchars=tab:\ \ ,trail:~
 
 " Disable the creation of *.swp files (allows write conflicts)
 set noswapfile
+
+" gitgutter configuration
+let g:gitgutter_enabled = 1
+let g:gitgutter_grep = 'rg'
+let g:gitgutter_set_sign_backgrounds = 1
+highlight SignColumn ctermbg=16
+highlight GitGutterAdd ctermfg=2 ctermbg=16
+highlight GitGutterChange ctermfg=3 ctermbg=16
+highlight GitGutterDelete ctermfg=1 ctermbg=16
