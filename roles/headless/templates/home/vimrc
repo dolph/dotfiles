@@ -102,6 +102,9 @@ Plugin 'gmarik/Vundle.vim'
 " Show git diffs in a gutter
 Plugin 'airblade/vim-gitgutter'
 
+" Code comments
+Plugin 'tpope/vim-commentary'
+
 " Custom color scheme
 Plugin 'dolph/vim-colors-solarized-black'
 
