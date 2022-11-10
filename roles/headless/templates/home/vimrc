@@ -102,6 +102,10 @@ Plugin 'gmarik/Vundle.vim'
 " Show git diffs in a gutter
 Plugin 'airblade/vim-gitgutter'
 
+" Improved status bar
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
 " Code comments
 Plugin 'tpope/vim-commentary'
 
@@ -201,3 +205,7 @@ highlight SignColumn ctermbg=16
 highlight GitGutterAdd ctermfg=2 ctermbg=16
 highlight GitGutterChange ctermfg=3 ctermbg=16
 highlight GitGutterDelete ctermfg=1 ctermbg=16
+
+" status bar configuration
+let g:airline_theme='dark_minimal'
+let g:airline_section_z = ''
