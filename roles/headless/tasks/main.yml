@@ -194,3 +194,7 @@
 - name: install logdna
   import_tasks: logdna.yml
   tags: logdna
+
+- name: install terraform
+  import_tasks: terraform.yml
+  tags: terraform
