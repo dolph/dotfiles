@@ -5,20 +5,25 @@
     - python3-dnf-plugin-local
     - nfs-utils
 
-- name: create repodir mount location
+- name: create repodir base mount location
   file:
-    path: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
+    path: /mnt/dnf
     state: directory
 
 - name: mount dnf repo from NAS
   ansible.posix.mount:
     src: stuffbox.lan:/volume1/dnf
-    path: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
+    path: /mnt/dnf
     state: mounted
     fstype: nfs
     opts: rw,sync,intr,tcp,timeo=20,rsize=32000,wsize=32000
     boot: true
     backup: false
+
+- name: create repodir for distro
+  file:
+    path: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
+    state: directory
 
 - name: enable dnf local plugin
   ini_file:
@@ -32,7 +37,7 @@
     path: /etc/dnf/plugins/local.conf
     section: main
     option: repodir
-    value: /mnt/dnf
+    value: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
 
 - name: enable createrepo
   ini_file:
