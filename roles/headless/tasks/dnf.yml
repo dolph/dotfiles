@@ -22,8 +22,13 @@
 
 - name: create repodir for distro
   file:
-    path: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
+    path: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/
     state: directory
+  register: repodir
+
+- name: initialize repodir
+  command: createrepo /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
+  when: repodir is changed
 
 - name: enable dnf local plugin
   ini_file:
