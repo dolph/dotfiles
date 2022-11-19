@@ -4,7 +4,7 @@ Wants=reboot.timer
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash -c "dnf needs-restarting -r || shutdown -r"
+ExecStart=/bin/bash -c "if uptime --pretty | grep week ; then dnf needs-restarting -r || shutdown -r; fi"
 
 [Install]
 WantedBy=multi-user.target
