@@ -13,8 +13,7 @@ if hash ibmcloud 2>/dev/null; then
     ibmcloud plugin update --all
 fi
 
-# On new Fedora installs, sometimes needs-restarting erroneously says the
-# system needs to be rebooted, even after rebooting. This has fixed the issue
-# twice, on two different systems, on different releases of Fedora (33 and 35).
-# sudo dnf remove -y $(sudo dnf repoquery --installonly --latest-limit=-2 -q)
-sudo dnf needs-restarting -r
+ONE_WEEK_IN_SECONDS=604800
+if [ $(cat /proc/uptime | cut -d' ' -f1) -ge $ONE_WEEK_IN_SECONDS ]; then
+    sudo dnf needs-restarting -r
+fi
