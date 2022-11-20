@@ -4,7 +4,7 @@ Wants=reboot.timer
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash -c "if [ $(cat /proc/uptime | cut -d' ' -f1) -ge 604800 ]; then dnf needs-restarting -r || shutdown -r; fi"
+ExecStart=/bin/bash -c "if [ $(echo "$(cat /proc/uptime | cut -d' ' -f1)/1" | bc) -ge 604800 ]; then dnf needs-restarting -r || shutdown -r; fi"
 
 [Install]
 WantedBy=multi-user.target

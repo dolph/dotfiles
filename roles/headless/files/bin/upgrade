@@ -14,6 +14,6 @@ if hash ibmcloud 2>/dev/null; then
 fi
 
 ONE_WEEK_IN_SECONDS=604800
-if [ $(cat /proc/uptime | cut -d' ' -f1) -ge $ONE_WEEK_IN_SECONDS ]; then
+if [ $(echo "$(cat /proc/uptime | cut -d' ' -f1)/1" | bc) -ge $ONE_WEEK_IN_SECONDS ]; then
     sudo dnf needs-restarting -r
 fi
