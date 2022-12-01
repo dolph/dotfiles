@@ -59,10 +59,6 @@
   import_tasks: nvidia.yml
   tags: nvidia
 
-- name: install virtualbox
-  import_tasks: virtualbox.yml
-  tags: virtualbox
-
 - name: configure vagrant
   import_tasks: vagrant.yml
   tags: vagrant

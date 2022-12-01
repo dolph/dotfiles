@@ -1,3 +1,0 @@
-- name: install virtualbox
-  dnf:
-    name: VirtualBox
