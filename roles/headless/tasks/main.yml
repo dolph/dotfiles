@@ -173,6 +173,7 @@
   loop:
   - find-replace
   - txt
+  - connectivity
   loop_control:
     loop_var: binary
   tags:
