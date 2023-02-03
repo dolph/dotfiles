@@ -7,6 +7,7 @@ if upgrade; then
     # Ensure dnf-local-plugin is removed/disabled prior to system upgrade
     sudo dnf remove -y python3-dnf-plugin-local
 
+    sudo dnf install -y dnf-plugin-system-upgrade
     sudo dnf system-upgrade download --refresh --assumeyes --releasever="$(expr $VERSION_ID + 1)" --allowerasing
     sudo dnf system-upgrade reboot
 fi
