@@ -8,8 +8,6 @@ DO=${4:-null}
 DONT=${5:-null}
 FORCE=${6:-null}
 
-clear
-
 # Split target into SCOPE@HOSTS, if delimited
 if [[ $TARGET == *"@"* ]]; then
     SCOPE=$(echo $TARGET | cut -d'@' -f1)
