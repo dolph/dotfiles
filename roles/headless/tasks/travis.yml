@@ -10,3 +10,12 @@
     state: latest
     user_install: true
     include_doc: false
+
+- name: install travis linter
+  become: true
+  become_user: "{{ whoami }}"
+  community.general.gem:
+    name: travis-yml
+    state: latest
+    user_install: true
+    include_doc: false
