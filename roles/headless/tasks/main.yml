@@ -85,6 +85,12 @@
   import_tasks: travis.yml
   tags: travis
 
+- name: configure ripgrep
+  import_tasks: ripgrep.yml
+  tags:
+  - ripgrep
+  - rg
+
 - name: configure editor
   import_tasks: vim.yml
   tags: vim
@@ -96,12 +102,6 @@
 - name: configure terminal multiplexer
   import_tasks: tmux.yml
   tags: tmux
-
-- name: configure ripgrep
-  import_tasks: ripgrep.yml
-  tags:
-  - ripgrep
-  - rg
 
 - name: configure python
   import_tasks: python.yml
