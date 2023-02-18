@@ -81,10 +81,6 @@
   import_tasks: git.yml
   tags: git
 
-- name: configure travis
-  import_tasks: travis.yml
-  tags: travis
-
 - name: configure ripgrep
   import_tasks: ripgrep.yml
   tags:
