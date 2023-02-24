@@ -9,6 +9,53 @@
   dnf:
     name: vim-X11
 
+- name: initialize a list of plugins
+  set_fact:
+    vim_plugin_repos:
+    - 'airblade/vim-gitgutter'
+    - 'vim-airline/vim-airline' # Improved status bar
+    - 'vim-airline/vim-airline-themes'
+    - 'tpope/vim-commentary' # Code comments
+    - 'dolph/vim-colors-solarized-black' # Custom color scheme
+    - 'fholgado/minibufexpl.vim' # Quickly switch between open buffers
+    - 'ervandew/supertab' # Tab completion
+    - 'nvie/vim-flake8' # Run flake8 on save
+    - 'scrooloose/nerdtree' # File browser
+    - 'rust-lang/rust.vim' # Rust support
+    - 'fatih/vim-go' # Go support
+    - 'cespare/vim-toml' # TOML support
+    - 'mechatroner/rainbow_csv' # Syntax highlighting for CSV files
+    - 'godlygeek/tabular' # must appear before plasticboy/vim-markdown
+    - 'plasticboy/vim-markdown' # Markdown support
+    - 'gabrielelana/vim-markdown'
+    - 'christoomey/vim-tmux-navigator' # Unifies vim and tmux split navigation.
+    - 'tyru/open-browser.vim' # Add support for PlantUML syntax
+    - 'aklt/plantuml-syntax'
+    - 'weirongxu/plantuml-previewer.vim'
+    runtimepaths: []
+
+- name: compute list of plugin paths to load at runtime
+  set_fact:
+    runtimepaths: "{{ runtimepaths + ['~/.vim/bundle/' + repo] }}"
+  loop: "{{ vim_plugin_repos }}"
+  loop_control:
+    loop_var: repo
+
+- name: ensure vim plugin directory exists
+  file:
+    path: "/home/{{ whoami }}/.vim/bundle/"
+    state: directory
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+
+- name: install vim plugins
+  git:
+    repo: "https://github.com/{{ repo }}"
+    dest: "/home/{{ whoami }}/.vim/bundle/{{ repo }}"
+  loop: "{{ vim_plugin_repos }}"
+  loop_control:
+    loop_var: repo
+
 - name: configure vim
   template:
     src: home/vimrc
@@ -16,17 +63,7 @@
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: install vim plugin manager
-  become: true
-  become_user: "{{ whoami }}"
-  git:
-    repo: https://github.com/VundleVim/Vundle.vim.git
-    dest: "/home/{{ whoami }}/.vim/bundle/Vundle.vim"
-  register: git_result
-  changed_when: "git_result.after|default('after') != git_result.before|default('before')"
-
-- name: install gvim plugins
-  become: true
-  become_user: "{{ whoami }}"
-  command: gvim -v +PluginInstall! +PluginClean! +qall
-  no_log: true # prevent vim from messing with ansible's stdout/stderr
+- name: remove vim plugin manager
+  file:
+    path: "/home/{{ whoami }}/.vim/bundle/Vundle.vim"
+    state: absent

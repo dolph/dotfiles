@@ -5,7 +5,6 @@ sudo dnf upgrade -y --refresh
 sudo dnf clean packages
 
 # Upgrade vim plugins
-$EDITOR +PluginInstall! +PluginClean! +qall
 $EDITOR +GoInstallBinaries +qall
 
 if hash ibmcloud 2>/dev/null; then

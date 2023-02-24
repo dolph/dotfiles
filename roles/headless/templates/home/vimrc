@@ -86,72 +86,8 @@ set iskeyword+=-
 " remove trailing whitespace on <leader>S
 noremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 
-" load Vundle for plugin management
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Let Vundle manage itself. To install new plugins, update all plugins, and
-" remove extra plugins without any confirmations (such as after modifying the
-" set of plugins), run:
-"   vim +PluginInstall! +PluginClean! +qall
-"   vim +GoInstallBinaries +qall
-Plugin 'gmarik/Vundle.vim'
-
-" Show git diffs in a gutter
-Plugin 'airblade/vim-gitgutter'
-
-" Improved status bar
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-" Code comments
-Plugin 'tpope/vim-commentary'
-
-" Custom color scheme
-Plugin 'dolph/vim-colors-solarized-black'
-
-" Quickly switch between open buffers
-Plugin 'fholgado/minibufexpl.vim'
-
-" Tab completion
-Plugin 'ervandew/supertab'
-
-" Run flake8 on save
-Plugin 'nvie/vim-flake8'
-
-" File browser
-Plugin 'scrooloose/nerdtree'
-
-" Rust support
-Plugin 'rust-lang/rust.vim'
-
-" Go support
-Plugin 'fatih/vim-go'
-
-" TOML support
-Plugin 'cespare/vim-toml'
-
-" Syntax highlighting for CSV files
-Plugin 'mechatroner/rainbow_csv'
-
-" Markdown support
-" Plugin 'godlygeek/tabular' " must appear before plasticboy/vim-markdown
-" Plugin 'plasticboy/vim-markdown'
-Bundle 'gabrielelana/vim-markdown'
-
-" Unifies vim and tmux split navigation.
-Bundle 'christoomey/vim-tmux-navigator'
-
-" Add support for PlantUML syntax
-Plugin 'tyru/open-browser.vim'
-Plugin 'aklt/plantuml-syntax'
-Plugin 'weirongxu/plantuml-previewer.vim'
-
-" end loading plugins
-call vundle#end()
-filetype plugin indent on
+" load plugins
+set runtimepath^={{ runtimepaths | join(',') }}
 
 " set color theme
 silent! colorscheme solarized
