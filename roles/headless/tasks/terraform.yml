@@ -11,11 +11,12 @@
 - name: Add Hashicorp repository
   ansible.builtin.yum_repository:
     name: hashicorp
-    description: Hashicorp stable repo
+    description: Hashicorp Stable - $basearch
     baseurl: https://rpm.releases.hashicorp.com/fedora/$releasever/$basearch/stable
     enabled: true
     gpgcheck: true
     gpgkey: https://rpm.releases.hashicorp.com/gpg
+    async: null
 
 - name: install terraform
   dnf:
