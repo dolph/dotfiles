@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+SEARCH="$@"
+gvim -v -c "+/$SEARCH" $(rg -l "$SEARCH")
