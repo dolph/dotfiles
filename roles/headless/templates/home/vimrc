@@ -19,8 +19,14 @@ set wildignore+=.git,*.pyc
 " use spaces, not tabs, for autoindent/tab key.
 set expandtab
 
-" don't wrap text
+" don't wrap code, unless it's just text
 set nowrap
+augroup WrapLineInTextFile
+    autocmd!
+    autocmd FileType markdown setlocal wrap
+    autocmd FileType markdown nnoremap <buffer> j gj
+    autocmd FileType markdown nnoremap <buffer> k gk
+augroup END
 
 " don't wrap text in the middle of a word
 set linebreak
