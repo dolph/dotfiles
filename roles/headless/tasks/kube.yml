@@ -30,11 +30,13 @@
       src: https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz
       remote_src: true
       dest: "{{ krew_tempdir.path }}"
+    when: krew_tempdir.path is defined  # not defined in check mode
 
   - name: use krew to install krew
     become: true
     become_user: "{{ whoami }}"
     command: "{{ krew_tempdir.path }}/krew-linux_amd64 install krew"
+    when: krew_tempdir.path is defined  # not defined in check mode
 
   always:
   - name: remove krew temp dir
@@ -42,6 +44,7 @@
       path: "{{ krew_tempdir.path }}"
       state: absent
     changed_when: false
+    when: krew_tempdir.path is defined  # not defined in check mode
 
 - name: install kube plugins
   become: true
