@@ -92,6 +92,11 @@ set iskeyword+=-
 " remove trailing whitespace on <leader>S
 noremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 
+" Support copy to clipboard with Ctrl+C using xclip
+" In visual mode, this copies the current selection to the clipboard.
+" In normal mode, this copies the entire buffer to the clipboard.
+noremap <C-C> :silent %w !xclip -in -selection clipboard -rmlastnl<CR>
+
 " load plugins
 set runtimepath^={{ runtimepaths | join(',') }}
 
