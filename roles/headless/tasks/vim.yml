@@ -5,9 +5,11 @@
     - vim-enhanced
     state: absent
 
-- name: install gvim (to get X11 clipboard support)
+- name: install gvim (to get X11 clipboard support) and neovim
   dnf:
-    name: vim-X11
+    name:
+    - vim-X11
+    - neovim
 
 - name: initialize a list of plugins
   set_fact:
@@ -61,6 +63,23 @@
   template:
     src: home/vimrc
     dest: "/home/{{ whoami }}/.vimrc"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+
+- name: create neovim config dir
+  file:
+    path: "/home/{{ whoami }}/.config/nvim"
+    state: directory
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+
+- name: configure neovim
+  copy:
+    content: |
+      set runtimepath^=~/.vim runtimepath+=~/.vim/after
+      let &packpath = &runtimepath
+      source ~/.vimrc
+    dest: "/home/{{ whoami }}/.config/nvim/init.vim"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
