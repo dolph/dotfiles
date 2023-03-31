@@ -17,6 +17,7 @@
     name:
     - git
     - hub
+    - gh
 
 - name: ensure config dir exists
   file:
