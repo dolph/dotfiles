@@ -1,6 +1,20 @@
 " change the leader to be a comma vs slash
 let mapleader=","
 
+" Use the X11 clipboard (shared with tmux, over SSH, etc)
+" set clipboard=unnamedplus " does not seem to be needed with i3 + tmux + gvim?
+
+" In visual mode, this copies the current selection to the clipboard, and then
+" deletes it like a "cut" operation.
+xnoremap <silent> <C-X> "+ygvx
+
+" In visual mode, this copies the selection to the clipboard and then
+" re-selects it.
+xnoremap <silent> <C-C> "+ygv
+
+" In normal mode, copy the entire buffer to the clipboard.
+nnoremap <silent> <C-C> :%y+<CR>
+
 " syntax highlighting
 syntax on
 
@@ -92,11 +106,6 @@ set iskeyword+=-
 " remove trailing whitespace on <leader>S
 noremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 
-" Support copy to clipboard with Ctrl+C using xclip
-" In visual mode, this copies the current selection to the clipboard.
-" In normal mode, this copies the entire buffer to the clipboard.
-noremap <C-C> :silent %w !xclip -in -selection clipboard -rmlastnl<CR>
-
 " load plugins
 set runtimepath^={{ runtimepaths | join(',') }}
 
@@ -123,9 +132,6 @@ set spell spelllang=en_us
 
 " disable double spacing between sentences
 set nojoinspaces
-
-" Use the X11 clipboard (shared with tmux, over SSH, etc)
-" set clipboard=unnamedplus " does not seem to be needed with i3 + tmux + gvim?
 
 " Always use unix-style line endings
 set ff=unix
