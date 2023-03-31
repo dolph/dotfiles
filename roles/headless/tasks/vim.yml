@@ -32,6 +32,7 @@
     - 'tyru/open-browser.vim' # Add support for PlantUML syntax
     - 'aklt/plantuml-syntax'
     - 'weirongxu/plantuml-previewer.vim'
+    - 'github/copilot.vim' # Github Copilot
     runtimepaths: []
 
 - name: compute list of plugin paths to load at runtime
