@@ -15,6 +15,9 @@ xnoremap <silent> <C-C> "+ygv
 " In normal mode, copy the entire buffer to the clipboard.
 nnoremap <silent> <C-C> :%y+<CR>
 
+" Paste from clipboard
+nnoremap <C-V> :set paste<CR>"+p:set nopaste<CR>
+
 " syntax highlighting
 syntax on
 
