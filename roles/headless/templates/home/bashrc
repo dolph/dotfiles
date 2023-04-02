@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Priorities.
-export EDITOR="gvim -v"
-alias e="gvim -v"
-alias vi="gvim -v"
-alias vim="gvim -v"
+export EDITOR="nvim"
+alias e="nvim"
+alias vi="nvim"
+alias vim="nvim"
 
 alias q="exit"
 alias gist="gist-paste"

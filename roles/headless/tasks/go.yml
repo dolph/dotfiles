@@ -12,5 +12,5 @@
 - name: install vim-go plugins
   become: true
   become_user: "{{ whoami }}"
-  command: gvim -v +GoInstallBinaries +qall
+  command: nvim -v +GoInstallBinaries +qall
   no_log: true # prevent vim from messing with ansible's stdout/stderr

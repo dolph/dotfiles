@@ -1,14 +1,14 @@
-- name: uninstall vim
+- name: uninstall other vim variants
   dnf:
     name:
     - vim
     - vim-enhanced
+    - vim-X11
     state: absent
 
-- name: install gvim (to get X11 clipboard support) and neovim
+- name: install neovim
   dnf:
     name:
-    - vim-X11
     - neovim
 
 - name: initialize a list of plugins
@@ -73,7 +73,7 @@
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: configure neovim
+- name: configure neovim to use vimrc
   copy:
     content: |
       set runtimepath^=~/.vim runtimepath+=~/.vim/after
