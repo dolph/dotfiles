@@ -1,16 +1,13 @@
 " change the leader to be a comma vs slash
 let mapleader=","
 
-" Use the X11 clipboard (shared with tmux, over SSH, etc)
-" set clipboard=unnamedplus " does not seem to be needed with i3 + tmux + gvim?
-
 " In visual mode, this copies the current selection to the clipboard, and then
 " deletes it like a "cut" operation.
 xnoremap <silent> <C-X> "+ygvx
 
-" In visual mode, this copies the selection to the clipboard and then
-" re-selects it.
-xnoremap <silent> <C-C> "+ygv
+" In visual mode, this copies the selection, minus a trailing newline, to the
+" clipboard and then re-selects it.
+xnoremap <silent> <C-C> <Esc>'<0v'>g_"+ygv
 
 " In normal mode, copy the entire buffer to the clipboard.
 nnoremap <silent> <C-C> :%y+<CR>
