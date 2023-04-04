@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 SEARCH="$@"
-rg -l "$SEARCH" && $EDITOR -v -c "+/$SEARCH" $(rg -l "$SEARCH")
+rg -l "$SEARCH" && $EDITOR -c "+/$SEARCH" $(rg -l "$SEARCH")
