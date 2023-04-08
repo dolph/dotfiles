@@ -47,11 +47,5 @@ export TXT_TO="{{ txt_to }}"
 export TXT_FROM="{{ txt_twilio_from }}"
 {% endif %}
 
-{% if redhat_subscription_password is defined %}
-# Red Hat subscription (used by Vagrant)
-export SUB_USERNAME='{{ redhat_subscription_username }}'
-export SUB_PASSWORD='{{ redhat_subscription_password }}'
-{% endif %}
-
 # Allow local account customization
 . $HOME/.localrc
