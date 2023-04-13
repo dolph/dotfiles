@@ -4,21 +4,26 @@
     name:
     - python3-dnf-plugin-local
     - nfs-utils
+    - autofs
 
 - name: create repodir base mount location
   file:
     path: /mnt/dnf
     state: directory
 
+- name: configure autofs to mount dnf lazily
+  lineinfile:
+    path: /etc/auto.master
+    line: /mnt /etc/auto.nfs --timeout=900
+    regexp: '^/mnt '
+    owner: root
+    group: root
+
 - name: mount dnf repo from NAS
-  ansible.posix.mount:
-    src: stuffbox.lan:/volume1/dnf
-    path: /mnt/dnf
-    state: mounted
-    fstype: nfs
-    opts: rw,sync,intr,tcp,timeo=20,rsize=32000,wsize=32000
-    boot: true
-    backup: false
+  lineinfile:
+    path: /etc/auto.nfs
+    create: true
+    line: "dnf -fstype=nfs,rw,sync,intr,tcp,timeo=20,rsize=32000,wsize=32000 stuffbox.lan:/volume1/dnf"
 
 - name: create repodir for distro
   file:
