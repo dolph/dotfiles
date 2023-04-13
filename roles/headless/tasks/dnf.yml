@@ -25,6 +25,12 @@
     create: true
     line: "dnf -fstype=nfs,rw,sync,intr,tcp,timeo=20,rsize=32000,wsize=32000 stuffbox.lan:/volume1/dnf"
 
+- name: enable autofs
+  systemd:
+    name: autofs
+    enabled: true
+    state: started
+
 - name: create repodir for distro
   file:
     path: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/
