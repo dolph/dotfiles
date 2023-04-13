@@ -132,7 +132,6 @@
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
   loop:
-  - a
   - benchmark
   - enc
   - fail
