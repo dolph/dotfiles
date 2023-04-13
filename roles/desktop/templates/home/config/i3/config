@@ -66,6 +66,9 @@ bindsym $mod+Shift+q kill
 # start a program launcher
 bindcode $mod+40 exec "rofi -modi drun,run -show drun -font 'Hack Bold {{ font_size * 1.5 | int }}' -show combi -show-icons"
 
+# rearrange windows
+bindsym $mod+Escape exec "~/.local/bin/i3-instant-layout --list | rofi -dmenu -i | ~/.local/bin/i3-instant-layout -"
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down

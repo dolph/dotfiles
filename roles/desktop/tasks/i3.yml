@@ -35,6 +35,13 @@
     - xsetroot
     - xss-lock
 
+- name: Install i3-instant-layout from pypi
+  become: true
+  become_user: "{{ whoami }}"
+  pip:
+    name: i3-instant-layout
+    state: latest
+
 - name: install screensaver required by IBM
   dnf:
     name: xscreensaver
