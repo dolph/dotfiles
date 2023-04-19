@@ -4,6 +4,8 @@ set -e
 sudo dnf upgrade -y --refresh
 sudo dnf clean packages
 
+flatpak update -y
+
 # Upgrade vim plugins
 $EDITOR +GoInstallBinaries +qall
 
