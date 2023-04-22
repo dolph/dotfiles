@@ -1,0 +1,115 @@
+---
+- name: install wireguard
+  dnf:
+    name: wireguard-tools
+
+- name: Create public & private keys
+  shell:
+    cmd: umask 077; wg genkey | tee privatekey | wg pubkey > publickey
+    chdir: /etc/wireguard
+    creates: /etc/wireguard/publickey
+
+- name: make public key world readable
+  file:
+    path: /etc/wireguard/publickey
+    mode: 0644
+
+- name: slurp public key
+  slurp:
+    src: /etc/wireguard/publickey
+  register: publickey
+
+- name: slurp private key
+  slurp:
+    src: /etc/wireguard/privatekey
+  register: privatekey
+
+- name: add private key to wireguard config
+  community.general.ini_file:
+    path: /etc/wireguard/wg0.conf
+    owner: root
+    group: root
+    mode: 0600
+    section: Interface
+    option: PrivateKey
+    value: "{{ privatekey['content'] | b64decode | regex_replace('\n$', '') }}"
+
+- name: set local address in wireguard config
+  community.general.ini_file:
+    path: /etc/wireguard/wg0.conf
+    owner: root
+    group: root
+    mode: 0600
+    section: Interface
+    option: "# Address"
+    value: 192.168.2.x/24
+
+- name: enable auto saving config in wireguard config
+  community.general.ini_file:
+    path: /etc/wireguard/wg0.conf
+    owner: root
+    group: root
+    mode: 0600
+    section: Interface
+    option: SaveConfig
+    value: true
+
+- name: set example public key of wg peer
+  community.general.ini_file:
+    path: /etc/wireguard/wg0.conf
+    owner: root
+    group: root
+    mode: 0600
+    section: Peer
+    option: "# PublicKey"
+    value: ""
+
+- name: set example endpoint of wg peer
+  community.general.ini_file:
+    path: /etc/wireguard/wg0.conf
+    owner: root
+    group: root
+    mode: 0600
+    section: Peer
+    option: "# Endpoint"
+    value: 1.2.3.4:51820
+
+- name: set keepalive on wg peer
+  community.general.ini_file:
+    path: /etc/wireguard/wg0.conf
+    owner: root
+    group: root
+    mode: 0600
+    section: Peer
+    option: PersistentKeepalive
+    value: 25
+
+- name: configure wireguard service to stop more gracefully
+  ini_file:
+    path: /usr/lib/systemd/system/wg-quick@.service
+    section: Service
+    option: ExecStartPre
+    value: /usr/bin/wg-quick down %i
+
+# This allows traffic to be forwarded through the host, if desired
+- name: Add masquerade to the public zone
+  ansible.builtin.firewalld:
+    zone: public
+    masquerade: true
+    permanent: true
+    state: enabled
+  register: firewall_masquerade
+
+- name: Add wg0 interface to the public zone
+  ansible.builtin.firewalld:
+    zone: public
+    interface: wg0
+    permanent: yes
+    state: enabled
+  register: firewall_zone
+
+- name: Reload firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    state: reloaded
+  when: firewall_masquerade is changed or firewall_zone is changed
