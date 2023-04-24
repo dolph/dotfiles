@@ -46,13 +46,14 @@ battery all {
     format = "%percentage %status"
     separator_block_width = 21
     integer_battery_capacity = true
-    format_down = "NO BAT"
-    status_chr = "CHARGING"
-    status_bat = "DRAINING"
+    last_full_capacity = true
+    format_down = "AC"
+    status_chr = "▲"
+    status_bat = "▼"
     status_unk = "BAT"
     status_full = "FULL"
     path = "/sys/class/power_supply/BAT%d/uevent"
-    low_threshold = 10
+    low_threshold = 20
 }
 
 volume master {
