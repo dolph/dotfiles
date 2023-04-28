@@ -51,7 +51,7 @@ battery all {
     status_chr = "▲"
     status_bat = "▼"
     status_unk = "BAT"
-    status_full = "FULL"
+    status_full = ""
     path = "/sys/class/power_supply/BAT%d/uevent"
     low_threshold = 20
 }
