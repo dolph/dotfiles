@@ -11,3 +11,4 @@ source $HOME/venv/ansible/bin/activate
 pip install --upgrade --upgrade-strategy=eager -r $HOME/dotfiles/requirements.txt
 ansible-galaxy collection install ansible.posix
 ansible-galaxy collection install community.general
+ansible-galaxy install dolph.ansible_ussher_role --force

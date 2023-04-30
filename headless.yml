@@ -4,3 +4,5 @@
   roles:
   - role: headless
     tags: headless
+  - role: dolph.ansible_ussher_role
+    tags: ussher
