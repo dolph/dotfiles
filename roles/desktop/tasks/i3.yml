@@ -22,6 +22,7 @@
 - name: install i3
   dnf:
     name:
+    - bluez
     - dunst
     - i3
     - lxappearance
@@ -49,14 +50,14 @@
   when: ibm_managed
 
 - name: Check for Bluetooth device
-  ansible.builtin.shell: "hcitool dev | grep -oE 'hci[0-9]+'"
-  register: bluetooth_check
-  ignore_errors: yes
+  ansible.builtin.shell: "bluetoothctl list | grep -oE '([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}'"
+  register: bluetooth_devices
+  ignore_errors: true
   changed_when: false
 
 - name: Register bluetooth support
   set_fact:
-    bluetooth_support: "{{ bluetooth_check.stdout != 0 | bool }}"
+    bluetooth_support: "{{ (bluetooth_devices.stdout != '') | bool }}"
 
 - name: create i3 config dirs
   file:

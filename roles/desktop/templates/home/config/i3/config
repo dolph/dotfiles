@@ -214,7 +214,7 @@ exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
 
 {% if bluetooth_support %}
 # Bluetooth management
-exec --no-startup-id blueman
+exec --no-startup-id blueman-applet
 {% endif %}
 
 # Start urvxt with tmux running
