@@ -212,6 +212,11 @@ exec --no-startup-id unclutter --timeout 60
 # Start a desktop notification daemon
 exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
 
+{% if bluetooth_support %}
+# Bluetooth management
+exec --no-startup-id blueman
+{% endif %}
+
 # Start urvxt with tmux running
 exec --no-startup-id i3-msg 'exec urxvt -name terminal -e sh -c "tmux att -d || tmux new"'
 exec --no-startup-id i3-msg 'exec tmux source-file ~/.tmux.conf'

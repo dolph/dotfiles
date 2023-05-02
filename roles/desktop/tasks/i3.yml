@@ -48,6 +48,16 @@
     name: xscreensaver
   when: ibm_managed
 
+- name: Check for Bluetooth device
+  ansible.builtin.shell: "hcitool dev | grep -oE 'hci[0-9]+'"
+  register: bluetooth_check
+  ignore_errors: yes
+  changed_when: false
+
+- name: Register bluetooth support
+  set_fact:
+    bluetooth_support: "{{ bluetooth_check.stdout != 0 | bool }}"
+
 - name: create i3 config dirs
   file:
     dest: /home/{{ whoami }}/.config/{{ dir }}
