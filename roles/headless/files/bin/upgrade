@@ -11,7 +11,7 @@ $EDITOR +GoInstallBinaries +qall
 
 if hash ibmcloud 2>/dev/null; then
     ibmcloud update
-    ibmcloud plugin update --all
+    ibmcloud plugin update --all --force
 fi
 
 ONE_WEEK_IN_SECONDS=604800
