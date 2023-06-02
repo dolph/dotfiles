@@ -218,5 +218,5 @@ exec --no-startup-id blueman-applet
 {% endif %}
 
 # Start urvxt with tmux running
-exec --no-startup-id i3-msg 'exec urxvt -name terminal -e sh -c "tmux att -d || tmux new"'
-exec --no-startup-id i3-msg 'exec tmux source-file ~/.tmux.conf'
+exec --no-startup-id i3-msg 'exec urxvt -name terminal -e sh -c "tmux attach-session -d || tmux new-session"'
+exec --no-startup-id i3-msg 'exec sh -c "sleep 1 && tmux source-file ~/.tmux.conf"'
