@@ -112,6 +112,7 @@
     - htop
     - jq
     - neofetch
+    - qalculate
     - sshpass
     - tree
 
