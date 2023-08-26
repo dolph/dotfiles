@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Require an org to be specified
+[ "$#" -eq 1 ] || die "Usage: git clone-org <org>"
+
+# All we need is the org name to begin
+ORG=${1}
+
+# Ensure the repo exists
+mkdir -p $ORG
+cd $ORG
+if [ ! -d ".git" ]; then
+    git init
+fi
+
+echo "Fetching list of repos... (this may take awhile)"
+REPOS=$(gh repo list ${ORG} --json 'sshUrl,id,name,isArchived' --limit 9999)
+
+# Iterate through each repo
+echo $REPOS | jq -c '.[]' | while read repo; do
+    repo_name=$(jq -r '.name' <<< "$repo")
+    if jq -e '.isArchived == false' <<< "$repo" > /dev/null; then
+        repo_url=$(jq -r '.sshUrl' <<< "${repo}")
+
+        # check if the submodule already exists
+        if [ -d "${repo_name}" ]; then
+            echo "Updating ${repo_name}"
+            git submodule update --init --depth 1 --jobs 3 "${repo_name}"
+            git add .gitmodules "${repo_name}"
+            git commit -m "Updated ${repo_name}" > /dev/null
+        else
+            echo "Adding ${repo_name}"
+            git submodule add --depth 1 "${repo_url}" "${repo_name}"
+            git submodule update --init --depth 1 --jobs 3
+            git add .gitmodules "${repo_name}"
+            git commit -m "Added ${repo_name}"
+        fi
+    else
+        # Repo is archived
+        if [ -d "${repo_name}" ]; then
+            # Repo exists locally and needs to be removed
+            echo "Removing ${repo_name}"
+            git submodule deinit -f "${repo_name}"
+
+            # remove the entry from .git/config
+            git config -f .git/config --remove-section "submodule.${repo_name}" 2> /dev/null
+
+            # un-stage the submodule and remove it from the working directory
+            git rm -f "${repo_name}"
+
+            # Cleanup .gitmodules
+            rm -rf ".git/modules/${repo_name}"
+
+            # commit the removal
+            git commit -m "Removed ${repo_name}"
+        fi
+    fi
+done

@@ -140,6 +140,7 @@
   - gacp
   - gap
   - gcp
+  - git-clone-org
   - git-delete-merged-branches
   - git-list-merged-branches
   - git-pr
