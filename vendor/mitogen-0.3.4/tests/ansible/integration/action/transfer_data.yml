@@ -1,0 +1,47 @@
+
+- name: integration/action/transfer_data.yml
+  hosts: test-targets
+  tasks:
+    - name: Cleanup transfer data
+      file:
+        path: /tmp/transfer-data
+        state: absent
+
+    - name: Create JSON transfer data
+      action_passthrough:
+        method: _transfer_data
+        kwargs:
+          remote_path: /tmp/transfer-data
+          data: {
+            "I am JSON": true
+          }
+    - name: Slurp JSON transfer data
+      slurp:
+        src: /tmp/transfer-data
+      register: out
+    - assert:
+        that: |
+          out.content|b64decode == '{"I am JSON": true}'
+        fail_msg: out={{out}}
+
+    - name: Create text transfer data
+      action_passthrough:
+        method: _transfer_data
+        kwargs:
+          remote_path: /tmp/transfer-data
+          data: "I am text."
+    - name: Slurp text transfer data
+      slurp:
+        src: /tmp/transfer-data
+      register: out
+    - assert:
+        that:
+          out.content|b64decode == 'I am text.'
+        fail_msg: out={{out}}
+
+    - name: Cleanup transfer data
+      file:
+        path: /tmp/transfer-data
+        state: absent
+  tags:
+    - transfer_data

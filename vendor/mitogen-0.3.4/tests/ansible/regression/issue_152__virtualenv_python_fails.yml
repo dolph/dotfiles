@@ -1,0 +1,40 @@
+- name: regression/issue_152__virtualenv_python_fails.yml
+  gather_facts: true
+  hosts: test-targets
+  tasks:
+    - custom_python_detect_environment:
+      register: lout
+
+    # Can't use pip module because it can't create virtualenvs, must call it
+    # directly.
+    - name: Create /tmp/issue_152_virtualenv
+      environment:
+        https_proxy: "{{ lookup('env', 'https_proxy')|default('') }}"
+        no_proxy: "{{ lookup('env', 'no_proxy')|default('') }}"
+        PATH: "{{ lookup('env', 'PATH') }}"
+      shell: virtualenv /tmp/issue_152_virtualenv
+      when:
+        - lout.python.version.full is version('2.7', '>=', strict=True)
+
+    - custom_python_detect_environment:
+      vars:
+        ansible_python_interpreter: /tmp/issue_152_virtualenv/bin/python
+      register: out
+      when:
+        - lout.python.version.full is version('2.7', '>=', strict=True)
+
+    - assert:
+        that:
+          - out.sys_executable == "/tmp/issue_152_virtualenv/bin/python"
+        fail_msg: out={{out}}
+      when:
+        - lout.python.version.full is version('2.7', '>=', strict=True)
+
+    - name: Cleanup /tmp/issue_152_virtualenv
+      file:
+        path: /tmp/issue_152_virtualenv
+        state: absent
+      when:
+        - lout.python.version.full is version('2.7', '>=', strict=True)
+  tags:
+    - issue_152

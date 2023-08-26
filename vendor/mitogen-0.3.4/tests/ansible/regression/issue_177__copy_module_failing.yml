@@ -1,0 +1,22 @@
+- name: regression/issue_177__copy_module_failing.yml
+  hosts: test-targets
+  tasks:
+
+  - name: Copy files
+    copy:
+      src: /etc/{{item}}
+      dest: /tmp/{{item}}
+      mode: 0644
+    with_items:
+      - passwd
+      - hosts
+
+  - name: Cleanup files
+    file:
+      path: /tmp/{{item}}
+      state: absent
+    with_items:
+      - passwd
+      - hosts
+  tags:
+    - issue_177

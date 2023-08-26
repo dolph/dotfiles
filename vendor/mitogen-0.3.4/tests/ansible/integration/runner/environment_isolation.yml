@@ -1,0 +1,41 @@
+# issue #309: ensure process environment is restored after a module runs.
+
+- name: integration/runner/environment_isolation.yml
+  hosts: test-targets
+  gather_facts: true
+  tasks:
+    - name: Verify custom env setting is cleared, control
+      custom_python_detect_environment:
+      register: out
+    - assert:
+        that: not out.env.evil_key is defined
+        fail_msg: out={{out}}
+    - name: Verify custom env setting is cleared, with evil_key
+      shell: echo 'hi'
+      environment:
+        evil_key: evil
+    - name: Verify custom env setting is cleared, without evil_key
+      custom_python_detect_environment:
+      register: out
+    - assert:
+        that: not out.env.evil_key is defined
+        fail_msg: out={{out}}
+
+    - name: Verify non-explicit module env mutations are cleared, control
+      custom_python_detect_environment:
+      register: out
+    - assert:
+        that: not out.env.evil_key is defined
+        fail_msg: out={{out}}
+    - name: Verify non-explicit module env mutations are cleared, mutate evil_key
+      custom_python_modify_environ:
+        key: evil_key
+        val: evil
+    - name: Verify non-explicit module env mutations are cleared, without evil_key
+      custom_python_detect_environment:
+      register: out
+    - assert:
+        that: not out.env.evil_key is defined
+        fail_msg: out={{out}}
+  tags:
+    - environment_isolation

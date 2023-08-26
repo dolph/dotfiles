@@ -1,0 +1,37 @@
+# issue #615: 'fetch' with become: was internally using slurp.
+
+- name: regression/issue_615_streaming_transfer.yml
+  hosts: test-targets
+  gather_facts: no
+  # Without Mitogen this causes Ansible to use the slurp module, which is *slow*
+  become: true
+  vars:
+    mitogen_ssh_compression: false
+  tasks:
+    - block:
+        - name: Create /tmp/512mb.zero
+          shell: |
+            dd if=/dev/zero of=/tmp/512mb.zero bs=1048576 count=512;
+            chmod go= /tmp/512mb.zero
+
+        - name: Fetch /tmp/512mb.zero
+          fetch:
+            src: /tmp/512mb.zero
+            dest: /tmp/fetch-out
+
+        - name: Cleanup /tmp/512mb.zero
+          file:
+            path: /tmp/512mb.zero
+            state: absent
+
+        - name: Cleanup fetched file
+          file:
+            path: /tmp/fetch-out
+            state: absent
+          become: false
+          delegate_to: localhost
+          run_once: true
+      when:
+        - is_mitogen
+  tags:
+    - issue_615
