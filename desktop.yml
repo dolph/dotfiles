@@ -5,6 +5,8 @@
   - role: headless
     tags: headless
   - role: dolph.ansible_ussher_role
-    tags: ussher
+    tags:
+    - ussher
+    - never
   - role: desktop
     tags: desktop
