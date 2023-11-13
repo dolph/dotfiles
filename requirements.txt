@@ -1,3 +1,4 @@
 ansible
+ansible-core==2.13.*
 ansible-vault
 github3.py
