@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 
-vi $(find . -name "*$1*" -type f)
+$EDITOR $(find . -name "*$1*" -type f)
