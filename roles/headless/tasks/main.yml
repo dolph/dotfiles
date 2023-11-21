@@ -157,6 +157,7 @@
   - upgrade
   - uplink-monitor
   - uuid
+  - vif
   - vig
   tags:
   - bin
