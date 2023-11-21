@@ -1,0 +1,25 @@
+#!/bin/bash
+RED="\[\033[31m\]"
+GREEN="\[\033[32m\]"
+ORANGE="\[\033[33m\]"
+BLUE="\[\033[34m\]"
+PINK="\[\033[35m\]"
+GREY="\[\033[39m\]"
+RESET="\[$(tput sgr0)\]"
+
+if [ -z "$1" ] || [ "0" -eq "$1" ]; then
+    RET=""
+elif [ "$1" -eq "127" ]; then
+    # usually command not found
+    RET="${PINK}(rc=$1)${RESET}\n"
+elif [ "$1" -eq "130" ]; then
+    # usually ctrl+c
+    RET="${ORANGE}(rc=$1)${RESET}\n"
+else
+    # all other errors
+    RET="${RED}(rc=$1)${RESET}\n"
+fi
+
+# echo the value to be used as PS1
+# hostname:workdir $
+echo "${RET}${BLUE}\h${RESET}${GREY}:${RESET}${ORANGE}\w${RESET} ${GREEN}\$${RESET} "

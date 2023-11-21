@@ -12,6 +12,7 @@
     group: "{{ whoami }}"
   with_items:
   - bash_profile
+  - bash_prompt
   - bashrc
   - inputrc
   - profile
