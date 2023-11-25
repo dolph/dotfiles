@@ -54,6 +54,7 @@ battery all {
     status_full = ""
     path = "/sys/class/power_supply/BAT%d/uevent"
     low_threshold = 20
+    threshold_type = "percentage"
 }
 
 volume master {
