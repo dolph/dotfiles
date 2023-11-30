@@ -20,6 +20,11 @@ else
     RET="${RED}(rc=$1)${RESET}\n"
 fi
 
+VENV=''
+if [[ -n "$VIRTUAL_ENV" ]]; then
+    VENV="(${VIRTUAL_ENV##*/}) "
+fi
+
 # echo the value to be used as PS1
 # hostname:workdir $
-echo "${RET}${BLUE}\h${RESET}${GREY}:${RESET}${ORANGE}\w${RESET} ${GREEN}\$${RESET} "
+echo "${RET}${VENV}${BLUE}\h${RESET}${GREY}:${RESET}${ORANGE}\w${RESET} ${GREEN}\$${RESET} "
