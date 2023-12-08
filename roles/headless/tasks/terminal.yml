@@ -20,6 +20,11 @@
   - terminal
   - bashrc
 
+- name: ensure bash_prompt is executable
+  file:
+    path: "/home/{{ whoami }}/.bash_prompt"
+    mode: 0755
+
 - name: ensure a localrc exists
   copy:
     content: ""
