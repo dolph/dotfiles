@@ -19,9 +19,10 @@
     msg: "resolution={{ horizontal_resolution.stdout }}x{{ vertical_resolution.stdout }} font_size={{ font_size }}"
   changed_when: true
 
-- name: install i3
+- name: install i3 and friends
   dnf:
     name:
+    - alacritty
     - bluez
     - dunst
     - i3
@@ -29,7 +30,6 @@
     - maim
     - numix-gtk-theme
     - rofi
-    - rxvt-unicode
     - unclutter-xfixes
     - xclip
     - xdotool
@@ -94,13 +94,12 @@
     group: "{{ whoami}}"
   notify: restart i3
 
-- name: configure urvxt
+- name: configure alacritty
   template:
-    src: home/Xresources
-    dest: /home/{{ whoami }}/.Xresources
+    src: home/alacritty.toml
+    dest: /home/{{ whoami }}/.alacritty.toml
     owner: "{{ whoami}}"
     group: "{{ whoami}}"
-  notify: reload X database
 
 # https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
 - name: configure touchpad tap-to-click
