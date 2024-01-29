@@ -44,6 +44,3 @@ bindings = [
     { key = "C", mods = "Shift|Control", action = "Copy" },
     { key = "V", mods = "Shift|Control", action = "Paste" },
 ]
-
-# URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-# URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
