@@ -218,5 +218,5 @@ exec --no-startup-id blueman-applet
 {% endif %}
 
 # Start terminal with tmux running
-exec --no-startup-id i3-msg 'exec alacritty --command "tmux attach-session -d || tmux new-session"'
+exec --no-startup-id i3-msg 'exec alacritty --command /bin/bash -c "tmux attach-session -d || tmux new-session"'
 exec --no-startup-id i3-msg 'exec sh -c "sleep 1 && tmux source-file ~/.tmux.conf"'
