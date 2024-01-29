@@ -39,8 +39,8 @@ hide_when_typing = true
 
 [keyboard]
 bindings = [
-    { key = "Tab", mods = "Control", chars = "tmux select-window -t +" },
-    { key = "Tab", mods = "Shift|Control", chars = "tmux select-window -t -" },
+    { key = "Tab", mods = "Control", command = { program = "tmux", args = ["select-window", "-t", "+"] } },
+    { key = "Tab", mods = "Shift|Control", command = { program = "tmux", args = ["select-window", "-t", "-" ] } },
     { key = "C", mods = "Shift|Control", action = "Copy" },
     { key = "V", mods = "Shift|Control", action = "Paste" },
 ]
