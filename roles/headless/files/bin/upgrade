@@ -10,7 +10,7 @@ flatpak update -y
 $EDITOR +GoInstallBinaries +qall
 
 if hash ibmcloud 2>/dev/null; then
-    ibmcloud update
+    ibmcloud update --force
     ibmcloud plugin update --all --force
 fi
 
