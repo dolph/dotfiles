@@ -1,0 +1,26 @@
+---
+- name: clone notes
+  become: true
+  become_user: "{{ whoami }}"
+  git:
+    repo: "git@github.com:dolph/notes.git"
+    dest: "~/notes"
+
+- name: install sync service
+  become: true
+  become_user: "{{ whoami }}"
+  template:
+    src: home/config/systemd/user/notes-sync.service
+    dest: /home/{{ whoami }}/.config/systemd/user/notes-sync.service
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: 0644
+  register: sync_service
+
+- name: reload systemd
+  become: true
+  become_user: "{{ whoami }}"
+  systemd:
+    daemon_reload: true
+    scope: user
+  when: sync_service.changed

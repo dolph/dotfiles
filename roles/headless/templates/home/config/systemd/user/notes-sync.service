@@ -1,0 +1,12 @@
+[Unit]
+Description=Notes sync service
+
+[Service]
+Type=simple
+ExecStart=%h/notes/sync
+WorkingDirectory=%h/notes
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=default.target

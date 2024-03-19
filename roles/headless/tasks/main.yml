@@ -196,3 +196,7 @@
   tags:
   - wireguard
   - wg
+
+- name: setup notes
+  import_tasks: notes.yml
+  tags: notes
