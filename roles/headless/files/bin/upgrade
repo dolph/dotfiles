@@ -7,7 +7,7 @@ sudo dnf clean packages
 flatpak update -y
 
 # Upgrade vim plugins
-$EDITOR +GoInstallBinaries +qall
+$EDITOR +GoUpdateBinaries +qall
 
 if hash ibmcloud 2>/dev/null; then
     ibmcloud update --force
