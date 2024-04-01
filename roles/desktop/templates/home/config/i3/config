@@ -33,11 +33,14 @@ exec_always --no-startup-id xscreensaver
 exec_always --no-startup-id xset s 600 600
 {% else %}
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
+# screen before suspend.
 exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=1c1c1c --show-failed-attempts
 exec_always --no-startup-id xset s off
 exec_always --no-startup-id xset s noblank
 {% endif %}
+
+# Use Windows+L to lock your screen.
+bindsym Mod4+l exec --no-startup-id loginctl lock-session
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
