@@ -6,6 +6,16 @@
     repo: "git@github.com:dolph/notes.git"
     dest: "~/notes"
 
+- name: ensure systemd user config dir exists
+  become: true
+  become_user: "{{ whoami }}"
+  file:
+    path: /home/dolph/.config/systemd/user
+    state: directory
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: 0700
+
 - name: install sync service
   become: true
   become_user: "{{ whoami }}"
