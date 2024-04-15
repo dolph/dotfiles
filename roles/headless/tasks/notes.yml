@@ -16,7 +16,7 @@
     group: "{{ whoami }}"
     mode: 0700
 
-- name: install sync service
+- name: install notes-sync service
   become: true
   become_user: "{{ whoami }}"
   template:
@@ -34,3 +34,12 @@
     daemon_reload: true
     scope: user
   when: sync_service.changed
+
+- name: enable and start notes-sync service
+  become: true
+  become_user: "{{ whoami }}"
+  systemd:
+    scope: user
+    name: notes-sync
+    enabled: true
+    state: started
