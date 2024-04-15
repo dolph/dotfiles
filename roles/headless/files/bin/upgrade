@@ -4,7 +4,7 @@ set -e
 sudo dnf upgrade -y --refresh --best --allowerasing
 sudo dnf clean packages
 
-flatpak uninstall --unused
+flatpak uninstall --unused -y
 flatpak update -y
 
 # Upgrade vim plugins
