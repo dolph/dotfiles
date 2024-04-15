@@ -1,7 +1,9 @@
 ---
 - name: install wireguard
   dnf:
-    name: wireguard-tools
+    name:
+    - wireguard-tools
+    - iptables-services
 
 - name: Create public & private keys
   shell:
