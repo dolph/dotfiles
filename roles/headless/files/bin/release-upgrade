@@ -1,12 +1,18 @@
 #!/bin/bash
 set -e
 
+export WORKON_HOME=$HOME/venv
+. ~/.virtualenvwrapperlite/virtualenvwrapperlite.sh
+
 if upgrade; then
+    # Ensure dnf-local-plugin is ready for a release upgrade
+    cd ~/dotfiles
+    git pull
+    workon a
+    pip install -r requirements.txt
+    ansible-playbook playbooks/prepare-for-release-upgrade.yml
+
     source /etc/os-release
-
-    # Ensure dnf-local-plugin is removed/disabled prior to system upgrade
-    sudo dnf remove -y python3-dnf-plugin-local
-
     sudo dnf install -y dnf-plugin-system-upgrade
     sudo dnf system-upgrade download --refresh --assumeyes --releasever="$(expr $VERSION_ID + 1)" --allowerasing
     sudo dnf system-upgrade reboot
