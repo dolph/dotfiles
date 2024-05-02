@@ -153,6 +153,7 @@
   - n
   - name
   - release-upgrade
+  - post-release-upgrade
   - try
   - upgrade
   - uplink-monitor

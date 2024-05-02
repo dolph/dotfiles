@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+export WORKON_HOME=$HOME/venv
+. ~/.virtualenvwrapperlite/virtualenvwrapperlite.sh
+
+cd ~/dotfiles
+git pull
+# rmvirtualenv a
+workon a
+pip install -r requirements.txt
+ansible-playbook desktop.yml
+upgrade
+sudo reboot
