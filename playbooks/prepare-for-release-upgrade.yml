@@ -1,0 +1,27 @@
+---
+- name: prepare for release upgrade
+  hosts: all
+  tasks:
+  - name: create repodir for distro
+    file:
+      path: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}-to-{{ (ansible_distribution_major_version | int) + 1 }}/
+      state: directory
+    register: repodir
+
+  - name: initialize repodir
+    command: createrepo /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}-to-{{ (ansible_distribution_major_version | int) + 1 }}
+    when: repodir is changed
+
+  - name: enable dnf local plugin
+    ini_file:
+      path: /etc/dnf/plugins/local.conf
+      section: main
+      option: enabled
+      value: "true"
+
+  - name: configure dnf local plugin repo
+    ini_file:
+      path: /etc/dnf/plugins/local.conf
+      section: main
+      option: repodir
+      value: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}-to-{{ (ansible_distribution_major_version | int) + 1 }}
