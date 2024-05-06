@@ -4,12 +4,12 @@
   tasks:
   - name: create repodir for distro
     file:
-      path: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}-to-{{ (ansible_distribution_major_version | int) + 1 }}/
+      path: /mnt/nfs/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}-to-{{ (ansible_distribution_major_version | int) + 1 }}/
       state: directory
     register: repodir
 
   - name: initialize repodir
-    command: createrepo /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}-to-{{ (ansible_distribution_major_version | int) + 1 }}
+    command: createrepo /mnt/nfs/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}-to-{{ (ansible_distribution_major_version | int) + 1 }}
     when: repodir is changed
 
   - name: enable dnf local plugin
@@ -24,4 +24,4 @@
       path: /etc/dnf/plugins/local.conf
       section: main
       option: repodir
-      value: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}-to-{{ (ansible_distribution_major_version | int) + 1 }}
+      value: /mnt/nfs/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}-to-{{ (ansible_distribution_major_version | int) + 1 }}

@@ -8,14 +8,14 @@
 
 - name: create repodir base mount location
   file:
-    path: /mnt/dnf
+    path: /mnt/nfs/dnf
     state: directory
 
 - name: configure autofs to mount dnf lazily
   lineinfile:
     path: /etc/auto.master
-    line: /mnt /etc/auto.nfs --timeout=900
-    regexp: '^/mnt '
+    line: /mnt/nfs /etc/auto.nfs --timeout=900
+    regexp: '^/mnt/nfs '
     owner: root
     group: root
 
@@ -33,12 +33,12 @@
 
 - name: create repodir for distro
   file:
-    path: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/
+    path: /mnt/nfs/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/
     state: directory
   register: repodir
 
 - name: initialize repodir
-  command: createrepo /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
+  command: createrepo /mnt/nfs/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
   when: repodir is changed
 
 - name: enable dnf local plugin
@@ -53,7 +53,7 @@
     path: /etc/dnf/plugins/local.conf
     section: main
     option: repodir
-    value: /mnt/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
+    value: /mnt/nfs/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
 
 - name: enable createrepo
   ini_file:
