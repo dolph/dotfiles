@@ -7,9 +7,6 @@
 - name: clear xkb cache
   shell:
     cmd: rm -rf /var/lib/xkb/*
-  # The file module does not have an idempotent way to delete contents of
-  # directory, without touching the directory itself.
-  warn: false
 
 - name: restart i3
   become_user: "{{ whoami }}"
