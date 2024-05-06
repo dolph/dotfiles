@@ -6,11 +6,6 @@
     - nfs-utils
     - autofs
 
-- name: create repodir base mount location
-  file:
-    path: /mnt/nfs/
-    state: directory
-
 - name: ensure we're not mounting anything directly to /mnt
   lineinfile:
     path: /etc/auto.master
@@ -18,6 +13,27 @@
     state: absent
     owner: root
     group: root
+  register: remove_mnt
+
+- name: remove auto.master
+  lineinfile:
+    path: /etc/auto.master
+    regexp: '^\+auto.master$'
+    state: absent
+    owner: root
+    group: root
+  register: remove_auto_master
+
+- name: restart autofs
+  systemd:
+    name: autofs
+    state: restarted
+  when: remove_mnt is changed or remove_auto_master is changed
+
+- name: create repodir base mount location
+  file:
+    path: /mnt/nfs/
+    state: directory
 
 - name: configure autofs to mount nfs lazily
   lineinfile:
