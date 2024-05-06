@@ -8,10 +8,18 @@
 
 - name: create repodir base mount location
   file:
-    path: /mnt/nfs/dnf
+    path: /mnt/nfs/
     state: directory
 
-- name: configure autofs to mount dnf lazily
+- name: ensure we're not mounting anything directly to /mnt
+  lineinfile:
+    path: /etc/auto.master
+    regexp: '^/mnt '
+    state: absent
+    owner: root
+    group: root
+
+- name: configure autofs to mount nfs lazily
   lineinfile:
     path: /etc/auto.master
     line: /mnt/nfs /etc/auto.nfs --timeout=900
