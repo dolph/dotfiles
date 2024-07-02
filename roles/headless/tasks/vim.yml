@@ -51,6 +51,8 @@
     group: "{{ whoami }}"
 
 - name: install vim plugins
+  become: true
+  become_user: "{{ whoami }}"
   git:
     repo: "https://github.com/{{ repo }}"
     dest: "/home/{{ whoami }}/.vim/bundle/{{ repo }}"
