@@ -31,8 +31,6 @@
     - 'preservim/vim-markdown' # Markdown support
     - 'christoomey/vim-tmux-navigator' # Unifies vim and tmux split navigation.
     - 'tyru/open-browser.vim' # Add support for PlantUML syntax
-    - 'aklt/plantuml-syntax'
-    - 'weirongxu/plantuml-previewer.vim'
     - 'github/copilot.vim' # Github Copilot
     runtimepaths: []
 
