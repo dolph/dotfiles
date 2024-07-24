@@ -30,7 +30,6 @@
     - 'godlygeek/tabular' # must appear before preservim/vim-markdown
     - 'preservim/vim-markdown' # Markdown support
     - 'christoomey/vim-tmux-navigator' # Unifies vim and tmux split navigation.
-    - 'tyru/open-browser.vim' # Add support for PlantUML syntax
     - 'github/copilot.vim' # Github Copilot
     runtimepaths: []
 
