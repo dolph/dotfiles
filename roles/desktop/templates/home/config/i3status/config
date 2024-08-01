@@ -69,7 +69,7 @@ time {
 }
 
 tztime utc {
-    format = "(%H:%M UTC) "
+    format = " (%H:%M UTC)"
     separator_block_width = 21
     timezone = "Etc/UTC"
 }
