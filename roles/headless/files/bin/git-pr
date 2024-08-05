@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ex
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-if [ "$BRANCH_NAME" == "master" ]; then
-    echo "You must be on a non-master branch."
+if [ "$BRANCH_NAME" == "master" ] || [ "$BRANCH_NAME" == "main" ]; then
+    echo "You must be on a non-primary branch."
     exit 1
 fi
 try git push --set-upstream origin $BRANCH_NAME
