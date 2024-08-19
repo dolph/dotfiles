@@ -15,4 +15,6 @@ do
     ((counter=counter+1))
     sleep $SLEEP_INTERVAL
 done
-echo "Tried $counter times before succeeding."
+if [ $counter != 1 ]; then
+    echo "Tried $counter times before succeeding."
+fi
