@@ -115,6 +115,7 @@
     - qalculate
     - sshpass
     - tree
+    - inotify-tools
 
 - name: create a bin directory
   file:
