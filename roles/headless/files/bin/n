@@ -18,7 +18,6 @@ elif hash notify-send 2>/dev/null; then
     else
         urgency="--urgency=critical"
     fi
-    # Debian
     notify-send \
         $urgency \
         --app-name="Terminal" \
@@ -26,8 +25,5 @@ elif hash notify-send 2>/dev/null; then
         "$*" \
         "rc=${rval} time=$(date -d@${duration} -u +%H:%M:%S)"
 fi
-
-# and try to make a beep noise
-echo ;
 
 exit $rval;
