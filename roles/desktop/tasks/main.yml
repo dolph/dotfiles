@@ -70,3 +70,8 @@
 - name: configure gimp
   import_tasks: gimp.yml
   tags: gimp
+
+- name: install Brother printer dependencies
+  dnf:
+    name: perl-File-Copy
+  tags: brother
