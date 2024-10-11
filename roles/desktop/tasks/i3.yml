@@ -24,6 +24,7 @@
     name:
     - alacritty
     - bluez
+    - brightnessctl
     - dunst
     - i3
     - lxappearance
