@@ -47,7 +47,7 @@
   lineinfile:
     path: /etc/auto.nfs
     create: true
-    line: "dnf -fstype=nfs,rw,sync,intr,tcp,timeo=20,rsize=32000,wsize=32000 stuffbox.lan:/volume1/dnf"
+    line: "dnf -fstype=nfs,rw,sync,intr,tcp,timeo=20,rsize=32000,wsize=32000 pizzabox.lan:/volume1/dnf"
 
 - name: enable autofs
   systemd:
