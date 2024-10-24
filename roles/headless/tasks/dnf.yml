@@ -58,14 +58,14 @@
 
 - name: authenticate with CIFS
   lineinfile:
-    path: /etc/creds/pizzabox
+    path: /etc/creds/{{ cifs_host }}
     mode: 0600
     create: true
     line: "{{ item }}"
   loop:
-  - username=
-  - password=
-  - domain=
+  - "username={{ whoami }}"
+  - "password={{ cifs_password }}"
+  - "domain={{ cifs_domain }}"
 
 - name: enable autofs
   systemd:
@@ -75,12 +75,12 @@
 
 - name: create repodir for distro
   file:
-    path: /cifs/pizzabox/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/
+    path: /cifs/{{ cifs_host }}/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/
     state: directory
   register: repodir
 
 - name: initialize repodir
-  command: createrepo /cifs/pizzabox/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
+  command: createrepo /cifs/{{ cifs_host }}/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
   when: repodir is changed
 
 - name: enable dnf local plugin
@@ -95,7 +95,7 @@
     path: /etc/dnf/plugins/local.conf
     section: main
     option: repodir
-    value: /cifs/pizzabox/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
+    value: /cifs/{{ cifs_host }}/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
 
 - name: enable createrepo
   ini_file:
