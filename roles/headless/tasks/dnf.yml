@@ -35,19 +35,37 @@
     path: /mnt/nfs/
     state: directory
 
-- name: configure autofs to mount nfs lazily
+- name: remove old nfs from autofs
   lineinfile:
     path: /etc/auto.master
-    line: /mnt/nfs /etc/auto.nfs --timeout=900
     regexp: '^/mnt/nfs '
+    state: absent
     owner: root
     group: root
 
-- name: mount dnf repo from NAS
+- name: configure autofs to mount CIFS lazily
   lineinfile:
-    path: /etc/auto.nfs
+    path: /etc/auto.master
+    line: /cifs /etc/auto.smb --timeout=900
+    regexp: '^/cifs '
+    owner: root
+    group: root
+
+- name: ensure creds directory exists
+  file:
+    path: /etc/creds
+    state: directory
+
+- name: authenticate with CIFS
+  lineinfile:
+    path: /etc/creds/pizzabox
+    mode: 0600
     create: true
-    line: "dnf -fstype=nfs,rw,sync,intr,tcp,timeo=20,rsize=32000,wsize=32000 pizzabox.lan:/volume1/dnf"
+    line: "{{ item }}"
+  loop:
+  - username=
+  - password=
+  - domain=
 
 - name: enable autofs
   systemd:
@@ -57,12 +75,12 @@
 
 - name: create repodir for distro
   file:
-    path: /mnt/nfs/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/
+    path: /cifs/pizzabox/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/
     state: directory
   register: repodir
 
 - name: initialize repodir
-  command: createrepo /mnt/nfs/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
+  command: createrepo /cifs/pizzabox/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
   when: repodir is changed
 
 - name: enable dnf local plugin
@@ -77,7 +95,7 @@
     path: /etc/dnf/plugins/local.conf
     section: main
     option: repodir
-    value: /mnt/nfs/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
+    value: /cifs/pizzabox/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}
 
 - name: enable createrepo
   ini_file:
