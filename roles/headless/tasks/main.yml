@@ -135,6 +135,7 @@
     group: "{{ whoami }}"
   loop:
   - benchmark
+  - c
   - enc
   - fail
   - gac
@@ -149,6 +150,7 @@
   - git-recommit
   - git-rmcommit
   - git-uncommit
+  - gp
   - grs
   - icanhazip
   - loop
