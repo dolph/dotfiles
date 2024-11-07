@@ -3,9 +3,11 @@
     name: pulseaudio
     state: absent
 
-- name: ensure pipewire is running
+- name: ensure pipewire is running and that we can control it
   dnf:
-    name: pipewire-pulseaudio
+    name:
+    - pipewire-pulseaudio
+    - pavucontrol
 
 # https://askubuntu.com/a/765024/22414
 - name: add echo cancellation to mic input
