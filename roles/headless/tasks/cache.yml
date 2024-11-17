@@ -1,0 +1,121 @@
+---
+# Remove old NFS + dnf local configuration
+- name: remove the dnf local plugin
+  dnf:
+    name:
+    - python3-dnf-plugin-local
+    state: absent
+
+- name: install autofs
+  dnf:
+    name:
+    - autofs
+    - dnf5-plugins
+
+- name: ensure we're not mounting anything directly to /mnt anymore
+  lineinfile:
+    path: /etc/auto.master
+    regexp: '^/mnt '
+    state: absent
+    owner: root
+    group: root
+  register: remove_mnt
+
+- name: remove old nfs from autofs
+  lineinfile:
+    path: /etc/auto.master
+    regexp: '^/mnt/nfs '
+    state: absent
+    owner: root
+    group: root
+  register: remove_nfs
+
+- name: remove auto.master
+  lineinfile:
+    path: /etc/auto.master
+    regexp: '^\+auto.master$'
+    state: absent
+    owner: root
+    group: root
+  register: remove_auto_master
+
+- name: configure autofs to mount CIFS lazily
+  lineinfile:
+    path: /etc/auto.master
+    line: /cifs /etc/auto.smb --timeout=900
+    regexp: '^/cifs '
+    owner: root
+    group: root
+  register: add_cifs
+
+- name: ensure creds directory exists
+  file:
+    path: /etc/creds
+    state: directory
+
+- name: authenticate with CIFS
+  lineinfile:
+    path: /etc/creds/{{ cifs_host }}
+    mode: 0600
+    create: true
+    line: "{{ item }}"
+  loop:
+  - "username={{ whoami }}"
+  - "password={{ cifs_password }}"
+  - "domain={{ cifs_domain }}"
+
+- name: enable autofs
+  systemd:
+    name: autofs
+    enabled: true
+    state: started
+
+- name: restart autofs
+  systemd:
+    name: autofs
+    state: restarted
+  when: remove_mnt is changed or remove_nfs is changed or remove_auto_master is changed or add_cifs is changed
+
+# dnf
+
+- name: create dnf cache dir for distro
+  file:
+    path: /cifs/{{ cifs_host }}/cache/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/
+    state: directory
+  register: repodir
+
+- name: check if the dnf cache dir is a directory
+  stat:
+    path: /var/cache/libdnf5
+  register: dnf_cache_dir
+
+- name: remove local dnf cache dir if it exists and is not a symlink already
+  file:
+    path: /var/cache/libdnf5
+    state: absent
+  when: dnf_cache_dir.stat.isdir and not dnf_cache_dir.stat.islnk
+
+- name: symlink the dnf cache dir
+  file:
+    src: /cifs/{{ cifs_host }}/cache/dnf/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/
+    dest: /var/cache/libdnf5
+    state: link
+
+# pip
+
+- name: check if the pip cache dir is a directory
+  stat:
+    path: /home/{{ whoami }}/.cache/pip
+  register: pip_cache_dir
+
+- name: remove local pip cache dir if it exists and is not a symlink already
+  file:
+    path: /home/{{ whoami }}/.cache/pip
+    state: absent
+  when: pip_cache_dir.stat.isdir and not pip_cache_dir.stat.islnk
+
+- name: symlink the pip cache dir
+  file:
+    src: /cifs/{{ cifs_host }}/cache/pip
+    dest: /home/{{ whoami }}/.cache/pip
+    state: link
