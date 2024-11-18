@@ -20,7 +20,6 @@ build/
 
 # common program output
 *.log
-*.sql
 *.sqlite
 *.db
 *.coverage.*
