@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+if hash wait-for-vpn 2>/dev/null; then
+    wait-for-vpn
+fi
+
 sudo dnf upgrade -y --refresh --best --allowerasing
 sudo dnf clean packages
 
@@ -17,5 +21,5 @@ fi
 
 ONE_WEEK_IN_SECONDS=604800
 if qalc --terse "$(cat /proc/uptime | cut -d' ' -f1) > $ONE_WEEK_IN_SECONDS" | grep -q "true"; then
-    sudo dnf needs-restarting -r
+    sudo dnf needs-restarting -r || echo "Uptime: $(uptime | xargs)"
 fi
