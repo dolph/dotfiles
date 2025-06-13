@@ -31,6 +31,7 @@
     - 'preservim/vim-markdown' # Markdown support
     - 'christoomey/vim-tmux-navigator' # Unifies vim and tmux split navigation.
     - 'github/copilot.vim' # Github Copilot
+    - 'hashivim/vim-terraform' # Terraform
     runtimepaths: []
 
 - name: compute list of plugin paths to load at runtime
