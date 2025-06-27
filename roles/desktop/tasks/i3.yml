@@ -43,6 +43,7 @@
   become_user: "{{ whoami }}"
   pip:
     name: i3-instant-layout
+    extra_args: --user
     state: latest
 
 - name: install screensaver required by IBM
