@@ -47,6 +47,7 @@
   become_method: sudo
   become_flags: -E
   pip:
+    executable: /usr/bin/pip
     requirements: "/home/{{ whoami }}/dolph/movie-poster-kiosk/requirements.txt"
     virtualenv: "/home/{{ whoami }}/venv/movie-poster-kiosk"
     state: latest

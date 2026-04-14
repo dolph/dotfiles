@@ -42,6 +42,7 @@
   become: true
   become_user: "{{ whoami }}"
   pip:
+    executable: /usr/bin/pip
     name: i3-instant-layout
     extra_args: --user
     state: latest

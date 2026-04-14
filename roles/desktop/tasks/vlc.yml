@@ -2,7 +2,6 @@
   dnf:
     name:
     - vlc
-    - vlc-extras
 
 - name: allow VLC to serve Chromecast streams
   ansible.posix.firewalld:

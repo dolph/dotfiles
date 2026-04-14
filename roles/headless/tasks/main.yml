@@ -50,11 +50,6 @@
     dest: "/etc/sudoers.d/{{ whoami }}"
     mode: 0400
 
-- name: configure cache
-  import_tasks: cache.yml
-  tags:
-  - cache
-
 - name: configure automated upgrades
   import_tasks: automated-upgrades.yml
   tags:
@@ -111,7 +106,6 @@
     - dnf-plugin-system-upgrade
     - htop
     - jq
-    - neofetch
     - qalculate
     - sshpass
     - tree
@@ -201,7 +195,3 @@
   tags:
   - wireguard
   - wg
-
-- name: setup notes
-  import_tasks: notes.yml
-  tags: notes

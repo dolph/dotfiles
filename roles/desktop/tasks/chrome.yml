@@ -5,17 +5,18 @@
 - name: trust the google linux packaging GPG key
   ansible.builtin.rpm_key:
     key: https://dl.google.com/linux/linux_signing_key.pub
-    fingerprint: 4CCA 1EAF 950C EE4A B839 76DC A040 830F 7FAC 5991
+    # https://www.google.com/linuxrepositories/
+    fingerprint: EB4C 1BFD 4F04 2F6D DDCC EC91 7721 F63B D38B 4796
 
 - name: install chrome
   dnf:
     name: google-chrome-stable
     enablerepo: google-chrome
   when:
-  - ansible_architecture != 'aarch64'
+  - ansible_facts["architecture"] != 'aarch64'
 
 - name: settle for chromium
   dnf:
     name: chromium
   when:
-  - ansible_architecture == 'aarch64'
+  - ansible_facts["architecture"] == 'aarch64'

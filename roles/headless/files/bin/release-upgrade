@@ -5,12 +5,10 @@ export WORKON_HOME=$HOME/venv
 . ~/.virtualenvwrapperlite/virtualenvwrapperlite.sh
 
 if upgrade; then
-    # Ensure dnf-local-plugin is ready for a release upgrade
     cd ~/dotfiles
     git pull
     workon a
     pip install -r requirements.txt
-    ansible-playbook playbooks/prepare-for-release-upgrade.yml
 
     source /etc/os-release
     sudo dnf install -y dnf-plugin-system-upgrade
