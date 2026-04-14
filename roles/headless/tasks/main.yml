@@ -189,9 +189,3 @@
   - kube
   - k8s
   - kubernetes
-
-- name: setup wireguard
-  import_tasks: wireguard.yml
-  tags:
-  - wireguard
-  - wg
