@@ -27,10 +27,4 @@ if [ $duration -ge 1 ] ; then
     echo ;
 fi
 
-if [ $rval != 0 ] && [ $duration -ge 2 ] ; then
-    if hash txt 2>/dev/null; then
-        $HOME/bin/txt "$* (rc=${rval} time=$(date -d@${duration} -u +%H:%M:%S))"
-    fi
-fi
-
 exit $rval;

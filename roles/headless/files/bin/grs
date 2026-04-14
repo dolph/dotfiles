@@ -1,2 +1,2 @@
 #!/bin/bash
-git restore --staged -p "$@"
+git restore --staged --patch "$@"

@@ -6,7 +6,7 @@ if hash wait-for-vpn 2>/dev/null; then
 fi
 
 # Upgrade packages
-sudo dnf upgrade -y --refresh --best --allowerasing
+sudo dnf upgrade -y --refresh --allowerasing --enableplugin=expired-pgp-keys
 sudo dnf clean packages
 
 # Upgrade firmware

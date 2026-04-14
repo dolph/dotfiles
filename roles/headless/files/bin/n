@@ -9,15 +9,14 @@ let end_time=`date +%s`;
 let duration=`expr $end_time - $start_time`;
 
 # emit a notification if the command took longer than a few seconds
-if [ $duration -ge 10 ] && hash txt 2>/dev/null; then
-    $HOME/bin/txt "$* (rc=${rval} time=$(date -d@${duration} -u +%H:%M:%S))"
-elif hash notify-send 2>/dev/null; then
+if [ $duration -ge 10 ] && hash notify-send 2>/dev/null; then
     # try to emit a growl-style notification
     if [ $rval == 0 ]; then
         urgency="--urgency=low"
     else
         urgency="--urgency=critical"
     fi
+
     notify-send \
         $urgency \
         --app-name="Terminal" \

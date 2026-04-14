@@ -6,5 +6,4 @@ if [ "$BRANCH_NAME" == "master" ] || [ "$BRANCH_NAME" == "main" ]; then
     exit 1
 fi
 try git push --set-upstream origin $BRANCH_NAME
-sleep 1 # proposed pull request message seems wrong otherwise?
-hub pull-request $@
+gh pr create --editor $@

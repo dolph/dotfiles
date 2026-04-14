@@ -3,56 +3,86 @@
 # Require an org to be specified
 [ "$#" -eq 1 ] || die "Usage: git clone-org <org>"
 
+# Optionally ignore any specified repos per env var
+declare -p IGNORED_REPOS &>/dev/null || IGNORED_REPOS=()
+
 # All we need is the org name to begin
 ORG=${1}
 
-# Ensure the repo exists
+# Ensure the org directory exists, and that we're in it
 mkdir -p $ORG
-cd $ORG
-if [ ! -d ".git" ]; then
-    git init
+if [ -d "${ORG}" ]; then
+    cd $ORG
+elif [ "$(basename $(pwd))" != "$ORG" ]; then
+    mkdir -p $ORG
+    cd $ORG
 fi
 
 echo "Fetching list of repos... (this may take awhile)"
-REPOS=$(gh repo list ${ORG} --json 'sshUrl,id,name,isArchived' --limit 9999)
+REPOS=$(gh repo list ${ORG} --no-archived --json 'sshUrl,id,name,isArchived' --limit 1000)
 
 # Iterate through each repo
+idx=0
+rep_count=$(echo $REPOS | jq 'length')
 echo $REPOS | jq -c '.[]' | while read repo; do
     repo_name=$(jq -r '.name' <<< "$repo")
+    idx=$((idx + 1))
+    echo "$(date --iso-8601=seconds) PROGRESS: $idx / $repo_count"
+
+    # Skip ignored repos
+    skip_repo=false
+    for ignored_repo_name in "${IGNORED_REPOS[@]}"; do
+        if [ "$ignored_repo_name" = "$repo_name" ]; then
+            skip_repo=true
+            break
+        fi
+    done
+    if [ "$skip_repo" = true ]; then
+        echo "Skipping ignored repo: ${repo_name}"
+        continue
+    fi
+
     if jq -e '.isArchived == false' <<< "$repo" > /dev/null; then
         repo_url=$(jq -r '.sshUrl' <<< "${repo}")
 
         # check if the submodule already exists
         if [ -d "${repo_name}" ]; then
             echo "Updating ${repo_name}"
-            git submodule update --init --depth 1 --jobs 3 "${repo_name}"
-            git add .gitmodules "${repo_name}"
-            git commit -m "Updated ${repo_name}" > /dev/null
+            cd "${repo_name}"
+            git ready --no-branch
+            cd ..
         else
-            echo "Adding ${repo_name}"
-            git submodule add --depth 1 "${repo_url}" "${repo_name}"
-            git submodule update --init --depth 1 --jobs 3
-            git add .gitmodules "${repo_name}"
-            git commit -m "Added ${repo_name}"
+            echo "Cloning ${repo_name}"
+            git clone "${repo_url}" "${repo_name}"
+            cd "${repo_name}"
+            git ready --no-branch
+            cd ..
         fi
     else
         # Repo is archived
         if [ -d "${repo_name}" ]; then
+            echo "Removing archived repo: ${repo_name}"
+            rm -rf "${repo_name}"
+        fi
+    fi
+done
+
+echo "Fetching list of archived repos... (this may take awhile)"
+REPOS=$(gh repo list ${ORG} --archived --json 'sshUrl,id,name,isArchived' --limit 1000)
+
+# Iterate through each repo
+idx=0
+repo_count=$(echo $REPOS | jq 'length')
+echo $REPOS | jq -c '.[]' | while read repo; do
+    repo_name=$(jq -r '.name' <<< "$repo")
+    idx=$((idx + 1))
+
+    if jq -e '.isArchived == true' <<< "$repo" > /dev/null; then
+        # Repo is archived
+        if [ -d "${repo_name}" ]; then
             # Repo exists locally and needs to be removed
-            echo "Removing ${repo_name}"
-            git submodule deinit -f "${repo_name}"
-
-            # remove the entry from .git/config
-            git config -f .git/config --remove-section "submodule.${repo_name}" 2> /dev/null
-
-            # un-stage the submodule and remove it from the working directory
-            git rm -f "${repo_name}"
-
-            # Cleanup .gitmodules
-            rm -rf ".git/modules/${repo_name}"
-
-            # commit the removal
-            git commit -m "Removed ${repo_name}"
+            echo "Removing archived repo: ${repo_name}"
+            rm -rf "${repo_name}"
         fi
     fi
 done
