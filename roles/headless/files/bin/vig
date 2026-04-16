@@ -1,4 +1,17 @@
 #!/bin/bash
 set -e
 SEARCH="$@"
-rg -l "$SEARCH" && $EDITOR -c "+/$SEARCH" $(rg -l "$SEARCH")
+
+# Search by filename
+# The cut strips off './' from each path to be comparable to the output of ripgrep
+BY_FILENAME=$(tree -f -i --noreport | rg "$SEARCH" | cut -c 3-)
+
+# Search by file content
+BY_CONTENT=$(rg -l "$SEARCH")
+
+# Combine search results, eliminating duplicates
+RESULTS=$(echo $BY_FILENAME $BY_CONTENT | sort -u)
+echo $RESULTS
+
+# Open all search results in an editor, highlighting search terms within each file
+$EDITOR -c "+/$SEARCH" $RESULTS
