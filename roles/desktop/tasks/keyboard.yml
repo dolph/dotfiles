@@ -1,6 +1,19 @@
-- name: remap caps lock to escape
-  lineinfile:
-    path: /usr/share/X11/xkb/symbols/pc
-    line: "    key <CAPS> {	[ Escape		]	};"
-    regexp: key <CAPS>
-  notify: clear xkb cache
+- name: Get current localectl status
+  ansible.builtin.command:
+    argv:
+      - localectl
+      - status
+  register: localectl_status
+  changed_when: false
+
+- name: Set Caps Lock to Escape in X11 keymap
+  ansible.builtin.command:
+    argv:
+      - localectl
+      - set-x11-keymap
+      - us
+      - ""
+      - ""
+      - caps:escape
+  become: true
+  when: "'X11 Options: caps:escape' not in localectl_status.stdout"
