@@ -151,7 +151,6 @@ set noswapfile
 
 " gitgutter configuration
 let g:gitgutter_enabled = 1
-let g:gitgutter_grep = 'rg'
 let g:gitgutter_set_sign_backgrounds = 1
 highlight SignColumn ctermbg=16
 highlight GitGutterAdd ctermfg=2 ctermbg=16
