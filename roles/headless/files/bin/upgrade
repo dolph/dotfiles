@@ -24,6 +24,10 @@ if hash ibmcloud 2>/dev/null; then
     ibmcloud plugin update --all --force
 fi
 
+if hash claude 2>/dev/null; then
+    claude update
+fi
+
 ONE_WEEK_IN_SECONDS=604800
 if qalc --terse "$(cat /proc/uptime | cut -d' ' -f1) > $ONE_WEEK_IN_SECONDS" | grep -q "true"; then
     sudo dnf needs-restarting -r || echo "Uptime: $(uptime | xargs)"
