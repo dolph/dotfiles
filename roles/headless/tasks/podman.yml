@@ -7,3 +7,4 @@
 - name: authenticate with dockerhub
   command:
     cmd: podman login --username {{ dockerhub_username }} --password {{ dockerhub_token }}
+  no_log: true
