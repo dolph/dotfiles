@@ -41,18 +41,13 @@ while read repo; do
 
     repo_url=$(jq -r '.sshUrl' <<< "${repo}")
 
-    # check if the submodule already exists
     if [ -d "${repo_name}" ]; then
         echo "Updating ${repo_name}"
-        cd "${repo_name}"
-        git ready --no-branch
-        cd ..
+        (cd "${repo_name}" && git ready --no-branch)
     else
         echo "Cloning ${repo_name}"
         git clone "${repo_url}" "${repo_name}"
-        cd "${repo_name}"
-        git ready --no-branch
-        cd ..
+        (cd "${repo_name}" && git ready --no-branch)
     fi
 done < <(echo $REPOS | jq -c '.[]')
 
