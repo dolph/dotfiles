@@ -13,10 +13,12 @@ ORIGIN_DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | 
 git diff-index --quiet HEAD -- || DIRTY=true
 if [ "${DIRTY}" = true ]; then
     git add -u
-    git stash
+    STASH_REF=$(git stash create)
+    git stash store -m "git-ready: auto-stash" "${STASH_REF}"
+    git clean -fd
 
     function restore_uncommitted_changes {
-        git stash pop
+        [ -n "$(git stash list --grep 'git-ready: auto-stash' -1)" ] && git stash pop
     }
     trap restore_uncommitted_changes EXIT
 fi
