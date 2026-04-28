@@ -1,4 +1,4 @@
-- name: install package dependencies
+- name: Install package dependencies
   ansible.builtin.dnf:
     name:
     - arm-none-eabi-binutils-cs
@@ -13,7 +13,7 @@
     - libev-devel
     - make
 
-- name: clone unclutter
+- name: Clone unclutter
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.git:
@@ -22,7 +22,7 @@
     version: v1.3
   register: unclutter_git
 
-- name: clean unclutter
+- name: Clean unclutter
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.command:
@@ -32,7 +32,7 @@
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1906956
 # /usr/bin/pkg-config: line 8: /usr/bin/armv7hnl-redhat-linux-gnueabi-pkg-config: No such file or directory
-- name: build unclutter
+- name: Build unclutter
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.command:
@@ -40,13 +40,13 @@
     cmd: make
   register: build_unclutter
 
-- name: install unclutter
+- name: Install unclutter
   ansible.builtin.command:
     chdir: "/home/{{ whoami }}/unclutter"
     cmd: make install
   when: build_unclutter.changed
 
-- name: hide the mouse whenever it's idle
+- name: Hide the mouse whenever it's idle
   become: true
   become_user: "{{ whoami }}"
   community.general.ini_file:

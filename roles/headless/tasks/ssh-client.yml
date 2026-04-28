@@ -1,16 +1,16 @@
-- name: create ssh directory
+- name: Create ssh directory
   ansible.builtin.file:
     path: "/home/{{ whoami }}/.ssh"
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: create an SSH config file
+- name: Create an SSH config file
   ansible.builtin.command: touch "/home/{{ whoami }}/.ssh/config"
   args:
     creates: "/home/{{ whoami }}/.ssh/config"
 
-- name: set ssh config permissions
+- name: Set ssh config permissions
   ansible.builtin.file:
     path: "/home/{{ whoami }}/.ssh/config"
     owner: "{{ whoami }}"

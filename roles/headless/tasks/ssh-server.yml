@@ -1,4 +1,4 @@
-- name: configure sshd
+- name: Configure sshd
   ansible.builtin.lineinfile:
     path: /etc/ssh/sshd_config
     regex: '^{{ item.key }}'
@@ -11,7 +11,7 @@
   - PasswordAuthentication: 'no' # disallow password authentication
   register: sshd_config
 
-- name: restart sshd
+- name: Restart sshd
   ansible.builtin.systemd:
     name: sshd
     state: restarted

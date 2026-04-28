@@ -1,25 +1,25 @@
 ---
-- name: check if this is an IBM-managed system
+- name: Check if this is an IBM-managed system
   ansible.builtin.stat:
     path: /opt/ibm/
   register: ibm
   tags: always
 
-- name: set fact
+- name: Set fact
   ansible.builtin.set_fact:
     ibm_managed: "{{ ibm.stat.isdir is defined | bool }}"
   tags: always
 
-- name: set timezone
+- name: Set timezone
   community.general.timezone:
     name: America/Chicago
   tags: timezone
 
-- name: remap keyboard
+- name: Remap keyboard
   ansible.builtin.import_tasks: keyboard.yml
   tags: keyboard
 
-- name: removed unused desktop packages
+- name: Removed unused desktop packages
   ansible.builtin.dnf:
     name:
     - asunder
@@ -30,48 +30,48 @@
     state: absent
   tags: dnf
 
-- name: configure custom fonts
+- name: Configure custom fonts
   ansible.builtin.import_tasks: fonts.yml
   tags: fonts
 
-- name: configure terminal
+- name: Configure terminal
   ansible.builtin.import_tasks: terminal.yml
   tags:
   - terminal
 
-- name: install rpmfusion
+- name: Install rpmfusion
   ansible.builtin.import_tasks: rpmfusion.yml
   tags: rpmfusion
 
-- name: configure vlc
+- name: Configure vlc
   ansible.builtin.import_tasks: vlc.yml
   tags: vlc
 
-- name: configure i3
+- name: Configure i3
   ansible.builtin.import_tasks: i3.yml
   tags: i3
 
-- name: install google chrome
+- name: Install google chrome
   ansible.builtin.import_tasks: chrome.yml
   tags: chrome
 
-- name: install nvidia drivers
+- name: Install nvidia drivers
   ansible.builtin.import_tasks: nvidia.yml
   tags: nvidia
 
-- name: configure pulseaudio
+- name: Configure pulseaudio
   ansible.builtin.import_tasks: pulseaudio.yml
   tags: pulseaudio
 
-- name: configure signal
+- name: Configure signal
   ansible.builtin.import_tasks: signal.yml
   tags: signal
 
-- name: configure gimp
+- name: Configure gimp
   ansible.builtin.import_tasks: gimp.yml
   tags: gimp
 
-- name: install Brother printer dependencies
+- name: Install Brother printer dependencies
   ansible.builtin.dnf:
     name: perl-File-Copy
   tags: brother

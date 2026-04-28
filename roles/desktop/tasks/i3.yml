@@ -1,25 +1,25 @@
-- name: get horizontal screen size
+- name: Get horizontal screen size
   ansible.builtin.shell: xrandr | grep '*' | awk '{print $1}' | head -1 | cut -d'x' -f1
   check_mode: false
   register: horizontal_resolution
   changed_when: false
 
-- name: get vertical screen size
+- name: Get vertical screen size
   ansible.builtin.shell: xrandr | grep '*' | awk '{print $1}' | head -1 | cut -d'x' -f2
   check_mode: false
   register: vertical_resolution
   changed_when: false
 
-- name: set system font size
+- name: Set system font size
   ansible.builtin.set_fact:
     font_size: "{{ (15 + (horizontal_resolution.stdout | int * vertical_resolution.stdout | int) / (2 * 1920 * 1080)) | int }}"
 
-- name: report detected resolution
+- name: Report detected resolution
   ansible.builtin.debug:
     msg: "resolution={{ horizontal_resolution.stdout }}x{{ vertical_resolution.stdout }} font_size={{ font_size }}"
   changed_when: true
 
-- name: install i3 and friends
+- name: Install i3 and friends
   ansible.builtin.dnf:
     name:
     - alacritty
@@ -48,7 +48,7 @@
     extra_args: --user
     state: latest
 
-- name: install screensaver required by IBM
+- name: Install screensaver required by IBM
   ansible.builtin.dnf:
     name: xscreensaver
   when: ibm_managed
@@ -63,7 +63,7 @@
   ansible.builtin.set_fact:
     bluetooth_support: "{{ (bluetooth_devices.stdout != '') | bool }}"
 
-- name: create i3 config dirs
+- name: Create i3 config dirs
   ansible.builtin.file:
     dest: /home/{{ whoami }}/.config/{{ dir }}
     state: directory
@@ -77,7 +77,7 @@
   loop_control:
     loop_var: dir
 
-- name: configure i3
+- name: Configure i3
   ansible.builtin.template:
     src: home/config/{{ dir }}/config
     dest: /home/{{ whoami }}/.config/{{ dir }}/config
@@ -90,7 +90,7 @@
     loop_var: dir
   notify: restart i3
 
-- name: configure rofi/dmenu
+- name: Configure rofi/dmenu
   ansible.builtin.template:
     src: home/config/rofi/config.rasi
     dest: /home/{{ whoami }}/.config/rofi/config.rasi
@@ -98,7 +98,7 @@
     group: "{{ whoami }}"
   notify: restart i3
 
-- name: configure alacritty
+- name: Configure alacritty
   ansible.builtin.template:
     src: home/alacritty.toml
     dest: /home/{{ whoami }}/.alacritty.toml
@@ -106,17 +106,17 @@
     group: "{{ whoami }}"
 
 # https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
-- name: configure touchpad tap-to-click
+- name: Configure touchpad tap-to-click
   ansible.builtin.template:
     src: etc/X11/xorg.conf.d/90-touchpad.conf
     dest: /etc/X11/xorg.conf.d/90-touchpad.conf
 
-- name: disable mouse acceleration
+- name: Disable mouse acceleration
   ansible.builtin.template:
     src: etc/X11/xorg.conf.d/50-mouse-acceleration.conf
     dest: /etc/X11/xorg.conf.d/50-mouse-acceleration.conf
 
-- name: configure X
+- name: Configure X
   ansible.builtin.template:
     src: home/xinitrc
     dest: /home/{{ whoami }}/.xinitrc
@@ -124,18 +124,18 @@
     group: "{{ whoami }}"
     mode: 0770
 
-- name: install xrandr & autorandr
+- name: Install xrandr & autorandr
   ansible.builtin.dnf:
     name:
     - autorandr
     - xrandr
 
-- name: enable autorandr
+- name: Enable autorandr
   ansible.builtin.systemd:
     name: autorandr
     enabled: true
 
-- name: set greeter background
+- name: Set greeter background
   community.general.ini_file:
     path: /etc/lightdm/lightdm-gtk-greeter.conf
     section: greeter
@@ -143,7 +143,7 @@
     value: "#000000"
     no_extra_spaces: true
 
-- name: configure dunst
+- name: Configure dunst
   ansible.builtin.template:
     src: home/config/dunst/dunstrc
     dest: /home/{{ whoami }}/.config/dunst/dunstrc

@@ -1,18 +1,18 @@
-- name: install python dependencies
+- name: Install python dependencies
   ansible.builtin.dnf:
     name:
     - python3-virtualenv
     - python3-devel
     - python3-flake8
 
-- name: configure flake8
+- name: Configure flake8
   ansible.builtin.template:
     src: home/flake8
     dest: "/home/{{ whoami }}/.flake8"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: install virtualenvwrapperlite  # noqa: latest[git]
+- name: Install virtualenvwrapperlite  # noqa: latest[git]
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.git:

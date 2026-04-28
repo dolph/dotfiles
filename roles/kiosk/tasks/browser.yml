@@ -1,8 +1,8 @@
-- name: install web browser
+- name: Install web browser
   ansible.builtin.dnf:
     name: midori
 
-- name: launch web browser in kiosk mode automatically
+- name: Launch web browser in kiosk mode automatically
   become: true
   become_user: "{{ whoami }}"
   community.general.ini_file:

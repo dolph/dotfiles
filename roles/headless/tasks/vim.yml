@@ -1,4 +1,4 @@
-- name: uninstall other vim variants
+- name: Uninstall other vim variants
   ansible.builtin.dnf:
     name:
     - vim
@@ -6,12 +6,12 @@
     - vim-X11
     state: absent
 
-- name: install neovim
+- name: Install neovim
   ansible.builtin.dnf:
     name:
     - neovim
 
-- name: initialize a list of plugins
+- name: Initialize a list of plugins
   ansible.builtin.set_fact:
     vim_plugin_repos:
     - 'airblade/vim-gitgutter'
@@ -34,21 +34,21 @@
     - 'hashivim/vim-terraform' # Terraform
     runtimepaths: []
 
-- name: compute list of plugin paths to load at runtime
+- name: Compute list of plugin paths to load at runtime
   ansible.builtin.set_fact:
     runtimepaths: "{{ runtimepaths + ['~/.vim/bundle/' + repo] }}"
   loop: "{{ vim_plugin_repos }}"
   loop_control:
     loop_var: repo
 
-- name: ensure vim plugin directory exists
+- name: Ensure vim plugin directory exists
   ansible.builtin.file:
     path: "/home/{{ whoami }}/.vim/bundle/"
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: install vim plugins  # noqa: latest[git]
+- name: Install vim plugins  # noqa: latest[git]
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.git:
@@ -58,21 +58,21 @@
   loop_control:
     loop_var: repo
 
-- name: configure vim
+- name: Configure vim
   ansible.builtin.template:
     src: home/vimrc
     dest: "/home/{{ whoami }}/.vimrc"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: create neovim config dir
+- name: Create neovim config dir
   ansible.builtin.file:
     path: "/home/{{ whoami }}/.config/nvim"
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: configure neovim to use vimrc
+- name: Configure neovim to use vimrc
   ansible.builtin.copy:
     content: |
       set runtimepath^=~/.vim runtimepath+=~/.vim/after
@@ -82,7 +82,7 @@
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: remove vim plugin manager
+- name: Remove vim plugin manager
   ansible.builtin.file:
     path: "/home/{{ whoami }}/.vim/bundle/Vundle.vim"
     state: absent

@@ -1,9 +1,9 @@
-- name: install vlc
+- name: Install vlc
   ansible.builtin.dnf:
     name:
     - vlc
 
-- name: allow VLC to serve Chromecast streams
+- name: Allow VLC to serve Chromecast streams
   ansible.posix.firewalld:
     port: "{{ port }}"
     permanent: true

@@ -1,8 +1,6 @@
 warn_list: []
 
 skip_list:
-
-  - name[casing]
   - name[play]
   - no-changed-when
   - no-handler

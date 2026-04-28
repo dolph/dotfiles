@@ -1,5 +1,5 @@
 ---
-- name: install dnf-automatic
+- name: Install dnf-automatic
   ansible.builtin.dnf:
     name: dnf-automatic
   register: task
@@ -7,7 +7,7 @@
   retries: 20
   delay: 0
 
-- name: configure dnf-automatic
+- name: Configure dnf-automatic
   ansible.builtin.template:
     src: etc/dnf/automatic.conf
     dest: /etc/dnf/automatic.conf
@@ -15,13 +15,13 @@
     owner: root
     group: root
 
-- name: ensure dnf-automatic is running
+- name: Ensure dnf-automatic is running
   ansible.builtin.systemd:
     name: dnf-automatic.timer
     state: started
     enabled: true
 
-- name: schedule automatic reboots when necessary
+- name: Schedule automatic reboots when necessary
   ansible.builtin.template:
     src: etc/systemd/system/{{ unit }}
     dest: /etc/systemd/system/{{ unit }}
@@ -32,14 +32,14 @@
     loop_var: unit
   register: reboot_units
 
-- name: enable scheduled reboots
+- name: Enable scheduled reboots
   ansible.builtin.systemd:
     name: reboot.timer
     state: started
     enabled: true
     daemon_reload: "{{ reboot_units.changed }}"
 
-- name: configure DNF to download in parallel
+- name: Configure DNF to download in parallel
   community.general.ini_file:
     path: /etc/dnf/dnf.conf
     section: main

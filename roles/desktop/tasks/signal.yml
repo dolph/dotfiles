@@ -1,9 +1,9 @@
-- name: install flatpak repo
+- name: Install flatpak repo
   community.general.flatpak_remote:
     name: flathub
     method: system
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
 
-- name: install signal
+- name: Install signal
   community.general.flatpak:
     name: org.signal.Signal

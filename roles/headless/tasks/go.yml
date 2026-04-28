@@ -1,15 +1,15 @@
-- name: install golang
+- name: Install golang
   ansible.builtin.dnf:
     name: golang
 
-- name: create GOPATH
+- name: Create GOPATH
   ansible.builtin.file:
     path: "/home/{{ whoami }}/go"
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: install vim-go plugins
+- name: Install vim-go plugins
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.command: nvim +GoInstallBinaries +qall

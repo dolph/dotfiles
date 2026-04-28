@@ -1,9 +1,9 @@
-- name: remove screensavers
+- name: Remove screensavers
   ansible.builtin.dnf:
     name: xscreensaver*
     state: absent
 
-- name: disable display power management on boot
+- name: Disable display power management on boot
   become: true
   become_user: "{{ whoami }}"
   community.general.ini_file:
@@ -20,14 +20,14 @@
     Type: Application
     StartupNotify: false
 
-- name: disable display power management immediately
+- name: Disable display power management immediately
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.command: xfce4-power-manager -q
   async: 60
   poll: 0
 
-- name: disable energy star and screensaver on boot
+- name: Disable energy star and screensaver on boot
   become: true
   become_user: "{{ whoami }}"
   community.general.ini_file:
@@ -44,7 +44,7 @@
     Type: Application
     StartupNotify: false
 
-- name: disable energy star immediately
+- name: Disable energy star immediately
   become: true
   become_user: "{{ whoami }}"
   environment:

@@ -1,21 +1,21 @@
-- name: install workstation repos
+- name: Install workstation repos
   ansible.builtin.dnf:
     name: fedora-workstation-repositories
 
-- name: trust the google linux packaging GPG key
+- name: Trust the google linux packaging GPG key
   ansible.builtin.rpm_key:
     key: https://dl.google.com/linux/linux_signing_key.pub
     # https://www.google.com/linuxrepositories/
     fingerprint: EB4C 1BFD 4F04 2F6D DDCC EC91 7721 F63B D38B 4796
 
-- name: install chrome
+- name: Install chrome
   ansible.builtin.dnf:
     name: google-chrome-stable
     enablerepo: google-chrome
   when:
   - ansible_facts["architecture"] != 'aarch64'
 
-- name: settle for chromium
+- name: Settle for chromium
   ansible.builtin.dnf:
     name: chromium
   when:

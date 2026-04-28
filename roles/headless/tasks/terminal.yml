@@ -1,10 +1,10 @@
 ---
-- name: remove bash-preexec
+- name: Remove bash-preexec
   ansible.builtin.file:
     path: "/home/{{ whoami }}/.bash-preexec"
     state: absent
 
-- name: configure terminal
+- name: Configure terminal
   ansible.builtin.template:
     src: "home/{{ item }}"
     dest: "/home/{{ whoami }}/.{{ item }}"
@@ -20,12 +20,12 @@
   - terminal
   - bashrc
 
-- name: ensure bash_prompt is executable
+- name: Ensure bash_prompt is executable
   ansible.builtin.file:
     path: "/home/{{ whoami }}/.bash_prompt"
     mode: 0755
 
-- name: ensure a localrc exists
+- name: Ensure a localrc exists
   ansible.builtin.copy:
     content: ""
     dest: "/home/{{ whoami }}/.localrc"

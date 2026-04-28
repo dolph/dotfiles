@@ -1,4 +1,4 @@
-- name: trust github.com
+- name: Trust github.com
   ansible.builtin.lineinfile:
     path: "/home/{{ whoami }}/.ssh/known_hosts"
     line: "{{ item }}"
@@ -13,20 +13,20 @@
   tags:
   - known-hosts
 
-- name: install git and friends on fedora
+- name: Install git and friends on fedora
   ansible.builtin.dnf:
     name:
     - git
     - gh
 
-- name: ensure config dir exists
+- name: Ensure config dir exists
   ansible.builtin.file:
     path: "/home/{{ whoami }}/.config"
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: configure hub
+- name: Configure hub
   ansible.builtin.blockinfile:
     marker: "# {mark} DOTFILES-MANAGED BLOCK"
     block: |
@@ -40,7 +40,7 @@
     group: "{{ whoami }}"
   when: github_username is defined
 
-- name: configure git, gist
+- name: Configure git, gist
   ansible.builtin.template:
     src: "home/{{ item }}"
     dest: "/home/{{ whoami }}/.{{ item }}"

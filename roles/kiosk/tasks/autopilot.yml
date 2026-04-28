@@ -1,21 +1,21 @@
-- name: install chromedriver
+- name: Install chromedriver
   ansible.builtin.dnf:
     name:
     - chromedriver
     - chromium
 
-- name: enable SSH forwarding for sudo
+- name: Enable SSH forwarding for sudo
   ansible.builtin.lineinfile:
     path: /etc/sudoers
     insertafter: '^#?\s*Defaults\s+env_keep\b'
     line: 'Defaults env_keep += "SSH_AUTH_SOCK"'
 
-- name: get value of SSH_AUTH_SOCK
+- name: Get value of SSH_AUTH_SOCK
   ansible.builtin.command: echo $SSH_AUTH_SOCK
   changed_when: false
   register: ssh_auth_sock
 
-- name: let whoami read the SSH agent remote socket dir
+- name: Let whoami read the SSH agent remote socket dir
   ansible.posix.acl:
     path: "{{ ssh_auth_sock.stdout | dirname }}"
     entity: "{{ whoami }}"
@@ -23,7 +23,7 @@
     permissions: x
     state: present
 
-- name: let whoami use the SSH agent remote socket
+- name: Let whoami use the SSH agent remote socket
   ansible.posix.acl:
     path: "{{ ssh_auth_sock.stdout }}"
     entity: "{{ whoami }}"
@@ -31,7 +31,7 @@
     permissions: rwx
     state: present
 
-- name: clone movie poster kiosk  # noqa: latest[git]
+- name: Clone movie poster kiosk  # noqa: latest[git]
   become: true
   become_user: "{{ whoami }}"
   become_method: sudo
@@ -41,7 +41,7 @@
     dest: "/home/{{ whoami }}/dolph/movie-poster-kiosk"
     update: true
 
-- name: install requirements
+- name: Install requirements
   become: true
   become_user: "{{ whoami }}"
   become_method: sudo
@@ -52,14 +52,14 @@
     virtualenv: "/home/{{ whoami }}/venv/movie-poster-kiosk"
     state: latest
 
-- name: create systemd user directory
+- name: Create systemd user directory
   ansible.builtin.file:
     path: /home/{{ whoami }}/.config/systemd/user/
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: install systemd user units
+- name: Install systemd user units
   ansible.builtin.template:
     src: home/config/systemd/user/{{ unit }}
     dest: /home/{{ whoami }}/.config/systemd/user/{{ unit }}
@@ -73,7 +73,7 @@
     loop_var: unit
   register: systemd_units
 
-- name: reload systemd
+- name: Reload systemd
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.systemd:
@@ -81,7 +81,7 @@
     scope: user
   when: systemd_units.changed
 
-- name: enable systemd user units
+- name: Enable systemd user units
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.systemd:
@@ -95,7 +95,7 @@
   loop_control:
     loop_var: unit
 
-- name: start simple systemd service units
+- name: Start simple systemd service units
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.systemd:

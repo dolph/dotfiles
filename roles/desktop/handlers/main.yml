@@ -1,13 +1,13 @@
-- name: restart pulseaudio
+- name: Restart pulseaudio
   become_user: "{{ whoami }}"
   ansible.builtin.command: pulseaudio -k
   register: task
   failed_when: task.rc != 0 and 'No such process' not in task.stderr
 
-- name: clear xkb cache
+- name: Clear xkb cache
   ansible.builtin.shell:
     cmd: rm -rf /var/lib/xkb/*
 
-- name: restart i3
+- name: Restart i3
   become_user: "{{ whoami }}"
   ansible.builtin.shell: unset I3SOCK; i3-msg restart

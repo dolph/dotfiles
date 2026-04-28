@@ -1,23 +1,23 @@
-- name: install tmux
+- name: Install tmux
   ansible.builtin.dnf:
     name:
     - tmux
     - xclip
 
-- name: uninstall xsel
+- name: Uninstall xsel
   ansible.builtin.dnf:
     name:
     - xsel
     state: absent
 
-- name: create tmux plugins dir
+- name: Create tmux plugins dir
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.file:
     path: ~/.tmux-plugins
     state: directory
 
-- name: install tmux plugins  # noqa: latest[git]
+- name: Install tmux plugins  # noqa: latest[git]
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.git:
@@ -32,7 +32,7 @@
   - open
   - yank
 
-- name: configure tmux
+- name: Configure tmux
   ansible.builtin.template:
     src: home/tmux.conf
     dest: "/home/{{ whoami }}/.tmux.conf"
@@ -41,7 +41,7 @@
   register: tmux_conf
   tags: configure-tmux
 
-- name: check if tmux is running
+- name: Check if tmux is running
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.command: tmux info
@@ -50,7 +50,7 @@
   check_mode: false # Force this task to run, even in check mode.
   register: tmux_running
 
-- name: apply tmux config
+- name: Apply tmux config
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.command: "tmux source-file /home/{{ whoami }}/.tmux.conf"

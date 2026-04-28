@@ -1,23 +1,23 @@
 ---
-- name: whoami
+- name: Whoami
   ansible.builtin.set_fact:
     whoami: "{{ lookup('env', 'USER') | default('dolph', true) }}"
   tags:
   - always
   - whoami
 
-- name: ensure user exists
+- name: Ensure user exists
   ansible.builtin.user:
     name: "{{ whoami }}"
 
-- name: check for local public key
+- name: Check for local public key
   ansible.builtin.find:
     paths: /home/{{ whoami }}/.ssh/
     patterns: id_*.pub
   register: public_keys
   tags: access
 
-- name: authorize local user to access remote user
+- name: Authorize local user to access remote user
   ansible.posix.authorized_key:
     user: "{{ whoami }}"
     key: "{{ lookup('file', public_key.path).rsplit(' ', 1)[0] }}"
@@ -26,7 +26,7 @@
     loop_var: public_key
   tags: access
 
-- name: fetch public github keys
+- name: Fetch public github keys
   ansible.builtin.uri:
     url: https://github.com/dolph.keys
     return_content: true
@@ -34,7 +34,7 @@
   register: github_keys
   tags: access
 
-- name: trust public github keys to access remote user
+- name: Trust public github keys to access remote user
   ansible.posix.authorized_key:
     user: "{{ whoami }}"
     key: "{{ key }}"
@@ -44,61 +44,61 @@
   when: github_keys.status == 200
   tags: access
 
-- name: allow passwordless sudo
+- name: Allow passwordless sudo
   ansible.builtin.template:
     src: etc/sudoers.d/whoami
     dest: "/etc/sudoers.d/{{ whoami }}"
     mode: 0400
 
-- name: configure automated upgrades
+- name: Configure automated upgrades
   ansible.builtin.import_tasks: automated-upgrades.yml
   tags:
   - dnf
   - dnf-automatic
 
-- name: configure ssh client
+- name: Configure ssh client
   ansible.builtin.import_tasks: ssh-client.yml
   tags:
   - ssh
   - ssh-client
 
-- name: configure ssh server
+- name: Configure ssh server
   ansible.builtin.import_tasks: ssh-server.yml
   tags:
   - ssh-server
   - ssh
 
-- name: configure terminal
+- name: Configure terminal
   ansible.builtin.import_tasks: terminal.yml
   tags: terminal
 
-- name: configure git
+- name: Configure git
   ansible.builtin.import_tasks: git.yml
   tags: git
 
-- name: configure ripgrep
+- name: Configure ripgrep
   ansible.builtin.import_tasks: ripgrep.yml
   tags:
   - ripgrep
   - rg
 
-- name: configure editor
+- name: Configure editor
   ansible.builtin.import_tasks: vim.yml
   tags: vim
 
-- name: configure go
+- name: Configure go
   ansible.builtin.import_tasks: go.yml
   tags: go
 
-- name: configure terminal multiplexer
+- name: Configure terminal multiplexer
   ansible.builtin.import_tasks: tmux.yml
   tags: tmux
 
-- name: configure python
+- name: Configure python
   ansible.builtin.import_tasks: python.yml
   tags: python
 
-- name: install additional packages
+- name: Install additional packages
   ansible.builtin.dnf:
     name:
     - autossh
@@ -111,7 +111,7 @@
     - tree
     - inotify-tools
 
-- name: create a bin directory
+- name: Create a bin directory
   ansible.builtin.file:
     path: "/home/{{ whoami }}/bin"
     state: directory
@@ -120,7 +120,7 @@
   tags:
   - bin
 
-- name: populate bin dir
+- name: Populate bin dir
   ansible.builtin.copy:
     src: "bin/{{ item }}"
     dest: "/home/{{ whoami }}/bin"
@@ -160,7 +160,7 @@
   tags:
   - bin
 
-- name: install binaries from github
+- name: Install binaries from github
   ansible.builtin.get_url:
     url: https://github.com/dolph/{{ binary }}/releases/latest/download/{{ binary }}
     dest: /home/{{ whoami }}/bin/{{ binary }}
@@ -178,11 +178,11 @@
   - find-replace
   - txt
 
-- name: install podman
+- name: Install podman
   ansible.builtin.import_tasks: podman.yml
   tags: podman
 
-- name: install kubernetes
+- name: Install kubernetes
   ansible.builtin.import_tasks: kube.yml
   tags:
   - kube

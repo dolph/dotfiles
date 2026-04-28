@@ -1,40 +1,40 @@
-- name: set timezone
+- name: Set timezone
   community.general.timezone:
     name: America/Chicago
   tags: timezone
 
-- name: install xfce
+- name: Install xfce
   ansible.builtin.dnf:
     name: '@Xfce Desktop'
   tags: xfce
 
-- name: boot into graphical desktop
+- name: Boot into graphical desktop
   ansible.builtin.file:
     src: /lib/systemd/system/runlevel5.target
     path: /etc/systemd/system/default.target
     state: link
   tags: xfce
 
-- name: automatically login on boot
+- name: Automatically login on boot
   ansible.builtin.import_tasks: autologin.yml
   tags: autologin
 
-- name: configure web browser
+- name: Configure web browser
   ansible.builtin.import_tasks: browser.yml
   tags: browser
 
-- name: hide the mouse when idle
+- name: Hide the mouse when idle
   ansible.builtin.import_tasks: unclutter.yml
   tags: unclutter
 
-- name: disable dnfdragora notifications
+- name: Disable dnfdragora notifications
   ansible.builtin.import_tasks: dnfdragora.yml
   tags: dnfdragora
 
-- name: keep the display on permanently
+- name: Keep the display on permanently
   ansible.builtin.import_tasks: stay-on.yml
   tags: stay-on
 
-- name: configure autopilot
+- name: Configure autopilot
   ansible.builtin.import_tasks: autopilot.yml
   tags: autopilot

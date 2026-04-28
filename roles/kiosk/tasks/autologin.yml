@@ -1,14 +1,14 @@
-- name: create autologin user group
+- name: Create autologin user group
   ansible.builtin.group:
     name: autologin
 
-- name: add user to autologin group
+- name: Add user to autologin group
   ansible.builtin.user:
     name: "{{ whoami }}"
     groups: autologin
     append: true
 
-- name: automatically login as personal user
+- name: Automatically login as personal user
   community.general.ini_file:
     path: /etc/lightdm/lightdm.conf
     section: SeatDefaults
@@ -16,7 +16,7 @@
     value: "{{ whoami }}"
     no_extra_spaces: true
 
-- name: automatically login immediately
+- name: Automatically login immediately
   community.general.ini_file:
     path: /etc/lightdm/lightdm.conf
     section: SeatDefaults

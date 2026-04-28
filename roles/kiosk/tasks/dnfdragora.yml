@@ -1,10 +1,10 @@
-- name: copy default dnfdragora configuration
+- name: Copy default dnfdragora configuration
   ansible.builtin.copy:
     src: /etc/xdg/autostart/org.mageia.dnfdragora-updater.desktop
     dest: /home/{{ whoami }}/.config/autostart/org.mageia.dnfdragora-updater.desktop
     force: false
 
-- name: hide dnfdragora
+- name: Hide dnfdragora
   community.general.ini_file:
     path: /home/{{ whoami }}/.config/autostart/org.mageia.dnfdragora-updater.desktop
     section: Desktop Entry

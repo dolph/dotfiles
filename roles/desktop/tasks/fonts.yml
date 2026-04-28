@@ -1,10 +1,10 @@
-- name: create install directory for hack
+- name: Create install directory for hack
   ansible.builtin.file:
     path: /usr/share/fonts/hack
     state: directory
 
 # https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
-- name: install hack
+- name: Install hack
   ansible.builtin.copy:
     src: ttf/{{ item }}
     dest: /usr/share/fonts/hack/{{ item }}
@@ -15,7 +15,7 @@
   - Hack-Regular.ttf
   register: new_fonts
 
-- name: update the font cache
+- name: Update the font cache
   ansible.builtin.command: fc-cache -v
   when:
   - new_fonts.changed
