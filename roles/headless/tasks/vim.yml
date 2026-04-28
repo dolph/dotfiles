@@ -48,7 +48,7 @@
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: install vim plugins
+- name: install vim plugins  # noqa: latest[git]
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.git:

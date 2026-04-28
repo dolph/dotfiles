@@ -12,7 +12,7 @@
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
-- name: install virtualenvwrapperlite
+- name: install virtualenvwrapperlite  # noqa: latest[git]
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.git:

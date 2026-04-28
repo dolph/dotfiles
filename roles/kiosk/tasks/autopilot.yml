@@ -31,7 +31,7 @@
     permissions: rwx
     state: present
 
-- name: clone movie poster kiosk
+- name: clone movie poster kiosk  # noqa: latest[git]
   become: true
   become_user: "{{ whoami }}"
   become_method: sudo

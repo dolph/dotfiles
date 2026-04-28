@@ -17,7 +17,7 @@
     path: ~/.tmux-plugins
     state: directory
 
-- name: install tmux plugins
+- name: install tmux plugins  # noqa: latest[git]
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.git:
