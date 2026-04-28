@@ -20,7 +20,7 @@ REPOS=$(gh repo list "${ORG}" --no-archived --json 'sshUrl,id,name,isArchived' -
 
 # Iterate through each repo
 idx=0
-rep_count=$(echo $REPOS | jq 'length')
+repo_count=$(echo $REPOS | jq 'length')
 while read repo; do
     read repo_name repo_url < <(jq -r '[.name, .sshUrl] | @tsv' <<< "$repo")
     idx=$((idx + 1))
