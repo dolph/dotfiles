@@ -67,8 +67,8 @@
   ansible.builtin.file:
     dest: /home/{{ whoami }}/.config/{{ dir }}
     state: directory
-    owner: "{{ whoami}}"
-    group: "{{ whoami}}"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
   loop:
   - dunst
   - i3
@@ -81,8 +81,8 @@
   ansible.builtin.template:
     src: home/config/{{ dir }}/config
     dest: /home/{{ whoami }}/.config/{{ dir }}/config
-    owner: "{{ whoami}}"
-    group: "{{ whoami}}"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
   loop:
   - i3
   - i3status
@@ -94,16 +94,16 @@
   ansible.builtin.template:
     src: home/config/rofi/config.rasi
     dest: /home/{{ whoami }}/.config/rofi/config.rasi
-    owner: "{{ whoami}}"
-    group: "{{ whoami}}"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
   notify: restart i3
 
 - name: configure alacritty
   ansible.builtin.template:
     src: home/alacritty.toml
     dest: /home/{{ whoami }}/.alacritty.toml
-    owner: "{{ whoami}}"
-    group: "{{ whoami}}"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
 
 # https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
 - name: configure touchpad tap-to-click

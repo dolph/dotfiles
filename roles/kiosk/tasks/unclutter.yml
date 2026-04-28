@@ -48,7 +48,7 @@
 
 - name: hide the mouse whenever it's idle
   become: true
-  become_user: "{{ whoami}}"
+  become_user: "{{ whoami }}"
   community.general.ini_file:
     path: /home/{{ whoami }}/.config/autostart/unclutter.desktop
     section: Desktop Entry

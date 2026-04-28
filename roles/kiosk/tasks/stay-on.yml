@@ -5,7 +5,7 @@
 
 - name: disable display power management on boot
   become: true
-  become_user: "{{ whoami}}"
+  become_user: "{{ whoami }}"
   community.general.ini_file:
     path: /home/{{ whoami }}/.config/autostart/power-manager.desktop
     section: Desktop Entry
