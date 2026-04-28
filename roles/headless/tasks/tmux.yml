@@ -54,4 +54,5 @@
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.command: "tmux source-file /home/{{ whoami }}/.tmux.conf"
+  changed_when: true
   when: tmux_conf.changed and tmux_running.rc == 0

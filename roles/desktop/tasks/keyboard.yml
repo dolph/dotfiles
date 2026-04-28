@@ -16,4 +16,5 @@
       - ""
       - caps:escape
   become: true
+  changed_when: true
   when: "'X11 Options: caps:escape' not in localectl_status.stdout"

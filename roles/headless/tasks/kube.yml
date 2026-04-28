@@ -36,6 +36,7 @@
     become: true
     become_user: "{{ whoami }}"
     ansible.builtin.command: "{{ krew_tempdir.path }}/krew-linux_amd64 install krew"
+    changed_when: true
     when: krew_tempdir.path is defined  # not defined in check mode
 
   always:

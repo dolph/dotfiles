@@ -13,4 +13,5 @@
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.command: nvim +GoInstallBinaries +qall
+  changed_when: true
   no_log: true # prevent vim from messing with ansible's stdout/stderr

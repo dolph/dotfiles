@@ -17,5 +17,6 @@
 
 - name: Update the font cache
   ansible.builtin.command: fc-cache -v
+  changed_when: true
   when:
   - new_fonts.changed
