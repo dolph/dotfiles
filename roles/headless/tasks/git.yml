@@ -1,5 +1,5 @@
 ---
-- name: Trust github.com
+- name: Trust github.com  # noqa: yaml[line-length]
   ansible.builtin.lineinfile:
     path: "/home/{{ whoami }}/.ssh/known_hosts"
     line: "{{ item }}"

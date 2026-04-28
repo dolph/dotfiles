@@ -11,7 +11,7 @@
       - pavucontrol
 
 # https://askubuntu.com/a/765024/22414
-- name: Add echo cancellation to mic input
+- name: Add echo cancellation to mic input  # noqa: yaml[line-length]
   ansible.builtin.blockinfile:
     path: /etc/pulse/default.pa
     marker: "# {mark} MICROPHONE ECHO CANCELLATION BLOCK"

@@ -1,0 +1,3 @@
+# This file contains ignores rule violations for ansible-lint
+roles/desktop/tasks/pulseaudio.yml yaml[line-length]
+roles/headless/tasks/git.yml yaml[line-length]
