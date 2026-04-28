@@ -41,7 +41,7 @@
     dest: "/home/{{ whoami }}/dolph/movie-poster-kiosk"
     update: true
 
-- name: Install requirements
+- name: Install requirements  # noqa: package-latest
   become: true
   become_user: "{{ whoami }}"
   become_method: sudo

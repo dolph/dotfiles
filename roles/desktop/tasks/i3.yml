@@ -39,7 +39,7 @@
     - xsetroot
     - xss-lock
 
-- name: Install i3-instant-layout from pypi
+- name: Install i3-instant-layout from pypi  # noqa: package-latest
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.pip:
