@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-PRIMARY_BRANCH=${1:-master}
+PRIMARY_BRANCH=${1:-$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|refs/remotes/origin/||')}
 
 git fetch -p origin
 git branch -r --merged | grep origin | grep -v '>' | grep -v $PRIMARY_BRANCH | xargs -L1 | awk '{split($0,a,"/"); print a[2]}' | xargs git push origin --delete
