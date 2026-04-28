@@ -57,7 +57,7 @@ while read repo; do
         fi
     else
         # Repo is archived
-        if [ -d "${repo_name}" ]; then
+        if [ -n "${repo_name}" ] && [ -d "${repo_name}" ]; then
             echo "Removing archived repo: ${repo_name}"
             rm -rf "${repo_name}"
         fi
@@ -76,7 +76,7 @@ while read repo; do
 
     if jq -e '.isArchived == true' <<< "$repo" > /dev/null; then
         # Repo is archived
-        if [ -d "${repo_name}" ]; then
+        if [ -n "${repo_name}" ] && [ -d "${repo_name}" ]; then
             # Repo exists locally and needs to be removed
             echo "Removing archived repo: ${repo_name}"
             rm -rf "${repo_name}"
