@@ -19,10 +19,25 @@ jobs:
           matrix=$(curl -s 'https://bodhi.fedoraproject.org/releases/?state=current&rows_per_page=20' \
             | python3 -c "
           import sys, json
+          import urllib.request
+
           d = json.load(sys.stdin)
           releases = [r for r in d['releases'] if r['id_prefix'] == 'FEDORA' and not r['version'].startswith('E')]
           versions = sorted(set(r['version'] for r in releases), key=int, reverse=True)
-          print(json.dumps(versions[:2]))
+
+          available = []
+          for ver in versions:
+              url = f'https://hub.docker.com/v2/repositories/geerlingguy/docker-fedora{ver}-ansible/tags?page_size=1'
+              try:
+                  with urllib.request.urlopen(url, timeout=5) as r:
+                      if json.loads(r.read()).get('count', 0) > 0:
+                          available.append(ver)
+              except Exception:
+                  pass
+              if len(available) == 2:
+                  break
+
+          print(json.dumps(available))
           ")
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 

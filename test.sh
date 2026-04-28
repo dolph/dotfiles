@@ -4,10 +4,18 @@ set -e
 ROLE=${1:-headless}
 FEDORA=${2:-$(curl -s 'https://bodhi.fedoraproject.org/releases/?state=current&rows_per_page=20' \
     | python3 -c "
-import sys, json
+import sys, json, urllib.request
 d = json.load(sys.stdin)
 releases = [r for r in d['releases'] if r['id_prefix'] == 'FEDORA' and not r['version'].startswith('E')]
-print(sorted(set(r['version'] for r in releases), key=int, reverse=True)[0])
+for ver in sorted(set(r['version'] for r in releases), key=int, reverse=True):
+    url = f'https://hub.docker.com/v2/repositories/geerlingguy/docker-fedora{ver}-ansible/tags?page_size=1'
+    try:
+        with urllib.request.urlopen(url, timeout=5) as r:
+            if json.loads(r.read()).get('count', 0) > 0:
+                print(ver)
+                break
+    except Exception:
+        pass
 ")}
 
 docker pull geerlingguy/docker-fedora${FEDORA}-ansible:latest
