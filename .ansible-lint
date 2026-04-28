@@ -1,7 +1,6 @@
 warn_list: []
 
 skip_list:
-  - name[play]
   - no-changed-when
   - no-handler
   - package-latest
