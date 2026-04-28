@@ -20,7 +20,11 @@ for ver in sorted(set(r['version'] for r in releases), key=int, reverse=True):
 
 docker pull geerlingguy/docker-fedora${FEDORA}-ansible:latest
 
-container_id=$(docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --volume="$(pwd):/etc/ansible:ro" geerlingguy/docker-fedora${FEDORA}-ansible:latest)
+container_id=$(docker run --detach --privileged \
+    --cgroupns=host \
+    --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw \
+    --volume="$(pwd):/etc/ansible:ro" \
+    geerlingguy/docker-fedora${FEDORA}-ansible:latest)
 function cleanup {
     docker rm -f $container_id
 }

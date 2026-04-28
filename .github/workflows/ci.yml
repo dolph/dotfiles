@@ -65,7 +65,8 @@ jobs:
       - name: Run headless playbook in container
         run: |
           container_id=$(docker run --detach --privileged \
-            --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro \
+            --cgroupns=host \
+            --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw \
             --volume="${PWD}:/etc/ansible:ro" \
             geerlingguy/docker-fedora${{ matrix.fedora }}-ansible:latest)
 
