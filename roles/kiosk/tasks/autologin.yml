@@ -9,7 +9,7 @@
     append: true
 
 - name: automatically login as personal user
-  ini_file:
+  community.general.ini_file:
     path: /etc/lightdm/lightdm.conf
     section: SeatDefaults
     option: autologin-user
@@ -17,7 +17,7 @@
     no_extra_spaces: true
 
 - name: automatically login immediately
-  ini_file:
+  community.general.ini_file:
     path: /etc/lightdm/lightdm.conf
     section: SeatDefaults
     option: autologin-user-timeout

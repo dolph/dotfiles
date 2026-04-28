@@ -6,7 +6,7 @@
 - name: disable display power management on boot
   become: true
   become_user: "{{ whoami}}"
-  ini_file:
+  community.general.ini_file:
     path: /home/{{ whoami }}/.config/autostart/power-manager.desktop
     section: Desktop Entry
     option: "{{ item.key }}"
@@ -30,7 +30,7 @@
 - name: disable energy star and screensaver on boot
   become: true
   become_user: "{{ whoami }}"
-  ini_file:
+  community.general.ini_file:
     path: /home/{{ whoami }}/.config/autostart/energy-star.desktop
     section: Desktop Entry
     option: "{{ item.key }}"

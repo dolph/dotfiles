@@ -18,7 +18,7 @@
   tags: access
 
 - name: authorize local user to access remote user
-  authorized_key:
+  ansible.posix.authorized_key:
     user: "{{ whoami }}"
     key: "{{ lookup('file', public_key.path).rsplit(' ', 1)[0] }}"
   loop: "{{ public_keys.files }}"
@@ -35,7 +35,7 @@
   tags: access
 
 - name: trust public github keys to access remote user
-  authorized_key:
+  ansible.posix.authorized_key:
     user: "{{ whoami }}"
     key: "{{ key }}"
   loop: "{{ github_keys.content.splitlines() }}"

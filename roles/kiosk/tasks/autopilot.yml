@@ -16,7 +16,7 @@
   register: ssh_auth_sock
 
 - name: let whoami read the SSH agent remote socket dir
-  acl:
+  ansible.posix.acl:
     path: "{{ ssh_auth_sock.stdout | dirname }}"
     entity: "{{ whoami }}"
     etype: user
@@ -24,7 +24,7 @@
     state: present
 
 - name: let whoami use the SSH agent remote socket
-  acl:
+  ansible.posix.acl:
     path: "{{ ssh_auth_sock.stdout }}"
     entity: "{{ whoami }}"
     etype: user

@@ -40,7 +40,7 @@
     daemon_reload: "{{ reboot_units.changed }}"
 
 - name: configure DNF to download in parallel
-  ini_file:
+  community.general.ini_file:
     path: /etc/dnf/dnf.conf
     section: main
     option: max_parallel_downloads

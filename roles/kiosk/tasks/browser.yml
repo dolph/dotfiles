@@ -5,7 +5,7 @@
 - name: launch web browser in kiosk mode automatically
   become: true
   become_user: "{{ whoami }}"
-  ini_file:
+  community.general.ini_file:
     path: /home/{{ whoami }}/.config/autostart/browser.desktop
     section: Desktop Entry
     option: "{{ item.key }}"

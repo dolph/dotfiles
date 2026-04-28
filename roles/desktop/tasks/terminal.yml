@@ -8,6 +8,6 @@
     mode: 0644
 
 - name: disable terminal bell immediately
-  modprobe:
+  community.general.modprobe:
     name: pcspkr
     state: absent

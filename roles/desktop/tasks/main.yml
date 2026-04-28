@@ -11,7 +11,7 @@
   tags: always
 
 - name: set timezone
-  timezone:
+  community.general.timezone:
     name: America/Chicago
   tags: timezone
 
