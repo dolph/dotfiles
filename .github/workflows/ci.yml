@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  fedora-versions:
+    name: Determine current Fedora releases
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.query.outputs.matrix }}
+    steps:
+      - name: Query Bodhi for current stable releases
+        id: query
+        run: |
+          matrix=$(curl -s 'https://bodhi.fedoraproject.org/releases/?state=current&rows_per_page=20' \
+            | python3 -c "
+          import sys, json
+          d = json.load(sys.stdin)
+          releases = [r for r in d['releases'] if r['id_prefix'] == 'FEDORA' and not r['version'].startswith('E')]
+          versions = sorted(set(r['version'] for r in releases), key=int, reverse=True)
+          print(json.dumps(versions[:2]))
+          ")
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
+  headless:
+    name: headless (Fedora ${{ matrix.fedora }})
+    runs-on: ubuntu-latest
+    needs: fedora-versions
+    strategy:
+      fail-fast: false
+      matrix:
+        fedora: ${{ fromJson(needs.fedora-versions.outputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run headless playbook in container
+        run: |
+          container_id=$(docker run --detach --privileged \
+            --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro \
+            --volume="${PWD}:/etc/ansible:ro" \
+            geerlingguy/docker-fedora${{ matrix.fedora }}-ansible:latest)
+
+          function cleanup { docker rm -f "$container_id"; }
+          trap cleanup EXIT
+
+          docker exec --tty "$container_id" env TERM=xterm /etc/ansible/bootstrap.sh
+          docker exec --tty "$container_id" env TERM=xterm \
+            ansible-playbook /etc/ansible/headless.yml
