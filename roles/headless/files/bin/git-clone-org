@@ -12,13 +12,8 @@ declare -p IGNORED_REPOS &>/dev/null || IGNORED_REPOS=()
 ORG=${1}
 
 # Ensure the org directory exists, and that we're in it
-mkdir -p $ORG
-if [ -d "${ORG}" ]; then
-    cd $ORG
-elif [ "$(basename $(pwd))" != "$ORG" ]; then
-    mkdir -p $ORG
-    cd $ORG
-fi
+mkdir -p "${ORG}" || die "Failed to create directory: ${ORG}"
+cd "${ORG}" || die "Failed to enter directory: ${ORG}"
 
 echo "Fetching list of repos... (this may take awhile)"
 REPOS=$(gh repo list ${ORG} --no-archived --json 'sshUrl,id,name,isArchived' --limit 1000)
