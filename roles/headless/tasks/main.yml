@@ -154,7 +154,6 @@
   - post-release-upgrade
   - try
   - upgrade
-  - uplink-monitor
   - uuid
   - vif
   - vig
