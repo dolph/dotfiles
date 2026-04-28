@@ -1,11 +1,11 @@
 - name: Get horizontal screen size
-  ansible.builtin.shell: xrandr | grep '*' | awk '{print $1}' | head -1 | cut -d'x' -f1
+  ansible.builtin.shell: set -o pipefail && xrandr | grep '*' | awk '{print $1}' | head -1 | cut -d'x' -f1
   check_mode: false
   register: horizontal_resolution
   changed_when: false
 
 - name: Get vertical screen size
-  ansible.builtin.shell: xrandr | grep '*' | awk '{print $1}' | head -1 | cut -d'x' -f2
+  ansible.builtin.shell: set -o pipefail && xrandr | grep '*' | awk '{print $1}' | head -1 | cut -d'x' -f2
   check_mode: false
   register: vertical_resolution
   changed_when: false
