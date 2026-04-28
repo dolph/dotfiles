@@ -8,6 +8,7 @@ BRANCH_NAME=${1:-$(name)}
 ORIGIN_DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|refs/remotes/origin/||')
 
 [ -n "${ORIGIN_DEFAULT_BRANCH}" ] || die "Could not determine origin default branch; is 'origin' configured?"
+[[ "${ORIGIN_DEFAULT_BRANCH}" == */* ]] && die "Suspicious default branch name: ${ORIGIN_DEFAULT_BRANCH}"
 
 # Preserve uncommitted changes, if there are any.
 git diff-index --quiet HEAD -- || DIRTY=true
