@@ -22,7 +22,7 @@ REPOS=$(gh repo list "${ORG}" --no-archived --json 'sshUrl,id,name,isArchived' -
 idx=0
 rep_count=$(echo $REPOS | jq 'length')
 while read repo; do
-    repo_name=$(jq -r '.name' <<< "$repo")
+    read repo_name repo_url < <(jq -r '[.name, .sshUrl] | @tsv' <<< "$repo")
     idx=$((idx + 1))
     echo "$(date --iso-8601=seconds) PROGRESS: $idx / $repo_count"
 
@@ -40,8 +40,6 @@ while read repo; do
         echo "Skipping ignored repo: ${repo_name}"
         continue
     fi
-
-    repo_url=$(jq -r '.sshUrl' <<< "${repo}")
 
     if [ -d "${repo_name}" ]; then
         echo "Updating ${repo_name}"
@@ -64,12 +62,8 @@ while read repo; do
     idx=$((idx + 1))
     [[ "${repo_name}" == */* ]] && die "Suspicious repo name: ${repo_name}"
 
-    if jq -e '.isArchived == true' <<< "$repo" > /dev/null; then
-        # Repo is archived
-        if [ -n "${repo_name}" ] && [ -d "${repo_name}" ]; then
-            # Repo exists locally and needs to be removed
-            echo "Removing archived repo: ${repo_name}"
-            rm -rf "${repo_name}"
-        fi
+    if [ -n "${repo_name}" ] && [ -d "${repo_name}" ]; then
+        echo "Removing archived repo: ${repo_name}"
+        rm -rf "${repo_name}"
     fi
 done < <(echo $REPOS | jq -c '.[]')
