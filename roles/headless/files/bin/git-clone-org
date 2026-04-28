@@ -16,7 +16,7 @@ mkdir -p "${ORG}" || die "Failed to create directory: ${ORG}"
 cd "${ORG}" || die "Failed to enter directory: ${ORG}"
 
 echo "Fetching list of repos... (this may take awhile)"
-REPOS=$(gh repo list ${ORG} --no-archived --json 'sshUrl,id,name,isArchived' --limit 1000)
+REPOS=$(gh repo list "${ORG}" --no-archived --json 'sshUrl,id,name,isArchived' --limit 1000)
 
 # Iterate through each repo
 idx=0
@@ -25,6 +25,8 @@ while read repo; do
     repo_name=$(jq -r '.name' <<< "$repo")
     idx=$((idx + 1))
     echo "$(date --iso-8601=seconds) PROGRESS: $idx / $repo_count"
+
+    [[ "${repo_name}" == */* ]] && die "Suspicious repo name: ${repo_name}"
 
     # Skip ignored repos
     skip_repo=false
@@ -52,7 +54,7 @@ while read repo; do
 done < <(echo $REPOS | jq -c '.[]')
 
 echo "Fetching list of archived repos... (this may take awhile)"
-REPOS=$(gh repo list ${ORG} --archived --json 'sshUrl,id,name,isArchived' --limit 1000)
+REPOS=$(gh repo list "${ORG}" --archived --json 'sshUrl,id,name,isArchived' --limit 1000)
 
 # Iterate through each repo
 idx=0
@@ -60,6 +62,7 @@ repo_count=$(echo $REPOS | jq 'length')
 while read repo; do
     repo_name=$(jq -r '.name' <<< "$repo")
     idx=$((idx + 1))
+    [[ "${repo_name}" == */* ]] && die "Suspicious repo name: ${repo_name}"
 
     if jq -e '.isArchived == true' <<< "$repo" > /dev/null; then
         # Repo is archived
