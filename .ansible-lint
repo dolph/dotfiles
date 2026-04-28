@@ -1,7 +1,6 @@
 warn_list: []
 
 skip_list:
-  - partial-become[task]
   - risky-file-permissions
   - risky-shell-pipe
   - schema[tasks]
