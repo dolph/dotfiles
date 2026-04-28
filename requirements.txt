@@ -1,3 +1,4 @@
 ansible
 ansible-vault
 github3.py
+ansible-lint

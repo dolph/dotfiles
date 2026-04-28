@@ -1,0 +1,20 @@
+warn_list: []
+
+skip_list:
+  - fqcn[action]
+  - fqcn[action-core]
+  - jinja[spacing]
+  - latest[git]
+  - name[casing]
+  - name[play]
+  - no-changed-when
+  - no-handler
+  - package-latest
+  - partial-become[task]
+  - risky-file-permissions
+  - risky-shell-pipe
+  - schema[tasks]
+  - var-naming[no-role-prefix]
+  - yaml[indentation]
+  - yaml[line-length]
+  - yaml[octal-values]

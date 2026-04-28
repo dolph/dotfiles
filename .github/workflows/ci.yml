@@ -41,6 +41,15 @@ jobs:
           ")
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint@v25
+
   headless:
     name: headless (Fedora ${{ matrix.fedora }})
     runs-on: ubuntu-latest
