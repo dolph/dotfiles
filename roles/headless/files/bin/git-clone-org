@@ -39,28 +39,20 @@ while read repo; do
         continue
     fi
 
-    if jq -e '.isArchived == false' <<< "$repo" > /dev/null; then
-        repo_url=$(jq -r '.sshUrl' <<< "${repo}")
+    repo_url=$(jq -r '.sshUrl' <<< "${repo}")
 
-        # check if the submodule already exists
-        if [ -d "${repo_name}" ]; then
-            echo "Updating ${repo_name}"
-            cd "${repo_name}"
-            git ready --no-branch
-            cd ..
-        else
-            echo "Cloning ${repo_name}"
-            git clone "${repo_url}" "${repo_name}"
-            cd "${repo_name}"
-            git ready --no-branch
-            cd ..
-        fi
+    # check if the submodule already exists
+    if [ -d "${repo_name}" ]; then
+        echo "Updating ${repo_name}"
+        cd "${repo_name}"
+        git ready --no-branch
+        cd ..
     else
-        # Repo is archived
-        if [ -n "${repo_name}" ] && [ -d "${repo_name}" ]; then
-            echo "Removing archived repo: ${repo_name}"
-            rm -rf "${repo_name}"
-        fi
+        echo "Cloning ${repo_name}"
+        git clone "${repo_url}" "${repo_name}"
+        cd "${repo_name}"
+        git ready --no-branch
+        cd ..
     fi
 done < <(echo $REPOS | jq -c '.[]')
 
