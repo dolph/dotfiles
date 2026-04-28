@@ -1,3 +1,4 @@
+---
 - name: Update the font cache
   ansible.builtin.command: fc-cache -v
   changed_when: true
@@ -6,9 +7,9 @@
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.command: pulseaudio -k
-  register: task
+  register: desktop_task
   changed_when: true
-  failed_when: task.rc != 0 and 'No such process' not in task.stderr
+  failed_when: desktop_task.rc != 0 and 'No such process' not in desktop_task.stderr
 
 - name: Clear xkb cache
   ansible.builtin.shell:

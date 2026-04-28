@@ -1,8 +1,9 @@
+---
 - name: Install container tools
   ansible.builtin.dnf:
     name:
-    - podman
-    - buildah
+      - podman
+      - buildah
 
 - name: Authenticate with dockerhub
   ansible.builtin.command:

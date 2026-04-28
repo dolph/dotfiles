@@ -1,3 +1,4 @@
+---
 - name: Create autologin user group
   ansible.builtin.group:
     name: autologin
@@ -22,6 +23,6 @@
     path: /etc/lightdm/lightdm.conf
     section: SeatDefaults
     option: autologin-user-timeout
-    value: '0'
+    value: "0"
     no_extra_spaces: true
     mode: "0644"

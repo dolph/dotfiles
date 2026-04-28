@@ -2,12 +2,12 @@
 - name: Check if this is an IBM-managed system
   ansible.builtin.stat:
     path: /opt/ibm/
-  register: ibm
+  register: desktop_ibm
   tags: always
 
 - name: Set fact
   ansible.builtin.set_fact:
-    ibm_managed: "{{ ibm.stat.isdir is defined | bool }}"
+    desktop_ibm_managed: "{{ desktop_ibm.stat.isdir is defined | bool }}"
   tags: always
 
 - name: Set timezone
@@ -22,11 +22,11 @@
 - name: Removed unused desktop packages
   ansible.builtin.dnf:
     name:
-    - asunder
-    - claws-mail
-    - geany
-    - pidgin
-    - pragha
+      - asunder
+      - claws-mail
+      - geany
+      - pidgin
+      - pragha
     state: absent
   tags: dnf
 
@@ -37,7 +37,7 @@
 - name: Configure terminal
   ansible.builtin.import_tasks: terminal.yml
   tags:
-  - terminal
+    - terminal
 
 - name: Install rpmfusion
   ansible.builtin.import_tasks: rpmfusion.yml

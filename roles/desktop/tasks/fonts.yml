@@ -1,3 +1,4 @@
+---
 - name: Create install directory for hack
   ansible.builtin.file:
     path: /usr/share/fonts/hack
@@ -11,8 +12,8 @@
     dest: /usr/share/fonts/hack/{{ item }}
     mode: "0644"
   loop:
-  - Hack-Bold.ttf
-  - Hack-BoldItalic.ttf
-  - Hack-Italic.ttf
-  - Hack-Regular.ttf
+    - Hack-Bold.ttf
+    - Hack-BoldItalic.ttf
+    - Hack-Italic.ttf
+    - Hack-Regular.ttf
   notify: Update the font cache

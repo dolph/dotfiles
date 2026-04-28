@@ -12,19 +12,19 @@
     group: "{{ whoami }}"
     mode: "0600"
   with_items:
-  - bash_profile
-  - bash_prompt
-  - bashrc
-  - inputrc
-  - profile
+    - bash_profile
+    - bash_prompt
+    - bashrc
+    - inputrc
+    - profile
   tags:
-  - terminal
-  - bashrc
+    - terminal
+    - bashrc
 
 - name: Ensure bash_prompt is executable
   ansible.builtin.file:
     path: "/home/{{ whoami }}/.bash_prompt"
-    mode: 0755
+    mode: "0755"
 
 - name: Ensure a localrc exists
   ansible.builtin.copy:
@@ -35,5 +35,5 @@
     group: "{{ whoami }}"
     mode: "0600"
   tags:
-  - terminal
-  - localrc
+    - terminal
+    - localrc

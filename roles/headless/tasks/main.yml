@@ -1,10 +1,10 @@
 ---
-- name: Whoami
+- name: Whoami # noqa: var-naming[no-role-prefix]
   ansible.builtin.set_fact:
     whoami: "{{ lookup('env', 'USER') | default('dolph', true) }}"
   tags:
-  - always
-  - whoami
+    - always
+    - whoami
 
 - name: Ensure user exists
   ansible.builtin.user:
@@ -14,14 +14,14 @@
   ansible.builtin.find:
     paths: /home/{{ whoami }}/.ssh/
     patterns: id_*.pub
-  register: public_keys
+  register: headless_public_keys
   tags: access
 
 - name: Authorize local user to access remote user
   ansible.posix.authorized_key:
     user: "{{ whoami }}"
     key: "{{ lookup('file', public_key.path).rsplit(' ', 1)[0] }}"
-  loop: "{{ public_keys.files }}"
+  loop: "{{ headless_public_keys.files }}"
   loop_control:
     loop_var: public_key
   tags: access
@@ -30,43 +30,43 @@
   ansible.builtin.uri:
     url: https://github.com/dolph.keys
     return_content: true
-  check_mode: false  # force this task to run, even in check mode
-  register: github_keys
+  check_mode: false # force this task to run, even in check mode
+  register: headless_github_keys
   tags: access
 
 - name: Trust public github keys to access remote user
   ansible.posix.authorized_key:
     user: "{{ whoami }}"
     key: "{{ key }}"
-  loop: "{{ github_keys.content.splitlines() }}"
+  loop: "{{ headless_github_keys.content.splitlines() }}"
   loop_control:
     loop_var: key
-  when: github_keys.status == 200
+  when: headless_github_keys.status == 200
   tags: access
 
 - name: Allow passwordless sudo
   ansible.builtin.template:
     src: etc/sudoers.d/whoami
     dest: "/etc/sudoers.d/{{ whoami }}"
-    mode: 0400
+    mode: "0400"
 
 - name: Configure automated upgrades
   ansible.builtin.import_tasks: automated-upgrades.yml
   tags:
-  - dnf
-  - dnf-automatic
+    - dnf
+    - dnf-automatic
 
 - name: Configure ssh client
   ansible.builtin.import_tasks: ssh-client.yml
   tags:
-  - ssh
-  - ssh-client
+    - ssh
+    - ssh-client
 
 - name: Configure ssh server
   ansible.builtin.import_tasks: ssh-server.yml
   tags:
-  - ssh-server
-  - ssh
+    - ssh-server
+    - ssh
 
 - name: Configure terminal
   ansible.builtin.import_tasks: terminal.yml
@@ -79,8 +79,8 @@
 - name: Configure ripgrep
   ansible.builtin.import_tasks: ripgrep.yml
   tags:
-  - ripgrep
-  - rg
+    - ripgrep
+    - rg
 
 - name: Configure editor
   ansible.builtin.import_tasks: vim.yml
@@ -101,15 +101,15 @@
 - name: Install additional packages
   ansible.builtin.dnf:
     name:
-    - autossh
-    - curl
-    - dnf-plugin-system-upgrade
-    - htop
-    - jq
-    - qalculate
-    - sshpass
-    - tree
-    - inotify-tools
+      - autossh
+      - curl
+      - dnf-plugin-system-upgrade
+      - htop
+      - jq
+      - qalculate
+      - sshpass
+      - tree
+      - inotify-tools
 
 - name: Create a bin directory
   ansible.builtin.file:
@@ -119,47 +119,47 @@
     group: "{{ whoami }}"
     mode: "0700"
   tags:
-  - bin
+    - bin
 
 - name: Populate bin dir
   ansible.builtin.copy:
     src: "bin/{{ item }}"
     dest: "/home/{{ whoami }}/bin"
-    mode: 0770
+    mode: "0770"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
   loop:
-  - benchmark
-  - c
-  - enc
-  - fail
-  - gac
-  - gacp
-  - gap
-  - gcp
-  - git-clone-org
-  - git-delete-merged-branches
-  - git-list-merged-branches
-  - git-pr
-  - git-ready
-  - git-recommit
-  - git-rmcommit
-  - git-uncommit
-  - gp
-  - grs
-  - icanhazip
-  - loop
-  - n
-  - name
-  - release-upgrade
-  - post-release-upgrade
-  - try
-  - upgrade
-  - uuid
-  - vif
-  - vig
+    - benchmark
+    - c
+    - enc
+    - fail
+    - gac
+    - gacp
+    - gap
+    - gcp
+    - git-clone-org
+    - git-delete-merged-branches
+    - git-list-merged-branches
+    - git-pr
+    - git-ready
+    - git-recommit
+    - git-rmcommit
+    - git-uncommit
+    - gp
+    - grs
+    - icanhazip
+    - loop
+    - false
+    - name
+    - release-upgrade
+    - post-release-upgrade
+    - try
+    - upgrade
+    - uuid
+    - vif
+    - vig
   tags:
-  - bin
+    - bin
 
 - name: Install binaries from github
   ansible.builtin.get_url:
@@ -167,17 +167,17 @@
     dest: /home/{{ whoami }}/bin/{{ binary }}
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
-    mode: 0770
+    mode: "0770"
   loop:
-  - find-replace
-  - txt
-  - connectivity
+    - find-replace
+    - txt
+    - connectivity
   loop_control:
     loop_var: binary
   tags:
-  - bin
-  - find-replace
-  - txt
+    - bin
+    - find-replace
+    - txt
 
 - name: Install podman
   ansible.builtin.import_tasks: podman.yml
@@ -186,6 +186,6 @@
 - name: Install kubernetes
   ansible.builtin.import_tasks: kube.yml
   tags:
-  - kube
-  - k8s
-  - kubernetes
+    - kube
+    - k8s
+    - kubernetes

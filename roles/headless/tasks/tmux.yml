@@ -1,13 +1,14 @@
+---
 - name: Install tmux
   ansible.builtin.dnf:
     name:
-    - tmux
-    - xclip
+      - tmux
+      - xclip
 
 - name: Uninstall xsel
   ansible.builtin.dnf:
     name:
-    - xsel
+      - xsel
     state: absent
 
 - name: Create tmux plugins dir
@@ -18,20 +19,20 @@
     state: directory
     mode: "0700"
 
-- name: Install tmux plugins  # noqa: latest[git]
+- name: Install tmux plugins # noqa: latest[git]
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.git:
     repo: "https://github.com/tmux-plugins/tmux-{{ item }}.git"
     dest: "~/.tmux-plugins/{{ item }}"
-  register: git_result
+  register: headless_git_result
   with_items:
-  - battery
-  - copycat
-  - cpu
-  - net-speed
-  - open
-  - yank
+    - battery
+    - copycat
+    - cpu
+    - net-speed
+    - open
+    - yank
 
 - name: Configure tmux
   ansible.builtin.template:
@@ -40,7 +41,7 @@
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
     mode: "0600"
-  register: tmux_conf
+  register: headless_tmux_conf
   tags: configure-tmux
 
 - name: Check if tmux is running
@@ -50,11 +51,11 @@
   failed_when: false
   changed_when: false
   check_mode: false # Force this task to run, even in check mode.
-  register: tmux_running
+  register: headless_tmux_running
 
 - name: Apply tmux config
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.command: "tmux source-file /home/{{ whoami }}/.tmux.conf"
   changed_when: true
-  when: tmux_conf.changed and tmux_running.rc == 0
+  when: headless_tmux_conf.changed and headless_tmux_running.rc == 0

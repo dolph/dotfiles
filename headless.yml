@@ -3,5 +3,5 @@
   hosts: all
   gather_facts: true
   roles:
-  - role: headless
-    tags: headless
+    - role: headless
+      tags: headless

@@ -1,3 +1,4 @@
+---
 - name: Install flatpak repo
   community.general.flatpak_remote:
     name: flathub

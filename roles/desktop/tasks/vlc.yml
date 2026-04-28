@@ -1,7 +1,8 @@
+---
 - name: Install vlc
   ansible.builtin.dnf:
     name:
-    - vlc
+      - vlc
 
 - name: Allow VLC to serve Chromecast streams
   ansible.posix.firewalld:
@@ -10,7 +11,7 @@
     immediate: true
     state: enabled
   loop:
-  - 8009/tcp
-  - 8010/tcp
+    - 8009/tcp
+    - 8010/tcp
   loop_control:
     loop_var: port

@@ -2,8 +2,8 @@
 - name: Install dnf-automatic
   ansible.builtin.dnf:
     name: dnf-automatic
-  register: task
-  until: task is succeeded
+  register: headless_task
+  until: headless_task is succeeded
   retries: 20
   delay: 0
 
@@ -11,7 +11,7 @@
   ansible.builtin.template:
     src: etc/dnf/automatic.conf
     dest: /etc/dnf/automatic.conf
-    mode: 0644
+    mode: "0644"
     owner: root
     group: root
 
@@ -27,18 +27,18 @@
     dest: /etc/systemd/system/{{ unit }}
     mode: "0644"
   loop:
-  - reboot.service
-  - reboot.timer
+    - reboot.service
+    - reboot.timer
   loop_control:
     loop_var: unit
-  register: reboot_units
+  register: headless_reboot_units
 
 - name: Enable scheduled reboots
   ansible.builtin.systemd:
     name: reboot.timer
     state: started
     enabled: true
-    daemon_reload: "{{ reboot_units.changed }}"
+    daemon_reload: "{{ headless_reboot_units.changed }}"
 
 - name: Configure DNF to download in parallel
   community.general.ini_file:

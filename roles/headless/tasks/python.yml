@@ -1,9 +1,10 @@
+---
 - name: Install python dependencies
   ansible.builtin.dnf:
     name:
-    - python3-virtualenv
-    - python3-devel
-    - python3-flake8
+      - python3-virtualenv
+      - python3-devel
+      - python3-flake8
 
 - name: Configure flake8
   ansible.builtin.template:
@@ -13,7 +14,7 @@
     group: "{{ whoami }}"
     mode: "0600"
 
-- name: Install virtualenvwrapperlite  # noqa: latest[git]
+- name: Install virtualenvwrapperlite # noqa: latest[git]
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.git:

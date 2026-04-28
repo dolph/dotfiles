@@ -2,7 +2,7 @@
 - name: Check for nvidia devices
   ansible.builtin.shell: set -o pipefail && lspci | grep --extended-regexp 'VGA|3D' | grep --ignore-case nvidia
   check_mode: false # Force this task to run, even in check mode.
-  register: nvidia_device
+  register: desktop_nvidia_device
   failed_when: false
   changed_when: false
 
@@ -10,13 +10,13 @@
 - name: Ensure nouveau is uninstalled
   ansible.builtin.dnf:
     name:
-    - xorg-x11-drv-nouveau
+      - xorg-x11-drv-nouveau
     state: absent
-  when: nvidia_device.rc == 0
+  when: desktop_nvidia_device.rc == 0
 
 - name: Install nvidia drivers
   ansible.builtin.dnf:
     name:
-    - kmod-nvidia
-    - xorg-x11-drv-nvidia
-  when: nvidia_device.rc == 0
+      - kmod-nvidia
+      - xorg-x11-drv-nvidia
+  when: desktop_nvidia_device.rc == 0

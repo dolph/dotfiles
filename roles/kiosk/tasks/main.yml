@@ -1,3 +1,4 @@
+---
 - name: Set timezone
   community.general.timezone:
     name: America/Chicago
@@ -5,7 +6,7 @@
 
 - name: Install xfce
   ansible.builtin.dnf:
-    name: '@Xfce Desktop'
+    name: "@Xfce Desktop"
   tags: xfce
 
 - name: Boot into graphical desktop

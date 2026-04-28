@@ -1,3 +1,4 @@
+---
 - name: Install web browser
   ansible.builtin.dnf:
     name: midori

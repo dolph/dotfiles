@@ -1,17 +1,18 @@
+---
 - name: Install package dependencies
   ansible.builtin.dnf:
     name:
-    - arm-none-eabi-binutils-cs
-    - arm-none-eabi-gcc-cs
-    - arm-none-eabi-gcc-cs-c++
-    - arm-none-eabi-newlib
-    - asciidoc
-    - gcc
-    - libX11-devel
-    - libXfixes-devel
-    - libXi-devel
-    - libev-devel
-    - make
+      - arm-none-eabi-binutils-cs
+      - arm-none-eabi-gcc-cs
+      - arm-none-eabi-gcc-cs-c++
+      - arm-none-eabi-newlib
+      - asciidoc
+      - gcc
+      - libX11-devel
+      - libXfixes-devel
+      - libXi-devel
+      - libev-devel
+      - make
 
 - name: Clone unclutter
   become: true
@@ -20,16 +21,16 @@
     repo: https://github.com/Airblader/unclutter-xfixes
     dest: "/home/{{ whoami }}/unclutter"
     version: v1.3
-  register: unclutter_git
+  register: kiosk_unclutter_git
 
-- name: Clean unclutter  # noqa: no-handler
+- name: Clean unclutter # noqa: no-handler
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.command:
     chdir: "/home/{{ whoami }}/unclutter"
     cmd: make clean
   changed_when: true
-  when: unclutter_git.changed
+  when: kiosk_unclutter_git.changed
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1906956
 # /usr/bin/pkg-config: line 8: /usr/bin/armv7hnl-redhat-linux-gnueabi-pkg-config: No such file or directory
@@ -40,14 +41,14 @@
     chdir: "/home/{{ whoami }}/unclutter"
     cmd: make
   changed_when: true
-  register: build_unclutter
+  register: kiosk_build_unclutter
 
-- name: Install unclutter  # noqa: no-handler
+- name: Install unclutter # noqa: no-handler
   ansible.builtin.command:
     chdir: "/home/{{ whoami }}/unclutter"
     cmd: make install
   changed_when: true
-  when: build_unclutter.changed
+  when: kiosk_build_unclutter.changed
 
 - name: Hide the mouse whenever it's idle
   become: true
@@ -63,8 +64,8 @@
     Name: Unclutter
     Exec: unclutter --timeout 3
     Comment: Launch Unclutter to hide the mouse
-    Terminal: 'false'
+    Terminal: "false"
     Type: Application
-    StartupNotify: 'false'
+    StartupNotify: "false"
     Icon: unclutter
   tags: ucconfig

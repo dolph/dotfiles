@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: true
   roles:
-  - role: headless
-    tags: headless
-  - role: kiosk
-    tags: kiosk
+    - role: headless
+      tags: headless
+    - role: kiosk
+      tags: kiosk

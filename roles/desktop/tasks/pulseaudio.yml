@@ -1,3 +1,4 @@
+---
 - name: Ensure we're pulseaudio is gone
   ansible.builtin.dnf:
     name: pulseaudio
@@ -6,14 +7,14 @@
 - name: Ensure pipewire is running and that we can control it
   ansible.builtin.dnf:
     name:
-    - pipewire-pulseaudio
-    - pavucontrol
+      - pipewire-pulseaudio
+      - pavucontrol
 
 # https://askubuntu.com/a/765024/22414
 - name: Add echo cancellation to mic input
   ansible.builtin.blockinfile:
     path: /etc/pulse/default.pa
-    marker: '# {mark} MICROPHONE ECHO CANCELLATION BLOCK'
+    marker: "# {mark} MICROPHONE ECHO CANCELLATION BLOCK"
     block: |
       load-module module-echo-cancel use_master_format=1 aec_method=webrtc aec_args="analog_gain_control=0\ digital_gain_control=1" source_name=echoCancel_source sink_name=echoCancel_sink
       set-default-source echoCancel_source

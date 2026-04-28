@@ -1,3 +1,4 @@
+---
 - name: Install workstation repos
   ansible.builtin.dnf:
     name: fedora-workstation-repositories
@@ -13,10 +14,10 @@
     name: google-chrome-stable
     enablerepo: google-chrome
   when:
-  - ansible_facts["architecture"] != 'aarch64'
+    - ansible_facts["architecture"] != 'aarch64'
 
 - name: Settle for chromium
   ansible.builtin.dnf:
     name: chromium
   when:
-  - ansible_facts["architecture"] == 'aarch64'
+    - ansible_facts["architecture"] == 'aarch64'

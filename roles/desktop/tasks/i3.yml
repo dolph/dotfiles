@@ -1,45 +1,46 @@
+---
 - name: Get horizontal screen size
   ansible.builtin.shell: set -o pipefail && xrandr | grep '*' | awk '{print $1}' | head -1 | cut -d'x' -f1
   check_mode: false
-  register: horizontal_resolution
+  register: desktop_horizontal_resolution
   changed_when: false
 
 - name: Get vertical screen size
   ansible.builtin.shell: set -o pipefail && xrandr | grep '*' | awk '{print $1}' | head -1 | cut -d'x' -f2
   check_mode: false
-  register: vertical_resolution
+  register: desktop_vertical_resolution
   changed_when: false
 
 - name: Set system font size
   ansible.builtin.set_fact:
-    font_size: "{{ (15 + (horizontal_resolution.stdout | int * vertical_resolution.stdout | int) / (2 * 1920 * 1080)) | int }}"
+    desktop_font_size: "{{ (15 + (desktop_horizontal_resolution.stdout | int * desktop_vertical_resolution.stdout | int) / (2 * 1920 * 1080)) | int }}"
 
 - name: Report detected resolution
   ansible.builtin.debug:
-    msg: "resolution={{ horizontal_resolution.stdout }}x{{ vertical_resolution.stdout }} font_size={{ font_size }}"
+    msg: "resolution={{ desktop_horizontal_resolution.stdout }}x{{ desktop_vertical_resolution.stdout }} font_size={{ desktop_font_size }}"
   changed_when: true
 
 - name: Install i3 and friends
   ansible.builtin.dnf:
     name:
-    - alacritty
-    - bluez
-    - brightnessctl
-    - dunst
-    - i3
-    - lxappearance
-    - maim
-    - pamixer
-    - numix-gtk-theme
-    - rofi
-    - unclutter-xfixes
-    - xclip
-    - xdotool
-    - xset
-    - xsetroot
-    - xss-lock
+      - alacritty
+      - bluez
+      - brightnessctl
+      - dunst
+      - i3
+      - lxappearance
+      - maim
+      - pamixer
+      - numix-gtk-theme
+      - rofi
+      - unclutter-xfixes
+      - xclip
+      - xdotool
+      - xset
+      - xsetroot
+      - xss-lock
 
-- name: Install i3-instant-layout from pypi  # noqa: package-latest
+- name: Install i3-instant-layout from pypi # noqa: package-latest
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.pip:
@@ -51,17 +52,17 @@
 - name: Install screensaver required by IBM
   ansible.builtin.dnf:
     name: xscreensaver
-  when: ibm_managed
+  when: desktop_ibm_managed
 
 - name: Check for Bluetooth device
   ansible.builtin.shell: "bluetoothctl list | grep -oE '([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}'"
-  register: bluetooth_devices
+  register: desktop_bluetooth_devices
   ignore_errors: true
   changed_when: false
 
 - name: Register bluetooth support
   ansible.builtin.set_fact:
-    bluetooth_support: "{{ (bluetooth_devices.stdout != '') | bool }}"
+    desktop_bluetooth_support: "{{ (desktop_bluetooth_devices.stdout != '') | bool }}"
 
 - name: Create i3 config dirs
   ansible.builtin.file:
@@ -71,10 +72,10 @@
     group: "{{ whoami }}"
     mode: "0700"
   loop:
-  - dunst
-  - i3
-  - i3status
-  - rofi
+    - dunst
+    - i3
+    - i3status
+    - rofi
   loop_control:
     loop_var: dir
 
@@ -86,8 +87,8 @@
     group: "{{ whoami }}"
     mode: "0600"
   loop:
-  - i3
-  - i3status
+    - i3
+    - i3status
   loop_control:
     loop_var: dir
   notify: restart i3
@@ -128,13 +129,13 @@
     dest: /home/{{ whoami }}/.xinitrc
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
-    mode: 0770
+    mode: "0770"
 
 - name: Install xrandr & autorandr
   ansible.builtin.dnf:
     name:
-    - autorandr
-    - xrandr
+      - autorandr
+      - xrandr
 
 - name: Enable autorandr
   ansible.builtin.systemd:
@@ -156,4 +157,4 @@
     dest: /home/{{ whoami }}/.config/dunst/dunstrc
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
-    mode: 0660
+    mode: "0660"

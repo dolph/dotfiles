@@ -4,58 +4,58 @@
     url: https://dl.k8s.io/release/stable.txt
     return_content: true
   check_mode: false
-  register: kubectl_version
+  register: headless_kubectl_version
 
 - name: Install kubectl
   ansible.builtin.get_url:
-    url: https://dl.k8s.io/release/{{ kubectl_version.content }}/bin/linux/amd64/kubectl
+    url: https://dl.k8s.io/release/{{ headless_kubectl_version.content }}/bin/linux/amd64/kubectl
     dest: /home/{{ whoami }}/bin/kubectl
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
-    mode: 0770
+    mode: "0770"
 
 - name: Install krew
   block:
-  - name: Create temp dir to extract krew
-    become: true
-    become_user: "{{ whoami }}"
-    ansible.builtin.tempfile:
-      state: directory
-    register: krew_tempdir
+    - name: Create temp dir to extract krew
+      become: true
+      become_user: "{{ whoami }}"
+      ansible.builtin.tempfile:
+        state: directory
+      register: headless_krew_tempdir
 
-  - name: Extract krew
-    become: true
-    become_user: "{{ whoami }}"
-    ansible.builtin.unarchive:
-      src: https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz
-      remote_src: true
-      dest: "{{ krew_tempdir.path }}"
-    when: krew_tempdir.path is defined  # not defined in check mode
+    - name: Extract krew
+      become: true
+      become_user: "{{ whoami }}"
+      ansible.builtin.unarchive:
+        src: https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz
+        remote_src: true
+        dest: "{{ headless_krew_tempdir.path }}"
+      when: headless_krew_tempdir.path is defined # not defined in check mode
 
-  - name: Use krew to install krew
-    become: true
-    become_user: "{{ whoami }}"
-    ansible.builtin.command: "{{ krew_tempdir.path }}/krew-linux_amd64 install krew"
-    changed_when: true
-    when: krew_tempdir.path is defined  # not defined in check mode
+    - name: Use krew to install krew
+      become: true
+      become_user: "{{ whoami }}"
+      ansible.builtin.command: "{{ headless_krew_tempdir.path }}/krew-linux_amd64 install krew"
+      changed_when: true
+      when: headless_krew_tempdir.path is defined # not defined in check mode
 
   always:
-  - name: Remove krew temp dir
-    ansible.builtin.file:
-      path: "{{ krew_tempdir.path }}"
-      state: absent
-    changed_when: false
-    when: krew_tempdir.path is defined  # not defined in check mode
+    - name: Remove krew temp dir
+      ansible.builtin.file:
+        path: "{{ headless_krew_tempdir.path }}"
+        state: absent
+      changed_when: false
+      when: headless_krew_tempdir.path is defined # not defined in check mode
 
 - name: Install kube plugins
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.shell: "source /home/{{ whoami }}/.profile; /home/{{ whoami }}/bin/kubectl krew install {{ plugin }}"
-  register: task
-  changed_when: '"Skipping plugin" is not in task.stdout'
+  register: headless_task
+  changed_when: '"Skipping plugin" is not in headless_task.stdout'
   loop:
-  - ctx
-  - ns
+    - ctx
+    - ns
   loop_control:
     loop_var: plugin
 
@@ -70,40 +70,40 @@
     user: tektoncd
     repo: cli
     action: latest_release
-  register: latest_tekton_release
+  register: headless_latest_tekton_release
 
 - name: Install tekton
   block:
-  - name: Create temp dir to extract tekton
-    ansible.builtin.tempfile:
-      state: directory
-    register: tekton_tempdir
+    - name: Create temp dir to extract tekton
+      ansible.builtin.tempfile:
+        state: directory
+      register: headless_tekton_tempdir
 
-  - name: Extract tekton
-    ansible.builtin.unarchive:
-      src: https://github.com/tektoncd/cli/releases/latest/download/tkn_{{ latest_tekton_release.tag.lstrip('v') }}_Linux_x86_64.tar.gz
-      remote_src: true
-      dest: "{{ tekton_tempdir.path }}"
+    - name: Extract tekton
+      ansible.builtin.unarchive:
+        src: https://github.com/tektoncd/cli/releases/latest/download/tkn_{{ headless_latest_tekton_release.tag.lstrip('v') }}_Linux_x86_64.tar.gz
+        remote_src: true
+        dest: "{{ headless_tekton_tempdir.path }}"
 
-  - name: Check for tkn binary
-    ansible.builtin.stat:
-      path: "{{ tekton_tempdir.path }}/tkn"
-    register: tkn
+    - name: Check for tkn binary
+      ansible.builtin.stat:
+        path: "{{ headless_tekton_tempdir.path }}/tkn"
+      register: headless_tkn
 
-  - name: Use tekton to install tekton
-    ansible.builtin.copy:
-      remote_src: true
-      src: "{{ tekton_tempdir.path }}/tkn"
-      dest: /home/{{ whoami }}/bin/
-      owner: "{{ whoami }}"
-      group: "{{ whoami }}"
-      mode: 0770
-    when:
-    - tkn.stat.exists is defined
+    - name: Use tekton to install tekton
+      ansible.builtin.copy:
+        remote_src: true
+        src: "{{ headless_tekton_tempdir.path }}/tkn"
+        dest: /home/{{ whoami }}/bin/
+        owner: "{{ whoami }}"
+        group: "{{ whoami }}"
+        mode: "0770"
+      when:
+        - headless_tkn.stat.exists is defined
 
   always:
-  - name: Remove tekton temp dir
-    ansible.builtin.file:
-      path: "{{ tekton_tempdir.path }}"
-      state: absent
-    changed_when: false
+    - name: Remove tekton temp dir
+      ansible.builtin.file:
+        path: "{{ headless_tekton_tempdir.path }}"
+        state: absent
+      changed_when: false

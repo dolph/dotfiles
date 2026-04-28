@@ -1,3 +1,4 @@
+---
 - name: Remove screensavers
   ansible.builtin.dnf:
     name: xscreensaver*

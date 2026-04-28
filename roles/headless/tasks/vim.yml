@@ -1,43 +1,44 @@
+---
 - name: Uninstall other vim variants
   ansible.builtin.dnf:
     name:
-    - vim
-    - vim-enhanced
-    - vim-X11
+      - vim
+      - vim-enhanced
+      - vim-X11
     state: absent
 
 - name: Install neovim
   ansible.builtin.dnf:
     name:
-    - neovim
+      - neovim
 
 - name: Initialize a list of plugins
   ansible.builtin.set_fact:
-    vim_plugin_repos:
-    - 'airblade/vim-gitgutter'
-    - 'vim-airline/vim-airline' # Improved status bar
-    - 'vim-airline/vim-airline-themes'
-    - 'tpope/vim-commentary' # Code comments
-    - 'dolph/vim-colors-solarized-black' # Custom color scheme
-    - 'fholgado/minibufexpl.vim' # Quickly switch between open buffers
-    - 'ervandew/supertab' # Tab completion
-    - 'nvie/vim-flake8' # Run flake8 on save
-    - 'scrooloose/nerdtree' # File browser
-    - 'rust-lang/rust.vim' # Rust support
-    - 'fatih/vim-go' # Go support
-    - 'cespare/vim-toml' # TOML support
-    - 'mechatroner/rainbow_csv' # Syntax highlighting for CSV files
-    - 'godlygeek/tabular' # must appear before preservim/vim-markdown
-    - 'preservim/vim-markdown' # Markdown support
-    - 'christoomey/vim-tmux-navigator' # Unifies vim and tmux split navigation.
-    - 'github/copilot.vim' # Github Copilot
-    - 'hashivim/vim-terraform' # Terraform
-    runtimepaths: []
+    headless_vim_plugin_repos:
+      - "airblade/vim-gitgutter"
+      - "vim-airline/vim-airline" # Improved status bar
+      - "vim-airline/vim-airline-themes"
+      - "tpope/vim-commentary" # Code comments
+      - "dolph/vim-colors-solarized-black" # Custom color scheme
+      - "fholgado/minibufexpl.vim" # Quickly switch between open buffers
+      - "ervandew/supertab" # Tab completion
+      - "nvie/vim-flake8" # Run flake8 on save
+      - "scrooloose/nerdtree" # File browser
+      - "rust-lang/rust.vim" # Rust support
+      - "fatih/vim-go" # Go support
+      - "cespare/vim-toml" # TOML support
+      - "mechatroner/rainbow_csv" # Syntax highlighting for CSV files
+      - "godlygeek/tabular" # must appear before preservim/vim-markdown
+      - "preservim/vim-markdown" # Markdown support
+      - "christoomey/vim-tmux-navigator" # Unifies vim and tmux split navigation.
+      - "github/copilot.vim" # Github Copilot
+      - "hashivim/vim-terraform" # Terraform
+    headless_runtimepaths: []
 
 - name: Compute list of plugin paths to load at runtime
   ansible.builtin.set_fact:
-    runtimepaths: "{{ runtimepaths + ['~/.vim/bundle/' + repo] }}"
-  loop: "{{ vim_plugin_repos }}"
+    headless_runtimepaths: "{{ headless_runtimepaths + ['~/.vim/bundle/' + repo] }}"
+  loop: "{{ headless_vim_plugin_repos }}"
   loop_control:
     loop_var: repo
 
@@ -49,13 +50,13 @@
     group: "{{ whoami }}"
     mode: "0700"
 
-- name: Install vim plugins  # noqa: latest[git]
+- name: Install vim plugins # noqa: latest[git]
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.git:
     repo: "https://github.com/{{ repo }}"
     dest: "/home/{{ whoami }}/.vim/bundle/{{ repo }}"
-  loop: "{{ vim_plugin_repos }}"
+  loop: "{{ headless_vim_plugin_repos }}"
   loop_control:
     loop_var: repo
 

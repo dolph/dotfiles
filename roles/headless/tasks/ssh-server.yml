@@ -1,12 +1,13 @@
+---
 - name: Configure sshd
   ansible.builtin.lineinfile:
     path: /etc/ssh/sshd_config
-    regex: '^{{ item.key }}'
-    insertafter: '^#( )?{{ item.key }} '
+    regex: "^{{ item.key }}"
+    insertafter: "^#( )?{{ item.key }} "
     line: "{{ item.key }} {{ item.value }}"
   with_dict:
-  - AcceptEnv: 'WINDOWID' # accept remote X Window ID, to unify remote and local clipboards
-  - X11Forwarding: 'yes' # allow X11 forwarding
-  - PermitRootLogin: 'no' # disallow remote root logins
-  - PasswordAuthentication: 'no' # disallow password authentication
+    - AcceptEnv: "WINDOWID" # accept remote X Window ID, to unify remote and local clipboards
+    - X11Forwarding: "yes" # allow X11 forwarding
+    - PermitRootLogin: "no" # disallow remote root logins
+    - PasswordAuthentication: "no" # disallow password authentication
   notify: Restart sshd

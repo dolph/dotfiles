@@ -1,3 +1,4 @@
+---
 - name: Install ripgrep
   ansible.builtin.dnf:
     name: ripgrep

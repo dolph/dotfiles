@@ -1,23 +1,24 @@
+---
 - name: Install chromedriver
   ansible.builtin.dnf:
     name:
-    - chromedriver
-    - chromium
+      - chromedriver
+      - chromium
 
 - name: Enable SSH forwarding for sudo
   ansible.builtin.lineinfile:
     path: /etc/sudoers
-    insertafter: '^#?\s*Defaults\s+env_keep\b'
+    insertafter: "^#?\\s*Defaults\\s+env_keep\\b"
     line: 'Defaults env_keep += "SSH_AUTH_SOCK"'
 
 - name: Get value of SSH_AUTH_SOCK
   ansible.builtin.command: echo $SSH_AUTH_SOCK
   changed_when: false
-  register: ssh_auth_sock
+  register: kiosk_ssh_auth_sock
 
 - name: Let whoami read the SSH agent remote socket dir
   ansible.posix.acl:
-    path: "{{ ssh_auth_sock.stdout | dirname }}"
+    path: "{{ kiosk_ssh_auth_sock.stdout | dirname }}"
     entity: "{{ whoami }}"
     etype: user
     permissions: x
@@ -25,26 +26,26 @@
 
 - name: Let whoami use the SSH agent remote socket
   ansible.posix.acl:
-    path: "{{ ssh_auth_sock.stdout }}"
+    path: "{{ kiosk_ssh_auth_sock.stdout }}"
     entity: "{{ whoami }}"
     etype: user
     permissions: rwx
     state: present
 
-- name: Clone movie poster kiosk  # noqa: latest[git]
+- name: Clone movie poster kiosk # noqa: latest[git]
   become: true
   become_user: "{{ whoami }}"
-  become_method: sudo
+  become_method: ansible.builtin.sudo
   become_flags: -E
   ansible.builtin.git:
     repo: git@github.com:dolph/movie-poster-kiosk.git
     dest: "/home/{{ whoami }}/dolph/movie-poster-kiosk"
     update: true
 
-- name: Install requirements  # noqa: package-latest
+- name: Install requirements # noqa: package-latest
   become: true
   become_user: "{{ whoami }}"
-  become_method: sudo
+  become_method: ansible.builtin.sudo
   become_flags: -E
   ansible.builtin.pip:
     executable: /usr/bin/pip
@@ -68,9 +69,9 @@
     group: "{{ whoami }}"
     mode: "0600"
   loop:
-  - kiosk-web.service
-  - kiosk-crawler.service
-  - kiosk-crawler.timer
+    - kiosk-web.service
+    - kiosk-crawler.service
+    - kiosk-crawler.timer
   loop_control:
     loop_var: unit
   notify: Reload systemd
@@ -83,9 +84,9 @@
     enabled: true
     scope: user
   loop:
-  - kiosk-web.service
-  - kiosk-crawler.service
-  - kiosk-crawler.timer
+    - kiosk-web.service
+    - kiosk-crawler.service
+    - kiosk-crawler.timer
   loop_control:
     loop_var: unit
 
@@ -97,7 +98,7 @@
     state: started
     scope: user
   loop:
-  - kiosk-web.service
-  - kiosk-crawler.timer
+    - kiosk-web.service
+    - kiosk-crawler.timer
   loop_control:
     loop_var: unit

@@ -8,7 +8,7 @@ history = 100000
 multiplier = 1
 
 [font]
-size = {{ font_size }}
+size = {{ desktop_font_size }}
 normal = { family = "Hack", style = "Bold" }
 
 [colors]

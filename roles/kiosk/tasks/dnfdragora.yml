@@ -1,3 +1,4 @@
+---
 - name: Copy default dnfdragora configuration
   ansible.builtin.copy:
     src: /etc/xdg/autostart/org.mageia.dnfdragora-updater.desktop
@@ -10,6 +11,6 @@
     path: /home/{{ whoami }}/.config/autostart/org.mageia.dnfdragora-updater.desktop
     section: Desktop Entry
     option: Hidden
-    value: 'true'
+    value: "true"
     no_extra_spaces: true
     mode: "0600"

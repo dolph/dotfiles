@@ -107,7 +107,7 @@ set iskeyword+=-
 noremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 
 " load plugins
-set runtimepath^={{ runtimepaths | join(',') }}
+set runtimepath^={{ headless_runtimepaths | join(',') }}
 
 " set color theme
 silent! colorscheme solarized

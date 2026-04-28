@@ -1,9 +1,10 @@
+---
 - name: Get current localectl status
   ansible.builtin.command:
     argv:
       - localectl
       - status
-  register: localectl_status
+  register: desktop_localectl_status
   changed_when: false
 
 - name: Set Caps Lock to Escape in X11 keymap
@@ -17,4 +18,4 @@
       - caps:escape
   become: true
   changed_when: true
-  when: "'X11 Options: caps:escape' not in localectl_status.stdout"
+  when: "'X11 Options: caps:escape' not in desktop_localectl_status.stdout"
