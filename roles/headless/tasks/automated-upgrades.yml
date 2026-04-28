@@ -1,6 +1,6 @@
 ---
 - name: install dnf-automatic
-  dnf:
+  ansible.builtin.dnf:
     name: dnf-automatic
   register: task
   until: task is succeeded
@@ -8,7 +8,7 @@
   delay: 0
 
 - name: configure dnf-automatic
-  template:
+  ansible.builtin.template:
     src: etc/dnf/automatic.conf
     dest: /etc/dnf/automatic.conf
     mode: 0644
@@ -16,13 +16,13 @@
     group: root
 
 - name: ensure dnf-automatic is running
-  systemd:
+  ansible.builtin.systemd:
     name: dnf-automatic.timer
     state: started
     enabled: true
 
 - name: schedule automatic reboots when necessary
-  template:
+  ansible.builtin.template:
     src: etc/systemd/system/{{ unit }}
     dest: /etc/systemd/system/{{ unit }}
   loop:
@@ -33,7 +33,7 @@
   register: reboot_units
 
 - name: enable scheduled reboots
-  systemd:
+  ansible.builtin.systemd:
     name: reboot.timer
     state: started
     enabled: true

@@ -1,13 +1,13 @@
 ---
 - name: discover latest version of kubectl
-  uri:
+  ansible.builtin.uri:
     url: https://dl.k8s.io/release/stable.txt
     return_content: true
   check_mode: false
   register: kubectl_version
 
 - name: install kubectl
-  get_url:
+  ansible.builtin.get_url:
     url: https://dl.k8s.io/release/{{ kubectl_version.content }}/bin/linux/amd64/kubectl
     dest: /home/{{ whoami }}/bin/kubectl
     owner: "{{ whoami }}"
@@ -19,14 +19,14 @@
   - name: create temp dir to extract krew
     become: true
     become_user: "{{ whoami }}"
-    tempfile:
+    ansible.builtin.tempfile:
       state: directory
     register: krew_tempdir
 
   - name: extract krew
     become: true
     become_user: "{{ whoami }}"
-    unarchive:
+    ansible.builtin.unarchive:
       src: https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz
       remote_src: true
       dest: "{{ krew_tempdir.path }}"
@@ -35,12 +35,12 @@
   - name: use krew to install krew
     become: true
     become_user: "{{ whoami }}"
-    command: "{{ krew_tempdir.path }}/krew-linux_amd64 install krew"
+    ansible.builtin.command: "{{ krew_tempdir.path }}/krew-linux_amd64 install krew"
     when: krew_tempdir.path is defined  # not defined in check mode
 
   always:
   - name: remove krew temp dir
-    file:
+    ansible.builtin.file:
       path: "{{ krew_tempdir.path }}"
       state: absent
     changed_when: false
@@ -49,7 +49,7 @@
 - name: install kube plugins
   become: true
   become_user: "{{ whoami }}"
-  shell: "source /home/{{ whoami }}/.profile; /home/{{ whoami }}/bin/kubectl krew install {{ plugin }}"
+  ansible.builtin.shell: "source /home/{{ whoami }}/.profile; /home/{{ whoami }}/bin/kubectl krew install {{ plugin }}"
   register: task
   changed_when: '"Skipping plugin" is not in task.stdout'
   loop:
@@ -61,7 +61,7 @@
 # install tekton https://github.com/tektoncd/cli/releases
 
 - name: install python3-github3 to help discover github release versions
-  dnf:
+  ansible.builtin.dnf:
     name: python3-github3py
 
 - name: discover the latest release tag of tekton
@@ -74,23 +74,23 @@
 - name: install tekton
   block:
   - name: create temp dir to extract tekton
-    tempfile:
+    ansible.builtin.tempfile:
       state: directory
     register: tekton_tempdir
 
   - name: extract tekton
-    unarchive:
+    ansible.builtin.unarchive:
       src: https://github.com/tektoncd/cli/releases/latest/download/tkn_{{ latest_tekton_release.tag.lstrip('v') }}_Linux_x86_64.tar.gz
       remote_src: true
       dest: "{{ tekton_tempdir.path }}"
 
   - name: check for tkn binary
-    stat:
+    ansible.builtin.stat:
       path: "{{ tekton_tempdir.path }}/tkn"
     register: tkn
 
   - name: use tekton to install tekton
-    copy:
+    ansible.builtin.copy:
       remote_src: true
       src: "{{ tekton_tempdir.path }}/tkn"
       dest: /home/{{ whoami }}/bin/
@@ -102,7 +102,7 @@
 
   always:
   - name: remove tekton temp dir
-    file:
+    ansible.builtin.file:
       path: "{{ tekton_tempdir.path }}"
       state: absent
     changed_when: false

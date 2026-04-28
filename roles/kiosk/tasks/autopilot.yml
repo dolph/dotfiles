@@ -1,17 +1,17 @@
 - name: install chromedriver
-  dnf:
+  ansible.builtin.dnf:
     name:
     - chromedriver
     - chromium
 
 - name: enable SSH forwarding for sudo
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/sudoers
     insertafter: '^#?\s*Defaults\s+env_keep\b'
     line: 'Defaults env_keep += "SSH_AUTH_SOCK"'
 
 - name: get value of SSH_AUTH_SOCK
-  command: echo $SSH_AUTH_SOCK
+  ansible.builtin.command: echo $SSH_AUTH_SOCK
   changed_when: false
   register: ssh_auth_sock
 
@@ -36,7 +36,7 @@
   become_user: "{{ whoami }}"
   become_method: sudo
   become_flags: -E
-  git:
+  ansible.builtin.git:
     repo: git@github.com:dolph/movie-poster-kiosk.git
     dest: "/home/{{ whoami }}/dolph/movie-poster-kiosk"
     update: true
@@ -46,21 +46,21 @@
   become_user: "{{ whoami }}"
   become_method: sudo
   become_flags: -E
-  pip:
+  ansible.builtin.pip:
     executable: /usr/bin/pip
     requirements: "/home/{{ whoami }}/dolph/movie-poster-kiosk/requirements.txt"
     virtualenv: "/home/{{ whoami }}/venv/movie-poster-kiosk"
     state: latest
 
 - name: create systemd user directory
-  file:
+  ansible.builtin.file:
     path: /home/{{ whoami }}/.config/systemd/user/
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
 - name: install systemd user units
-  template:
+  ansible.builtin.template:
     src: home/config/systemd/user/{{ unit }}
     dest: /home/{{ whoami }}/.config/systemd/user/{{ unit }}
     owner: "{{ whoami }}"
@@ -76,7 +76,7 @@
 - name: reload systemd
   become: true
   become_user: "{{ whoami }}"
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: true
     scope: user
   when: systemd_units.changed
@@ -84,7 +84,7 @@
 - name: enable systemd user units
   become: true
   become_user: "{{ whoami }}"
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ unit }}"
     enabled: true
     scope: user
@@ -98,7 +98,7 @@
 - name: start simple systemd service units
   become: true
   become_user: "{{ whoami }}"
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ unit }}"
     state: started
     scope: user

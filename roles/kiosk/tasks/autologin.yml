@@ -1,9 +1,9 @@
 - name: create autologin user group
-  group:
+  ansible.builtin.group:
     name: autologin
 
 - name: add user to autologin group
-  user:
+  ansible.builtin.user:
     name: "{{ whoami }}"
     groups: autologin
     append: true

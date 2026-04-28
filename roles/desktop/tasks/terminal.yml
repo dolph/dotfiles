@@ -1,5 +1,5 @@
 - name: disable terminal bell on boot by disabling PC speaker
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/modprobe.d/nobeep.conf
     create: true
     line: blacklist pcspkr

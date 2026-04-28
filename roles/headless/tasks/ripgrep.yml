@@ -1,9 +1,9 @@
 - name: install ripgrep
-  dnf:
+  ansible.builtin.dnf:
     name: ripgrep
 
 - name: configure ripgrep
-  template:
+  ansible.builtin.template:
     src: home/ripgreprc
     dest: "/home/{{ whoami }}/.ripgreprc"
     owner: "{{ whoami }}"

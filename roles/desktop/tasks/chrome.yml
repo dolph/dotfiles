@@ -1,5 +1,5 @@
 - name: install workstation repos
-  dnf:
+  ansible.builtin.dnf:
     name: fedora-workstation-repositories
 
 - name: trust the google linux packaging GPG key
@@ -9,14 +9,14 @@
     fingerprint: EB4C 1BFD 4F04 2F6D DDCC EC91 7721 F63B D38B 4796
 
 - name: install chrome
-  dnf:
+  ansible.builtin.dnf:
     name: google-chrome-stable
     enablerepo: google-chrome
   when:
   - ansible_facts["architecture"] != 'aarch64'
 
 - name: settle for chromium
-  dnf:
+  ansible.builtin.dnf:
     name: chromium
   when:
   - ansible_facts["architecture"] == 'aarch64'

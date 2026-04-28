@@ -1,5 +1,5 @@
 - name: install web browser
-  dnf:
+  ansible.builtin.dnf:
     name: midori
 
 - name: launch web browser in kiosk mode automatically

@@ -1,3 +1,3 @@
 - name: install gimp
-  dnf:
+  ansible.builtin.dnf:
     name: gimp

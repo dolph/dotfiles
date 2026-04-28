@@ -1,12 +1,12 @@
 ---
 - name: check if this is an IBM-managed system
-  stat:
+  ansible.builtin.stat:
     path: /opt/ibm/
   register: ibm
   tags: always
 
 - name: set fact
-  set_fact:
+  ansible.builtin.set_fact:
     ibm_managed: "{{ ibm.stat.isdir is defined | bool }}"
   tags: always
 
@@ -16,11 +16,11 @@
   tags: timezone
 
 - name: remap keyboard
-  import_tasks: keyboard.yml
+  ansible.builtin.import_tasks: keyboard.yml
   tags: keyboard
 
 - name: removed unused desktop packages
-  dnf:
+  ansible.builtin.dnf:
     name:
     - asunder
     - claws-mail
@@ -31,47 +31,47 @@
   tags: dnf
 
 - name: configure custom fonts
-  import_tasks: fonts.yml
+  ansible.builtin.import_tasks: fonts.yml
   tags: fonts
 
 - name: configure terminal
-  import_tasks: terminal.yml
+  ansible.builtin.import_tasks: terminal.yml
   tags:
   - terminal
 
 - name: install rpmfusion
-  import_tasks: rpmfusion.yml
+  ansible.builtin.import_tasks: rpmfusion.yml
   tags: rpmfusion
 
 - name: configure vlc
-  import_tasks: vlc.yml
+  ansible.builtin.import_tasks: vlc.yml
   tags: vlc
 
 - name: configure i3
-  import_tasks: i3.yml
+  ansible.builtin.import_tasks: i3.yml
   tags: i3
 
 - name: install google chrome
-  import_tasks: chrome.yml
+  ansible.builtin.import_tasks: chrome.yml
   tags: chrome
 
 - name: install nvidia drivers
-  import_tasks: nvidia.yml
+  ansible.builtin.import_tasks: nvidia.yml
   tags: nvidia
 
 - name: configure pulseaudio
-  import_tasks: pulseaudio.yml
+  ansible.builtin.import_tasks: pulseaudio.yml
   tags: pulseaudio
 
 - name: configure signal
-  import_tasks: signal.yml
+  ansible.builtin.import_tasks: signal.yml
   tags: signal
 
 - name: configure gimp
-  import_tasks: gimp.yml
+  ansible.builtin.import_tasks: gimp.yml
   tags: gimp
 
 - name: install Brother printer dependencies
-  dnf:
+  ansible.builtin.dnf:
     name: perl-File-Copy
   tags: brother

@@ -1,5 +1,5 @@
 - name: configure sshd
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/ssh/sshd_config
     regex: '^{{ item.key }}'
     insertafter: '^#( )?{{ item.key }} '
@@ -12,7 +12,7 @@
   register: sshd_config
 
 - name: restart sshd
-  systemd:
+  ansible.builtin.systemd:
     name: sshd
     state: restarted
   when: sshd_config.changed

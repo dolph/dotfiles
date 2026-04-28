@@ -1,17 +1,17 @@
 - name: ensure we're pulseaudio is gone
-  dnf:
+  ansible.builtin.dnf:
     name: pulseaudio
     state: absent
 
 - name: ensure pipewire is running and that we can control it
-  dnf:
+  ansible.builtin.dnf:
     name:
     - pipewire-pulseaudio
     - pavucontrol
 
 # https://askubuntu.com/a/765024/22414
 - name: add echo cancellation to mic input
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: /etc/pulse/default.pa
     marker: '# {mark} MICROPHONE ECHO CANCELLATION BLOCK'
     block: |

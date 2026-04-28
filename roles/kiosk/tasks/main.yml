@@ -4,37 +4,37 @@
   tags: timezone
 
 - name: install xfce
-  dnf:
+  ansible.builtin.dnf:
     name: '@Xfce Desktop'
   tags: xfce
 
 - name: boot into graphical desktop
-  file:
+  ansible.builtin.file:
     src: /lib/systemd/system/runlevel5.target
     path: /etc/systemd/system/default.target
     state: link
   tags: xfce
 
 - name: automatically login on boot
-  import_tasks: autologin.yml
+  ansible.builtin.import_tasks: autologin.yml
   tags: autologin
 
 - name: configure web browser
-  import_tasks: browser.yml
+  ansible.builtin.import_tasks: browser.yml
   tags: browser
 
 - name: hide the mouse when idle
-  import_tasks: unclutter.yml
+  ansible.builtin.import_tasks: unclutter.yml
   tags: unclutter
 
 - name: disable dnfdragora notifications
-  import_tasks: dnfdragora.yml
+  ansible.builtin.import_tasks: dnfdragora.yml
   tags: dnfdragora
 
 - name: keep the display on permanently
-  import_tasks: stay-on.yml
+  ansible.builtin.import_tasks: stay-on.yml
   tags: stay-on
 
 - name: configure autopilot
-  import_tasks: autopilot.yml
+  ansible.builtin.import_tasks: autopilot.yml
   tags: autopilot

@@ -1,5 +1,5 @@
 - name: uninstall other vim variants
-  dnf:
+  ansible.builtin.dnf:
     name:
     - vim
     - vim-enhanced
@@ -7,12 +7,12 @@
     state: absent
 
 - name: install neovim
-  dnf:
+  ansible.builtin.dnf:
     name:
     - neovim
 
 - name: initialize a list of plugins
-  set_fact:
+  ansible.builtin.set_fact:
     vim_plugin_repos:
     - 'airblade/vim-gitgutter'
     - 'vim-airline/vim-airline' # Improved status bar
@@ -35,14 +35,14 @@
     runtimepaths: []
 
 - name: compute list of plugin paths to load at runtime
-  set_fact:
+  ansible.builtin.set_fact:
     runtimepaths: "{{ runtimepaths + ['~/.vim/bundle/' + repo] }}"
   loop: "{{ vim_plugin_repos }}"
   loop_control:
     loop_var: repo
 
 - name: ensure vim plugin directory exists
-  file:
+  ansible.builtin.file:
     path: "/home/{{ whoami }}/.vim/bundle/"
     state: directory
     owner: "{{ whoami }}"
@@ -51,7 +51,7 @@
 - name: install vim plugins
   become: true
   become_user: "{{ whoami }}"
-  git:
+  ansible.builtin.git:
     repo: "https://github.com/{{ repo }}"
     dest: "/home/{{ whoami }}/.vim/bundle/{{ repo }}"
   loop: "{{ vim_plugin_repos }}"
@@ -59,21 +59,21 @@
     loop_var: repo
 
 - name: configure vim
-  template:
+  ansible.builtin.template:
     src: home/vimrc
     dest: "/home/{{ whoami }}/.vimrc"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
 - name: create neovim config dir
-  file:
+  ansible.builtin.file:
     path: "/home/{{ whoami }}/.config/nvim"
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
 
 - name: configure neovim to use vimrc
-  copy:
+  ansible.builtin.copy:
     content: |
       set runtimepath^=~/.vim runtimepath+=~/.vim/after
       let &packpath = &runtimepath
@@ -83,6 +83,6 @@
     group: "{{ whoami }}"
 
 - name: remove vim plugin manager
-  file:
+  ansible.builtin.file:
     path: "/home/{{ whoami }}/.vim/bundle/Vundle.vim"
     state: absent

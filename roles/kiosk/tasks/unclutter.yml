@@ -1,5 +1,5 @@
 - name: install package dependencies
-  dnf:
+  ansible.builtin.dnf:
     name:
     - arm-none-eabi-binutils-cs
     - arm-none-eabi-gcc-cs
@@ -16,7 +16,7 @@
 - name: clone unclutter
   become: true
   become_user: "{{ whoami }}"
-  git:
+  ansible.builtin.git:
     repo: https://github.com/Airblader/unclutter-xfixes
     dest: "/home/{{ whoami }}/unclutter"
     version: v1.3
@@ -25,7 +25,7 @@
 - name: clean unclutter
   become: true
   become_user: "{{ whoami }}"
-  command:
+  ansible.builtin.command:
     chdir: "/home/{{ whoami }}/unclutter"
     cmd: make clean
   when: unclutter_git.changed
@@ -35,13 +35,13 @@
 - name: build unclutter
   become: true
   become_user: "{{ whoami }}"
-  command:
+  ansible.builtin.command:
     chdir: "/home/{{ whoami }}/unclutter"
     cmd: make
   register: build_unclutter
 
 - name: install unclutter
-  command:
+  ansible.builtin.command:
     chdir: "/home/{{ whoami }}/unclutter"
     cmd: make install
   when: build_unclutter.changed

@@ -1,5 +1,5 @@
 - name: copy default dnfdragora configuration
-  copy:
+  ansible.builtin.copy:
     src: /etc/xdg/autostart/org.mageia.dnfdragora-updater.desktop
     dest: /home/{{ whoami }}/.config/autostart/org.mageia.dnfdragora-updater.desktop
     force: false
