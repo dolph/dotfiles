@@ -1,0 +1,6 @@
+- name: Reload systemd
+  become: true
+  become_user: "{{ whoami }}"
+  ansible.builtin.systemd:
+    daemon_reload: true
+    scope: user

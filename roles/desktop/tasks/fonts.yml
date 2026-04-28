@@ -13,10 +13,4 @@
   - Hack-BoldItalic.ttf
   - Hack-Italic.ttf
   - Hack-Regular.ttf
-  register: new_fonts
-
-- name: Update the font cache
-  ansible.builtin.command: fc-cache -v
-  changed_when: true
-  when:
-  - new_fonts.changed
+  notify: Update the font cache

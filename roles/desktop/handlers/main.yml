@@ -1,3 +1,7 @@
+- name: Update the font cache
+  ansible.builtin.command: fc-cache -v
+  changed_when: true
+
 - name: Restart pulseaudio
   become_user: "{{ whoami }}"
   ansible.builtin.command: pulseaudio -k

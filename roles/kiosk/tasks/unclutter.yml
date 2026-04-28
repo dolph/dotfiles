@@ -22,7 +22,7 @@
     version: v1.3
   register: unclutter_git
 
-- name: Clean unclutter
+- name: Clean unclutter  # noqa: no-handler
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.command:
@@ -42,7 +42,7 @@
   changed_when: true
   register: build_unclutter
 
-- name: Install unclutter
+- name: Install unclutter  # noqa: no-handler
   ansible.builtin.command:
     chdir: "/home/{{ whoami }}/unclutter"
     cmd: make install

@@ -71,15 +71,7 @@
   - kiosk-crawler.timer
   loop_control:
     loop_var: unit
-  register: systemd_units
-
-- name: Reload systemd
-  become: true
-  become_user: "{{ whoami }}"
-  ansible.builtin.systemd:
-    daemon_reload: true
-    scope: user
-  when: systemd_units.changed
+  notify: Reload systemd
 
 - name: Enable systemd user units
   become: true
