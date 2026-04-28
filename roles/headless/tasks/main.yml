@@ -117,6 +117,7 @@
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0700"
   tags:
   - bin
 

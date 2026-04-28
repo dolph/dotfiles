@@ -11,6 +11,7 @@
     dest: "/home/{{ whoami }}/.flake8"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"
 
 - name: Install virtualenvwrapperlite  # noqa: latest[git]
   become: true

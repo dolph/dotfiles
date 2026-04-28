@@ -47,6 +47,7 @@
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0700"
 
 - name: Install vim plugins  # noqa: latest[git]
   become: true
@@ -64,6 +65,7 @@
     dest: "/home/{{ whoami }}/.vimrc"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"
 
 - name: Create neovim config dir
   ansible.builtin.file:
@@ -71,6 +73,7 @@
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0700"
 
 - name: Configure neovim to use vimrc
   ansible.builtin.copy:
@@ -81,6 +84,7 @@
     dest: "/home/{{ whoami }}/.config/nvim/init.vim"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"
 
 - name: Remove vim plugin manager
   ansible.builtin.file:

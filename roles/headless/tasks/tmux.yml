@@ -16,6 +16,7 @@
   ansible.builtin.file:
     path: ~/.tmux-plugins
     state: directory
+    mode: "0700"
 
 - name: Install tmux plugins  # noqa: latest[git]
   become: true
@@ -38,6 +39,7 @@
     dest: "/home/{{ whoami }}/.tmux.conf"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"
   register: tmux_conf
   tags: configure-tmux
 

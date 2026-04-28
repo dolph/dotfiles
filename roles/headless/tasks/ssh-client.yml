@@ -4,6 +4,7 @@
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0700"
 
 - name: Create an SSH config file
   ansible.builtin.command: touch "/home/{{ whoami }}/.ssh/config"

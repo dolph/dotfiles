@@ -12,6 +12,7 @@
     option: "{{ item.key }}"
     value: "{{ item.value }}"
     no_extra_spaces: true
+    mode: "0600"
   with_dict:
     Name: Power Manager
     Exec: sh -c "sleep 60; xfce4-power-manager -q"
@@ -36,6 +37,7 @@
     option: "{{ item.key }}"
     value: "{{ item.value }}"
     no_extra_spaces: true
+    mode: "0600"
   with_dict:
     Name: Disable Energy Star
     Exec: sh -c "sleep 60; xset -dpms; xset s noblank; xset s off;"

@@ -2,12 +2,14 @@
   ansible.builtin.file:
     path: /usr/share/fonts/hack
     state: directory
+    mode: "0755"
 
 # https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
 - name: Install hack
   ansible.builtin.copy:
     src: ttf/{{ item }}
     dest: /usr/share/fonts/hack/{{ item }}
+    mode: "0644"
   loop:
   - Hack-Bold.ttf
   - Hack-BoldItalic.ttf

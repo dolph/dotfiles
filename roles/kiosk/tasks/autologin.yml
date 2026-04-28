@@ -15,6 +15,7 @@
     option: autologin-user
     value: "{{ whoami }}"
     no_extra_spaces: true
+    mode: "0644"
 
 - name: Automatically login immediately
   community.general.ini_file:
@@ -23,3 +24,4 @@
     option: autologin-user-timeout
     value: '0'
     no_extra_spaces: true
+    mode: "0644"

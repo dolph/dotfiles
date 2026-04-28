@@ -25,6 +25,7 @@
   ansible.builtin.template:
     src: etc/systemd/system/{{ unit }}
     dest: /etc/systemd/system/{{ unit }}
+    mode: "0644"
   loop:
   - reboot.service
   - reboot.timer
@@ -45,3 +46,4 @@
     section: main
     option: max_parallel_downloads
     value: "3"
+    mode: "0644"

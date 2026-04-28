@@ -25,6 +25,7 @@
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0700"
 
 - name: Configure hub
   ansible.builtin.blockinfile:
@@ -38,15 +39,24 @@
     create: true
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"
   when: github_username is defined
 
-- name: Configure git, gist
+- name: Configure git
   ansible.builtin.template:
     src: "home/{{ item }}"
     dest: "/home/{{ whoami }}/.{{ item }}"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"
   with_items:
   - gitconfig
   - gitignore_global
-  - gist
+
+- name: Configure gist
+  ansible.builtin.template:
+    src: home/gist
+    dest: "/home/{{ whoami }}/.gist"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: "0600"

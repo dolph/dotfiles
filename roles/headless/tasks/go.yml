@@ -8,6 +8,7 @@
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0700"
 
 - name: Install vim-go plugins
   become: true

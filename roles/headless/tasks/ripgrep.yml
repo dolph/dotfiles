@@ -8,3 +8,4 @@
     dest: "/home/{{ whoami }}/.ripgreprc"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"

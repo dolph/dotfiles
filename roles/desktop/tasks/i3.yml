@@ -69,6 +69,7 @@
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0700"
   loop:
   - dunst
   - i3
@@ -83,6 +84,7 @@
     dest: /home/{{ whoami }}/.config/{{ dir }}/config
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"
   loop:
   - i3
   - i3status
@@ -96,6 +98,7 @@
     dest: /home/{{ whoami }}/.config/rofi/config.rasi
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"
   notify: restart i3
 
 - name: Configure alacritty
@@ -104,17 +107,20 @@
     dest: /home/{{ whoami }}/.alacritty.toml
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"
 
 # https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
 - name: Configure touchpad tap-to-click
   ansible.builtin.template:
     src: etc/X11/xorg.conf.d/90-touchpad.conf
     dest: /etc/X11/xorg.conf.d/90-touchpad.conf
+    mode: "0644"
 
 - name: Disable mouse acceleration
   ansible.builtin.template:
     src: etc/X11/xorg.conf.d/50-mouse-acceleration.conf
     dest: /etc/X11/xorg.conf.d/50-mouse-acceleration.conf
+    mode: "0644"
 
 - name: Configure X
   ansible.builtin.template:
@@ -142,6 +148,7 @@
     option: background
     value: "#000000"
     no_extra_spaces: true
+    mode: "0644"
 
 - name: Configure dunst
   ansible.builtin.template:

@@ -10,6 +10,7 @@
     dest: "/home/{{ whoami }}/.{{ item }}"
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"
   with_items:
   - bash_profile
   - bash_prompt
@@ -32,6 +33,7 @@
     force: false
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"
   tags:
   - terminal
   - localrc

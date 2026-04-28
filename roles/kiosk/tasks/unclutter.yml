@@ -58,6 +58,7 @@
     option: "{{ item.key }}"
     value: "{{ item.value }}"
     no_extra_spaces: true
+    mode: "0600"
   with_dict:
     Name: Unclutter
     Exec: unclutter --timeout 3

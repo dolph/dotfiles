@@ -58,6 +58,7 @@
     state: directory
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0700"
 
 - name: Install systemd user units
   ansible.builtin.template:
@@ -65,6 +66,7 @@
     dest: /home/{{ whoami }}/.config/systemd/user/{{ unit }}
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
+    mode: "0600"
   loop:
   - kiosk-web.service
   - kiosk-crawler.service
