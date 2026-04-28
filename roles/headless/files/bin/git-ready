@@ -1,7 +1,13 @@
 #!/bin/bash
+# Requires a remote named 'origin'.
 set -e
+
+die() { echo "$*" >&2; exit 1; }
+
 BRANCH_NAME=${1:-$(name)}
-ORIGIN_DEFAULT_BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+ORIGIN_DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|refs/remotes/origin/||')
+
+[ -n "${ORIGIN_DEFAULT_BRANCH}" ] || die "Could not determine origin default branch; is 'origin' configured?"
 
 # Preserve uncommitted changes, if there are any.
 git diff-index --quiet HEAD -- || DIRTY=true
