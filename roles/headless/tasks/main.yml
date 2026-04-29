@@ -13,12 +13,6 @@
     - name: Include vault secrets
       ansible.builtin.include_vars:
         file: "{{ playbook_dir }}/vault/localhost.yml"
-        name: vault_secrets
-      no_log: true
-    - name: Promote vault secrets to facts # noqa: var-naming[no-role-prefix]
-      ansible.builtin.set_fact:
-        "{{ item.key }}": "{{ item.value }}"
-      loop: "{{ vault_secrets | dict2items }}"
       no_log: true
   rescue:
     - name: Continue without vault secrets

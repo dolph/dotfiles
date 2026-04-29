@@ -74,5 +74,19 @@ jobs:
           trap cleanup EXIT
 
           docker exec --tty "$container_id" env TERM=xterm /etc/ansible/bootstrap.sh
+          set +e
           docker exec --tty "$container_id" env TERM=xterm \
-            ansible-playbook /etc/ansible/headless.yml
+            ansible-playbook -v /etc/ansible/headless.yml 2>&1 | tee /tmp/play.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            echo "::group::Failed task context"
+            awk '
+              /^TASK \[/{t=$0}
+              /^(failed:|fatal:)/{
+                gsub(/%/, "%25"); gsub(/\r/, "%0D"); gsub(/\n/, "%0A");
+                print "::error::" t " :: " $0
+              }
+            ' /tmp/play.log | head -50
+            echo "::endgroup::"
+          fi
+          exit "$status"
