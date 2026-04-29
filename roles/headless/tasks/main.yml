@@ -7,6 +7,8 @@
     - whoami
 
 - name: Load vault-encrypted secrets when available
+  tags:
+    - always
   block:
     - name: Include vault secrets
       ansible.builtin.include_vars:
@@ -22,8 +24,6 @@
     - name: Continue without vault secrets
       ansible.builtin.debug:
         msg: "vault/localhost.yml unavailable; secret-dependent tasks will be skipped"
-  tags:
-    - always
 
 - name: Ensure user exists
   ansible.builtin.user:
