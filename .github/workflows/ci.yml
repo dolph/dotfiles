@@ -73,20 +73,24 @@ jobs:
           function cleanup { docker rm -f "$container_id"; }
           trap cleanup EXIT
 
-          docker exec --tty "$container_id" env TERM=xterm /etc/ansible/bootstrap.sh
           set +e
-          docker exec --tty "$container_id" env TERM=xterm \
-            ansible-playbook -v /etc/ansible/headless.yml 2>&1 | tee /tmp/play.log
+          docker exec --tty "$container_id" env TERM=xterm /etc/ansible/bootstrap.sh \
+            2>&1 | tee /tmp/bootstrap.log
+          bootstrap_status=${PIPESTATUS[0]}
+          if [ "$bootstrap_status" -ne 0 ]; then
+            tail -40 /tmp/bootstrap.log | while IFS= read -r line; do
+              esc=$(printf '%s' "$line" | sed 's/%/%25/g; s/\r/%0D/g')
+              echo "::error::bootstrap: $esc"
+            done
+            exit "$bootstrap_status"
+          fi
+          docker exec --tty "$container_id" env TERM=xterm ANSIBLE_FORCE_COLOR=0 \
+            ansible-playbook /etc/ansible/headless.yml 2>&1 | tee /tmp/play.log
           status=${PIPESTATUS[0]}
           if [ "$status" -ne 0 ]; then
-            echo "::group::Failed task context"
-            awk '
-              /^TASK \[/{t=$0}
-              /^(failed:|fatal:)/{
-                gsub(/%/, "%25"); gsub(/\r/, "%0D"); gsub(/\n/, "%0A");
-                print "::error::" t " :: " $0
-              }
-            ' /tmp/play.log | head -50
-            echo "::endgroup::"
+            tail -80 /tmp/play.log | while IFS= read -r line; do
+              esc=$(printf '%s' "$line" | sed 's/%/%25/g; s/\r/%0D/g')
+              echo "::error::play: $esc"
+            done
           fi
           exit "$status"
