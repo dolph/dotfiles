@@ -1,0 +1,55 @@
+---
+- name: Ensure claude config dir exists
+  ansible.builtin.file:
+    path: "/home/{{ whoami }}/.claude"
+    state: directory
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: "0700"
+
+- name: Read existing claude settings
+  ansible.builtin.slurp:
+    src: "/home/{{ whoami }}/.claude/settings.json"
+  register: headless_claude_settings_raw
+  failed_when: false
+
+- name: Parse existing claude settings
+  ansible.builtin.set_fact:
+    headless_claude_settings: >-
+      {{ (headless_claude_settings_raw.content | b64decode | from_json)
+         if headless_claude_settings_raw.content is defined
+         else {} }}
+
+- name: Apply claude settings
+  ansible.builtin.copy:
+    content: "{{ headless_claude_settings | combine(headless_claude_settings_desired, recursive=true) | to_nice_json(indent=2) }}\n"
+    dest: "/home/{{ whoami }}/.claude/settings.json"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: "0600"
+  vars:
+    headless_claude_settings_desired:
+      model: claude-sonnet-4-6
+      alwaysThinkingEnabled: false
+      effortLevel: max
+      opusPlanEnabled: true
+      hooks:
+        Stop:
+          - hooks:
+              - type: command
+                command: >-
+                  WIN=$(tmux display-message -p '#W' 2>/dev/null || echo '');
+                  DIR=$(basename "$PWD");
+                  case "$WIN" in bash|claude|'') CTX="$DIR" ;; *) CTX="$WIN" ;; esac;
+                  notify-send -i dialog-information "Claude [$CTX]" 'Done' 2>/dev/null || true;
+                  printf '\a'
+        Notification:
+          - hooks:
+              - type: command
+                command: >-
+                  WIN=$(tmux display-message -p '#W' 2>/dev/null || echo '');
+                  DIR=$(basename "$PWD");
+                  case "$WIN" in bash|claude|'') CTX="$DIR" ;; *) CTX="$WIN" ;; esac;
+                  MSG=$(jq -r '.message // "Needs your attention"' 2>/dev/null);
+                  notify-send -i dialog-warning "Claude [$CTX]" "$MSG" 2>/dev/null || true;
+                  printf '\a'

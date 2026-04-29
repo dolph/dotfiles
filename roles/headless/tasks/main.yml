@@ -94,6 +94,10 @@
   ansible.builtin.import_tasks: tmux.yml
   tags: tmux
 
+- name: Configure claude
+  ansible.builtin.import_tasks: claude.yml
+  tags: claude
+
 - name: Configure python
   ansible.builtin.import_tasks: python.yml
   tags: python
