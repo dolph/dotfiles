@@ -29,3 +29,6 @@ build/
 
 # virtualenv
 venv/
+
+# Claude
+.claude/
