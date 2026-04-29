@@ -89,26 +89,9 @@ jobs:
             ansible-playbook /etc/ansible/headless.yml 2>&1 | tee /tmp/play.log
           status=${PIPESTATUS[0]}
           if [ "$status" -ne 0 ]; then
-            # Extract the failing task and any fatal/failed payload as annotations.
-            python3 - <<'PY'
-import re, sys
-with open('/tmp/play.log') as f:
-    lines = f.read().splitlines()
-out = []
-last_task = ''
-for i, line in enumerate(lines):
-    if line.startswith('TASK ['):
-        last_task = line
-    if line.startswith(('fatal:', 'failed:')) or 'FAILED!' in line:
-        out.append('--- ' + last_task)
-        for j in range(i, min(i + 25, len(lines))):
-            out.append(lines[j])
-        out.append('')
-if not out:
-    out = lines[-120:]
-for line in out:
-    esc = line.replace('%', '%25').replace('\r', '%0D')
-    print(f'::error::play: {esc}')
-PY
+            grep -B1 -A20 -E '^(fatal:|failed:)|FAILED!' /tmp/play.log \
+              | sed 's/%/%25/g; s/\r/%0D/g' \
+              | awk '{print "::error::play: " $0}' \
+              | head -300
           fi
           exit "$status"
