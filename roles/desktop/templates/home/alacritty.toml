@@ -46,4 +46,5 @@ bindings = [
     { key = "Tab", mods = "Shift|Control", command = { program = "tmux", args = ["select-window", "-t", "-" ] } },
     { key = "C", mods = "Shift|Control", action = "Copy" },
     { key = "V", mods = "Shift|Control", action = "Paste" },
+    { key = "E", mods = "Control", chars = "\x18\x05" }, # Open $EDITOR in Claude Code
 ]
