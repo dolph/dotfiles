@@ -89,9 +89,9 @@ jobs:
             ansible-playbook /etc/ansible/headless.yml 2>&1 | tee /tmp/play.log
           status=${PIPESTATUS[0]}
           if [ "$status" -ne 0 ]; then
-            grep -B1 -A20 -E '^(fatal:|failed:)|FAILED!' /tmp/play.log \
+            tail -200 /tmp/play.log \
               | sed 's/%/%25/g; s/\r/%0D/g' \
-              | awk '{print "::error::play: " $0}' \
-              | head -300
+              | awk 'NF { print "::error::play: " $0 }' \
+              | head -200
           fi
           exit "$status"
