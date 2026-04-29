@@ -27,6 +27,12 @@ fi
 git checkout "${ORIGIN_DEFAULT_BRANCH}"
 try git pull
 
+# Delete local branches that have no commits off the default branch.
+git branch --merged "${ORIGIN_DEFAULT_BRANCH}" \
+    | grep -v "^\*" \
+    | grep -v "^  ${ORIGIN_DEFAULT_BRANCH}$" \
+    | xargs -r git branch -d
+
 if [ "$BRANCH_NAME" != "--no-branch" ]; then
     if git show-branch -- "remotes/origin/$BRANCH_NAME" 2>&- && git show-ref --verify --quiet "refs/heads/$BRANCH_NAME" ; then
         echo 'WARNING: Branch exists both locally and upstream! Deleting local branch in favor of remote.'
