@@ -89,18 +89,15 @@ jobs:
             ansible-playbook /etc/ansible/headless.yml 2>&1 | tee /tmp/play.log
           status=${PIPESTATUS[0]}
           if [ "$status" -ne 0 ]; then
-            awk '
-              /^TASK \[/ { task = $0 }
-              /FAILED!|^fatal:|^failed:|^\[ERROR\]:/ {
-                gsub(/%/, "%25"); gsub(/\r/, "%0D")
-                print "::error::play [" task "]: " $0
-                # also dump up to 5 follow-up lines
-                for (i = 0; i < 5; i++) {
-                  if ((getline l) <= 0) break
-                  gsub(/%/, "%25", l); gsub(/\r/, "%0D", l)
-                  print "::error::play [" task "]: " l
-                }
-              }
-            ' /tmp/play.log | head -50
+            wc -l /tmp/play.log
+            echo "=== last 80 raw lines ==="
+            tail -80 /tmp/play.log
+            echo "=== matching lines ==="
+            grep -n -E 'TASK \[|FAILED!|^fatal:|^failed:|\[ERROR\]:' /tmp/play.log || true
+            echo "=== matched as annotations ==="
+            grep -E 'FAILED!|^fatal:|^failed:|\[ERROR\]:' /tmp/play.log \
+              | sed 's/%/%25/g; s/\r/%0D/g' \
+              | awk '{ print "::error::play: " $0 }' \
+              | head -10
           fi
           exit "$status"
