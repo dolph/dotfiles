@@ -6,18 +6,17 @@
     - always
     - whoami
 
-- name: Load vault-encrypted secrets when available
+- name: Check whether the vault password is available
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/vault.pass"
+  register: headless_vault_pass
+
+- name: Load vault-encrypted secrets when the password is available
+  ansible.builtin.include_vars:
+    file: "{{ playbook_dir }}/vault/localhost.yml"
+  when: headless_vault_pass.stat.exists
   tags:
     - always
-  block:
-    - name: Include vault secrets
-      ansible.builtin.include_vars:
-        file: "{{ playbook_dir }}/vault/localhost.yml"
-      no_log: true
-  rescue:
-    - name: Continue without vault secrets
-      ansible.builtin.debug:
-        msg: "vault/localhost.yml unavailable; secret-dependent tasks will be skipped"
 
 - name: Ensure user exists
   ansible.builtin.user:
