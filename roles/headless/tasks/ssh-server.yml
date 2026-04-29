@@ -1,4 +1,8 @@
 ---
+- name: Install openssh-server
+  ansible.builtin.dnf:
+    name: openssh-server
+
 - name: Configure sshd
   ansible.builtin.lineinfile:
     path: /etc/ssh/sshd_config
