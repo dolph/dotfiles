@@ -10,3 +10,4 @@
     cmd: podman login --username {{ dockerhub_username }} --password {{ dockerhub_token }}
   changed_when: true
   no_log: true
+  when: dockerhub_username is defined

@@ -28,6 +28,7 @@
   ansible.builtin.command: xfce4-power-manager -q
   async: 60
   poll: 0
+  changed_when: true
 
 - name: Disable energy star and screensaver on boot
   become: true
@@ -55,3 +56,4 @@
   ansible.builtin.command: xset -dpms
   async: 60
   poll: 0
+  changed_when: true

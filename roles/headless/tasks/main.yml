@@ -6,6 +6,18 @@
     - always
     - whoami
 
+- name: Check whether the vault password is available
+  ansible.builtin.stat:
+    path: "{{ playbook_dir }}/vault.pass"
+  register: headless_vault_pass
+
+- name: Load vault-encrypted secrets when the password is available
+  ansible.builtin.include_vars:
+    file: "{{ playbook_dir }}/vault/localhost.yml"
+  when: headless_vault_pass.stat.exists
+  tags:
+    - always
+
 - name: Ensure user exists
   ansible.builtin.user:
     name: "{{ whoami }}"
@@ -153,7 +165,7 @@
     - grs
     - icanhazip
     - loop
-    - false
+    - "n"
     - name
     - release-upgrade
     - post-release-upgrade
