@@ -13,6 +13,7 @@
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
     mode: "0770"
+    force: true
 
 - name: Install krew
   block:
