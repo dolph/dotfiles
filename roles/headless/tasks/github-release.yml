@@ -6,9 +6,12 @@
     action: latest_release
   register: headless_github_release
 
-- name: Install {{ github_release_binary }} from github
+- name: Install from github {{ github_release_binary }}
+  vars:
+    headless_github_release_base: "https://github.com/{{ github_release_user }}/{{ github_release_binary }}"
+    headless_github_release_url: "{{ headless_github_release_base }}/releases/download/{{ headless_github_release.tag }}/{{ github_release_binary }}"
   ansible.builtin.get_url:
-    url: https://github.com/{{ github_release_user }}/{{ github_release_binary }}/releases/download/{{ headless_github_release.tag }}/{{ github_release_binary }}
+    url: "{{ headless_github_release_url }}"
     dest: /home/{{ whoami }}/bin/{{ github_release_binary }}
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
