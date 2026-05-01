@@ -101,3 +101,55 @@ jobs:
               | head -10
           fi
           exit "$status"
+
+  desktop:
+    name: desktop (Fedora ${{ matrix.fedora }})
+    runs-on: ubuntu-latest
+    needs: fedora-versions
+    strategy:
+      fail-fast: false
+      matrix:
+        fedora: ${{ fromJson(needs.fedora-versions.outputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run desktop playbook in container
+        run: |
+          container_id=$(docker run --detach --privileged \
+            --cgroupns=host \
+            --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw \
+            --volume="${PWD}:/etc/ansible:ro" \
+            geerlingguy/docker-fedora${{ matrix.fedora }}-ansible:latest)
+
+          function cleanup { docker rm -f "$container_id"; }
+          trap cleanup EXIT
+
+          set +e
+          docker exec --tty "$container_id" env TERM=xterm /etc/ansible/bootstrap.sh \
+            2>&1 | tee /tmp/bootstrap.log
+          bootstrap_status=${PIPESTATUS[0]}
+          if [ "$bootstrap_status" -ne 0 ]; then
+            tail -40 /tmp/bootstrap.log | while IFS= read -r line; do
+              esc=$(printf '%s' "$line" | sed 's/%/%25/g; s/\r/%0D/g')
+              echo "::error::bootstrap: $esc"
+            done
+            exit "$bootstrap_status"
+          fi
+          docker exec --tty "$container_id" env TERM=xterm \
+            ANSIBLE_FORCE_COLOR=0 ANSIBLE_DIFF_ALWAYS=0 ANSIBLE_STDOUT_CALLBACK=default \
+            ansible-playbook /etc/ansible/desktop.yml 2>&1 | tee /tmp/play.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            wc -l /tmp/play.log
+            echo "=== last 80 raw lines ==="
+            tail -80 /tmp/play.log
+            echo "=== matching lines ==="
+            grep -n -E 'TASK \[|FAILED!|^fatal:|^failed:|\[ERROR\]:' /tmp/play.log || true
+            echo "=== matched as annotations ==="
+            grep -E 'FAILED!|^fatal:|^failed:|\[ERROR\]:' /tmp/play.log \
+              | sed 's/%/%25/g; s/\r/%0D/g' \
+              | awk '{ print "::error::play: " $0 }' \
+              | head -10
+          fi
+          exit "$status"
