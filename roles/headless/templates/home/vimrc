@@ -160,3 +160,9 @@ highlight GitGutterDelete ctermfg=1 ctermbg=16
 " status bar configuration
 let g:airline_theme='dark_minimal'
 let g:airline_section_z = ''
+
+" Tab buffer
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprev<CR>
