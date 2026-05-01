@@ -1,0 +1,16 @@
+---
+- name: Discover latest release tag of {{ github_release_binary }}
+  community.general.github_release:
+    user: "{{ github_release_user }}"
+    repo: "{{ github_release_binary }}"
+    action: latest_release
+  register: headless_github_release
+
+- name: Install {{ github_release_binary }} from github
+  ansible.builtin.get_url:
+    url: https://github.com/{{ github_release_user }}/{{ github_release_binary }}/releases/download/{{ headless_github_release.tag }}/{{ github_release_binary }}
+    dest: /home/{{ whoami }}/bin/{{ github_release_binary }}
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: "0770"
+    force: true
