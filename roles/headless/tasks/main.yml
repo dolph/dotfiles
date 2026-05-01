@@ -177,23 +177,71 @@
   tags:
     - bin
 
-- name: Install binaries from github
-  ansible.builtin.get_url:
-    url: https://github.com/dolph/{{ binary }}/releases/latest/download/{{ binary }}
-    dest: /home/{{ whoami }}/bin/{{ binary }}
-    owner: "{{ whoami }}"
-    group: "{{ whoami }}"
-    mode: "0770"
-  loop:
-    - find-replace
-    - txt
-    - connectivity
-  loop_control:
-    loop_var: binary
+- name: Discover latest release tag of find-replace
+  community.general.github_release:
+    user: dolph
+    repo: find-replace
+    action: latest_release
+  register: headless_find_replace_release
   tags:
     - bin
     - find-replace
+
+- name: Discover latest release tag of txt
+  community.general.github_release:
+    user: dolph
+    repo: txt
+    action: latest_release
+  register: headless_txt_release
+  tags:
+    - bin
     - txt
+
+- name: Discover latest release tag of connectivity
+  community.general.github_release:
+    user: dolph
+    repo: connectivity
+    action: latest_release
+  register: headless_connectivity_release
+  tags:
+    - bin
+    - connectivity
+
+- name: Install find-replace from github
+  ansible.builtin.get_url:
+    url: https://github.com/dolph/find-replace/releases/download/{{ headless_find_replace_release.tag }}/find-replace
+    dest: /home/{{ whoami }}/bin/find-replace
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: "0770"
+    force: true
+  tags:
+    - bin
+    - find-replace
+
+- name: Install txt from github
+  ansible.builtin.get_url:
+    url: https://github.com/dolph/txt/releases/download/{{ headless_txt_release.tag }}/txt
+    dest: /home/{{ whoami }}/bin/txt
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: "0770"
+    force: true
+  tags:
+    - bin
+    - txt
+
+- name: Install connectivity from github
+  ansible.builtin.get_url:
+    url: https://github.com/dolph/connectivity/releases/download/{{ headless_connectivity_release.tag }}/connectivity
+    dest: /home/{{ whoami }}/bin/connectivity
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: "0770"
+    force: true
+  tags:
+    - bin
+    - connectivity
 
 - name: Install podman
   ansible.builtin.import_tasks: podman.yml
