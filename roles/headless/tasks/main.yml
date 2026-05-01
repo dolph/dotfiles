@@ -177,6 +177,12 @@
   tags:
     - bin
 
+- name: Install python3-github3py to help discover github release versions
+  ansible.builtin.dnf:
+    name: python3-github3py
+  tags:
+    - bin
+
 - name: Install binaries from github
   ansible.builtin.include_tasks: github-release.yml
   loop:
