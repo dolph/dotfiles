@@ -21,4 +21,4 @@
       set-default-sink echoCancel_sink
     create: false # This file should already exist if we're not on pipewire
   when: false # FIXME: replace this task for pipewire
-  notify: restart pulseaudio
+  notify: Restart pulseaudio
