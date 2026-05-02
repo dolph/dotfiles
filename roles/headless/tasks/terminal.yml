@@ -13,7 +13,6 @@
     mode: "0600"
   with_items:
     - bash_profile
-    - bash_prompt
     - bashrc
     - inputrc
     - profile
@@ -22,9 +21,17 @@
     - bashrc
 
 - name: Ensure bash_prompt is executable
-  ansible.builtin.file:
-    path: "/home/{{ whoami }}/.bash_prompt"
-    mode: "0755"
+  ansible.builtin.template:
+    src: "home/{{ item }}"
+    dest: "/home/{{ whoami }}/.{{ item }}"
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: "0700"
+  with_items:
+    - bash_prompt
+  tags:
+    - terminal
+    - bashrc
 
 - name: Ensure a localrc exists
   ansible.builtin.copy:
