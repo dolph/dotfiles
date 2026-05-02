@@ -91,7 +91,7 @@
     - i3status
   loop_control:
     loop_var: dir
-  notify: restart i3
+  notify: Restart i3
 
 - name: Configure rofi/dmenu
   ansible.builtin.template:
@@ -100,7 +100,7 @@
     owner: "{{ whoami }}"
     group: "{{ whoami }}"
     mode: "0600"
-  notify: restart i3
+  notify: Restart i3
 
 - name: Configure alacritty
   ansible.builtin.template:
