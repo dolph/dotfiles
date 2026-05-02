@@ -28,21 +28,6 @@
     group: "{{ whoami }}"
     mode: "0700"
 
-- name: Configure hub
-  ansible.builtin.blockinfile:
-    marker: "# {mark} DOTFILES-MANAGED BLOCK"
-    block: |
-      github.com:
-      - protocol: https
-        user: {{ github_username }}
-        oauth_token: {{ github_oauth_token }}
-    dest: "/home/{{ whoami }}/.config/hub"
-    create: true
-    owner: "{{ whoami }}"
-    group: "{{ whoami }}"
-    mode: "0600"
-  when: github_username is defined
-
 - name: Configure git
   ansible.builtin.template:
     src: "home/{{ item }}"
