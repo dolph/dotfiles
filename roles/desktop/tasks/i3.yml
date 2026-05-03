@@ -1,12 +1,20 @@
 ---
 - name: Get horizontal screen size
+  become: true
+  become_user: "{{ whoami }}"
   ansible.builtin.shell: set -o pipefail && xrandr | grep '*' | awk '{print $1}' | head -1 | cut -d'x' -f1
+  environment:
+    DISPLAY: ":0"
   check_mode: false
   register: desktop_horizontal_resolution
   changed_when: false
 
 - name: Get vertical screen size
+  become: true
+  become_user: "{{ whoami }}"
   ansible.builtin.shell: set -o pipefail && xrandr | grep '*' | awk '{print $1}' | head -1 | cut -d'x' -f2
+  environment:
+    DISPLAY: ":0"
   check_mode: false
   register: desktop_vertical_resolution
   changed_when: false
