@@ -6,6 +6,7 @@
       - status
   register: desktop_localectl_status
   changed_when: false
+  failed_when: false
 
 - name: Set Caps Lock to Escape in X11 keymap
   ansible.builtin.command:
@@ -18,4 +19,6 @@
       - caps:escape
   become: true
   changed_when: true
-  when: "'X11 Options: caps:escape' not in desktop_localectl_status.stdout"
+  when:
+    - desktop_localectl_status.rc == 0
+    - "'X11 Options: caps:escape' not in desktop_localectl_status.stdout"
