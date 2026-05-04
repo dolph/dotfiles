@@ -149,13 +149,12 @@ autocmd FileType go setlocal noexpandtab listchars=tab:\ \ ,trail:~
 " Disable the creation of *.swp files (allows write conflicts)
 set noswapfile
 
-" gitgutter configuration
-let g:gitgutter_enabled = 1
-let g:gitgutter_set_sign_backgrounds = 1
+" gitsigns configuration
+lua require('gitsigns').setup()
 highlight SignColumn ctermbg=16
-highlight GitGutterAdd ctermfg=2 ctermbg=16
-highlight GitGutterChange ctermfg=3 ctermbg=16
-highlight GitGutterDelete ctermfg=1 ctermbg=16
+highlight GitSignsAdd ctermfg=2 ctermbg=16
+highlight GitSignsChange ctermfg=3 ctermbg=16
+highlight GitSignsDelete ctermfg=1 ctermbg=16
 
 " status bar configuration
 let g:airline_theme='dark_minimal'

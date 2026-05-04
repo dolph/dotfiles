@@ -15,7 +15,7 @@
 - name: Initialize a list of plugins
   ansible.builtin.set_fact:
     headless_vim_plugin_repos:
-      - "airblade/vim-gitgutter"
+      - "lewis6991/gitsigns.nvim"
       - "vim-airline/vim-airline" # Improved status bar
       - "vim-airline/vim-airline-themes"
       - "tpope/vim-commentary" # Code comments
