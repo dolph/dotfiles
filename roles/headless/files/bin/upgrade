@@ -32,6 +32,13 @@ if hash kubectl 2>/dev/null; then
     kubectl krew upgrade krew
 fi
 
+# Clean up caches
+go clean -modcache
+go clean -cache
+npm cache clean --force
+pip cache purge
+rm -rf ~/.cache/Cypress
+
 ONE_WEEK_IN_SECONDS=604800
 if qalc --terse "$(cat /proc/uptime | cut -d' ' -f1) > $ONE_WEEK_IN_SECONDS" | grep -q "true"; then
     sudo dnf needs-restarting -r || echo "Uptime: $(uptime | xargs)"
