@@ -16,7 +16,7 @@ To deploy to `localhost`:
     source ~/venv/ansible/bin/activate
     ansible-playbook --ask-become-pass headless.yml # or desktop.yml
 
-## Desktop interface design: `i3` + `urvxt` + `tmux` + `vim`
+## Desktop interface design: `i3` + `alacritty` + `tmux` + `vim`
 
 ### Motions
 
@@ -42,7 +42,7 @@ layer in the stack.
 * `i3`:
   * Copy: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>
   * Paste <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>
-* `urvxt`:
+* `alacritty`:
   * Copy: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>
   * Paste <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>
 * `tmux`:
