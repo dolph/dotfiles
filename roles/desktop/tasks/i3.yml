@@ -21,7 +21,7 @@
 
 - name: Set system font size
   ansible.builtin.set_fact:
-    desktop_font_size: "{{ (15 + (desktop_horizontal_resolution.stdout | int * desktop_vertical_resolution.stdout | int) / (2 * 1920 * 1080)) | int }}"
+    desktop_font_size: 15
 
 - name: Report detected resolution
   ansible.builtin.debug:
