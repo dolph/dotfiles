@@ -12,3 +12,7 @@
   community.general.modprobe:
     name: pcspkr
     state: absent
+  failed_when:
+    - result is failed
+    - "'No such file or directory' not in result.msg"
+  register: result
