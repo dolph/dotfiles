@@ -8,6 +8,7 @@
   check_mode: false
   register: desktop_horizontal_resolution
   changed_when: false
+  failed_when: false
 
 - name: Get vertical screen size
   become: true
@@ -18,6 +19,14 @@
   check_mode: false
   register: desktop_vertical_resolution
   changed_when: false
+  failed_when: false
+
+- name: Fall back to default resolution when xrandr is unavailable
+  ansible.builtin.set_fact:
+    desktop_horizontal_resolution:
+      stdout: "{{ (desktop_horizontal_resolution.stdout | default('') | trim) or '1920' }}"
+    desktop_vertical_resolution:
+      stdout: "{{ (desktop_vertical_resolution.stdout | default('') | trim) or '1080' }}"
 
 - name: Set system font size
   ansible.builtin.set_fact:

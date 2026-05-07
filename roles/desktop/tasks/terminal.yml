@@ -12,7 +12,7 @@
   community.general.modprobe:
     name: pcspkr
     state: absent
+  register: desktop_pcspkr_unload
   failed_when:
-    - result is failed
-    - "'No such file or directory' not in result.msg"
-  register: result
+    - desktop_pcspkr_unload is failed
+    - "'No such file or directory' not in (desktop_pcspkr_unload.msg | default(''))"
