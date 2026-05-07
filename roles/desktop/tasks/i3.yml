@@ -128,6 +128,12 @@
     mode: "0600"
 
 # https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
+- name: Ensure xorg.conf.d directory exists
+  ansible.builtin.file:
+    path: /etc/X11/xorg.conf.d
+    state: directory
+    mode: "0755"
+
 - name: Configure touchpad tap-to-click
   ansible.builtin.template:
     src: etc/X11/xorg.conf.d/90-touchpad.conf
