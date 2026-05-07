@@ -20,4 +20,8 @@
   become: true
   become_user: "{{ whoami }}"
   ansible.builtin.shell: unset I3SOCK; i3-msg restart
+  register: desktop_i3_restart
   changed_when: true
+  failed_when:
+    - desktop_i3_restart.rc != 0
+    - "'Could not determine i3 socket path' not in desktop_i3_restart.stderr"
