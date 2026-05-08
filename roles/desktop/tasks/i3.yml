@@ -8,6 +8,7 @@
   check_mode: false
   register: desktop_horizontal_resolution
   changed_when: false
+  failed_when: false
 
 - name: Get vertical screen size
   become: true
@@ -18,6 +19,14 @@
   check_mode: false
   register: desktop_vertical_resolution
   changed_when: false
+  failed_when: false
+
+- name: Fall back to default resolution when xrandr is unavailable
+  ansible.builtin.set_fact:
+    desktop_horizontal_resolution:
+      stdout: "{{ (desktop_horizontal_resolution.stdout | default('') | trim) or '1920' }}"
+    desktop_vertical_resolution:
+      stdout: "{{ (desktop_vertical_resolution.stdout | default('') | trim) or '1080' }}"
 
 - name: Set system font size
   ansible.builtin.set_fact:
@@ -119,6 +128,12 @@
     mode: "0600"
 
 # https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
+- name: Ensure xorg.conf.d directory exists
+  ansible.builtin.file:
+    path: /etc/X11/xorg.conf.d
+    state: directory
+    mode: "0755"
+
 - name: Configure touchpad tap-to-click
   ansible.builtin.template:
     src: etc/X11/xorg.conf.d/90-touchpad.conf
