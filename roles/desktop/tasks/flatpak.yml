@@ -8,7 +8,3 @@
     name: flathub
     method: system
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-
-- name: Install signal
-  community.general.flatpak:
-    name: org.signal.Signal

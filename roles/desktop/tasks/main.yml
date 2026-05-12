@@ -63,9 +63,9 @@
   ansible.builtin.import_tasks: pulseaudio.yml
   tags: pulseaudio
 
-- name: Configure signal
-  ansible.builtin.import_tasks: signal.yml
-  tags: signal
+- name: Configure flatpak
+  ansible.builtin.import_tasks: flatpak.yml
+  tags: flatpak
 
 - name: Configure gimp
   ansible.builtin.import_tasks: gimp.yml
