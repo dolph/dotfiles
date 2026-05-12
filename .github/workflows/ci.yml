@@ -63,6 +63,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run headless playbook in container
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           container_id=$(docker run --detach --privileged \
             --cgroupns=host \
@@ -85,6 +87,7 @@ jobs:
             exit "$bootstrap_status"
           fi
           docker exec --tty "$container_id" env TERM=xterm \
+            GITHUB_TOKEN="$GITHUB_TOKEN" \
             ANSIBLE_FORCE_COLOR=0 ANSIBLE_DIFF_ALWAYS=0 ANSIBLE_STDOUT_CALLBACK=default \
             ansible-playbook /etc/ansible/headless.yml 2>&1 | tee /tmp/play.log
           status=${PIPESTATUS[0]}
@@ -115,6 +118,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run desktop playbook in container
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           container_id=$(docker run --detach --privileged \
             --cgroupns=host \
@@ -137,6 +142,7 @@ jobs:
             exit "$bootstrap_status"
           fi
           docker exec --tty "$container_id" env TERM=xterm \
+            GITHUB_TOKEN="$GITHUB_TOKEN" \
             ANSIBLE_FORCE_COLOR=0 ANSIBLE_DIFF_ALWAYS=0 ANSIBLE_STDOUT_CALLBACK=default \
             ansible-playbook /etc/ansible/desktop.yml 2>&1 | tee /tmp/play.log
           status=${PIPESTATUS[0]}
