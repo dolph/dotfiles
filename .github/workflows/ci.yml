@@ -86,9 +86,8 @@ jobs:
             done
             exit "$bootstrap_status"
           fi
-          docker exec --tty "$container_id" \
-            --env "GITHUB_TOKEN=$GITHUB_TOKEN" \
-            env TERM=xterm \
+          docker exec --tty "$container_id" env TERM=xterm \
+            GITHUB_TOKEN="$GITHUB_TOKEN" \
             ANSIBLE_FORCE_COLOR=0 ANSIBLE_DIFF_ALWAYS=0 ANSIBLE_STDOUT_CALLBACK=default \
             ansible-playbook /etc/ansible/headless.yml 2>&1 | tee /tmp/play.log
           status=${PIPESTATUS[0]}
@@ -142,9 +141,8 @@ jobs:
             done
             exit "$bootstrap_status"
           fi
-          docker exec --tty "$container_id" \
-            --env "GITHUB_TOKEN=$GITHUB_TOKEN" \
-            env TERM=xterm \
+          docker exec --tty "$container_id" env TERM=xterm \
+            GITHUB_TOKEN="$GITHUB_TOKEN" \
             ANSIBLE_FORCE_COLOR=0 ANSIBLE_DIFF_ALWAYS=0 ANSIBLE_STDOUT_CALLBACK=default \
             ansible-playbook /etc/ansible/desktop.yml 2>&1 | tee /tmp/play.log
           status=${PIPESTATUS[0]}
