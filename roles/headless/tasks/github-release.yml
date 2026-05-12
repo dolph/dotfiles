@@ -4,6 +4,7 @@
     user: "{{ github_release_user }}"
     repo: "{{ github_release_binary }}"
     action: latest_release
+    token: "{{ lookup('env', 'GITHUB_TOKEN') | default(omit, true) }}"
   register: headless_github_release
 
 - name: Install from github {{ github_release_binary }}
