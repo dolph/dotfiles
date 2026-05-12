@@ -29,7 +29,6 @@
       - "godlygeek/tabular" # must appear before preservim/vim-markdown
       - "preservim/vim-markdown" # Markdown support
       - "christoomey/vim-tmux-navigator" # Unifies vim and tmux split navigation.
-      - "github/copilot.vim" # Github Copilot
       - "hashivim/vim-terraform" # Terraform
     headless_runtimepaths: []
 
