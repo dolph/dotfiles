@@ -72,7 +72,7 @@
   when: desktop_ibm_managed
 
 - name: Check for Bluetooth device
-  ansible.builtin.shell: "timeout 5 bluetoothctl list | grep -oE '([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}'"
+  ansible.builtin.shell: set -o pipefail && timeout 5 bluetoothctl list | grep -oE '([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}'
   register: desktop_bluetooth_devices
   failed_when: false
   changed_when: false
