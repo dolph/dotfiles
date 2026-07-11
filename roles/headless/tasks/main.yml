@@ -187,7 +187,6 @@
   ansible.builtin.include_tasks: github-release.yml
   loop:
     - find-replace
-    - txt
     - connectivity
   loop_control:
     loop_var: github_release_binary
