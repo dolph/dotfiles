@@ -29,7 +29,6 @@
   with_items:
     - battery
     - copycat
-    - cpu
     - net-speed
     - open
     - yank

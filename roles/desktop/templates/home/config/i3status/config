@@ -11,6 +11,7 @@ general {
 
 order += "cpu_usage"
 order += "memory"
+order += "disk /"
 order += "ethernet _first_"
 order += "wireless _first_"
 order += "battery all"
@@ -28,6 +29,14 @@ memory {
     format = "%percentage_used MEM"
     format_degraded = "CRITICAL %percentage_used MEM"
     separator_block_width = 21
+}
+
+disk "/" {
+    format = "%percentage_used DISK"
+    format_below_threshold = "CRITICAL %percentage_used DISK"
+    separator_block_width = 21
+    low_threshold = 10
+    threshold_type = "percentage_free"
 }
 
 wireless _first_ {
