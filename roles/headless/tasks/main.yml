@@ -10,6 +10,8 @@
   ansible.builtin.stat:
     path: "{{ playbook_dir }}/vault.pass"
   register: headless_vault_pass
+  tags:
+    - always
 
 - name: Load vault-encrypted secrets when the password is available
   ansible.builtin.include_vars:
