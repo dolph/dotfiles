@@ -73,7 +73,7 @@ volume master {
 }
 
 time {
-    format = "%B %-e %-l:%M %P / %H:%M"
+    format = "%b %-e %-l:%M %P / %H:%M"
     separator_block_width = 0
 }
 
