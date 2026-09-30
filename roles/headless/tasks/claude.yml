@@ -33,6 +33,7 @@
       alwaysThinkingEnabled: false
       effortLevel: max
       opusPlanEnabled: true
+      tui: fullscreen
       hooks:
         Stop:
           - hooks:
