@@ -44,12 +44,5 @@ function ssh-unlock() {
 }
 ssh-unlock
 
-{% if txt_twilio_account_sid is defined %}
-export TWILIO_ACCOUNT_SID="{{ txt_twilio_account_sid }}"
-export TWILIO_AUTH_TOKEN="{{ txt_twilio_auth_token }}"
-export TXT_TO="{{ txt_to }}"
-export TXT_FROM="{{ txt_twilio_from }}"
-{% endif %}
-
 # Allow local account customization
 . $HOME/.localrc
