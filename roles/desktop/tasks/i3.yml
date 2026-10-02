@@ -28,13 +28,23 @@
     desktop_vertical_resolution:
       stdout: "{{ (desktop_vertical_resolution.stdout | default('') | trim) or '1080' }}"
 
+- name: Set display scale
+  ansible.builtin.set_fact:
+    # Multiplier for the size of UI elements, equivalent to a display scale of
+    # 200% elsewhere. i3 has no scaling setting, and neither does X11, so this
+    # becomes an Xft.dpi of 96 * desktop_scale plus the toolkit-specific
+    # environment variables in ~/.xprofile.
+    desktop_scale: 2
+
 - name: Set system font size
   ansible.builtin.set_fact:
-    desktop_font_size: 15
+    # Pango measures fonts in points rather than pixels, so these grow with
+    # Xft.dpi on their own and are not multiplied by desktop_scale.
+    desktop_font_size: 12
 
 - name: Report detected resolution
   ansible.builtin.debug:
-    msg: "resolution={{ desktop_horizontal_resolution.stdout }}x{{ desktop_vertical_resolution.stdout }} font_size={{ desktop_font_size }}"
+    msg: "resolution={{ desktop_horizontal_resolution.stdout }}x{{ desktop_vertical_resolution.stdout }} scale={{ desktop_scale }} font_size={{ desktop_font_size }}"
   changed_when: true
 
 - name: Install i3 and friends
@@ -53,6 +63,7 @@
       - unclutter-xfixes
       - xclip
       - xdotool
+      - xrdb
       - xset
       - xsetroot
       - xss-lock
@@ -146,6 +157,23 @@
     dest: /etc/X11/xorg.conf.d/50-mouse-acceleration.conf
     mode: "0644"
 
+- name: Configure display scaling
+  ansible.builtin.template:
+    src: home/Xresources
+    dest: /home/{{ whoami }}/.Xresources
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: "0600"
+  notify: Restart i3
+
+- name: Configure X session environment
+  ansible.builtin.template:
+    src: home/xprofile
+    dest: /home/{{ whoami }}/.xprofile
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: "0770"
+
 - name: Configure X
   ansible.builtin.template:
     src: home/xinitrc
@@ -165,14 +193,20 @@
     name: autorandr
     enabled: true
 
-- name: Set greeter background
+- name: Configure greeter
   community.general.ini_file:
     path: /etc/lightdm/lightdm-gtk-greeter.conf
     section: greeter
-    option: background
-    value: "#000000"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
     no_extra_spaces: true
     mode: "0644"
+  loop:
+    - option: background
+      value: "#000000"
+    # The greeter runs before ~/.Xresources is loaded, so it needs its own DPI.
+    - option: xft-dpi
+      value: "{{ (96 * desktop_scale) | int }}"
 
 - name: Configure dunst
   ansible.builtin.template:

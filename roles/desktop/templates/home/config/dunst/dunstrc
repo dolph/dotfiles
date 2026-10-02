@@ -24,8 +24,10 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    # {{ desktop_horizontal_resolution.stdout | int }} * 0.2 = {{ (desktop_horizontal_resolution.stdout | float * 0.2) | int }}
-    width = (0, {{ (desktop_horizontal_resolution.stdout | float * 0.2) | int }})
+    # Sizes here are multiplied by the scale below, so divide the target share
+    # of the screen back out to land on 20% of the real screen width.
+    # {{ desktop_horizontal_resolution.stdout | int }} * 0.2 / {{ desktop_scale }} = {{ (desktop_horizontal_resolution.stdout | float * 0.2 / desktop_scale) | int }}
+    width = (0, {{ (desktop_horizontal_resolution.stdout | float * 0.2 / desktop_scale) | int }})
 
     # The maximum height of a single notification, excluding the frame.
     height = 300
@@ -36,8 +38,9 @@
     # Offset from the origin
     offset = 10x50
 
-    # Scale factor. It is auto-detected if value is 0.
-    scale = 1.5
+    # Scale factor. It is auto-detected if value is 0, which picks up the
+    # Xft.dpi set from desktop_scale.
+    scale = {{ desktop_scale }}
 
     # Maximum number of notification (0 means no limit)
     notification_limit = 0

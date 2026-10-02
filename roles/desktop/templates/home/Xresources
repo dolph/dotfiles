@@ -1,0 +1,5 @@
+! X11 has no display scaling of its own, so applications that draw their own
+! text read the DPI from here instead. 96 is the unscaled default, so a 200%
+! scale is 192. i3 hands this value to pango, which covers window titles, the
+! bar, rofi, and dunst; alacritty and firefox read it directly.
+Xft.dpi: {{ (96 * desktop_scale) | int }}

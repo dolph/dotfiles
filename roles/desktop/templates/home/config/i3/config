@@ -23,6 +23,10 @@ client.background #000000
 # Hide window title bars anyway, negating most of the colors above.
 for_window [class="^.*"] border none
 
+# Reload display scaling. The session already did this, but doing it here too
+# means an i3 restart picks up a changed Xft.dpi, on the restart after this one.
+exec_always --no-startup-id xrdb -merge ~/.Xresources
+
 # Set desktop background color
 exec_always --no-startup-id xsetroot -solid "#000000"
 
@@ -67,7 +71,7 @@ bindsym $mod+Return exec --no-startup-id rxvt-unicode
 bindsym $mod+Shift+q kill
 
 # start a program launcher
-bindcode $mod+40 exec "rofi -modi drun,run -show drun -font 'Hack Bold {{ desktop_font_size * 1.5 | int }}' -show combi -show-icons"
+bindcode $mod+40 exec "rofi -modi drun,run -show drun -font 'Hack Bold {{ (desktop_font_size * 1.5) | int }}' -show combi -show-icons"
 
 # rearrange windows
 bindsym $mod+Escape exec "~/.local/bin/i3-instant-layout --list | rofi -dmenu -i | ~/.local/bin/i3-instant-layout -"

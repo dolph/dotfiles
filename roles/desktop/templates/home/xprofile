@@ -1,0 +1,21 @@
+# Sourced by both startx (via ~/.xinitrc) and lightdm, so display scaling is
+# applied the same way however the session was started.
+
+xrdb -merge ~/.Xresources
+
+# GTK and Qt size their widgets in integer pixels rather than from Xft.dpi, so
+# the scale has to be handed to them separately.
+export GDK_SCALE={{ desktop_scale }}
+export QT_SCALE_FACTOR={{ desktop_scale }}
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+
+# GDK_SCALE enlarges GTK text along with everything else, which would compound
+# with the scaling pango already applied from Xft.dpi. Cancel out the double.
+export GDK_DPI_SCALE={{ (1 / desktop_scale) | round(3) }}
+
+# Cursor themes ship fixed-size bitmaps, so the pixel size has to be asked for.
+# 24 is the unscaled default.
+export XCURSOR_SIZE={{ (24 * desktop_scale) | int }}
+
+# Electron apps ignore all of the above.
+export ELECTRON_FORCE_DEVICE_SCALE_FACTOR={{ desktop_scale }}

@@ -3,8 +3,9 @@
   ansible.builtin.dnf:
     name:
       - vim
+      - vim-default-editor
       - vim-enhanced
-      - vim-X11
+      - vim-x11
     state: absent
 
 - name: Install neovim
