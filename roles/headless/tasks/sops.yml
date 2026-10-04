@@ -1,0 +1,93 @@
+---
+# Install sops from a GitHub release binary, gated on a cosign signature check
+# of the release checksums and a sha256 check of the binary against them.
+
+- name: Install sops dependencies
+  ansible.builtin.dnf:
+    name:
+      - age
+      - cosign
+
+- name: Check the installed version of sops
+  ansible.builtin.command: /home/{{ whoami }}/bin/sops --version --disable-version-check
+  register: headless_sops_installed
+  changed_when: false
+  failed_when: false
+  check_mode: false
+
+- name: Install sops
+  when: headless_sops_installed.stdout is not search('^sops ' ~ (headless_sops_version | regex_escape) ~ '\\b', multiline=true)
+  vars:
+    headless_sops_arch: "{{ {'x86_64': 'amd64', 'aarch64': 'arm64'}[ansible_architecture] | default(ansible_architecture) }}"
+    headless_sops_prefix: sops-v{{ headless_sops_version }}
+    headless_sops_binary: "{{ headless_sops_prefix }}.linux.{{ headless_sops_arch }}"
+    headless_sops_base_url: https://github.com/getsops/sops/releases/download/v{{ headless_sops_version }}
+  block:
+    - name: Create temp dir to verify sops
+      ansible.builtin.tempfile:
+        state: directory
+      register: headless_sops_tempdir
+
+    - name: Download sops release files
+      ansible.builtin.get_url:
+        url: "{{ headless_sops_base_url }}/{{ file }}"
+        dest: "{{ headless_sops_tempdir.path }}/{{ file }}"
+        mode: "0600"
+      loop:
+        - "{{ headless_sops_binary }}"
+        - "{{ headless_sops_prefix }}.checksums.txt"
+        - "{{ headless_sops_prefix }}.checksums.sigstore.json"
+      loop_control:
+        loop_var: file
+      when: headless_sops_tempdir.path is defined # not defined in check mode
+
+    - name: Verify the signature of the sops checksums
+      ansible.builtin.command:
+        argv:
+          - cosign
+          - verify-blob
+          - "{{ headless_sops_prefix }}.checksums.txt"
+          - --bundle
+          - "{{ headless_sops_prefix }}.checksums.sigstore.json"
+          - --certificate-identity
+          - https://github.com/getsops/sops/.github/workflows/release.yml@refs/tags/v{{ headless_sops_version }}
+          - --certificate-oidc-issuer
+          - https://token.actions.githubusercontent.com
+        chdir: "{{ headless_sops_tempdir.path }}"
+      changed_when: false
+      when: headless_sops_tempdir.path is defined # not defined in check mode
+
+    - name: Verify the checksum of the sops binary
+      ansible.builtin.command:
+        argv:
+          - sha256sum
+          - --check
+          - --ignore-missing
+          - --strict
+          - "{{ headless_sops_prefix }}.checksums.txt"
+        chdir: "{{ headless_sops_tempdir.path }}"
+      changed_when: false
+      when: headless_sops_tempdir.path is defined # not defined in check mode
+
+    - name: Install sops binary
+      ansible.builtin.copy:
+        remote_src: true
+        src: "{{ headless_sops_tempdir.path }}/{{ headless_sops_binary }}"
+        dest: /home/{{ whoami }}/bin/sops
+        owner: "{{ whoami }}"
+        group: "{{ whoami }}"
+        mode: "0770"
+      when: headless_sops_tempdir.path is defined # not defined in check mode
+
+  always:
+    - name: Remove sops temp dir
+      ansible.builtin.file:
+        path: "{{ headless_sops_tempdir.path }}"
+        state: absent
+      changed_when: false
+      when: headless_sops_tempdir.path is defined # not defined in check mode
+
+- name: Verify sops runs
+  ansible.builtin.command: /home/{{ whoami }}/bin/sops --version --disable-version-check
+  changed_when: false
+  when: not ansible_check_mode
