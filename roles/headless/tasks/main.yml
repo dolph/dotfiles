@@ -197,6 +197,10 @@
   tags:
     - bin
 
+- name: Install sops
+  ansible.builtin.import_tasks: sops.yml
+  tags: sops
+
 - name: Install podman
   ansible.builtin.import_tasks: podman.yml
   tags: podman

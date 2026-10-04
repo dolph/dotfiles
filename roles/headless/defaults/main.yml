@@ -1,0 +1,4 @@
+---
+# Pinned deliberately: bump it to upgrade sops. The cosign check trusts only
+# signatures made by the sops release workflow for this exact tag.
+headless_sops_version: "3.13.3"
