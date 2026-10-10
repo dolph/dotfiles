@@ -38,7 +38,7 @@ exec_always --no-startup-id xset s 600 600
 {% else %}
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend.
-exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=1c1c1c --show-failed-attempts
+exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=000000 --show-failed-attempts
 exec_always --no-startup-id xset s off
 exec_always --no-startup-id xset s noblank
 {% endif %}
