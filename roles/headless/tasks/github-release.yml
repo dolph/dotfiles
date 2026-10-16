@@ -11,7 +11,8 @@
   vars:
     headless_github_release_os: "{{ ansible_system | lower }}"
     headless_github_release_arch: "{{ {'x86_64': 'amd64', 'aarch64': 'arm64'}[ansible_architecture] | default(ansible_architecture) }}"
-    headless_github_release_asset: "{{ github_release_binary }}-{{ headless_github_release_os }}-{{ headless_github_release_arch }}"
+    headless_github_release_default_asset: "{{ github_release_binary }}-{{ headless_github_release_os }}-{{ headless_github_release_arch }}"
+    headless_github_release_asset: "{{ (github_release_asset_names | default({}))[github_release_binary] | default(headless_github_release_default_asset) }}"
     headless_github_release_base: "https://github.com/{{ github_release_user }}/{{ github_release_binary }}"
     headless_github_release_url: "{{ headless_github_release_base }}/releases/download/{{ headless_github_release.tag }}/{{ headless_github_release_asset }}"
   ansible.builtin.get_url:

@@ -44,7 +44,9 @@
 
 - name: Report detected resolution
   ansible.builtin.debug:
-    msg: "resolution={{ desktop_horizontal_resolution.stdout }}x{{ desktop_vertical_resolution.stdout }} scale={{ desktop_scale }} font_size={{ desktop_font_size }}"
+    msg: >-
+      resolution={{ desktop_horizontal_resolution.stdout }}x{{ desktop_vertical_resolution.stdout }}
+      scale={{ desktop_scale }} font_size={{ desktop_font_size }}
   changed_when: true
 
 - name: Install i3 and friends

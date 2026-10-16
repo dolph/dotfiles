@@ -194,6 +194,10 @@
     loop_var: github_release_binary
   vars:
     github_release_user: dolph
+    # connectivity releases publish a single linux/amd64 binary named just
+    # "connectivity" rather than <name>-<os>-<arch>.
+    github_release_asset_names:
+      connectivity: connectivity
   tags:
     - bin
 
