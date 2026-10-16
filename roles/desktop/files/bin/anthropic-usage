@@ -1,0 +1,108 @@
+#!/bin/bash
+# Write Anthropic usage to a file that i3status displays with read_file.
+#
+# Credentials are tried in this order, and the first one found wins:
+#
+#   1. Claude Code's login (~/.claude/.credentials.json): shows how much of the
+#      Claude plan's 5-hour and 7-day limits are used, e.g. "23% 5H / 41% 7D CLAUDE".
+#   2. An API key ($ANTHROPIC_API_KEY, or ~/.config/anthropic/api_key): shows
+#      how much of the tightest per-minute rate limit is used, e.g. "3% API".
+#
+# With no credentials the file is left empty, and i3bar hides empty blocks.
+#
+# Usage: anthropic-usage          update once
+#        anthropic-usage --watch  update every $ANTHROPIC_USAGE_INTERVAL seconds
+set -uo pipefail
+
+OUTPUT=${ANTHROPIC_USAGE_OUTPUT:-${XDG_CACHE_HOME:-$HOME/.cache}/anthropic-usage/status}
+INTERVAL=${ANTHROPIC_USAGE_INTERVAL:-300}
+# Rate limits are tracked per model, so probe the model you actually use.
+MODEL=${ANTHROPIC_USAGE_MODEL:-claude-opus-5-5}
+CLAUDE_CREDENTIALS=${CLAUDE_CONFIG_DIR:-$HOME/.claude}/.credentials.json
+API_KEY_FILE=${XDG_CONFIG_HOME:-$HOME/.config}/anthropic/api_key
+API=${ANTHROPIC_BASE_URL:-https://api.anthropic.com}
+
+# Print the Claude plan usage, using the OAuth token Claude Code keeps fresh.
+claude_plan_usage() {
+    [ -r "$CLAUDE_CREDENTIALS" ] || return 1
+
+    local token expires_at now usage
+    token=$(jq -r '.claudeAiOauth.accessToken // empty' "$CLAUDE_CREDENTIALS") || return 1
+    [ -n "$token" ] || return 1
+
+    # Never refresh the token here: refresh tokens rotate, so doing that behind
+    # Claude Code's back would log it out. An expired token just means Claude
+    # Code hasn't run lately, and the next run refreshes it.
+    expires_at=$(jq -r '.claudeAiOauth.expiresAt // 0' "$CLAUDE_CREDENTIALS")
+    now=$(($(date +%s) * 1000))
+    [ "$expires_at" -gt "$now" ] || return 1
+
+    # This is the endpoint behind Claude Code's /usage command. It isn't part of
+    # the public API, so tolerate missing fields rather than trusting its shape.
+    usage=$(curl --silent --fail --max-time 10 \
+        --header "Authorization: Bearer $token" \
+        --header "anthropic-beta: oauth-2025-04-20" \
+        "$API/api/oauth/usage") || return 1
+
+    jq -r '
+        def pct: if . == null then "?" else (. | round | tostring) + "%" end;
+        "\(.five_hour.utilization | pct) 5H / \(.seven_day.utilization | pct) 7D CLAUDE"
+    ' <<< "$usage"
+}
+
+# Print how much of the tightest API rate limit is used, from the
+# anthropic-ratelimit-* headers on a one-token request.
+api_rate_limit_usage() {
+    local key=${ANTHROPIC_API_KEY:-}
+    if [ -z "$key" ] && [ -r "$API_KEY_FILE" ]; then
+        key=$(tr -d '[:space:]' < "$API_KEY_FILE")
+    fi
+    [ -n "$key" ] || return 1
+
+    local headers
+    headers=$(curl --silent --max-time 30 --output /dev/null --dump-header - \
+        --header "x-api-key: $key" \
+        --header "anthropic-version: 2023-06-01" \
+        --header "content-type: application/json" \
+        --data "{\"model\": \"$MODEL\", \"max_tokens\": 1, \"output_config\": {\"effort\": \"low\"}, \"messages\": [{\"role\": \"user\", \"content\": \"hi\"}]}" \
+        "$API/v1/messages") || return 1
+
+    # Headers look like "anthropic-ratelimit-input-tokens-limit: 2000000".
+    tr -d '\r' <<< "$headers" | awk -F': ' '
+        tolower($1) ~ /^anthropic-ratelimit-.*-(limit|remaining)$/ {
+            name = tolower($1)
+            sub(/^anthropic-ratelimit-/, "", name)
+            kind = name; sub(/-(limit|remaining)$/, "", kind)
+            if (name ~ /-limit$/) limit[kind] = $2; else remaining[kind] = $2
+        }
+        END {
+            used = -1
+            for (kind in limit) {
+                if (limit[kind] > 0 && kind in remaining) {
+                    pct = 100 - remaining[kind] * 100 / limit[kind]
+                    if (pct > used) used = pct
+                }
+            }
+            if (used < 0) exit 1
+            printf "%d%% API\n", used + 0.5
+        }
+    '
+}
+
+update() {
+    local status
+    status=$(claude_plan_usage || api_rate_limit_usage || true)
+
+    mkdir -p "$(dirname "$OUTPUT")"
+    printf '%s' "$status" > "$OUTPUT.tmp" && mv "$OUTPUT.tmp" "$OUTPUT"
+}
+
+if [ "${1:-}" == "--watch" ]; then
+    while :; do
+        update
+        sleep "$INTERVAL"
+    done
+else
+    update
+    cat "$OUTPUT"; echo
+fi

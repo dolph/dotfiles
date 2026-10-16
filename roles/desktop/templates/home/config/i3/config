@@ -206,6 +206,9 @@ bar {
     }
 }
 
+# Keep Anthropic usage fresh for i3status
+exec --no-startup-id ~/bin/anthropic-usage --watch
+
 # Start a keyring
 # https://www.reddit.com/r/i3wm/comments/8zj0jl/passwords_are_not_saved_in_google_chrome_in_i3/e78rjbq/
 # exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
