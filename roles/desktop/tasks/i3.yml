@@ -123,6 +123,14 @@
     loop_var: dir
   notify: Restart i3
 
+- name: Install Anthropic usage script for i3status
+  ansible.builtin.copy:
+    src: bin/anthropic-usage
+    dest: /home/{{ whoami }}/bin/anthropic-usage
+    owner: "{{ whoami }}"
+    group: "{{ whoami }}"
+    mode: "0770"
+
 - name: Configure rofi/dmenu
   ansible.builtin.template:
     src: home/config/rofi/config.rasi

@@ -9,6 +9,7 @@ general {
     interval = 5
 }
 
+order += "read_file anthropic"
 order += "cpu_usage"
 order += "memory"
 order += "disk /"
@@ -17,6 +18,14 @@ order += "wireless _first_"
 order += "battery all"
 order += "time"
 order += "tztime utc"
+
+# Written by ~/bin/anthropic-usage, which i3 starts. Empty without credentials.
+read_file anthropic {
+    path = "/home/{{ whoami }}/.cache/anthropic-usage/status"
+    format = "%content"
+    format_bad = ""
+    separator_block_width = 21
+}
 
 cpu_usage {
     format = "%usage CPU"
