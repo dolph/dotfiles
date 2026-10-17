@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Keep history in memory for the session, but never write ~/.bash_history.
+unset HISTFILE
+
 # Priorities.
 export EDITOR="nvim"
 alias e="nvim"
