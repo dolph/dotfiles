@@ -24,12 +24,12 @@ read_file anthropic {
     path = "/home/{{ whoami }}/.cache/anthropic-usage/status"
     format = "%content"
     format_bad = ""
-    separator_block_width = 21
+    separator_block_width = 33
 }
 
 cpu_usage {
     format = "%usage CPU"
-    separator_block_width = 21
+    separator_block_width = 33
     max_threshold = 75
     degraded_threshold = 25
 }
@@ -37,13 +37,13 @@ cpu_usage {
 memory {
     format = "%percentage_used MEM"
     format_degraded = "CRITICAL %percentage_used MEM"
-    separator_block_width = 21
+    separator_block_width = 33
 }
 
 disk "/" {
     format = "%percentage_used DISK"
     format_below_threshold = "CRITICAL %percentage_used DISK"
-    separator_block_width = 21
+    separator_block_width = 33
     low_threshold = 10
     threshold_type = "percentage_free"
 }
@@ -51,18 +51,18 @@ disk "/" {
 wireless _first_ {
     format_up = "%ip%quality"
     format_down = "wlan"
-    separator_block_width = 21
+    separator_block_width = 33
 }
 
 ethernet _first_ {
     format_up = "%ip"
     format_down = "eth"
-    separator_block_width = 21
+    separator_block_width = 33
 }
 
 battery all {
     format = "%percentage %status"
-    separator_block_width = 21
+    separator_block_width = 33
     integer_battery_capacity = true
     last_full_capacity = true
     format_down = "AC"
@@ -88,6 +88,6 @@ time {
 
 tztime utc {
     format = " (%H:%M UTC)"
-    separator_block_width = 21
+    separator_block_width = 33
     timezone = "Etc/UTC"
 }
