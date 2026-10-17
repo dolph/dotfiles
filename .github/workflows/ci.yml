@@ -167,6 +167,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [fedora-versions, lint, headless, desktop]
     if: always()
+    permissions: {}
     steps:
       - name: Fail unless every job succeeded
         env:
