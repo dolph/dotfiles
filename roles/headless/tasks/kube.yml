@@ -71,6 +71,7 @@
     user: tektoncd
     repo: cli
     action: latest_release
+    token: "{{ lookup('env', 'GITHUB_TOKEN') | default(omit, true) }}"
   register: headless_latest_tekton_release
 
 - name: Install tekton
