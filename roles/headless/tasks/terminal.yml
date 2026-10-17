@@ -4,6 +4,14 @@
     path: "/home/{{ whoami }}/.bash-preexec"
     state: absent
 
+- name: Remove bash history file
+  ansible.builtin.file:
+    path: "/home/{{ whoami }}/.bash_history"
+    state: absent
+  tags:
+    - terminal
+    - bashrc
+
 - name: Configure terminal
   ansible.builtin.template:
     src: "home/{{ item }}"
